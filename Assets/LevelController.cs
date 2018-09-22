@@ -45,6 +45,10 @@ public class LevelController : MonoBehaviour
 			time += Time.deltaTime;
 		}
 
-		// if (P1Door.transform.position - OnPlayer)
+		if ((P1Door.transform.position - OnPlayer.transform.position).magnitude < 1 &&
+			(P2Door.transform.position - OffPlayer.transform.position).magnitude < 1)
+		{
+			LevelController.endGame("Victory");
+		}
 	}
 }
