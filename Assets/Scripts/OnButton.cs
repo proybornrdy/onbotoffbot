@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OnButton : MonoBehaviour {
 
+	public GameObject onPlayer;
     public Toggleable toggleable;
 
 	// Use this for initialization
@@ -13,7 +14,12 @@ public class OnButton : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButton("Fire1"))
+		Vector3 onPlayerPos = onPlayer.transform.position;
+		Vector3 buttonPos = transform.position;
+        if (Input.GetButton("Fire1") &&
+			(System.Math.Pow(onPlayerPos.x - buttonPos.x, 2) <= 1 ||
+			System.Math.Pow(onPlayerPos.y - buttonPos.y, 2) <= 1 ||
+			System.Math.Pow(onPlayerPos.z - buttonPos.z, 2) <= 1))
         {
             toggleable.TurnOn();
         }

@@ -45,16 +45,16 @@ public class Piston : Toggleable
     public void Extend()
     {
         transform.localPosition += new Vector3(-1f, 0, 0);
-        cylinder.transform.localPosition = new Vector3(-0.5f, 0, 0);
-        cylinder.transform.localScale += new Vector3(0, 0.75f, 0);
+        //cylinder.transform.localPosition += new Vector3(-0.5f, 0, 0);
+        cylinder.transform.localScale += new Vector3(4f, 0, 0);
         extended = true;
     }
 
     public void Contract()
     {
         transform.localPosition -= new Vector3(-1f, 0, 0);
-        cylinder.transform.localPosition = new Vector3(-0.25f, 0, 0);
-        cylinder.transform.localScale += new Vector3(0, -0.75f, 0);
+        //cylinder.transform.localPosition += new Vector3(0.5f, 0, 0);
+        cylinder.transform.localScale += new Vector3(-4f, 0, 0);
         extended = false;
     }
 
