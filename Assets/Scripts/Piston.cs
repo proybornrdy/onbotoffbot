@@ -5,17 +5,19 @@ using UnityEngine;
 
 public class Piston : Toggleable
 {
-    Vector3 movement;
 	public int extensionRange = 1;
-    public bool extended = false;
     public Transform arm;
     public Transform moveablePart;
-    bool on;
+	public bool startOn = false;
+    bool on = false;
+    bool extended = false;
 	bool isColliding = false;
 
     // Use this for initialization
     void Start () {
-        on = false;
+        if (startOn) {
+			TurnOn();
+		}
     }
 
     // Update is called once per frame
@@ -28,7 +30,7 @@ public class Piston : Toggleable
         if (!on)
         {
             on = true;
-            Extend();
+			Extend();
         }
     }
 
@@ -59,13 +61,17 @@ public class Piston : Toggleable
 	
 	void OnTriggerEnter(Collider other){
 		if (isColliding == true) return;
-		
-            Vector3 moveDirection = (other.transform.position - transform.position).normalized;
+		//only push if not extended yet
+		if (on) {
+			//Make sure objects are pushed along the appropriate axis
+            Vector3 moveDirection = Utils.NearestCardinal(other.transform.position - transform.position);
 			print(moveDirection);
 			other.transform.position += moveDirection * extensionRange;
 			isColliding = true;
-        
+        }
 	}
+	
+	
 	
 	void OnTriggerExit(Collider other) {
 		;
