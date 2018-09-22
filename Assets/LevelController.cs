@@ -3,11 +3,13 @@
 public class LevelController : MonoBehaviour
 {
 
+    //World constants
+    public static float gravity = 20f;
 	// Players
 	static GameObject OnPlayer;
 	static GameObject OffPlayer;
-	public static float PlayerMovementSpeed = 10;
-	public static float PlayerJumpHeight = 10;
+	public static float PlayerMovementSpeed = 5;
+	public static float PlayerJumpHeight = 7;
 
 	// Interactable Objects
 	static GameObject Door;
