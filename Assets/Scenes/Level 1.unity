@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45087194, g: 0.5007767, b: 0.5745915, a: 1}
+  m_IndirectSpecularColor: {r: 0.45087248, g: 0.5007776, b: 0.57459223, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2233,8 +2233,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 15.824146, y: 37.163254, z: 11.262798}
+  m_Center: {x: -1.1722326, y: 18.048431, z: -0.17453194}
 --- !u!54 &486302110
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2248,7 +2248,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1001 &501630823
 Prefab:
@@ -3161,8 +3161,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 15.824146, y: 37.163254, z: 11.262798}
+  m_Center: {x: -1.1722326, y: 18.048431, z: -0.17453194}
 --- !u!54 &773319522
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3176,7 +3176,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1001 &802196396
 Prefab:
