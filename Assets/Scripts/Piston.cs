@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,9 @@ public class Piston : Toggleable
 
     Vector3 movement;
     Rigidbody pistonRigidbody;
+    public GameObject cylinder;
+    bool extended = false;
+    
     bool on;
 
     // Use this for initialization
@@ -22,25 +26,50 @@ public class Piston : Toggleable
 
     public override void TurnOn()
     {
-        Extend();
+        if (!on)
+        {
+            on = true;
+            Extend();
+        }
     }
 
     public override void TurnOff()
     {
-        Contract();
+        if (on)
+        {
+            on = false;
+            Contract();
+        }
     }
 
     public void Extend()
     {
-        on = true;
-        movement.Set(-1f, 0f, 0f);
-        pistonRigidbody.MovePosition(transform.position + movement);
+        transform.localPosition += new Vector3(-1f, 0, 0);
+        cylinder.transform.localPosition = new Vector3(-0.5f, 0, 0);
+        cylinder.transform.localScale += new Vector3(0, 0.75f, 0);
+        extended = true;
     }
 
     public void Contract()
     {
-        on = false;
-        movement.Set(1f, 0f, 0f);
-        pistonRigidbody.MovePosition(transform.position + movement);
+        transform.localPosition -= new Vector3(-1f, 0, 0);
+        cylinder.transform.localPosition = new Vector3(-0.25f, 0, 0);
+        cylinder.transform.localScale += new Vector3(0, -0.75f, 0);
+        extended = false;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (extended)
+        {
+            float newX = (float)Math.Round((pistonRigidbody.position.x - 1) * 2, MidpointRounding.AwayFromZero) / 2;
+            other.transform.localPosition = new Vector3(newX, other.transform.localPosition.y, other.transform.localPosition.z);
+        }
+    }
+
+
+    void OnTriggerExit(Collider other)
+    {
+        
     }
 }
