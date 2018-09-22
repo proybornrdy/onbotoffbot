@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class LevelController : MonoBehaviour
 {
 
 	// Players
 	static GameObject OnPlayer;
 	static GameObject OffPlayer;
+	public static float PlayerMovementSpeed = 10;
+	public static float PlayerJumpHeight = 10;
 
 	// Interactable Objects
 	static GameObject Door;

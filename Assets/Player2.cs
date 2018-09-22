@@ -18,6 +18,6 @@ public class Player2 : MonoBehaviour {
         float moveVertical = Input.GetAxis("P2Vertical");
 
         Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical);
-        rb.velocity = movement * PlayerStats.movementSpeed;
+        rb.velocity = movement * LevelController.PlayerMovementSpeed;
     }
 }
