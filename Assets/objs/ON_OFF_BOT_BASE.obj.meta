@@ -1,28 +1,16 @@
 fileFormatVersion: 2
-guid: 46c62dd1b57d42e499e6175c369454ca
+guid: 762d55a9bdb4aff489b04006b0be7799
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: piston_extension
-    100004: Piston_mobile
-    100006: Piston_Stationary
-    400000: //RootNode
-    400002: piston_extension
-    400004: Piston_mobile
-    400006: Piston_Stationary
-    2100000: piston_extensionMat
-    2100002: Piston_mobileMat
-    2100004: Piston_StationaryMat
-    2300000: piston_extension
-    2300002: Piston_mobile
-    2300004: Piston_Stationary
-    3300000: piston_extension
-    3300002: Piston_mobile
-    3300004: Piston_Stationary
-    4300000: piston_extension
-    4300002: Piston_mobile
-    4300004: Piston_Stationary
+    100000: Cylinder001
+    100002: //RootNode
+    400000: Cylinder001
+    400002: //RootNode
+    2100000: Cylinder001Mat
+    2300000: Cylinder001
+    3300000: Cylinder001
+    4300000: Cylinder001
   externalObjects: {}
   materials:
     importMaterials: 1

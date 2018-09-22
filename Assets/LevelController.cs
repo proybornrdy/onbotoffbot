@@ -10,7 +10,8 @@ public class LevelController : MonoBehaviour
 	public static float PlayerJumpHeight = 10;
 
 	// Interactable Objects
-	static GameObject Door;
+	static GameObject P1Door;
+	static GameObject P2Door;
 	static GameObject[] Pistons;
 
 	// Game State
@@ -41,5 +42,7 @@ public class LevelController : MonoBehaviour
 		{
 			time += Time.deltaTime;
 		}
+
+		// if (P1Door.transform.position - OnPlayer)
 	}
 }

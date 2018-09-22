@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 762d55a9bdb4aff489b04006b0be7799
+guid: 51b1b9399971f81458975c118ae38052
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Box001
+    100000: piston_extension
     100002: //RootNode
-    400000: Box001
+    400000: piston_extension
     400002: //RootNode
-    2100000: Box001Mat
-    2300000: Box001
-    3300000: Box001
-    4300000: Box001
+    2100000: piston_extensionMat
+    2300000: piston_extension
+    3300000: piston_extension
+    4300000: piston_extension
   externalObjects: {}
   materials:
     importMaterials: 1
