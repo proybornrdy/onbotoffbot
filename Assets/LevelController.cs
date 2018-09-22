@@ -26,7 +26,7 @@ public class LevelController : MonoBehaviour
 	public static void endGame(string reason)
 	{
 		gamePlaying = false;
-		NewBehaviourScript.reason = reason;
+		LevelController.reason = reason;
 	}
 
 	public static float getTimePlayed()
