@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OffButton : MonoBehaviour {
 
+    public Toggleable toggleable;
 	// Use this for initialization
 	void Start () {
 		
@@ -11,6 +12,9 @@ public class OffButton : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (Input.GetButton("Fire2"))
+        {
+            toggleable.TurnOff();
+        }
+    }
 }
