@@ -21,7 +21,7 @@ public class PlayerOff : MonoBehaviour {
         Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical);
         rb.position = rb.position + (movement * LevelController.PlayerMovementSpeed * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.R)) {
+        if (Input.GetKeyDown(KeyCode.R) && rb.velocity.y == 0) {
             rb.velocity = new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical);
         }
     }
