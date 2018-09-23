@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 62619f1ed624a0f418403186f4ab25a2
+guid: 60117a82d50f42547bc9a1c325c1e3cd
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Box002
+    100000: Door_closed_01
     100002: //RootNode
-    400000: Box002
+    400000: Door_closed_01
     400002: //RootNode
-    2100000: Box002Mat
-    2300000: Box002
-    3300000: Box002
-    4300000: Box002
+    2100000: Door_closed_01Mat
+    2300000: Door_closed_01
+    3300000: Door_closed_01
+    4300000: Door_closed_01
   externalObjects: {}
   materials:
     importMaterials: 1
