@@ -768,6 +768,11 @@ Prefab:
       propertyPath: m_Name
       value: FloorBlock (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 65380026875782980, guid: 8afe085414b4d4e2ea1204dfcf19343c,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8afe085414b4d4e2ea1204dfcf19343c, type: 2}
   m_IsPrefabAsset: 0
@@ -1015,6 +1020,11 @@ Prefab:
       propertyPath: m_Name
       value: FloorBlock (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 65380026875782980, guid: 8afe085414b4d4e2ea1204dfcf19343c,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8afe085414b4d4e2ea1204dfcf19343c, type: 2}
   m_IsPrefabAsset: 0
@@ -1065,6 +1075,11 @@ Prefab:
     - target: {fileID: 1254258946931820, guid: 8afe085414b4d4e2ea1204dfcf19343c, type: 2}
       propertyPath: m_Name
       value: FloorBlock (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 65380026875782980, guid: 8afe085414b4d4e2ea1204dfcf19343c,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8afe085414b4d4e2ea1204dfcf19343c, type: 2}
@@ -1308,7 +1323,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4079360390228948, guid: a7d68eaf554e341488ccdb177aaad154, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4079360390228948, guid: a7d68eaf554e341488ccdb177aaad154, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1316,7 +1331,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4079360390228948, guid: a7d68eaf554e341488ccdb177aaad154, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4079360390228948, guid: a7d68eaf554e341488ccdb177aaad154, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1353,6 +1368,11 @@ Prefab:
       propertyPath: toggleable
       value: 
       objectReference: {fileID: 629821717}
+    - target: {fileID: 23779022651350948, guid: a7d68eaf554e341488ccdb177aaad154,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7d68eaf554e341488ccdb177aaad154, type: 2}
   m_IsPrefabAsset: 0
@@ -1555,15 +1575,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4037690332120022, guid: 21a7853d577bc2243af94beb6c50c807, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4037690332120022, guid: 21a7853d577bc2243af94beb6c50c807, type: 2}
-      propertyPath: m_LocalPosition.y
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4037690332120022, guid: 21a7853d577bc2243af94beb6c50c807, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037690332120022, guid: 21a7853d577bc2243af94beb6c50c807, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 4.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4037690332120022, guid: 21a7853d577bc2243af94beb6c50c807, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1600,6 +1620,11 @@ Prefab:
       propertyPath: toggleable
       value: 
       objectReference: {fileID: 629821717}
+    - target: {fileID: 23511912200158060, guid: 21a7853d577bc2243af94beb6c50c807,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21a7853d577bc2243af94beb6c50c807, type: 2}
   m_IsPrefabAsset: 0
@@ -2423,6 +2448,11 @@ Prefab:
     - target: {fileID: 1254258946931820, guid: 8afe085414b4d4e2ea1204dfcf19343c, type: 2}
       propertyPath: m_Name
       value: FloorBlock (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 65380026875782980, guid: 8afe085414b4d4e2ea1204dfcf19343c,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8afe085414b4d4e2ea1204dfcf19343c, type: 2}
