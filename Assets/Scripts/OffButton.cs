@@ -23,8 +23,6 @@ public class OffButton : MonoBehaviour {
 			System.Math.Pow(offPlayerPos.y - buttonPos.y, 2) <= 1 &&
 			System.Math.Pow(offPlayerPos.z - buttonPos.z, 2) <= 1)
         {
-			print(offPlayerPos);
-			print(buttonPos);
             toggleable.TurnOff();
         }
     }
