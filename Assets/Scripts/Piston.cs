@@ -22,6 +22,10 @@ public class Piston : Toggleable
 
     // Update is called once per frame
     void Update () {
+		if (!LevelController.gameGoing())
+		{
+			return;
+		}
         isColliding = false;
     }
 

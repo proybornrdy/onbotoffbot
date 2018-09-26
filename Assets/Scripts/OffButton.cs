@@ -16,6 +16,10 @@ public class OffButton : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+		if (!LevelController.gameGoing())
+		{
+			return;
+		}
 		Vector3 offPlayerPos = offPlayer.transform.position;
 		Vector3 buttonPos = transform.position;
         if (Input.GetButton("Fire2")&&

@@ -6,22 +6,21 @@ public class LevelController : MonoBehaviour
     //World constants
     public static float gravity = 20f;
 	// Players
-	static GameObject OnPlayer;
-	static GameObject OffPlayer;
+	public static GameObject OnPlayer;
+	public static GameObject OffPlayer;
 	public static float PlayerMovementSpeed = 5;
 	public static float PlayerJumpHeight = 7;
 
 	// Interactable Objects
-	static GameObject P1Door;
-	static GameObject P2Door;
-	static GameObject[] Pistons;
+	public static GameObject OnPlayerDoor;
+	public static GameObject OffPlayerDoor;
 
 	// Game State
 	static private float time; // true: game still going, falst: game over
-	static private bool gamePlaying; // true: game still going, falst: game over
+	static private bool gamePlaying = true; // true: game still going, falst: game over
 	static private string reason; // reason game is over if it's over
 
-	public static bool getGameStatus()
+	public static bool gameGoing()
 	{
 		return gamePlaying;
 	}
@@ -32,9 +31,22 @@ public class LevelController : MonoBehaviour
 		LevelController.reason = reason;
 	}
 
-	public static float getTimePlayed()
+	public static string getReason()
+	{
+		return reason;
+	}
+
+	public static float getTime()
 	{
 		return time;
+	}
+
+	void Start()
+	{
+		OnPlayer = GameObject.Find("PlayerOn");
+		OffPlayer = GameObject.Find("PlayerOff");
+		OnPlayerDoor = GameObject.Find("OnDoor");
+		OffPlayerDoor = GameObject.Find("OffDoor");
 	}
 
 	// Update is called once per frame
@@ -45,8 +57,10 @@ public class LevelController : MonoBehaviour
 			time += Time.deltaTime;
 		}
 
-		if ((P1Door.transform.position - OnPlayer.transform.position).magnitude < 1 &&
-			(P2Door.transform.position - OffPlayer.transform.position).magnitude < 1)
+		// if ((OnPlayerDoor.transform.position - OnPlayer.transform.position).magnitude < (1.5) * Mathf.Sqrt(2) &&
+		//	(OffPlayerDoor.transform.position - OffPlayer.transform.position).magnitude < (1.5)*Mathf.Sqrt(2))
+		// Debug.Log(OnPlayer.transform.position);
+		if (OnPlayer.transform.position.x > 4 && OffPlayer.transform.position.x > 4)
 		{
 			LevelController.endGame("Victory");
 		}

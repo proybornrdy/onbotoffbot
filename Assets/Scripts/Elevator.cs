@@ -40,7 +40,11 @@ public class Elevator : Toggleable
 
     void Update()
     {
-        if (on)
+		if (!LevelController.gameGoing())
+		{
+			return;
+		}
+		if (on)
         {
             if (!pause)
             {
