@@ -10,7 +10,6 @@ public class Piston : Toggleable
     public Transform moveablePart;
 	public bool startOn = false;
     bool on = false;
-    bool extended = false;
 	bool isColliding = false;
 
     // Use this for initialization
@@ -50,17 +49,13 @@ public class Piston : Toggleable
     public void Extend()
     {
         moveablePart.localPosition += new Vector3(-1f * extensionRange, 0, 0);
-        //cylinder.transform.localPosition += new Vector3(-0.5f, 0, 0);
         arm.localScale += new Vector3(4f * extensionRange, 0, 0);
-        extended = true;
     }
 
     public void Contract()
     {
         moveablePart.localPosition -= new Vector3(-1f * extensionRange, 0, 0);
-        //cylinder.transform.localPosition += new Vector3(0.5f, 0, 0);
         arm.localScale += new Vector3(-4f * extensionRange, 0, 0);
-        extended = false;
     }
 	
 	void OnTriggerEnter(Collider other){
