@@ -60,7 +60,7 @@ public class LevelController : MonoBehaviour
 		// if ((OnPlayerDoor.transform.position - OnPlayer.transform.position).magnitude < (1.5) * Mathf.Sqrt(2) &&
 		//	(OffPlayerDoor.transform.position - OffPlayer.transform.position).magnitude < (1.5)*Mathf.Sqrt(2))
 		// Debug.Log(OnPlayer.transform.position);
-		if (OnPlayer.transform.position.x > 4 && OffPlayer.transform.position.x > 4)
+		if (OnPlayer.transform.position.x > 4.4 && OffPlayer.transform.position.x > 4.4)
 		{
 			LevelController.endGame("Victory");
 		}
