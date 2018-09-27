@@ -1413,6 +1413,11 @@ Prefab:
       propertyPath: magneticObject
       value: 
       objectReference: {fileID: 1883712790}
+    - target: {fileID: 114247889298865084, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
+        type: 2}
+      propertyPath: magneticRange
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b25668ad9c32c84aaf2c4efa71d9727, type: 2}
   m_IsPrefabAsset: 0
@@ -3665,6 +3670,11 @@ Prefab:
       propertyPath: m_Name
       value: OnButton_Magnet
       objectReference: {fileID: 0}
+    - target: {fileID: 114919356604089660, guid: a7d68eaf554e341488ccdb177aaad154,
+        type: 2}
+      propertyPath: range
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7d68eaf554e341488ccdb177aaad154, type: 2}
   m_IsPrefabAsset: 0
@@ -5107,6 +5117,11 @@ Prefab:
       propertyPath: m_Name
       value: OffButton_Magnet
       objectReference: {fileID: 0}
+    - target: {fileID: 114259497263042098, guid: 21a7853d577bc2243af94beb6c50c807,
+        type: 2}
+      propertyPath: range
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21a7853d577bc2243af94beb6c50c807, type: 2}
   m_IsPrefabAsset: 0
@@ -5288,6 +5303,11 @@ Prefab:
     - target: {fileID: 1477057335191154, guid: 21a7853d577bc2243af94beb6c50c807, type: 2}
       propertyPath: m_Name
       value: OffButton_Piston
+      objectReference: {fileID: 0}
+    - target: {fileID: 114259497263042098, guid: 21a7853d577bc2243af94beb6c50c807,
+        type: 2}
+      propertyPath: range
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21a7853d577bc2243af94beb6c50c807, type: 2}
@@ -7989,6 +8009,11 @@ Prefab:
     - target: {fileID: 1432426269209874, guid: a7d68eaf554e341488ccdb177aaad154, type: 2}
       propertyPath: m_Name
       value: OnButton_Piston
+      objectReference: {fileID: 0}
+    - target: {fileID: 114919356604089660, guid: a7d68eaf554e341488ccdb177aaad154,
+        type: 2}
+      propertyPath: range
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7d68eaf554e341488ccdb177aaad154, type: 2}
