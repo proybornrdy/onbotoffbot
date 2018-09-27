@@ -724,36 +724,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 54610209447173820, guid: dfd941280804feb40a6fb132a8f28f74,
-        type: 2}
-      propertyPath: m_Constraints
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 65085360910186360, guid: dfd941280804feb40a6fb132a8f28f74,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65085360910186360, guid: dfd941280804feb40a6fb132a8f28f74,
-        type: 2}
-      propertyPath: m_Size.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65882322376614026, guid: dfd941280804feb40a6fb132a8f28f74,
-        type: 2}
-      propertyPath: m_Size.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65882322376614026, guid: dfd941280804feb40a6fb132a8f28f74,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 54610209447173820, guid: dfd941280804feb40a6fb132a8f28f74,
-        type: 2}
-      propertyPath: m_CollisionDetection
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfd941280804feb40a6fb132a8f28f74, type: 2}
   m_IsPrefabAsset: 0
