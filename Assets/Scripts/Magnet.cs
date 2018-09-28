@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class Magnet : Toggleable {
 
-    public int magneticRange = 4;
+    public float magneticRange;
     public int acceleration = 1;
     public bool startOn = false;
     public GameObject magneticObject;
+    Rigidbody magneticRb;
+    Rigidbody magnetRb;
     Magnetic magnetic;
     bool on = false;
     bool isColliding = false;
 
     // Use this for initialization
     void Start () {
-		magnetic = magneticObject.GetComponent<Magnetic>();
+        if (startOn)
+        {
+            TurnOn();
+        }
+        magnetic = magneticObject.GetComponent<Magnetic>();
+        magnetRb = GetComponent<Rigidbody>();
+        magneticRb = magneticObject.GetComponent<Rigidbody>();
     }
 	
 	// Update is called once per frame
@@ -23,7 +31,6 @@ public class Magnet : Toggleable {
         {
             Pull();
         }
-
     }
 
     public override void TurnOn()
@@ -31,6 +38,7 @@ public class Magnet : Toggleable {
         if (!on)
         {
             on = true;
+            magneticRb.drag = Mathf.Infinity;
         }
     }
 
@@ -39,6 +47,7 @@ public class Magnet : Toggleable {
         if (on)
         {
             on = false;
+            magneticRb.drag = 0;
         }
     }
 
@@ -56,6 +65,15 @@ public class Magnet : Toggleable {
 
     void Pull()
     {
-        magneticObject.transform.position = Vector3.MoveTowards(magneticObject.transform.position, transform.position, (magnetic.speed += acceleration) * Time.deltaTime);
+        if(inPullingRange(magnetRb, magneticRb, magneticRange))
+        {
+            magneticRb.MovePosition(Vector3.MoveTowards(magneticRb.position, transform.position, (magnetic.speed += acceleration) * Time.deltaTime));
+        }
+        
+    }
+
+    bool inPullingRange(Rigidbody magnetRb, Rigidbody magneticRb, float magneticRange)
+    {
+        return Mathf.Abs(magnetRb.position.x - magneticRb.position.x) <= magneticRange && Mathf.Abs(magnetRb.position.z - magneticRb.position.z) <= magneticRange && Mathf.Abs(magnetRb.position.z - magneticRb.position.z) <= magneticRange;
     }
 }
