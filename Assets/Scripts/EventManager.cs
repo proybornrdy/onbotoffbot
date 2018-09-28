@@ -18,13 +18,21 @@ public class EventManager : MonoBehaviour {
 	void Update () {
         if (!LevelController.gameGoing()) return;
 
-        if (Input.GetButton("Fire1"))
+
+        try
         {
-            OnOnPlayerInteracted();
+            if (Input.GetButton("Fire1"))
+            {
+                OnOnPlayerInteracted();
+            }
+            if (Input.GetButton("Fire2"))
+            {
+                OnOffPlayerInteracted();
+            }
         }
-        if (Input.GetButton("Fire2"))
+        catch (System.NullReferenceException)
         {
-            OnOffPlayerInteracted();
+            ;
         }
     }
 }
