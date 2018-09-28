@@ -16,7 +16,11 @@ public class Magnet : Toggleable {
 
     // Use this for initialization
     void Start () {
-		magnetic = magneticObject.GetComponent<Magnetic>();
+        if (startOn)
+        {
+            TurnOn();
+        }
+        magnetic = magneticObject.GetComponent<Magnetic>();
         magnetRb = GetComponent<Rigidbody>();
         magneticRb = magneticObject.GetComponent<Rigidbody>();
     }
@@ -27,7 +31,6 @@ public class Magnet : Toggleable {
         {
             Pull();
         }
-
     }
 
     public override void TurnOn()
@@ -64,7 +67,6 @@ public class Magnet : Toggleable {
     {
         if(inPullingRange(magnetRb, magneticRb, magneticRange))
         {
-            //magneticObject.transform.position = Vector3.MoveTowards(magneticObject.transform.position, transform.position, (magnetic.speed += acceleration) * Time.deltaTime);
             magneticRb.MovePosition(Vector3.MoveTowards(magneticRb.position, transform.position, (magnetic.speed += acceleration) * Time.deltaTime));
         }
         

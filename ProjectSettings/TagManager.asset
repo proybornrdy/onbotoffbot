@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Door
   - Floor
+  - MoveableBlock
   layers:
   - Default
   - TransparentFX
