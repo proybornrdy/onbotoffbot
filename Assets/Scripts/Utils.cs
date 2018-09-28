@@ -13,4 +13,11 @@ public static class Utils {
 					new Vector3(0, v.y / Math.Abs(v.y), 0) :
 					new Vector3(0, 0, v.z / Math.Abs(v.z));
 	}
+
+    public static bool InRange(Vector3 onPlayerPos, Vector3 buttonPos)
+    {
+        return System.Math.Pow(onPlayerPos.x - buttonPos.x, 2) <= 1 &&
+            System.Math.Pow(onPlayerPos.y - buttonPos.y, 2) <= 1 &&
+            System.Math.Pow(onPlayerPos.z - buttonPos.z, 2) <= 1;
+    }
 }

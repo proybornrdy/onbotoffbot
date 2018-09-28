@@ -9,7 +9,7 @@ public class OnButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        ;
 	}
 	
 	// Update is called once per frame
@@ -18,18 +18,26 @@ public class OnButton : MonoBehaviour {
 		{
 			return;
 		}
-		Vector3 onPlayerPos = onPlayer.transform.position;
-		Vector3 buttonPos = transform.position;
-        if (Input.GetButton("Fire1") && inRange(onPlayerPos, buttonPos))
+    }
+    
+
+    void TurnOn()
+    {
+        Vector3 onPlayerPos = onPlayer.transform.position;
+        Vector3 buttonPos = transform.position;
+        if (Utils.InRange(onPlayerPos, buttonPos))
         {
             toggleable.TurnOn();
         }
     }
 
-    bool inRange(Vector3 onPlayerPos, Vector3 buttonPos)
+    void OnEnable()
     {
-        return System.Math.Pow(onPlayerPos.x - buttonPos.x, 2) <= 1 &&
-            System.Math.Pow(onPlayerPos.y - buttonPos.y, 2) <= 1 &&
-            System.Math.Pow(onPlayerPos.z - buttonPos.z, 2) <= 1;
+        EventManager.OnOnPlayerInteracted += TurnOn;
+    }
+
+    void OnDisable()
+    {
+        EventManager.OnOnPlayerInteracted -= TurnOn;
     }
 }
