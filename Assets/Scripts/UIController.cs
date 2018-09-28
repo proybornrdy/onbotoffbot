@@ -12,9 +12,9 @@ public class UIController : MonoBehaviour
 
 	void Update()
 	{
-		int minuets = ((int)LevelController.getTime()) / 60;
+		int minutes = ((int)LevelController.getTime()) / 60;
 		int seconds = ((int)LevelController.getTime()) % 60;
-		TIME_TEXT.text = "" + minuets.ToString("D2") + ":" + seconds.ToString("D2");
+        TIME_TEXT.text = "" + minutes.ToString("D2") + ":" + seconds.ToString("D2");
 
 		if (!LevelController.gameGoing())
 		{

@@ -16,7 +16,7 @@ public class LevelController : MonoBehaviour
 	public static GameObject OffPlayerDoor;
 
 	// Game State
-	static private float time; // true: game still going, falst: game over
+	static private float time = 0; // time since game began
 	static private bool gamePlaying = true; // true: game still going, falst: game over
 	static private string reason; // reason game is over if it's over
 
