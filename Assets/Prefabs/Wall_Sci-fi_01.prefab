@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65885841656208268}
   - component: {fileID: 54200466664760840}
   m_Layer: 0
-  m_Name: New Prefab
+  m_Name: Wall_Sci-fi_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
