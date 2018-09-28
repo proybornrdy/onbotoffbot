@@ -51,6 +51,11 @@ public class Magnet : Toggleable {
         }
     }
 
+    public override bool IsOn()
+    {
+        return on;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == magneticObject) {
