@@ -14,9 +14,12 @@ public class Magnetic : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        magnet = magnetObj.GetComponent<Magnet>();
-        magnetRb = magnetObj.GetComponent<Rigidbody>();
-        magneticRb = GetComponent<Rigidbody>();
+        if(magnetObj)
+        {
+            magnet = magnetObj.GetComponent<Magnet>();
+            magnetRb = magnetObj.GetComponent<Rigidbody>();
+            magneticRb = GetComponent<Rigidbody>();
+        }        
     }
 	
 	// Update is called once per frame
@@ -45,9 +48,11 @@ public class Magnetic : MonoBehaviour {
 
     void OnCollisionExit(Collision other)
     {
-        if (other.gameObject == magnetObj && !magnet.IsOn())
+        if (other.gameObject == magnetObj)
         {
-            SetIsColliding(false);
+            if (!magnet.IsOn()) {
+                SetIsColliding(false);
+            }
         }
     }
 
