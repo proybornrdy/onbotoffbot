@@ -23,9 +23,10 @@ GameObject:
   - component: {fileID: 114409743300011136}
   - component: {fileID: 54538796693652704}
   - component: {fileID: 65055412999466994}
+  - component: {fileID: 114680622757502666}
   m_Layer: 0
   m_Name: PlayerOff
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,3 +167,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933313478e7be174a81593f027041bbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114680622757502666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1155756531858820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cffe1c9aaa0bfc243b4a16313f17420a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  acceleration: 1
+  magnetObj: {fileID: 0}

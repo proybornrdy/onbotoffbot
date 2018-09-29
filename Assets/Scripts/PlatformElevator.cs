@@ -16,6 +16,11 @@ public class PlatformElevator : Toggleable {
 	void Start () {
 		minY = platform.position.y;
 		maxY = minY + height;
+        if (startOn)
+        {
+            on = true;
+            platform.position += Vector3.up * height;
+        }
 	}
 	
 	// Update is called once per frame
@@ -37,11 +42,11 @@ public class PlatformElevator : Toggleable {
 	}
 	
 	void Raise() {
-		 platform.position += Vector3.up * Time.deltaTime;
+		 platform.position += Vector3.up * Time.deltaTime * 2;
 	}
 	
 	void Lower() {
-		 platform.position += Vector3.down * Time.deltaTime;
+		 platform.position += Vector3.down * Time.deltaTime * 2;
 	}
 	
 	public override void TurnOn()
@@ -50,6 +55,7 @@ public class PlatformElevator : Toggleable {
         {
             on = true;
 			raising = true;
+            lowering = false;
         }
     }
 
@@ -59,6 +65,12 @@ public class PlatformElevator : Toggleable {
         {
             on = false;
             lowering = true;
+            raising = false;
         }
+    }
+
+    public override bool IsOn()
+    {
+        return on;
     }
 }

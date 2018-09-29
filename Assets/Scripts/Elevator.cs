@@ -26,7 +26,6 @@ public class Elevator : Toggleable
         {
             TurnOn();
         }
-        
     }
 
     public override void TurnOn()
@@ -36,6 +35,11 @@ public class Elevator : Toggleable
     public override void TurnOff()
     {
         on = false;
+    }
+
+    public override bool IsOn()
+    {
+        return on;
     }
 
     void Update()

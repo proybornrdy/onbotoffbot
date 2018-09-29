@@ -66,6 +66,11 @@ public class Piston : Toggleable
         }
     }
 
+    public override bool IsOn()
+    {
+        return on;
+    }
+
     public void Extend()
     {
         if (arm.localScale.x < endExtension && moveablePart.localPosition.x > endMoveablePosition)
