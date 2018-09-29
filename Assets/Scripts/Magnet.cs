@@ -67,9 +67,9 @@ public class Magnet : Toggleable {
             }
         }
     }
-    
-    public bool getState()
+
+    public override bool IsOn()
     {
         return on;
-    }    
+    }
 }
