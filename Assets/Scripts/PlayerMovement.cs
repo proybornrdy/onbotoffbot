@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+
+        playerRigidbody.AddForce(Vector3.up * 50f);
+        
         float v = Input.GetAxisRaw("Horizontal");
         float h = Input.GetAxisRaw("Vertical");
 
