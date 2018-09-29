@@ -3,6 +3,8 @@
 public class PlayerOff : MonoBehaviour {
     private Rigidbody rb;
 
+    public GameObject pickedUpItem;
+
     void Start () {
         rb = GetComponent<Rigidbody>();
         Physics.gravity = new Vector3(0, -LevelController.gravity, 0);
