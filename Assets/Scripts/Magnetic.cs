@@ -5,41 +5,68 @@ using UnityEngine;
 public class Magnetic : MonoBehaviour {
 
     public float speed;
-    Rigidbody rigidBody;
-    bool onFloor = true;
+    public float acceleration;
+    public GameObject magnetObj;
+    Rigidbody magneticRb;
+    Rigidbody magnetRb;
+    Magnet magnet;
+    bool isColliding = false;
 
     // Use this for initialization
     void Start () {
-        rigidBody = GetComponent<Rigidbody>();
+        magnet = magnetObj.GetComponent<Magnet>();
+        magnetRb = magnetObj.GetComponent<Rigidbody>();
+        magneticRb = GetComponent<Rigidbody>();
     }
 	
 	// Update is called once per frame
     void Update()
     {
-        if (onFloor)
-        {
-            rigidBody.constraints = RigidbodyConstraints.FreezeAll;
-        }
-        else
-        {
-            rigidBody.constraints = RigidbodyConstraints.None;
-            rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
-        }
+        
+    }
+
+    public void SetIsColliding(bool colliding)
+    {
+        isColliding = colliding;
+    }
+
+    public bool GetIsColliding()
+    {
+        return isColliding;
     }
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Floor")
+        if (other.gameObject == magnetObj)
         {
-            onFloor = true;
+            SetIsColliding(true);
         }
     }
 
     void OnCollisionExit(Collision other)
     {
-        if (other.gameObject.tag == "Floor")
+        if (other.gameObject == magnetObj && !magnet.IsOn())
         {
-            onFloor = false;
+            SetIsColliding(false);
         }
+    }
+
+    public void GetPulled()
+    {
+        
+        if (InPullingRange(magnetRb, magneticRb, magnet.magneticRange))
+        {
+            //magneticRb.MovePosition(Vector3.MoveTowards(magneticRb.position, magnetRb.position, (speed += acceleration) * Time.deltaTime));
+            print("in pulling range and getting pulled");
+            Vector3 relativePos = (magnetRb.position - magneticRb.position)*5;
+            magneticRb.AddForce(relativePos * 50);
+        }
+    }
+
+    public bool InPullingRange(Rigidbody magnetRb, Rigidbody magneticRb, float magneticRange)
+    {
+        return Mathf.Abs(magnetRb.position.x - magneticRb.position.x) <= 0.1 &&
+            Mathf.Abs(magnetRb.position.y - magneticRb.position.y) <= magneticRange &&
+            Mathf.Abs(magnetRb.position.z - magneticRb.position.z) <= magneticRange;
     }
 }
