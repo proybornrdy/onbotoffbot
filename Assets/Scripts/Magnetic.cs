@@ -53,13 +53,17 @@ public class Magnetic : MonoBehaviour {
 
     public void GetPulled()
     {
-        
         if (InPullingRange(magnetRb, magneticRb, magnet.magneticRange))
         {
-            //magneticRb.MovePosition(Vector3.MoveTowards(magneticRb.position, magnetRb.position, (speed += acceleration) * Time.deltaTime));
-            print("in pulling range and getting pulled");
-            Vector3 relativePos = (magnetRb.position - magneticRb.position)*5;
-            magneticRb.AddForce(relativePos * 50);
+            if (tag == "Player")
+            {
+                Vector3 relativePos = (magnetRb.position - magneticRb.position) * 30;
+                magneticRb.AddForce(relativePos, ForceMode.Acceleration);
+            }
+            else
+            {
+                magneticRb.MovePosition(Vector3.MoveTowards(magneticRb.position, magnetRb.position, (speed += acceleration) * Time.deltaTime));
+            }            
         }
     }
 
