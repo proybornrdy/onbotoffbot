@@ -35,7 +35,7 @@ public class RailPushed : MonoBehaviour {
         //Don't move if collider isn't allowed to push
         else if (!tags.HasTag("CanPush"))
         {
-            rb.constraints = initialConstraints | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+            rb.constraints = initialConstraints | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         }
         else
         {
