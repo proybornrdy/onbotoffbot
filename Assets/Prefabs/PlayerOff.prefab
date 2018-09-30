@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 54538796693652704}
   - component: {fileID: 65055412999466994}
   - component: {fileID: 114680622757502666}
+  - component: {fileID: 114364783538301490}
   m_Layer: 0
   m_Name: PlayerOff
   m_TagString: Player
@@ -68,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1155756531858820}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.74, y: 0.5, z: -0.604}
+  m_LocalPosition: {x: -2.1449997, y: 1, z: -3.6699998}
   m_LocalScale: {x: 0.025, y: 0.025, z: 0.025}
   m_Children:
   - {fileID: 4556789617047494}
@@ -139,7 +140,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1155756531858820}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 23.828917, y: 52.57, z: 16.273003}
@@ -156,6 +157,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 23.828917, y: 52.57, z: 16.273003}
   m_Center: {x: -1.9144583, y: 25.5, z: -0.86349964}
+--- !u!114 &114364783538301490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1155756531858820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b33452e40480374c90d76920c26d2da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags:
+  - Player
+  - CanPush
 --- !u!114 &114409743300011136
 MonoBehaviour:
   m_ObjectHideFlags: 1

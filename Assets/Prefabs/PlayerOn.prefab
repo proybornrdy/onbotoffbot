@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 54085155241007936}
   - component: {fileID: 65976317306805880}
   - component: {fileID: 114530274275633412}
+  - component: {fileID: 114106576922829060}
   m_Layer: 0
   m_Name: PlayerOn
   m_TagString: Player
@@ -55,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1855919040825700}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 3.16, y: 0.5, z: 0.35}
+  m_LocalPosition: {x: -0.598, y: 1.1, z: -5.43}
   m_LocalScale: {x: 0.025, y: 0.025, z: 0.025}
   m_Children:
   - {fileID: 4987944354989328}
@@ -151,7 +152,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1855919040825700}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 23.828917, y: 52.57, z: 16.273003}
@@ -168,6 +169,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUpItem: {fileID: 0}
+--- !u!114 &114106576922829060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855919040825700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b33452e40480374c90d76920c26d2da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags:
+  - Player
+  - CanPush
 --- !u!114 &114530274275633412
 MonoBehaviour:
   m_ObjectHideFlags: 1
