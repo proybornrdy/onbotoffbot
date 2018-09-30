@@ -1610,11 +1610,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 65976317306805880, guid: 9d544896faf205e46ae704e32f8525d4,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d544896faf205e46ae704e32f8525d4, type: 2}
   m_IsPrefabAsset: 0
@@ -2738,7 +2733,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4939316746596810, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224092638885681674, guid: e9b31108965c1ea4084dd3f256f339e2,
         type: 2}
@@ -3116,6 +3111,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4506921883840334, guid: 8afe085414b4d4e2ea1204dfcf19343c,
     type: 2}
   m_PrefabInternal: {fileID: 511357022}
+--- !u!1 &517662781 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1380177152635100, guid: d8d7ca99c9ff7474fbff2d4105a39989,
+    type: 2}
+  m_PrefabInternal: {fileID: 394588661}
+--- !u!114 &517662782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 517662781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b33452e40480374c90d76920c26d2da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags:
+  - Toggleable
+  - CanPush
 --- !u!1001 &521864514
 Prefab:
   m_ObjectHideFlags: 0
@@ -5780,22 +5794,15 @@ Prefab:
       propertyPath: m_Name
       value: Pressure_Plate
       objectReference: {fileID: 0}
-    - target: {fileID: 4547084059428096, guid: 69a4f798b589fa64d99c665d49d6fb02, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547084059428096, guid: 69a4f798b589fa64d99c665d49d6fb02, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547084059428096, guid: 69a4f798b589fa64d99c665d49d6fb02, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 65610293786758090, guid: 69a4f798b589fa64d99c665d49d6fb02,
+    - target: {fileID: 65152724354999860, guid: 69a4f798b589fa64d99c665d49d6fb02,
         type: 2}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: m_Size.x
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 65152724354999860, guid: 69a4f798b589fa64d99c665d49d6fb02,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 2.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69a4f798b589fa64d99c665d49d6fb02, type: 2}
@@ -8339,12 +8346,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4789844190133800, guid: 4304a732440dc9747b5580d4f3aa6d8b, type: 2}
       propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 65055412999466994, guid: 4304a732440dc9747b5580d4f3aa6d8b,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4304a732440dc9747b5580d4f3aa6d8b, type: 2}
@@ -9492,15 +9494,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1272972369689054, guid: 69a4f798b589fa64d99c665d49d6fb02, type: 2}
-      propertyPath: m_Name
-      value: Pressure_Plate (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 114650720929991484, guid: 69a4f798b589fa64d99c665d49d6fb02,
         type: 2}
       propertyPath: toggleable
       value: 
       objectReference: {fileID: 394588663}
+    - target: {fileID: 1272972369689054, guid: 69a4f798b589fa64d99c665d49d6fb02, type: 2}
+      propertyPath: m_Name
+      value: Pressure_Plate (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69a4f798b589fa64d99c665d49d6fb02, type: 2}
   m_IsPrefabAsset: 0
