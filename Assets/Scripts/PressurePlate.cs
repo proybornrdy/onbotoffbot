@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour {
     public Toggleable toggleable;
-    bool inUse = false;
+    int enters = 0;
 
     // Use this for initialization
     void Start()
@@ -28,15 +28,16 @@ public class PressurePlate : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (inUse) return;
-        inUse = true;
-        Toggle();
+        print("enter");
+        enters++;
+        if (enters == 1) Toggle();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!inUse) return;
-        inUse = false;
-        Toggle();
+        print("exit");
+        enters--;
+        if (enters == 0) Toggle();
+        else if (enters < 0) enters = 0;
     }
 }
