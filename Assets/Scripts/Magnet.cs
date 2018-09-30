@@ -26,6 +26,7 @@ public class Magnet : Toggleable {
             foreach (GameObject magneticObject in magneticObjects)
             {
                 Magnetic magnetic = magneticObject.GetComponent<Magnetic>();
+                Rigidbody magneticRb = magneticObject.GetComponent<Rigidbody>();
                 if (!magnetic.GetIsColliding())
                 {
                     magnetic.GetPulled();
@@ -43,9 +44,10 @@ public class Magnet : Toggleable {
             {
                 Rigidbody magneticRb = magneticObject.GetComponent<Rigidbody>();
                 Magnetic magnetic = magneticObject.GetComponent<Magnetic>();
-                if (magnetic.InPullingRange(magnetRb, magneticRb, magneticRange))
+                print("tag: " + magneticObject.tag);
+                if (magneticObject.tag != "Player" && magnetic.InPullingRange(magnetRb, magneticRb, magneticRange))
                 {
-                    //magneticRb.drag = Mathf.Infinity;
+                    magneticRb.drag = Mathf.Infinity;
                 }
             }
         }
@@ -59,10 +61,9 @@ public class Magnet : Toggleable {
             foreach (GameObject magneticObject in magneticObjects)
             {
                 Rigidbody magneticRb = magneticObject.GetComponent<Rigidbody>();
-                Magnetic magnetic = magneticObject.GetComponent<Magnetic>();
-                if (magneticRb.drag == Mathf.Infinity)
+                if (magneticObject.tag != "Player" && magneticRb.drag == Mathf.Infinity)
                 {
-                    //magneticRb.drag = 0;
+                    magneticRb.drag = 0;
                 }
             }
         }

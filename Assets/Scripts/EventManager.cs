@@ -9,6 +9,12 @@ public class EventManager : MonoBehaviour {
     public delegate void OffPlayerInteractAction();
     public static event OffPlayerInteractAction OnOffPlayerInteracted;
 
+    public delegate void OnPlayerPickupAction();
+    public static event OnPlayerPickupAction OnOnPlayerPickedUp;
+
+    public delegate void OffPlayerPickupAction();
+    public static event OffPlayerPickupAction OnOffPlayerPickedUp;
+
     // Use this for initialization
     void Start () {
 		
@@ -33,6 +39,13 @@ public class EventManager : MonoBehaviour {
         catch (System.NullReferenceException)
         {
             ;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            OnOnPlayerPickedUp();
+        }
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            OnOffPlayerPickedUp();
         }
     }
 }

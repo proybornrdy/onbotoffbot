@@ -14,9 +14,12 @@ public class Magnetic : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        magnet = magnetObj.GetComponent<Magnet>();
-        magnetRb = magnetObj.GetComponent<Rigidbody>();
-        magneticRb = GetComponent<Rigidbody>();
+        if(magnetObj)
+        {
+            magnet = magnetObj.GetComponent<Magnet>();
+            magnetRb = magnetObj.GetComponent<Rigidbody>();
+            magneticRb = GetComponent<Rigidbody>();
+        }        
     }
 	
 	// Update is called once per frame
@@ -45,21 +48,27 @@ public class Magnetic : MonoBehaviour {
 
     void OnCollisionExit(Collision other)
     {
-        if (other.gameObject == magnetObj && !magnet.IsOn())
+        if (other.gameObject == magnetObj)
         {
-            SetIsColliding(false);
+            if (!magnet.IsOn()) {
+                SetIsColliding(false);
+            }
         }
     }
 
     public void GetPulled()
     {
-        
         if (InPullingRange(magnetRb, magneticRb, magnet.magneticRange))
         {
-            //magneticRb.MovePosition(Vector3.MoveTowards(magneticRb.position, magnetRb.position, (speed += acceleration) * Time.deltaTime));
-            print("in pulling range and getting pulled");
-            Vector3 relativePos = (magnetRb.position - magneticRb.position)*5;
-            magneticRb.AddForce(relativePos * 50);
+            if (tag == "Player")
+            {
+                Vector3 relativePos = (magnetRb.position - magneticRb.position) * 30;
+                magneticRb.AddForce(relativePos, ForceMode.Acceleration);
+            }
+            else
+            {
+                magneticRb.MovePosition(Vector3.MoveTowards(magneticRb.position, magnetRb.position, (speed += acceleration) * Time.deltaTime));
+            }            
         }
     }
 

@@ -432,11 +432,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114247889298865084, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
-        type: 2}
-      propertyPath: magneticObjects.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4204648586707970, guid: 3b25668ad9c32c84aaf2c4efa71d9727, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.3
@@ -469,48 +464,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 114247889298865084, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
-        type: 2}
-      propertyPath: magneticObject
-      value: 
-      objectReference: {fileID: 1883712790}
-    - target: {fileID: 114247889298865084, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
+    - target: {fileID: 114268882982968102, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
         type: 2}
       propertyPath: magneticObjects.Array.data[0]
       value: 
       objectReference: {fileID: 1883712790}
-    - target: {fileID: 114247889298865084, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
+    - target: {fileID: 114268882982968102, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
         type: 2}
       propertyPath: magneticObjects.Array.data[1]
       value: 
       objectReference: {fileID: 773319519}
-    - target: {fileID: 114247889298865084, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
+    - target: {fileID: 114268882982968102, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
         type: 2}
-      propertyPath: acceleration
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114247889298865084, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 65667979179680256, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65667979179680256, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65667979179680256, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
-        type: 2}
-      propertyPath: m_Size.z
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114247889298865084, guid: 3b25668ad9c32c84aaf2c4efa71d9727, type: 2}
+      propertyPath: magneticObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 486302107}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b25668ad9c32c84aaf2c4efa71d9727, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &52382427
@@ -814,35 +783,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114644964393328646, guid: dfd941280804feb40a6fb132a8f28f74,
         type: 2}
-      propertyPath: speed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114644964393328646, guid: dfd941280804feb40a6fb132a8f28f74,
-        type: 2}
-      propertyPath: acceleration
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114644964393328646, guid: dfd941280804feb40a6fb132a8f28f74,
-        type: 2}
-      propertyPath: magnet
-      value: 
-      objectReference: {fileID: 727809214}
-    - target: {fileID: 114644964393328646, guid: dfd941280804feb40a6fb132a8f28f74,
-        type: 2}
       propertyPath: magnetObj
       value: 
       objectReference: {fileID: 727809214}
-    - target: {fileID: 54610209447173820, guid: dfd941280804feb40a6fb132a8f28f74,
-        type: 2}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
-    - target: {fileID: 1869039483343382, guid: dfd941280804feb40a6fb132a8f28f74, type: 2}
-      propertyPath: m_TagString
-      value: MoveableBlock
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114851822778710090, guid: dfd941280804feb40a6fb132a8f28f74, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfd941280804feb40a6fb132a8f28f74, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &86431003
@@ -4118,23 +4062,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1290379284260974, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
     type: 2}
   m_PrefabInternal: {fileID: 52088214}
---- !u!114 &727809215
+--- !u!114 &727809215 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 727809214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 114268882982968102, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
+    type: 2}
+  m_PrefabInternal: {fileID: 52088214}
   m_Script: {fileID: 11500000, guid: bf9a19a402e1027439d099bb599699c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  magneticRange: 6
-  startOn: 0
-  magneticObjects:
-  - {fileID: 1883712790}
-  - {fileID: 773319519}
-  - {fileID: 486302107}
 --- !u!1001 &739395238
 Prefab:
   m_ObjectHideFlags: 0
@@ -9530,7 +9463,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1855919040825700, guid: 9d544896faf205e46ae704e32f8525d4, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114530274275633412, guid: 9d544896faf205e46ae704e32f8525d4, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 9d544896faf205e46ae704e32f8525d4, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &1758496660
@@ -10062,7 +10000,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4789844190133800, guid: 4304a732440dc9747b5580d4f3aa6d8b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.74
+      value: 2.27
       objectReference: {fileID: 0}
     - target: {fileID: 4789844190133800, guid: 4304a732440dc9747b5580d4f3aa6d8b, type: 2}
       propertyPath: m_LocalPosition.y
@@ -10070,7 +10008,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4789844190133800, guid: 4304a732440dc9747b5580d4f3aa6d8b, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.604
+      value: 0.49
       objectReference: {fileID: 0}
     - target: {fileID: 4789844190133800, guid: 4304a732440dc9747b5580d4f3aa6d8b, type: 2}
       propertyPath: m_LocalRotation.x
@@ -10092,7 +10030,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1155756531858820, guid: 4304a732440dc9747b5580d4f3aa6d8b, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 54538796693652704, guid: 4304a732440dc9747b5580d4f3aa6d8b,
+        type: 2}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114680622757502666, guid: 4304a732440dc9747b5580d4f3aa6d8b, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 4304a732440dc9747b5580d4f3aa6d8b, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &1921190184 stripped
@@ -10600,6 +10548,11 @@ Prefab:
     - target: {fileID: 4125465001520032, guid: 48b068b73e057794782ccb0b66d74e13, type: 2}
       propertyPath: m_RootOrder
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296614479326224, guid: 48b068b73e057794782ccb0b66d74e13,
+        type: 2}
+      propertyPath: extensionRange
+      value: 0.95
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48b068b73e057794782ccb0b66d74e13, type: 2}

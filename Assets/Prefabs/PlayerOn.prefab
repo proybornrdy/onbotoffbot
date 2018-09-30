@@ -40,9 +40,10 @@ GameObject:
   - component: {fileID: 114000356527521158}
   - component: {fileID: 54085155241007936}
   - component: {fileID: 65976317306805880}
+  - component: {fileID: 114530274275633412}
   m_Layer: 0
   m_Name: PlayerOn
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,8 +142,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 23.828917, y: 54.937325, z: 16.273003}
-  m_Center: {x: -1.9144583, y: 26.728687, z: -0.86349964}
+  m_Size: {x: 23.828917, y: 52.57, z: 16.273003}
+  m_Center: {x: -1.9144583, y: 25.5, z: -0.86349964}
 --- !u!65 &65976317306805880
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -153,8 +154,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 23.828917, y: 54.937325, z: 16.273003}
-  m_Center: {x: -1.9144583, y: 26.728687, z: -0.86349964}
+  m_Size: {x: 23.828917, y: 52.57, z: 16.273003}
+  m_Center: {x: -1.9144583, y: 25.5, z: -0.86349964}
 --- !u!114 &114000356527521158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,3 +167,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b197a1b13d1c342b795dcd43ab3c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickedUpItem: {fileID: 0}
+--- !u!114 &114530274275633412
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855919040825700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cffe1c9aaa0bfc243b4a16313f17420a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  acceleration: 1
+  magnetObj: {fileID: 0}

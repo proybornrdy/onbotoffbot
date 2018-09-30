@@ -53,6 +53,7 @@ public class Piston : Toggleable
         if (!on)
         {
             on = true;
+            SoundController.instance.playSoundEffect("pistonOn");
         }
     }
 
@@ -61,6 +62,7 @@ public class Piston : Toggleable
         if (on)
         {
             on = false;
+            SoundController.instance.playSoundEffect("pistonOff");
         }
     }
 

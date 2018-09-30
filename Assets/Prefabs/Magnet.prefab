@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4204648586707970}
   - component: {fileID: 54179334561811280}
   - component: {fileID: 65245013799599300}
-  - component: {fileID: 114247889298865084}
   - component: {fileID: 65667979179680256}
+  - component: {fileID: 114268882982968102}
   m_Layer: 0
   m_Name: Magnet
   m_TagString: Untagged
@@ -168,7 +168,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114247889298865084
+--- !u!114 &114268882982968102
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,6 +180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magneticRange: 6
-  acceleration: 1
   startOn: 0
-  magneticObject: {fileID: 0}
+  magneticObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
