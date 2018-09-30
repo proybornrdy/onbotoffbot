@@ -6,30 +6,34 @@ public class PickupItem : MonoBehaviour {
     public PlayerOn playerOn;
     public PlayerOff playerOff;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     void PickUpOnPlayer() {
         Vector3 onPlayerPos = playerOn.transform.position;
         Vector3 myPos = transform.position;
-        if (Utils.InRange(onPlayerPos, myPos) && !playerOff.pickedUpItem.Equals(gameObject)) {
+        if (playerOn.pickedUpItem != null) {
+            playerOn.pickedUpItem.gameObject.transform.position = playerOn.transform.position + new Vector3(0, 0.5f, 1);
+            playerOn.pickedUpItem = null;
+            gameObject.transform.SetParent(null);
+            GetComponent<Rigidbody>().isKinematic = false;
+        } else if (Utils.InRange(onPlayerPos, myPos) && (playerOff.pickedUpItem == null || !playerOff.pickedUpItem.Equals(gameObject))) {
             playerOn.pickedUpItem = gameObject;
-            Debug.Log("PLAYER ON PICKUP");
+            GetComponent<Rigidbody>().isKinematic = true;
+            gameObject.transform.position = playerOn.transform.position + new Vector3(0, playerOn.GetComponent<Collider>().bounds.size.y, 0) + new Vector3(0, gameObject.transform.GetChild(0).GetComponent<Renderer>().bounds.size.y/2, 0);
+            gameObject.transform.SetParent(playerOn.transform);
         }
     }
     void PickUpOffPlayer() {
         Vector3 offPlayerPos = playerOff.transform.position;
         Vector3 myPos = transform.position;
-        if (Utils.InRange(offPlayerPos, myPos) && !playerOn.pickedUpItem.Equals(gameObject)) {
-            Debug.Log("PLAYER OFF PICKUP");
+        if (playerOff.pickedUpItem != null) {
+            playerOff.pickedUpItem.gameObject.transform.position = playerOff.transform.position + new Vector3(0, 0.5f, 1);
+            playerOff.pickedUpItem = null;
+            gameObject.transform.SetParent(null);
+            GetComponent<Rigidbody>().isKinematic = false;
+        } else if(Utils.InRange(offPlayerPos, myPos) && (playerOn.pickedUpItem == null || !playerOn.pickedUpItem.Equals(gameObject))) {
             playerOff.pickedUpItem = gameObject;
+            GetComponent<Rigidbody>().isKinematic = true;
+            gameObject.transform.position = playerOff.transform.position + new Vector3(0, playerOff.GetComponent<Collider>().bounds.size.y, 0) + new Vector3(0, gameObject.transform.GetChild(0).GetComponent<Renderer>().bounds.size.y / 2, 0);
+            gameObject.transform.SetParent(playerOff.transform);
         }
     }
 
