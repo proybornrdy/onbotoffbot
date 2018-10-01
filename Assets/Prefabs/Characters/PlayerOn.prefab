@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 65976317306805880}
   - component: {fileID: 114530274275633412}
   - component: {fileID: 114106576922829060}
+  - component: {fileID: 114443271096642564}
   m_Layer: 0
   m_Name: PlayerOn
   m_TagString: Player
@@ -183,6 +184,19 @@ MonoBehaviour:
   tags:
   - Player
   - CanPush
+--- !u!114 &114443271096642564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855919040825700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d18e32d1c0d84c5b8fc1d09b179a086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayDistance: 25
+  camPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114530274275633412
 MonoBehaviour:
   m_ObjectHideFlags: 1
