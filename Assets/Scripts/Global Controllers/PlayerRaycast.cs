@@ -6,6 +6,7 @@ public class PlayerRaycast : MonoBehaviour {
 
     public float rayDistance = 25;
     public Vector3 camPosition;
+    public float alphaValue;
     private Color color;
 
     private List<GameObject> invisibleObjs = new List<GameObject>();
@@ -30,7 +31,7 @@ public class PlayerRaycast : MonoBehaviour {
 
             GameObject collidedObj = hit.collider.gameObject;
             color = collidedObj.GetComponent<Renderer>().material.color;
-            color.a = 0.5f;
+            color.a = alphaValue;
             collidedObj.GetComponent<Renderer>().material.color = color;
 
 
