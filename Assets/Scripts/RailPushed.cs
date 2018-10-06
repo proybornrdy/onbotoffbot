@@ -39,7 +39,12 @@ public class RailPushed : MonoBehaviour {
         }
         else
         {
-            Vector3 pushDirection = transform.position - collision.collider.transform.position;
+            print("collide");
+            Vector3 pushDirection;
+            if (tags.HasTag("ConveyerBelt"))
+                pushDirection = Quaternion.Euler(0, collision.gameObject.transform.rotation.y, 0) * Vector3.left;
+            else
+                pushDirection = transform.position - collision.collider.transform.position;
             Utils.Coordinate largestComponent = Utils.LargestComponent(pushDirection);
             if (largestComponent == Utils.Coordinate.x)
             {
@@ -47,13 +52,18 @@ public class RailPushed : MonoBehaviour {
             }
             else if (largestComponent == Utils.Coordinate.y)
             {
-                rb.constraints = initialConstraints | RigidbodyConstraints.FreezePositionZ;
+                rb.constraints = initialConstraints | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
             }
             else
             {
-                rb.constraints = initialConstraints | RigidbodyConstraints.FreezePositionY;
+                rb.constraints = initialConstraints | RigidbodyConstraints.FreezePositionX;
             }
         }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        OnCollisionEnter(collision);
     }
 
     private void OnCollisionExit(Collision collision)
