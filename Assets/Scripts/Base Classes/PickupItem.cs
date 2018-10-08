@@ -10,7 +10,7 @@ public class PickupItem : MonoBehaviour {
         Vector3 onPlayerPos = playerOn.transform.position;
         Vector3 myPos = transform.position;
         if (playerOn.pickedUpItem != null) {
-            playerOn.pickedUpItem.gameObject.transform.position = playerOn.transform.position + new Vector3(0, 0.5f, 1);
+            playerOn.pickedUpItem.gameObject.transform.position = playerOn.transform.position + new Vector3(0, 1, 1);
             playerOn.pickedUpItem = null;
             gameObject.transform.SetParent(null);
             GetComponent<Rigidbody>().isKinematic = false;
@@ -25,7 +25,7 @@ public class PickupItem : MonoBehaviour {
         Vector3 offPlayerPos = playerOff.transform.position;
         Vector3 myPos = transform.position;
         if (playerOff.pickedUpItem != null) {
-            playerOff.pickedUpItem.gameObject.transform.position = playerOff.transform.position + new Vector3(0, 0.5f, 1);
+            playerOff.pickedUpItem.gameObject.transform.position = playerOff.transform.position + new Vector3(0, 1, 1);
             playerOff.pickedUpItem = null;
             gameObject.transform.SetParent(null);
             GetComponent<Rigidbody>().isKinematic = false;

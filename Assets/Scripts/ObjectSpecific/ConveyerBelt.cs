@@ -44,14 +44,19 @@ public class ConveyerBelt : Toggleable {
         return on;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        OnTriggerStay(other);
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (!on || !other.gameObject.GetComponent<Tags>()) return;
         if (other.gameObject.GetComponent<Tags>().HasTag("Pushable"))
         {
-            Vector3 direction = (beltFront.transform.position - beltBack.transform.position);
-            other.gameObject.GetComponent<Rigidbody>().AddForce(scrollSpeed * direction * Time.deltaTime, ForceMode.VelocityChange);
-            print(scrollSpeed * direction * Time.deltaTime);
+            Vector3 direction = (beltFront.transform.position - beltBack.transform.position).normalized;
+            //other.gameObject.GetComponent<Rigidbody>().AddForce(scrollSpeed * direction * Time.deltaTime, ForceMode.VelocityChange);
+            other.gameObject.GetComponent<Rigidbody>().velocity = scrollSpeed * direction * Time.deltaTime * 20;
 
         }
     }

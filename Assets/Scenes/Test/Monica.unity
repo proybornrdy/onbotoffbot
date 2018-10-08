@@ -7508,6 +7508,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerOn: {fileID: 1118508446}
   playerOff: {fileID: 970965815}
+--- !u!114 &1296089462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1296089460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b978953754ff846b29df943486c681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceThreshold: 0.1
+  speedThreshold: 0.0000001
 --- !u!1001 &1299551208
 Prefab:
   m_ObjectHideFlags: 0
@@ -8244,26 +8257,6 @@ Prefab:
     - target: {fileID: 4646374462284526, guid: 734036253e7a4ea459e84c4e03a9fc9e, type: 2}
       propertyPath: m_RootOrder
       value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 136907015645307804, guid: 734036253e7a4ea459e84c4e03a9fc9e,
-        type: 2}
-      propertyPath: m_Radius
-      value: 0.89916104
-      objectReference: {fileID: 0}
-    - target: {fileID: 136907015645307804, guid: 734036253e7a4ea459e84c4e03a9fc9e,
-        type: 2}
-      propertyPath: m_Center.x
-      value: 0.39916134
-      objectReference: {fileID: 0}
-    - target: {fileID: 136907015645307804, guid: 734036253e7a4ea459e84c4e03a9fc9e,
-        type: 2}
-      propertyPath: m_Center.y
-      value: -0.0000000067976726
-      objectReference: {fileID: 0}
-    - target: {fileID: 136907015645307804, guid: 734036253e7a4ea459e84c4e03a9fc9e,
-        type: 2}
-      propertyPath: m_Center.z
-      value: -0.00000007450577
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 734036253e7a4ea459e84c4e03a9fc9e, type: 2}
@@ -9829,6 +9822,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114857745705722808, guid: 673b75ea321681748826eb3c25f39827,
+        type: 2}
+      propertyPath: tags.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4785515761110298, guid: 673b75ea321681748826eb3c25f39827, type: 2}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -9865,6 +9863,16 @@ Prefab:
         type: 2}
       propertyPath: tags.Array.data[0]
       value: Pushable
+      objectReference: {fileID: 0}
+    - target: {fileID: 54182723646012334, guid: 673b75ea321681748826eb3c25f39827,
+        type: 2}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114857745705722808, guid: 673b75ea321681748826eb3c25f39827,
+        type: 2}
+      propertyPath: tags.Array.data[1]
+      value: Pickup
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 673b75ea321681748826eb3c25f39827, type: 2}
