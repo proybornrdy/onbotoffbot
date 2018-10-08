@@ -17,7 +17,7 @@ public class PickupItem : MonoBehaviour {
         } else if (Utils.InRange(onPlayerPos, myPos) && (playerOff.pickedUpItem == null || !playerOff.pickedUpItem.Equals(gameObject))) {
             playerOn.pickedUpItem = gameObject;
             GetComponent<Rigidbody>().isKinematic = true;
-            gameObject.transform.position = playerOn.transform.position + new Vector3(0, playerOn.GetComponent<Collider>().bounds.size.y, 0) + new Vector3(0, gameObject.transform.GetChild(0).GetComponent<Renderer>().bounds.size.y/2, 0);
+            gameObject.transform.position = playerOn.transform.position + new Vector3(0, playerOn.GetComponent<Collider>().bounds.size.y, 0) + new Vector3(0, gameObject.GetComponent<Collider>().bounds.size.y/2, 0);
             gameObject.transform.SetParent(playerOn.transform);
         }
     }
@@ -32,7 +32,7 @@ public class PickupItem : MonoBehaviour {
         } else if(Utils.InRange(offPlayerPos, myPos) && (playerOn.pickedUpItem == null || !playerOn.pickedUpItem.Equals(gameObject))) {
             playerOff.pickedUpItem = gameObject;
             GetComponent<Rigidbody>().isKinematic = true;
-            gameObject.transform.position = playerOff.transform.position + new Vector3(0, playerOff.GetComponent<Collider>().bounds.size.y, 0) + new Vector3(0, gameObject.transform.GetChild(0).GetComponent<Renderer>().bounds.size.y / 2, 0);
+            gameObject.transform.position = playerOff.transform.position + new Vector3(0, playerOff.GetComponent<Collider>().bounds.size.y, 0) + new Vector3(0, gameObject.GetComponent<Collider>().bounds.size.y / 2, 0);
             gameObject.transform.SetParent(playerOff.transform);
         }
     }
