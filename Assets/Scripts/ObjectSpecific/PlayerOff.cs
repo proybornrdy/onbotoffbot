@@ -19,15 +19,17 @@ public class PlayerOff : MonoBehaviour {
     }
 
     private void handleMovement() {
-        float moveHorizontal = Input.GetAxis("POffHorizontal");
-        float moveVertical = Input.GetAxis("POffVertical");
+		float moveHorizontal = Input.GetAxis("POffHorizontal");
+		float moveVertical = Input.GetAxis("POffVertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical);
-        rb.position = rb.position + (movement * LevelController.PlayerMovementSpeed * Time.deltaTime);
+		// Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical);
+		// rb.position = rb.position + (movement * LevelController.PlayerMovementSpeed * Time.deltaTime);
+		transform.Translate(-1 * Vector3.forward * moveVertical * LevelController.moveSpeed);
+		transform.Translate(Vector3.left * moveHorizontal * LevelController.moveSpeed);
 
-        if (Input.GetKeyDown(KeyCode.F) && Mathf.Abs(rb.velocity.y) < 0.05) {
-            //rb.velocity = new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical);
-            rb.AddForce(new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical), ForceMode.Impulse);
+		if (Input.GetButton("POffJump") && Mathf.Abs(rb.velocity.y) < 0.05) {
+            rb.velocity = new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical);
+            // rb.AddForce(new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical), ForceMode.Impulse);
         }
     }
 }

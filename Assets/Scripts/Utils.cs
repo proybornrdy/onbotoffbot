@@ -29,7 +29,7 @@ public static class Utils {
             System.Math.Pow(onPlayerPos.y - buttonPos.y, 2) <= 1 &&
             System.Math.Pow(onPlayerPos.z - buttonPos.z, 2) <= 1;
     }
-
+    
     public static Vector3 NearestCubeCenter(Vector3 v)
     {
         return new Vector3(
@@ -38,4 +38,18 @@ public static class Utils {
             Mathf.Round(v.z)
             );
     }
+
+	public static Vector3 closesCorner(GameObject query)
+	{
+		Vector3 globalPosition = query.GetComponent<Renderer>().bounds.min;
+		globalPosition.x = (float)Math.Round((double)globalPosition.x);
+		globalPosition.y = (float)Math.Round((double)globalPosition.y);
+		globalPosition.z = (float)Math.Round((double)globalPosition.z);
+		return globalPosition;
+	}
+
+    public static bool vectorEqual(Vector3 a, Vector3 b)
+	{
+		return a.x == b.x && a.y == b.y && a.z == b.z;
+	}
 }
