@@ -27,11 +27,11 @@ public class EventManager : MonoBehaviour {
 
         try
         {
-            if (Input.GetButton("Fire1"))
+            if (Input.GetButton("Button On"))
             {
                 OnOnPlayerInteracted();
             }
-            if (Input.GetButton("Fire2"))
+            if (Input.GetButton("Button Off"))
             {
                 OnOffPlayerInteracted();
             }
