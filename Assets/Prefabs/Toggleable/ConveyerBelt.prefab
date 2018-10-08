@@ -164,15 +164,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1211917743765090}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 4, y: 0, z: 4}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 4, y: 0, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4114212019743748}
   - {fileID: 4861150577982178}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4656626710046690
 Transform:
   m_ObjectHideFlags: 1
@@ -395,8 +395,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.99999964, y: 2.930656, z: 1}
+  m_Center: {x: 0, y: 0.9653279, z: 0}
 --- !u!65 &65587462895521326
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -447,11 +447,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc163d888fb5e74882e80fc7005681c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  on: 1
+  on: 0
   beltFront: {fileID: 1910485613149948}
   beltMiddle: {fileID: 1886277079595550}
   beltBack: {fileID: 1895327205343140}
-  scrollSpeed: 5
+  scrollSpeed: 2.5
 --- !u!136 &136002146728371160
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -461,10 +461,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5000001
+  m_Radius: 0.9208883
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0.034683555, y: -0.000000007167685, z: -0.38620457}
 --- !u!136 &136138522727159156
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -500,7 +500,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5000001
+  m_Radius: 0.89916104
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0.39916134, y: -0.0000000067976726, z: -0.00000007450577}

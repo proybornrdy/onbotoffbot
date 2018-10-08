@@ -44,8 +44,6 @@ public class RailPushed : MonoBehaviour {
             if (tags.HasTag("ConveyerBelt"))
             {
                 pushDirection = collision.gameObject.transform.right;
-                Vector3 cardinal = Utils.NearestCardinal(pushDirection);
-                transform.position += (cardinal + Vector3.up) * 0.2f;
             }
             else
                 pushDirection = transform.position - collision.collider.transform.position;

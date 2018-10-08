@@ -24,7 +24,7 @@ public class ConveyerBelt : Toggleable {
             for (int i = 0; i < texProperties.Length; i++)
             {
                 Vector2 pos = mr.material.GetTextureOffset(texProperties[i]);
-                mr.material.SetTextureOffset(texProperties[i], pos + (Vector2.right * offset));
+                mr.material.SetTextureOffset(texProperties[i], pos + (Vector2.left * offset));
             }
         }
 	}
@@ -46,8 +46,13 @@ public class ConveyerBelt : Toggleable {
 
     private void OnTriggerStay(Collider other)
     {
-        if (!other.gameObject) return;
+        if (!on || !other.gameObject.GetComponent<Tags>()) return;
         if (other.gameObject.GetComponent<Tags>().HasTag("Pushable"))
-            other.gameObject.GetComponent<Rigidbody>().AddForce(scrollSpeed * transform.right);
+        {
+            Vector3 direction = (beltFront.transform.position - beltBack.transform.position);
+            other.gameObject.GetComponent<Rigidbody>().AddForce(scrollSpeed * direction * Time.deltaTime, ForceMode.VelocityChange);
+            print(scrollSpeed * direction * Time.deltaTime);
+
+        }
     }
 }

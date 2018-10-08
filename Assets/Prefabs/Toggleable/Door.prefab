@@ -323,3 +323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24bd71761ab2854d8fb402aa03791b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpen: 0
+  openDoor: {fileID: 1140359546036484}
+  closedDoor: {fileID: 1177512444286676}
