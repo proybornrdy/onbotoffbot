@@ -42,7 +42,11 @@ public class RailPushed : MonoBehaviour {
             print("collide");
             Vector3 pushDirection;
             if (tags.HasTag("ConveyerBelt"))
-                pushDirection = Quaternion.Euler(0, collision.gameObject.transform.rotation.y, 0) * Vector3.left;
+            {
+                pushDirection = collision.gameObject.transform.right;
+                Vector3 cardinal = Utils.NearestCardinal(pushDirection);
+                transform.position += (cardinal + Vector3.up) * 0.2f;
+            }
             else
                 pushDirection = transform.position - collision.collider.transform.position;
             Utils.Coordinate largestComponent = Utils.LargestComponent(pushDirection);

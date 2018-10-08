@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class OnButton : MonoBehaviour {
 
-	public GameObject onPlayer;
-    public Toggleable toggleable;
+	public GameObject OnPlayer;
+    public Toggleable[] toggleable;
 
 	// Use this for initialization
 	void Start () {
@@ -23,11 +23,12 @@ public class OnButton : MonoBehaviour {
 
     void TurnOn()
     {
-        Vector3 onPlayerPos = onPlayer.transform.position;
+        Vector3 onPlayerPos = OnPlayer.transform.position;
         Vector3 buttonPos = transform.position;
         if (Utils.InRange(onPlayerPos, buttonPos))
         {
-            toggleable.TurnOn();
+            foreach (var t in toggleable)
+                t.TurnOn();
         }
     }
 

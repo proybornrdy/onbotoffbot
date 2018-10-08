@@ -5,7 +5,7 @@ using UnityEngine;
 public class OffButton : MonoBehaviour {
 
 	public GameObject offPlayer;
-    public Toggleable toggleable;
+    public Toggleable[] toggleable;
 
     // Use this for initialization
     void Start()
@@ -28,7 +28,8 @@ public class OffButton : MonoBehaviour {
         Vector3 buttonPos = transform.position;
         if (Utils.InRange(offPlayerPos, buttonPos))
         {
-            toggleable.TurnOff();
+            foreach (var t in toggleable)
+                t.TurnOff();
         }
     }
 
