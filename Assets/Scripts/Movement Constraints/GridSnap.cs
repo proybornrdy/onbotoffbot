@@ -22,8 +22,7 @@ public class GridSnap : MonoBehaviour {
         //only check velocity in x/z, still want snapping when object is falling
         Vector3 velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         Vector3 nearestCube = Utils.NearestCubeCenter(transform.position);
-        print(velocity);
-        if (velocity.magnitude <= speedThreshold && Vector3.Distance(transform.position, nearestCube) <= distanceThreshold)
+        if (velocity.y != 0 || (velocity.magnitude <= speedThreshold && Vector3.Distance(transform.position, nearestCube) <= distanceThreshold))
         {
             transform.position = new Vector3(nearestCube.x, transform.position.y, nearestCube.z);
         }
