@@ -18,18 +18,11 @@ public class OnButton : MonoBehaviour {
 		{
 			return;
 		}
-		Vector3 onPlayerPos = onPlayer.transform.position;
-		Vector3 buttonPos = transform.position;
-        if (Input.GetButton("Fire1") && inRange(onPlayerPos, buttonPos))
+		Vector3 onPlayerPos = Utils.closesCorner(onPlayer);
+		Vector3 buttonPos = Utils.closesCorner(this.gameObject);
+        if (Input.GetAxis("Button On") > .5 && Utils.vectorEqual(onPlayerPos, buttonPos))
         {
             toggleable.TurnOn();
         }
-    }
-
-    bool inRange(Vector3 onPlayerPos, Vector3 buttonPos)
-    {
-        return System.Math.Pow(onPlayerPos.x - buttonPos.x, 2) <= 1 &&
-            System.Math.Pow(onPlayerPos.y - buttonPos.y, 2) <= 1 &&
-            System.Math.Pow(onPlayerPos.z - buttonPos.z, 2) <= 1;
     }
 }

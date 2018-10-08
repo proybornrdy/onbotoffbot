@@ -9,6 +9,7 @@ public class LevelController : MonoBehaviour
 	public static GameObject OnPlayer;
 	public static GameObject OffPlayer;
 	public static float PlayerMovementSpeed = 5;
+	public static float moveSpeed = .05f;
 	public static float PlayerJumpHeight = 7;
 
 	// Interactable Objects
