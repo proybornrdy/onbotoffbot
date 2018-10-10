@@ -179,7 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf9a19a402e1027439d099bb599699c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magneticRange: 6
+  maxRange: 5
+  maxStrength: 100
   startOn: 0
   magneticObjects:
   - {fileID: 0}

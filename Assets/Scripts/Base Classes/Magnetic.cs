@@ -86,8 +86,10 @@ public class Magnetic : MonoBehaviour {
 
     public bool InPullingRange(Rigidbody magnetRb, Rigidbody magneticRb, float magneticRange)
     {
-        return Mathf.Abs(magnetRb.position.x - magneticRb.position.x) <= 0.5 &&
-            Mathf.Abs(magnetRb.position.y - magneticRb.position.y) <= magneticRange &&
-            Mathf.Abs(magnetRb.position.z - magneticRb.position.z) <= magneticRange;        
+        float xDist = Mathf.Abs(magnetRb.position.x - magneticRb.position.x);
+        float yDist = Mathf.Abs(magnetRb.position.y - magneticRb.position.y);
+        float zDist = Mathf.Abs(magnetRb.position.z - magneticRb.position.z);
+
+        return xDist <= 0.5 && xDist > 0.1 && yDist <= magneticRange && zDist <= magneticRange;        
     }
 }

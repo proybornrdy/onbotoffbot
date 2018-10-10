@@ -479,16 +479,6 @@ Prefab:
       propertyPath: magneticObjects.Array.data[2]
       value: 
       objectReference: {fileID: 486302107}
-    - target: {fileID: 114268882982968102, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
-        type: 2}
-      propertyPath: startOn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114268882982968102, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
-        type: 2}
-      propertyPath: maxRange
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b25668ad9c32c84aaf2c4efa71d9727, type: 2}
   m_IsPrefabAsset: 0
