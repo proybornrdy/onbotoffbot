@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Magnet : Toggleable {
 
-    public float magneticRange;
+    public float maxRange = 5f; // maximum distance the magnet will begin pulling an object from
+    public float maxStrength = 100f; // Maximum strength the magnet will pull something right next to it. Goes down as the object gets further away
+
     public bool startOn = false;
     public GameObject[] magneticObjects;
     Rigidbody magnetRb;
@@ -18,19 +20,20 @@ public class Magnet : Toggleable {
         }
         magnetRb = GetComponent<Rigidbody>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
+        
+    }
+
+    void FixedUpdate() {
         if (on)
         {
             foreach (GameObject magneticObject in magneticObjects)
             {
                 Magnetic magnetic = magneticObject.GetComponent<Magnetic>();
                 Rigidbody magneticRb = magneticObject.GetComponent<Rigidbody>();
-                if (!magnetic.GetIsColliding())
-                {
-                    magnetic.GetPulled();
-                }
+                magnetic.GetPulled();
             }
         }
     }
@@ -40,15 +43,6 @@ public class Magnet : Toggleable {
         if (!on)
         {
             on = true;
-            foreach (GameObject magneticObject in magneticObjects)
-            {
-                Rigidbody magneticRb = magneticObject.GetComponent<Rigidbody>();
-                Magnetic magnetic = magneticObject.GetComponent<Magnetic>();
-                if (magneticObject.tag != "Player" && magnetic.InPullingRange(magnetRb, magneticRb, magneticRange))
-                {
-                    magneticRb.drag = Mathf.Infinity;
-                }
-            }
         }
     }
 
