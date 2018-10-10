@@ -202,7 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b197a1b13d1c342b795dcd43ab3c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectionThreshold: 120
   heldItem: {fileID: 0}
+  selectedItem: {fileID: 0}
 --- !u!114 &114845772322650392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -214,4 +216,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b33452e40480374c90d76920c26d2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags: 0400000007000000010000000000000006000000
+  tags: 0000000001000000040000000700000006000000

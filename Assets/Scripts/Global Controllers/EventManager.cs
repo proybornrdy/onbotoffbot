@@ -6,6 +6,9 @@ public class EventManager : MonoBehaviour {
 
     public delegate void InteractAction(GameObject player);
     public static event InteractAction OnInteract;
+    float lastPressedOn = 0;
+    float lastPressedOff = 0;
+    public float pressThreshold = 0.5f;
 
     // Use this for initialization
     void Start () {
@@ -18,13 +21,21 @@ public class EventManager : MonoBehaviour {
         
         try
         {
-            if (Input.GetButton("OnInteract"))
+            if (Input.GetAxis("OnInteract") > 0.8)
             {
-                OnInteract(LevelController.OnPlayer);
+                if (Time.time - lastPressedOn > pressThreshold)
+                {
+                    OnInteract(LevelController.OnPlayer);
+                    lastPressedOn = Time.time;
+                }
             }
-            if (Input.GetButton("OffInteract"))
+            if (Input.GetAxis("OffInteract") > 0.8)
             {
-                OnInteract(LevelController.OffPlayer);
+                if (Time.time - lastPressedOff > pressThreshold)
+                {
+                    OnInteract(LevelController.OffPlayer);
+                    lastPressedOff = Time.time;
+                }
             }
         }
         catch (System.NullReferenceException)

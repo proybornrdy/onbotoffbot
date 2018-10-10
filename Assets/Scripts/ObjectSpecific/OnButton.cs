@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Interactable))]
-public class OnButton : MonoBehaviour {
-    
+public class OnButton : MonoBehaviour 
+{
     public Toggleable[] toggleable;
     Interactable interactable;
 
@@ -17,7 +17,6 @@ public class OnButton : MonoBehaviour {
     {
         interactable.InteractAction = TurnOn;
     }
-
     // Update is called once per frame
     void Update () {
 		if (!LevelController.gameGoing())

@@ -4,7 +4,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(Interactable))]
 public class OffButton : MonoBehaviour {
-    
     public Toggleable[] toggleable;
     Interactable interactable;
 

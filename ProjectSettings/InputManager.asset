@@ -152,7 +152,7 @@ InputManager:
   - serializedVersion: 3
     m_Name: OnInteract
     descriptiveName: 
-    descriptiveNegativeName: joystick 2 button 1
+    descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
     altNegativeButton: 
@@ -163,7 +163,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 2
+    axis: 8
     joyNum: 2
   - serializedVersion: 3
     m_Name: OffInteract
@@ -186,7 +186,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 1 button 1
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3

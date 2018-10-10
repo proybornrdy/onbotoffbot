@@ -24,9 +24,7 @@ public class Interactable : MonoBehaviour
 
     public void Select(GameObject player)
     {
-        print("call");
         if (selectedBy != null) return;
-        print("select");
         selectedBy = player;
         r.material.shader = glowShader;
     }

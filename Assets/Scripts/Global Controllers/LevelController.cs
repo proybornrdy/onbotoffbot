@@ -10,16 +10,18 @@ public class LevelController : MonoBehaviour
 	public static GameObject OffPlayer;
 	public static float PlayerMovementSpeed = 5;
 	public static float moveSpeed = .05f;
-	public static float PlayerJumpHeight = 7;
+	public static float PlayerJumpHeight = 6f;
 
 	// Interactable Objects
-	public static GameObject OnPlayerDoor;
-	public static GameObject OffPlayerDoor;
+	public static GameObject Door;
 
 	// Game State
 	static private float time = 0; // time since game began
 	static private bool gamePlaying = true; // true: game still going, falst: game over
 	static private string reason; // reason game is over if it's over
+
+    public GameObject[] rooms;
+    public Door[] doors;
 
 	public static bool gameGoing()
 	{
@@ -42,16 +44,16 @@ public class LevelController : MonoBehaviour
 		return time;
 	}
 
-	void Start()
+	void Awake()
 	{
 		OnPlayer = GameObject.Find("PlayerOn");
 		OffPlayer = GameObject.Find("PlayerOff");
-		OnPlayerDoor = GameObject.Find("OnDoor");
-		OffPlayerDoor = GameObject.Find("OffDoor");
-	}
+		Door = GameObject.Find("Door");
+        for (int i = 0; i < doors.Length; i++) doors[i].index = i;
+    }
 
-	// Update is called once per frame
-	void Update()
+    // Update is called once per frame
+    void Update()
 	{
 		if (gamePlaying)
 		{
@@ -61,9 +63,19 @@ public class LevelController : MonoBehaviour
 		// if ((OnPlayerDoor.transform.position - OnPlayer.transform.position).magnitude < (1.5) * Mathf.Sqrt(2) &&
 		//	(OffPlayerDoor.transform.position - OffPlayer.transform.position).magnitude < (1.5)*Mathf.Sqrt(2))
 		// Debug.Log(OnPlayer.transform.position);
-		if (OnPlayer.transform.position.x > 4.4 && OffPlayer.transform.position.x > 4.4)
-		{
-			LevelController.endGame("Victory");
-		}
+		//if (OnPlayer.transform.position.x > 4.4 && OffPlayer.transform.position.x > 4.4)
+		//{
+		//	LevelController.endGame("Victory");
+		//}
 	}
+
+    public void DoorOpened(int index)
+    {
+        rooms[index + 1].SetActive(true);
+    }
+
+    public void DoorClosed(int index)
+    {
+        rooms[index + 1].SetActive(false);
+    }
 }

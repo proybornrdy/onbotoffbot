@@ -6,13 +6,14 @@ using UnityEngine;
 public class PickupItem : MonoBehaviour
 {
     Interactable interactable;
-    void Awake()
-    {
-        interactable = GetComponent<Interactable>();
-    }
+    PlayerOn playerOn;
+    PlayerOff playerOff;
 
     private void Start()
     {
+        interactable = GetComponent<Interactable>();
+        playerOff = LevelController.OffPlayer.GetComponent<PlayerOff>();
+        playerOn = LevelController.OnPlayer.GetComponent<PlayerOn>();
         interactable.InteractAction = PickUp;
     }
 
