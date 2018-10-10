@@ -39,7 +39,6 @@ public class RailPushed : MonoBehaviour {
         }
         else
         {
-            print("collide");
             Vector3 pushDirection;
             if (tags.HasTag("ConveyerBelt"))
             {
