@@ -25,6 +25,7 @@ public class GridSnap : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (rb.isKinematic) return;
         //only check velocity in x/z, still want snapping when object is falling
         yVelocity = rb.velocity.y;
         Vector3 velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);

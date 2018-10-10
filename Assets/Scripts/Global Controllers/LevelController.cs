@@ -13,8 +13,7 @@ public class LevelController : MonoBehaviour
 	public static float PlayerJumpHeight = 7;
 
 	// Interactable Objects
-	public static GameObject OnPlayerDoor;
-	public static GameObject OffPlayerDoor;
+	public static GameObject Door;
 
 	// Game State
 	static private float time = 0; // time since game began
@@ -42,12 +41,11 @@ public class LevelController : MonoBehaviour
 		return time;
 	}
 
-	void Start()
+	void Awake()
 	{
 		OnPlayer = GameObject.Find("PlayerOn");
 		OffPlayer = GameObject.Find("PlayerOff");
-		OnPlayerDoor = GameObject.Find("OnDoor");
-		OffPlayerDoor = GameObject.Find("OffDoor");
+		Door = GameObject.Find("Door");
 	}
 
 	// Update is called once per frame

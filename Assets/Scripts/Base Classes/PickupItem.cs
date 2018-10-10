@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PickupItem : MonoBehaviour {
-    public PlayerOn playerOn;
-    public PlayerOff playerOff;
+    PlayerOn playerOn;
+    PlayerOff playerOff;
+
+    private void Start()
+    {
+        playerOff = LevelController.OffPlayer.GetComponent<PlayerOff>();
+        playerOn = LevelController.OnPlayer.GetComponent<PlayerOn>();
+    }
 
     void PickUpOnPlayer() {
         Vector3 onPlayerPos = playerOn.transform.position;

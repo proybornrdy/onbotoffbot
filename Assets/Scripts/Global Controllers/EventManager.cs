@@ -41,10 +41,10 @@ public class EventManager : MonoBehaviour {
             ;
         }
 
-        if (Input.GetKeyDown(KeyCode.Return)) {
+        if (Input.GetButton("Pickup On")) {
             OnOnPlayerPickedUp();
         }
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetButton("Pickup Off")) {
             OnOffPlayerPickedUp();
         }
     }

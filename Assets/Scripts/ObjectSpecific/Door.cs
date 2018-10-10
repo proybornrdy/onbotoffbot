@@ -11,7 +11,7 @@ public class Door : Toggleable {
 	void Start () {
 		if (isOpen)
         {
-
+            TurnOn();
         }
 	}
 	
