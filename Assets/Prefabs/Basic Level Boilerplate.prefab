@@ -741,6 +741,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad04c2bfa1ab0e4095f8e28eefe6516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rooms:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  doors:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114430077538058080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -789,6 +797,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad04c2bfa1ab0e4095f8e28eefe6516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rooms: []
+  doors: []
 --- !u!114 &114558039133066044
 MonoBehaviour:
   m_ObjectHideFlags: 1

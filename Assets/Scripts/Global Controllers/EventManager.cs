@@ -27,11 +27,11 @@ public class EventManager : MonoBehaviour {
 
         try
         {
-            if (Input.GetButton("Button On"))
+            if (Input.GetAxis("Button On") > 0.5)
             {
                 OnOnPlayerInteracted();
             }
-            if (Input.GetButton("Button Off"))
+            if (Input.GetAxis("Button Off") > 0.5)
             {
                 OnOffPlayerInteracted();
             }

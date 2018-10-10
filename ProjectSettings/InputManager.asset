@@ -163,7 +163,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 2
+    axis: 8
     joyNum: 2
   - serializedVersion: 3
     m_Name: Button Off
@@ -285,7 +285,7 @@ InputManager:
     positiveButton: joystick 2 button 1
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 3
+    gravity: 3000
     dead: 0.1
     sensitivity: 1
     snap: 0
@@ -317,7 +317,7 @@ InputManager:
     positiveButton: joystick 1 button 1
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 3
+    gravity: 3000
     dead: 0.1
     sensitivity: 1
     snap: 0

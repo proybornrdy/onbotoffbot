@@ -7,9 +7,13 @@ public class Door : Toggleable {
     public GameObject openDoor;
     public GameObject closedDoor;
     public Light overLight;
+    public int index = 0;
+    LevelController lc;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        lc = GameObject.Find("LevelController").GetComponent<LevelController>();
         if (isOpen) TurnOn();
         else TurnOff();
 	}
@@ -25,6 +29,7 @@ public class Door : Toggleable {
         openDoor.SetActive(true);
         closedDoor.SetActive(false);
         overLight.color = new Color(0, 1, 0);
+        lc.DoorOpened(index);
     }
 
     public override void TurnOff()
@@ -33,6 +38,7 @@ public class Door : Toggleable {
         openDoor.SetActive(false);
         closedDoor.SetActive(true);
         overLight.color = new Color(1, 0, 0);
+        lc.DoorClosed(index);
     }
 
     public override bool IsOn()
