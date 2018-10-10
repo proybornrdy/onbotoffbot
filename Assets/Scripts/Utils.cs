@@ -51,5 +51,15 @@ public static class Utils {
     public static bool vectorEqual(Vector3 a, Vector3 b)
 	{
 		return a.x == b.x && a.y == b.y && a.z == b.z;
-	}
+    }
+}
+
+public static class GameObjectExtensions
+{
+    public static bool HasTag(this GameObject obj, Tag tag)
+    {
+        Tags tags = obj.GetComponent<Tags>();
+        if (!tags) return false;
+        return tags.HasTag(tag);
+    }
 }

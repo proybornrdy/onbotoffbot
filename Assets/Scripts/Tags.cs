@@ -5,9 +5,9 @@ using System.Linq;
 
 public class Tags : MonoBehaviour {
 
-    public List<string> tags;
+    public Tag[] tags;
 
-    public bool HasTag(string s)
+    public bool HasTag(Tag s)
     {
         return tags.Any(t => t == s);
     }

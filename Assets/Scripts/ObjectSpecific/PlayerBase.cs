@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerBase : MonoBehaviour
 {
     internal Rigidbody rb;
+    public float selectionThreshold = 120;
 
-    public GameObject pickedUpItem;
+    public GameObject heldItem;
+    public GameObject selectedItem;
     internal string horizontalAxis;
     internal string verticalAxis;
     internal string jump;
@@ -39,7 +42,9 @@ public class PlayerBase : MonoBehaviour
             float moveHorizontal = moveVec.y;
             float moveVertical = moveVec.x;
 
-            transform.rotation = Quaternion.LookRotation(new Vector3(-moveHorizontal, 0, moveVertical), Vector3.up);
+            Vector3 moveDirection = new Vector3(-moveHorizontal, 0, moveVertical);
+
+            transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 
             // Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical);
             // rb.position = rb.position + (movement * LevelController.PlayerMovementSpeed * Time.deltaTime);
@@ -51,6 +56,34 @@ public class PlayerBase : MonoBehaviour
                 rb.velocity = new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical);
                 // rb.AddForce(new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical), ForceMode.Impulse);
             }
+
+            if (heldItem != null)
+            {
+                selectedItem = heldItem;
+            }
+            else
+            {
+                if (selectedItem != null)
+                {
+                    selectedItem.GetComponent<Interactable>().Deselect();
+                    selectedItem = null;
+                }
+
+                var interactables = TagCatalogue.FindAllWithTag(Tag.Interactable)
+                    .Where(obj => Utils.InRange(transform.position, obj.transform.position))
+                    .OrderBy(obj => Vector3.Angle(moveDirection, obj.transform.position - transform.position));
+                if (interactables.Count() != 0)
+                {
+                    GameObject closest = interactables.ElementAt(0);
+                    if (Vector3.Angle(moveDirection, closest.transform.position - transform.position)
+                        <= selectionThreshold)
+                    {
+                        print("calling");
+                        closest.GetComponent<Interactable>().Select(gameObject);
+                        selectedItem = closest;
+                    }
+                }
+            }
         }
     }
 
@@ -58,5 +91,10 @@ public class PlayerBase : MonoBehaviour
     {
         Vector2 vec = new Vector2(h, v);
         return Quaternion.Euler(0, 0, -45) * vec;
+    }
+
+    private void Select()
+    {
+
     }
 }

@@ -3,17 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EventManager : MonoBehaviour {
-    public delegate void OnPlayerInteractAction();
-    public static event OnPlayerInteractAction OnOnPlayerInteracted;
 
-    public delegate void OffPlayerInteractAction();
-    public static event OffPlayerInteractAction OnOffPlayerInteracted;
-
-    public delegate void OnPlayerPickupAction();
-    public static event OnPlayerPickupAction OnOnPlayerPickedUp;
-
-    public delegate void OffPlayerPickupAction();
-    public static event OffPlayerPickupAction OnOffPlayerPickedUp;
+    public delegate void InteractAction(GameObject player);
+    public static event InteractAction OnInteract;
 
     // Use this for initialization
     void Start () {
@@ -23,29 +15,21 @@ public class EventManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (!LevelController.gameGoing()) return;
-
-
+        
         try
         {
-            if (Input.GetButton("Button On"))
+            if (Input.GetButton("OnInteract"))
             {
-                OnOnPlayerInteracted();
+                OnInteract(LevelController.OnPlayer);
             }
-            if (Input.GetButton("Button Off"))
+            if (Input.GetButton("OffInteract"))
             {
-                OnOffPlayerInteracted();
+                OnInteract(LevelController.OffPlayer);
             }
         }
         catch (System.NullReferenceException)
         {
             ;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Return)) {
-            OnOnPlayerPickedUp();
-        }
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            OnOffPlayerPickedUp();
         }
     }
 }

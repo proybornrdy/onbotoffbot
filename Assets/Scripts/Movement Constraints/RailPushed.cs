@@ -23,7 +23,7 @@ public class RailPushed : MonoBehaviour {
     {
         Tags tags = collision.gameObject.GetComponent<Tags>();
         if (!tags) return;
-        if (tags.HasTag("PressurePlate"))
+        if (tags.HasTag(Tag.PressurePlate))
             plateCollisions += 1;
         if (plateCollisions == 1)
         {
@@ -33,15 +33,14 @@ public class RailPushed : MonoBehaviour {
             transform.position += (cardinal + Vector3.up) * 0.2f;
         }
         //Don't move if collider isn't allowed to push
-        else if (!tags.HasTag("CanPush"))
+        else if (!tags.HasTag(Tag.CanPush))
         {
             rb.constraints = initialConstraints | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         }
         else
         {
-            print("collide");
             Vector3 pushDirection;
-            if (tags.HasTag("ConveyerBelt"))
+            if (tags.HasTag(Tag.ConveyerBelt))
             {
                 pushDirection = collision.gameObject.transform.right;
             }

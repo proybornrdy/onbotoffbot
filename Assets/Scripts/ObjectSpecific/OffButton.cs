@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Interactable))]
 public class OffButton : MonoBehaviour {
-
-	public GameObject offPlayer;
+    
     public Toggleable[] toggleable;
+    Interactable interactable;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
-        ;
+        interactable = GetComponent<Interactable>();
+    }
+
+    private void Start()
+    {
+        interactable.InteractAction = TurnOff;
     }
 
     void Update()
@@ -22,24 +28,15 @@ public class OffButton : MonoBehaviour {
     }
 
 
-    void TurnOff()
+    void TurnOff(GameObject player)
     {
-        Vector3 offPlayerPos = Utils.closesCorner(offPlayer);
+        if (!player.HasTag(Tag.PlayerOff)) return;
+        Vector3 offPlayerPos = Utils.closesCorner(player);
 		Vector3 buttonPos = Utils.closesCorner(this.gameObject);
         if (Utils.vectorEqual(offPlayerPos, buttonPos))
         {
             foreach (var t in toggleable)
                 t.TurnOff();
         }
-    }
-
-    void OnEnable()
-    {
-        EventManager.OnOffPlayerInteracted += TurnOff;
-    }
-
-    void OnDisable()
-    {
-        EventManager.OnOffPlayerInteracted -= TurnOff;
     }
 }

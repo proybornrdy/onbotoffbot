@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extensionRange: 1
-  speed: 0.1
+  speed: 0.2
   arm: {fileID: 4622653708139174}
   moveablePart: {fileID: 4798059388346888}
   startOn: 1
@@ -435,6 +435,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b33452e40480374c90d76920c26d2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags:
-  - CanPush
-  - Toggleable
+  tags: 0000000005000000

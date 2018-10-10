@@ -432,10 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b33452e40480374c90d76920c26d2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags:
-  - CanPush
-  - Toggleable
-  - ConveyerBelt
+  tags: 000000000a00000005000000
 --- !u!114 &114078784250880124
 MonoBehaviour:
   m_ObjectHideFlags: 1
