@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OffButton : MonoBehaviour {
-
-	public GameObject offPlayer;
+public class OffButton : MonoBehaviour
+{
+    GameObject offPlayer;
     public Toggleable[] toggleable;
 
     // Use this for initialization
     void Start()
     {
-        ;
+        offPlayer = LevelController.OffPlayer;
     }
 
     void Update()
