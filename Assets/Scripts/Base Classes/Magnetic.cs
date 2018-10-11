@@ -17,9 +17,9 @@ public class Magnetic : MonoBehaviour {
         if(magnetObj)
         {
             magnet = magnetObj.GetComponent<Magnet>();
-            magnetRb = magnetObj.GetComponent<Rigidbody>();
-            magneticRb = GetComponent<Rigidbody>();
-        }        
+            magnetRb = magnetObj.GetComponent<Rigidbody>();            
+        }
+        magneticRb = GetComponent<Rigidbody>();
     }
 	
 	// Update is called once per frame
@@ -43,6 +43,12 @@ public class Magnetic : MonoBehaviour {
         if (other.gameObject == magnetObj)
         {
             SetIsColliding(true);
+            if(tag != "Player")
+            {
+                magneticRb.drag = Mathf.Infinity;
+                gameObject.transform.parent = other.transform;
+            }
+            
         }
     }
 
@@ -58,24 +64,32 @@ public class Magnetic : MonoBehaviour {
 
     public void GetPulled()
     {
-        if (InPullingRange(magnetRb, magneticRb, magnet.magneticRange))
+        if (InPullingRange(magnetRb, magneticRb, magnet.maxRange))
         {
             if (tag == "Player")
             {
-                Vector3 relativePos = (magnetRb.position - magneticRb.position) * 30;
-                magneticRb.AddForce(relativePos, ForceMode.Acceleration);
+                float Distance = Vector3.Distance(magneticRb.transform.position, magnetRb.transform.position);
+                float TDistance = Mathf.InverseLerp(magnet.maxRange, 0f, Distance); // Give a decimal representing how far between 0 distance and max distance the object is.
+                float strength = Mathf.Lerp(0f, magnet.maxStrength, TDistance); // Use that decimal to work out how much strength the magnet should apply
+                Vector3 FromObjectToMagnet = (magnetRb.transform.position - magneticRb.transform.position).normalized; // Get the direction from the object to the magnet
+                magneticRb.AddForce(FromObjectToMagnet * strength, ForceMode.Force); // apply force to the object
             }
             else
             {
-                magneticRb.MovePosition(Vector3.MoveTowards(magneticRb.position, magnetRb.position, (speed += acceleration) * Time.deltaTime));
-            }            
+                if(!GetIsColliding())
+                {
+                    magneticRb.MovePosition(Vector3.MoveTowards(magneticRb.position, magnetRb.position, (speed += acceleration) * Time.deltaTime));
+                }
+            }           
         }
     }
 
     public bool InPullingRange(Rigidbody magnetRb, Rigidbody magneticRb, float magneticRange)
     {
-        return Mathf.Abs(magnetRb.position.x - magneticRb.position.x) <= 0.1 &&
-            Mathf.Abs(magnetRb.position.y - magneticRb.position.y) <= magneticRange &&
-            Mathf.Abs(magnetRb.position.z - magneticRb.position.z) <= magneticRange;
+        float xDist = Mathf.Abs(magnetRb.position.x - magneticRb.position.x);
+        float yDist = Mathf.Abs(magnetRb.position.y - magneticRb.position.y);
+        float zDist = Mathf.Abs(magnetRb.position.z - magneticRb.position.z);
+
+        return xDist <= 0.5 && xDist > 0.1 && yDist <= magneticRange && zDist <= magneticRange;        
     }
 }
