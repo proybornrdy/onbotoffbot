@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 692f66d93d3aa3146b80746696bc95ab
+guid: bc098d5cdce3ce14ba7807b0b44c367c
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: door_frame_01
+    100000: door_slide_01
     100002: //RootNode
-    400000: door_frame_01
+    400000: door_slide_01
     400002: //RootNode
-    2100000: door_frame_01Mat
-    2300000: door_frame_01
-    3300000: door_frame_01
-    4300000: door_frame_01
+    2100000: door_slide_01Mat
+    2300000: door_slide_01
+    3300000: door_slide_01
+    4300000: door_slide_01
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -42,7 +42,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.01
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

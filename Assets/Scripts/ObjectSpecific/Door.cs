@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Door : Toggleable {
     public bool isOpen = false;
-    public GameObject openDoor;
-    public GameObject closedDoor;
+    public GameObject slide;
     public Light overLight;
     public int index = -1;
     LevelController lc;
@@ -26,8 +25,7 @@ public class Door : Toggleable {
     public override void TurnOn()
     {
         isOpen = true;
-        openDoor.SetActive(true);
-        closedDoor.SetActive(false);
+        slide.transform.localPosition = new Vector3(-0.25f, 1.5f, 0.618f);
         overLight.color = new Color(0, 1, 0);
         lc.DoorOpened(index);
     }
@@ -35,8 +33,7 @@ public class Door : Toggleable {
     public override void TurnOff()
     {
         isOpen = false;
-        openDoor.SetActive(false);
-        closedDoor.SetActive(true);
+        slide.transform.localPosition = new Vector3(-0.25f, -0.5f, 0.618f);
         overLight.color = new Color(1, 0, 0);
         lc.DoorClosed(index);
     }
