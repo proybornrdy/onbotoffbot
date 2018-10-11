@@ -9,7 +9,6 @@ public class Magnet : Toggleable {
 
     public bool startOn = false;
     public GameObject[] magneticObjects;
-    Rigidbody magnetRb;
     bool on = false;
 
     // Use this for initialization
@@ -18,7 +17,6 @@ public class Magnet : Toggleable {
         {
             TurnOn();
         }
-        magnetRb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -32,7 +30,6 @@ public class Magnet : Toggleable {
             foreach (GameObject magneticObject in magneticObjects)
             {
                 Magnetic magnetic = magneticObject.GetComponent<Magnetic>();
-                Rigidbody magneticRb = magneticObject.GetComponent<Rigidbody>();
                 magnetic.GetPulled();
             }
         }
