@@ -894,7 +894,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b197a1b13d1c342b795dcd43ab3c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickedUpItem: {fileID: 0}
+  selectionThreshold: 120
+  heldItem: {fileID: 0}
+  selectedItem: {fileID: 0}
 --- !u!54 &178807939
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1368,6 +1370,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 790627967}
     m_Modifications:
+    - target: {fileID: 114919356604089660, guid: a7d68eaf554e341488ccdb177aaad154,
+        type: 2}
+      propertyPath: toggleable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4079360390228948, guid: a7d68eaf554e341488ccdb177aaad154, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1414,12 +1421,17 @@ Prefab:
         type: 2}
       propertyPath: toggleable
       value: 
-      objectReference: {fileID: 629821717}
+      objectReference: {fileID: 0}
     - target: {fileID: 23779022651350948, guid: a7d68eaf554e341488ccdb177aaad154,
         type: 2}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114919356604089660, guid: a7d68eaf554e341488ccdb177aaad154,
+        type: 2}
+      propertyPath: toggleable.Array.data[0]
+      value: 
+      objectReference: {fileID: 629821717}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7d68eaf554e341488ccdb177aaad154, type: 2}
   m_IsPrefabAsset: 0
@@ -1620,6 +1632,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 790627967}
     m_Modifications:
+    - target: {fileID: 114259497263042098, guid: 21a7853d577bc2243af94beb6c50c807,
+        type: 2}
+      propertyPath: toggleable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4037690332120022, guid: 21a7853d577bc2243af94beb6c50c807, type: 2}
       propertyPath: m_LocalPosition.x
       value: 7
@@ -1666,12 +1683,17 @@ Prefab:
         type: 2}
       propertyPath: toggleable
       value: 
-      objectReference: {fileID: 629821717}
+      objectReference: {fileID: 0}
     - target: {fileID: 23511912200158060, guid: 21a7853d577bc2243af94beb6c50c807,
         type: 2}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114259497263042098, guid: 21a7853d577bc2243af94beb6c50c807,
+        type: 2}
+      propertyPath: toggleable.Array.data[0]
+      value: 
+      objectReference: {fileID: 629821717}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21a7853d577bc2243af94beb6c50c807, type: 2}
   m_IsPrefabAsset: 0
@@ -3022,7 +3044,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933313478e7be174a81593f027041bbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickedUpItem: {fileID: 0}
+  selectionThreshold: 120
+  heldItem: {fileID: 0}
+  selectedItem: {fileID: 0}
 --- !u!54 &950713102
 Rigidbody:
   m_ObjectHideFlags: 0
