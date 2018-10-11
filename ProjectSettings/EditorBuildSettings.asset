@@ -8,7 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level Ideas/BasicPistonPuzzle.unity
     guid: 2b180f5dba80e914581df40809ef015d
+  - enabled: 0
+    path: Assets/Scenes/Level Ideas/PressurePlateLevel.unity
+    guid: 733a0f5224656f143abab43dfa2695dd
+  - enabled: 1
+    path: Assets/Scenes/Progression chunks/1-1.unity
+    guid: 5e87825f99c594a4590551b2d5abb3d1
   m_configObjects: {}

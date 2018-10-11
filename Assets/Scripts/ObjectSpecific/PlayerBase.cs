@@ -78,7 +78,6 @@ public class PlayerBase : MonoBehaviour
                 if (Vector3.Angle(moveDirection, closest.transform.position - transform.position)
                     <= selectionThreshold)
                 {
-                    print("calling");
                     closest.GetComponent<Interactable>().Select(gameObject);
                     selectedItem = closest;
                 }

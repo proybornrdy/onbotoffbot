@@ -7,7 +7,7 @@ public class Door : Toggleable {
     public GameObject openDoor;
     public GameObject closedDoor;
     public Light overLight;
-    public int index = 0;
+    public int index = -1;
     LevelController lc;
 
     // Use this for initialization
