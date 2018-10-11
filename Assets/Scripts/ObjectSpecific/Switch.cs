@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Interactable))]
 public class Switch : MonoBehaviour {
     public Toggleable[] toggleable;
     bool on = false;
     public LineRenderer wire;
     public Light slotLight;
     public GameObject slot;
+    Interactable interactable;
 
     // Use this for initialization
     void Start()
     {
+        interactable = GetComponent<Interactable>();
+        interactable.InteractAction = Toggle;
+    }
+
+    void Toggle(GameObject player)
+    {
+        if (on) TurnOff(player);
+        else TurnOn(player);
     }
 
 

@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 23746872823401442}
   - component: {fileID: 136858727429514206}
   - component: {fileID: 114631282109889032}
+  - component: {fileID: 114710133730835292}
+  - component: {fileID: 114859584193328800}
   m_Layer: 0
   m_Name: TransistorSwitch
   m_TagString: Untagged
@@ -70,15 +72,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1365281010116984}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1, z: 1.5}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 2.5, y: 1, z: 1}
   m_LocalScale: {x: 0.5, y: 0.05, z: 0.5}
   m_Children:
   - {fileID: 4143625300717492}
   - {fileID: 4224763014103300}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!4 &4143625300717492
 Transform:
   m_ObjectHideFlags: 1
@@ -155,7 +157,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: ef3869bd82cc5344d83aeff6dc2535b1, type: 2}
+  - {fileID: 2100000, guid: bc1437f6a7fdff04a9d0323b158b071c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -198,7 +200,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 0, g: 0.4862745, b: 1, a: 0}
+  m_Color: {r: 0.4862745, g: 0, b: 1, a: 0}
   m_Intensity: 10
   m_Range: 1
   m_SpotAngle: 30
@@ -242,6 +244,29 @@ MonoBehaviour:
   wire: {fileID: 0}
   slotLight: {fileID: 108482783847846342}
   slot: {fileID: 1673051170649122}
+--- !u!114 &114710133730835292
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1365281010116984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83974ef65637b1741b8e782a627e525a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114859584193328800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1365281010116984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b33452e40480374c90d76920c26d2da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: 030000000b000000
 --- !u!136 &136071069568392870
 CapsuleCollider:
   m_ObjectHideFlags: 1

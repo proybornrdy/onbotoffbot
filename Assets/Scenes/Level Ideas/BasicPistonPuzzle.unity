@@ -1143,10 +1143,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4116018463111720, guid: 1e54c2e231a546f4faa2084547001319, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 114631282109889032, guid: 1e54c2e231a546f4faa2084547001319,
         type: 2}
       propertyPath: toggleable.Array.data[0]
@@ -1157,21 +1153,6 @@ Prefab:
       propertyPath: wire
       value: 
       objectReference: {fileID: 1178516371}
-    - target: {fileID: 23881014436707024, guid: 1e54c2e231a546f4faa2084547001319,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: bc1437f6a7fdff04a9d0323b158b071c, type: 2}
-    - target: {fileID: 108482783847846342, guid: 1e54c2e231a546f4faa2084547001319,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 0.4862745
-      objectReference: {fileID: 0}
-    - target: {fileID: 108482783847846342, guid: 1e54c2e231a546f4faa2084547001319,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e54c2e231a546f4faa2084547001319, type: 2}
   m_IsPrefabAsset: 0

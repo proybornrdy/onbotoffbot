@@ -22,6 +22,7 @@ public class LevelController : MonoBehaviour
 
     public GameObject[] rooms;
     public Door[] doors;
+    public bool isTestLevel = true;
 
 	public static bool gameGoing()
 	{
@@ -71,11 +72,13 @@ public class LevelController : MonoBehaviour
 
     public void DoorOpened(int index)
     {
-        rooms[index + 1].SetActive(true);
+        if (!isTestLevel)
+            rooms[index + 1].SetActive(true);
     }
 
     public void DoorClosed(int index)
     {
-        rooms[index + 1].SetActive(false);
+        if (!isTestLevel)
+            rooms[index + 1].SetActive(false);
     }
 }

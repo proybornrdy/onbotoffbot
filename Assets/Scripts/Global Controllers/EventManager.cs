@@ -21,7 +21,7 @@ public class EventManager : MonoBehaviour {
         
         try
         {
-            if (Input.GetAxis("OnInteract") > 0.8)
+            if (Input.GetAxis("OnInteract") > 0.8 || Input.GetButton("OnInteract"))
             {
                 if (Time.time - lastPressedOn > pressThreshold)
                 {
@@ -29,7 +29,7 @@ public class EventManager : MonoBehaviour {
                     lastPressedOn = Time.time;
                 }
             }
-            if (Input.GetAxis("OffInteract") > 0.8)
+            if (Input.GetAxis("OffInteract") > 0.8 || Input.GetButton("OffInteract"))
             {
                 if (Time.time - lastPressedOff > pressThreshold)
                 {

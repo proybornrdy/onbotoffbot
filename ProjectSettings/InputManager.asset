@@ -6,7 +6,7 @@ InputManager:
   serializedVersion: 2
   m_Axes:
   - serializedVersion: 3
-    m_Name: POnHorizontal
+    m_Name: POnHorizontalKB
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: a
@@ -22,7 +22,7 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: POnHorizontal
+    m_Name: POnHorizontalJS
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -36,7 +36,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 0
-    joyNum: 2
+    joyNum: 1
   - serializedVersion: 3
     m_Name: POffHorizontal
     descriptiveName: 
@@ -52,7 +52,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 0
-    joyNum: 1
+    joyNum: 2
   - serializedVersion: 3
     m_Name: POffHorizontal
     descriptiveName: 

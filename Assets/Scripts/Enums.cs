@@ -11,4 +11,5 @@
     PlayerOff,
     PressurePlate,
     ConveyerBelt,
+    Toggle,
 }
