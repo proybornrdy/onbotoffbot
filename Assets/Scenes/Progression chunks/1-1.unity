@@ -1734,11 +1734,6 @@ MonoBehaviour:
   newPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
   mainCamera: {fileID: 39761837}
-  rooms:
-  - {fileID: 517935230}
-  - {fileID: 1281794967}
-  - {fileID: 707116234}
-  - {fileID: 1988767559}
 --- !u!1001 &281900426
 Prefab:
   m_ObjectHideFlags: 0
@@ -18640,7 +18635,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &707116235
 Transform:
   m_ObjectHideFlags: 0
@@ -22286,7 +22281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1281794968
 Transform:
   m_ObjectHideFlags: 0
