@@ -63,7 +63,7 @@ public class LevelController : MonoBehaviour
 		if (gamePlaying)
 		{
 			time += Time.deltaTime;
-            cc.changeCameraPos(rooms[currentLevel]);
+            if (rooms.Length !=0) cc.changeCameraPos(rooms[currentLevel]);
 		}
 
 		// if ((OnPlayerDoor.transform.position - OnPlayer.transform.position).magnitude < (1.5) * Mathf.Sqrt(2) &&
