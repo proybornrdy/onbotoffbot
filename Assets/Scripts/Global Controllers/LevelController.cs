@@ -57,6 +57,15 @@ public class LevelController : MonoBehaviour
         cc = GameObject.Find("CameraController").GetComponent<CameraController>();
     }
 
+    private void Start()
+    {
+        if (rooms.Length > 0)
+        {
+            for (int i = 1; i < rooms.Length; i++) rooms[i].SetActive(false);
+            rooms[0].SetActive(true);
+        }
+    }
+
     // Update is called once per frame
     void Update()
 	{
@@ -77,13 +86,13 @@ public class LevelController : MonoBehaviour
 
     public void DoorOpened(int index)
     {
-        if (!isTestLevel && index != -1 && index < rooms.Length)
+        if (!isTestLevel && index != -1 && index < rooms.Length + 1)
             rooms[index + 1].SetActive(true);
     }
 
     public void DoorClosed(int index)
     {
-        if (!isTestLevel && index != -1 && index < rooms.Length)
+        if (!isTestLevel && index != -1 && index < rooms.Length + 1)
             rooms[index + 1].SetActive(false);
     }
 
