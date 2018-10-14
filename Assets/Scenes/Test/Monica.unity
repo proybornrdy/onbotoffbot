@@ -5616,9 +5616,9 @@ LineRenderer:
   - {x: 1, y: 0.51, z: 2}
   - {x: 5.49, y: 0.51, z: 2}
   - {x: 5.49, y: 1.75, z: 2}
-  - {x: 5.49, y: 1.75, z: 7}
-  - {x: 5.49, y: 1.75, z: 7}
-  - {x: 5.49, y: 1, z: 7}
+  - {x: 5.49, y: 1.75, z: 6}
+  - {x: 5.49, y: 1.75, z: 6}
+  - {x: 5.49, y: 1, z: 6}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.1
@@ -5874,7 +5874,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4125465001520032, guid: 48b068b73e057794782ccb0b66d74e13, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4125465001520032, guid: 48b068b73e057794782ccb0b66d74e13, type: 2}
       propertyPath: m_LocalRotation.x
