@@ -77,13 +77,13 @@ public class LevelController : MonoBehaviour
 
     public void DoorOpened(int index)
     {
-        if (!isTestLevel && index != -1)
+        if (!isTestLevel && index != -1 && index < rooms.Length)
             rooms[index + 1].SetActive(true);
     }
 
     public void DoorClosed(int index)
     {
-        if (!isTestLevel && index != -1)
+        if (!isTestLevel && index != -1 && index < rooms.Length)
             rooms[index + 1].SetActive(false);
     }
 

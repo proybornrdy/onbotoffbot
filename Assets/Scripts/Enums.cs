@@ -12,4 +12,12 @@
     PressurePlate,
     ConveyerBelt,
     Toggle,
+    HasWeight,
+}
+
+public enum Axis
+{
+    x,
+    y,
+    z
 }

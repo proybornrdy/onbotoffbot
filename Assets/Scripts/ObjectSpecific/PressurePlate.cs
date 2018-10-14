@@ -14,14 +14,20 @@ public class PressurePlate : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        enters++;
-        if (enters == 1) Toggle();
+        if (other.gameObject.HasTag(Tag.HasWeight))
+        {
+            enters++;
+            if (enters == 1) Toggle();
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        enters--;
-        if (enters == 0) Toggle();
-        else if (enters < 0) enters = 0;
+        if (other.gameObject.HasTag(Tag.HasWeight))
+        {
+            enters--;
+            if (enters == 0) Toggle();
+            else if (enters < 0) enters = 0;
+        }
     }
 }

@@ -35636,16 +35636,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
-        type: 2}
-      propertyPath: rooms.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
-        type: 2}
-      propertyPath: doors.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4939316746596810, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 5.8838663
@@ -35678,11 +35668,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224092638885681674, guid: e9b31108965c1ea4084dd3f256f339e2,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
         type: 2}
       propertyPath: rooms.Array.data[0]
@@ -35700,6 +35685,11 @@ Prefab:
       objectReference: {fileID: 707116234}
     - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
         type: 2}
+      propertyPath: rooms.Array.data[3]
+      value: 
+      objectReference: {fileID: 1988767559}
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
       propertyPath: doors.Array.data[0]
       value: 
       objectReference: {fileID: 1684440370}
@@ -35715,32 +35705,9 @@ Prefab:
       objectReference: {fileID: 959958629}
     - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
         type: 2}
-      propertyPath: isTestLevel
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1199079229957678, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
-        type: 2}
       propertyPath: doors.Array.data[3]
       value: 
       objectReference: {fileID: 505405551}
-    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
-        type: 2}
-      propertyPath: rooms.Array.data[3]
-      value: 
-      objectReference: {fileID: 1988767559}
-    - target: {fileID: 4607294316724672, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 20008169876474734, guid: e9b31108965c1ea4084dd3f256f339e2,
-        type: 2}
-      propertyPath: near clip plane
-      value: 0.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
   m_IsPrefabAsset: 0
