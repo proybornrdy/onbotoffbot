@@ -66,6 +66,7 @@ public class Magnetic : MonoBehaviour {
     {
         if (InPullingRange(magnetRb, magneticRb, magnet.maxRange))
         {
+            print(name + " is in pulling range and getting pulled");
             if (tag == "Player")
             {
                 float Distance = Vector3.Distance(magneticRb.transform.position, magnetRb.transform.position);
@@ -90,6 +91,6 @@ public class Magnetic : MonoBehaviour {
         float yDist = Mathf.Abs(magnetRb.position.y - magneticRb.position.y);
         float zDist = Mathf.Abs(magnetRb.position.z - magneticRb.position.z);
 
-        return xDist <= 0.5 && xDist > 0.1 && yDist <= magneticRange && zDist <= magneticRange;        
+        return xDist <= 0.5 && yDist <= magneticRange && zDist <= magneticRange;        
     }
 }

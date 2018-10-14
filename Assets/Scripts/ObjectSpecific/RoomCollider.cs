@@ -20,7 +20,7 @@ public class RoomCollider : MonoBehaviour
     {
         if (other.gameObject.HasTag(Tag.PlayerOn))
             playerOnEnters++;
-        else if (other.gameObject.GetComponent<Tags>().HasTag(Tag.PlayerOff))
+        else if (other.gameObject.HasTag(Tag.PlayerOff))
             playerOffEnters++;
         if (playerOnEnters > 0 && playerOffEnters > 0) lc.PlayersMovedToRoom(door.index);
     }

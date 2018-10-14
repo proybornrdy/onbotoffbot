@@ -15,7 +15,7 @@ public class Magnet : Toggleable {
     void Start () {
         if (startOn)
         {
-            TurnOn();
+            TurnOn();            
         }
     }
 
@@ -40,6 +40,7 @@ public class Magnet : Toggleable {
         if (!on)
         {
             on = true;
+            print("Magnet is ON");
         }
     }
 
@@ -48,6 +49,7 @@ public class Magnet : Toggleable {
         if (on)
         {
             on = false;
+            print("Magnet is OFF");
             foreach (GameObject magneticObject in magneticObjects)
             {
                 Rigidbody magneticRb = magneticObject.GetComponent<Rigidbody>();

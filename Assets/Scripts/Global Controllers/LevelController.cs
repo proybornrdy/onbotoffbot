@@ -24,6 +24,9 @@ public class LevelController : MonoBehaviour
     public Door[] doors;
     public bool isTestLevel = true;
 
+    CameraController cc;
+    private int currentLevel = 0;
+
 	public static bool gameGoing()
 	{
 		return gamePlaying;
@@ -51,6 +54,7 @@ public class LevelController : MonoBehaviour
 		OffPlayer = GameObject.Find("PlayerOff");
 		Door = GameObject.Find("Door");
         for (int i = 0; i < doors.Length; i++) doors[i].index = i;
+        cc = GameObject.Find("CameraController").GetComponent<CameraController>();
     }
 
     // Update is called once per frame
@@ -59,6 +63,7 @@ public class LevelController : MonoBehaviour
 		if (gamePlaying)
 		{
 			time += Time.deltaTime;
+            if (rooms.Length !=0) cc.changeCameraPos(rooms[currentLevel]);
 		}
 
 		// if ((OnPlayerDoor.transform.position - OnPlayer.transform.position).magnitude < (1.5) * Mathf.Sqrt(2) &&
@@ -84,6 +89,10 @@ public class LevelController : MonoBehaviour
 
     public void PlayersMovedToRoom(int index)
     {
-        if (index > 0) rooms[index - 1].SetActive(false);
+        if (index > 0)
+        {
+            rooms[index - 1].SetActive(false);
+            currentLevel = index;
+        }
     }
 }
