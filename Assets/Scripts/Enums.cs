@@ -12,4 +12,5 @@
     PressurePlate,
     ConveyerBelt,
     Toggle,
+    HasWeight,
 }

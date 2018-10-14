@@ -56,6 +56,7 @@ public class Magnet : Toggleable {
                 if (magneticObject.tag != "Player" && magneticRb.drag == Mathf.Infinity)
                 {
                     magneticRb.drag = 0;
+                    magneticObject.transform.parent = null;
                 }
                 magneticObject.GetComponent<Magnetic>().SetIsColliding(false);
             }
