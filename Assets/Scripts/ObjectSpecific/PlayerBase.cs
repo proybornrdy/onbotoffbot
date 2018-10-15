@@ -32,9 +32,6 @@ public class PlayerBase : MonoBehaviour
 
     private void handleMovement()
     {
-        //float moveHorizontal = Input.GetAxis(horizontalAxis);
-        //float moveVertical = Input.GetAxis(verticalAxis);
-
         Vector2 moveVec = movementRotationFix(Input.GetAxis(verticalAxis), -1 * Input.GetAxis(horizontalAxis));
 
         float moveHorizontal = moveVec.y;
@@ -44,17 +41,20 @@ public class PlayerBase : MonoBehaviour
 
         if (moveVec != Vector2.zero)
         {
-            transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+			transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
         }
-        // Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical);
-        // rb.position = rb.position + (movement * LevelController.PlayerMovementSpeed * Time.deltaTime);
-        transform.Translate(Vector3.forward * moveVertical * LevelController.moveSpeed, relativeTo: Space.World);
-        transform.Translate(Vector3.left * moveHorizontal * LevelController.moveSpeed, relativeTo: Space.World);
+
+		float dampening_factor = 1;
+		if (Mathf.Abs(rb.velocity.y) >= 0.05) // in the air
+		{
+			dampening_factor = LevelController.flightDampener;
+		}
+		transform.Translate(Vector3.forward * moveVertical * LevelController.moveSpeed * dampening_factor, relativeTo: Space.World);
+        transform.Translate(Vector3.left * moveHorizontal * LevelController.moveSpeed * dampening_factor, relativeTo: Space.World);
 
         if (Input.GetButton(jump) && Mathf.Abs(rb.velocity.y) < 0.05)
         {
             rb.velocity = new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical);
-            // rb.AddForce(new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical), ForceMode.Impulse);
         }
 
         if (heldItem != null)

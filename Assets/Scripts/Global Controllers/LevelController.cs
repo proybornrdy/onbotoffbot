@@ -11,6 +11,7 @@ public class LevelController : MonoBehaviour
 	public static float PlayerMovementSpeed = 5;
 	public static float moveSpeed = .05f;
 	public static float PlayerJumpHeight = 6f;
+	public static float flightDampener = 0.3f;
 
 	// Interactable Objects
 	public static GameObject Door;
