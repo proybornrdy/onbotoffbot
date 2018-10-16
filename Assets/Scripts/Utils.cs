@@ -25,9 +25,9 @@ public static class Utils {
 
     public static bool InRange(Vector3 onPlayerPos, Vector3 buttonPos)
     {
-        return System.Math.Pow(onPlayerPos.x - buttonPos.x, 2) <= 1 &&
-            System.Math.Pow(onPlayerPos.y - buttonPos.y, 2) <= 1 &&
-            System.Math.Pow(onPlayerPos.z - buttonPos.z, 2) <= 1;
+        return Math.Pow(onPlayerPos.x - buttonPos.x, 2) <= 1 &&
+            Math.Pow(onPlayerPos.y - buttonPos.y, 2) <= 1 &&
+            Math.Pow(onPlayerPos.z - buttonPos.z, 2) <= 1;
     }
     
     public static Vector3 NearestCubeCenter(Vector3 v)

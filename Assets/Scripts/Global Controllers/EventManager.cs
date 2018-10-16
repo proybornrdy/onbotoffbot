@@ -21,17 +21,19 @@ public class EventManager : MonoBehaviour {
         
         try
         {
-            if (Input.GetAxis("OnInteract") > 0.8 || Input.GetButton("OnInteract"))
-            {
+			if (Input.GetAxis(PlayerInputTranslator.GetLeftInteract(PlayerInputTranslator.Player.ON)) > 0.8
+				|| Input.GetButton(PlayerInputTranslator.GetLeftInteract(PlayerInputTranslator.Player.ON)))
+			{
                 if (Time.time - lastPressedOn > pressThreshold)
                 {
                     OnInteract(LevelController.OnPlayer);
                     lastPressedOn = Time.time;
                 }
             }
-            if (Input.GetAxis("OffInteract") > 0.8 || Input.GetButton("OffInteract"))
+			if (Input.GetAxis(PlayerInputTranslator.GetRightInteract(PlayerInputTranslator.Player.OFF)) > 0.8
+				|| Input.GetButton(PlayerInputTranslator.GetRightInteract(PlayerInputTranslator.Player.OFF)))
             {
-                if (Time.time - lastPressedOff > pressThreshold)
+				if (Time.time - lastPressedOff > pressThreshold)
                 {
                     OnInteract(LevelController.OffPlayer);
                     lastPressedOff = Time.time;

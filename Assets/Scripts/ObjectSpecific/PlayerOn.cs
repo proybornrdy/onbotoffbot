@@ -4,10 +4,14 @@ public class PlayerOn : PlayerBase
 {
     void Start ()
     {
-        rb = GetComponent<Rigidbody>();
-        horizontalAxis = "POnHorizontal";
+		rb = GetComponent<Rigidbody>();
+        /*horizontalAxis = "POnHorizontal";
         verticalAxis = "POnVertical";
         jump = "POnJump";
-        interact = "Button On";
-    }
+        interact = "Button On";*/
+		horizontalAxis = PlayerInputTranslator.GetHorizontalAxis(PlayerInputTranslator.Player.ON);
+		verticalAxis = PlayerInputTranslator.GetVerticalAxis(PlayerInputTranslator.Player.ON);
+		jump = PlayerInputTranslator.GetJump(PlayerInputTranslator.Player.ON);
+		interact = PlayerInputTranslator.GetLeftInteract(PlayerInputTranslator.Player.ON);
+	}
 }
