@@ -5,6 +5,7 @@ public class OptoinsSceenController : MonoBehaviour
 {
 	public GameObject Options;
 	public GameObject Credits;
+	public GameObject LeaderBoard;
 
 	public string next_sceen_name;
 
@@ -31,8 +32,21 @@ public class OptoinsSceenController : MonoBehaviour
 		Credits.SetActive(false);
 	}
 
-	void ClickStart()
+	void SelectStart()
 	{
 		SceneManager.LoadSceneAsync(next_sceen_name);
+	}
+
+	void StartleaderBoard()
+	{
+		Options.SetActive(false);
+		LeaderBoard.SetActive(true);
+		(LeaderBoard.GetComponent<LeaderBoard>()).updateLeaderBoard();
+	}
+
+	void StopleaderBoard()
+	{
+		Options.SetActive(true);
+		LeaderBoard.SetActive(false);
 	}
 }
