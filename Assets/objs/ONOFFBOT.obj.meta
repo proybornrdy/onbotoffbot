@@ -1,0 +1,186 @@
+fileFormatVersion: 2
+guid: 3d0090e2780889f44a6a6035539b7fa4
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Axel_01
+    100002: Axel_02
+    100004: Badge
+    100006: Body
+    100008: Button_01
+    100010: Button_02
+    100012: Button_03
+    100014: Button_04
+    100016: Eye_01
+    100018: Eye_02
+    100020: Lower_Arm
+    100022: //RootNode
+    100024: Panel
+    100026: Power_Symbol
+    100028: Tire
+    100030: Upper_Arm_01
+    100032: Upper_Arm_02
+    400000: Axel_01
+    400002: Axel_02
+    400004: Badge
+    400006: Body
+    400008: Button_01
+    400010: Button_02
+    400012: Button_03
+    400014: Button_04
+    400016: Eye_01
+    400018: Eye_02
+    400020: Lower_Arm
+    400022: //RootNode
+    400024: Panel
+    400026: Power_Symbol
+    400028: Tire
+    400030: Upper_Arm_01
+    400032: Upper_Arm_02
+    2100000: Axel_01Mat
+    2100002: Axel_02Mat
+    2100004: BadgeMat
+    2100006: BodyMat
+    2100008: Button_01Mat
+    2100010: Button_02Mat
+    2100012: Button_03Mat
+    2100014: Button_04Mat
+    2100016: Eye_01Mat
+    2100018: Eye_02Mat
+    2100020: Lower_ArmMat
+    2100022: PanelMat
+    2100024: Power_SymbolMat
+    2100026: TireMat
+    2100028: Upper_Arm_01Mat
+    2100030: Upper_Arm_02Mat
+    2300000: Axel_01
+    2300002: Axel_02
+    2300004: Badge
+    2300006: Body
+    2300008: Button_01
+    2300010: Button_02
+    2300012: Button_03
+    2300014: Button_04
+    2300016: Eye_01
+    2300018: Eye_02
+    2300020: Lower_Arm
+    2300022: Panel
+    2300024: Power_Symbol
+    2300026: Tire
+    2300028: Upper_Arm_01
+    2300030: Upper_Arm_02
+    3300000: Axel_01
+    3300002: Axel_02
+    3300004: Badge
+    3300006: Body
+    3300008: Button_01
+    3300010: Button_02
+    3300012: Button_03
+    3300014: Button_04
+    3300016: Eye_01
+    3300018: Eye_02
+    3300020: Lower_Arm
+    3300022: Panel
+    3300024: Power_Symbol
+    3300026: Tire
+    3300028: Upper_Arm_01
+    3300030: Upper_Arm_02
+    4300000: Axel_01
+    4300002: Axel_02
+    4300004: Badge
+    4300006: Body
+    4300008: Button_01
+    4300010: Button_02
+    4300012: Button_03
+    4300014: Button_04
+    4300016: Eye_01
+    4300018: Eye_02
+    4300020: Lower_Arm
+    4300022: Panel
+    4300024: Power_Symbol
+    4300026: Tire
+    4300028: Upper_Arm_01
+    4300030: Upper_Arm_02
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0008
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
