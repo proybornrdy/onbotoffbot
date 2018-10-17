@@ -23,23 +23,23 @@ public class LevelSelect : MonoBehaviour {
 		Levels = new List<string[]>();
 
 		//{"Level Name", "Path To Level"}
-		Levels.Add(new string[]{"Level 1", "/Scenes/Level1"});
+		Levels.Add(new string[]{"Level 1", "Scenes/Level 1"});
 
-		Levels.Add(new string[] { "Alex", "/Scenes/Test/Alex" });
-		Levels.Add(new string[] { "Julia", "/Scenes/Test/Julia" });
-		Levels.Add(new string[] { "Max", "/Scenes/Test/Max" });
-		Levels.Add(new string[] { "Monica", "/Scenes/Test/Monica" });
-		Levels.Add(new string[] { "Roy", "/Scenes/Test/Roy" });
+		Levels.Add(new string[] { "Alex", "Scenes/Test/Alex" });
+		Levels.Add(new string[] { "Julia", "Scenes/Test/Julia" });
+		Levels.Add(new string[] { "Max", "Scenes/Test/Max" });
+		Levels.Add(new string[] { "Monica", "Scenes/Test/Monica" });
+		Levels.Add(new string[] { "Roy", "Scenes/Test/Roy" });
 
-		Levels.Add(new string[] { "2-7", "/Scenes/Progression chunks/2-7" });
-		Levels.Add(new string[] { "Section 1", "/Scenes/Progression chunks/Sectoin 1" });
+		Levels.Add(new string[] { "2-7", "Scenes/Progression chunks/2-7" });
+		Levels.Add(new string[] { "Section 1", "Scenes/Progression chunks/Sectoin 1" });
 
-		Levels.Add(new string[] { "2-6", "/Scenes/Level Ideas/2-6" });
-		Levels.Add(new string[] { "BasicPistonPuzzle", "/Scenes/Level Ideas/BasicPistonPuzzle" });
-		Levels.Add(new string[] { "Elevator", "/Scenes/Level Ideas/Elevator" });
-		Levels.Add(new string[] { "Magnet", "/Scenes/Level Ideas/Magnet" });
-		Levels.Add(new string[] { "Piston2", "/Scenes/Level Ideas/Piston2/" });
-		Levels.Add(new string[] { "PressurePlateLevel", "/Scenes/Level Ideas/PressurePlateLevel" });
+		Levels.Add(new string[] { "2-6", "Scenes/Level Ideas/2-6" });
+		Levels.Add(new string[] { "BasicPistonPuzzle", "Scenes/Level Ideas/BasicPistonPuzzle" });
+		Levels.Add(new string[] { "Elevator", "Scenes/Level Ideas/Elevator" });
+		Levels.Add(new string[] { "Magnet", "Scenes/Level Ideas/Magnet" });
+		Levels.Add(new string[] { "Piston2", "Scenes/Level Ideas/Piston2/" });
+		Levels.Add(new string[] { "PressurePlateLevel", "Scenes/Level Ideas/PressurePlateLevel" });
 	}
 
 	public void StartUp()
@@ -80,8 +80,6 @@ public class LevelSelect : MonoBehaviour {
 	void Update () {
 		if ((resetP1 && Input.GetAxis("P1Vertical") > .5 || resetP2 && Input.GetAxis("P2Vertical") > .5) && Selected < Levels.Count - 1)
 		{
-			Debug.Log(Selected);
-			Debug.Log(Selected > 0);
 			resetP1 = !(Input.GetAxis("P1Vertical") > .5);
 			resetP2 = !(Input.GetAxis("P2Vertical") > .5);
 			LevelsContainer.transform.position = new Vector3(LevelsContainer.transform.position.x, LevelsContainer.transform.position.y - BufferedHeight / 2, LevelsContainer.transform.position.z);
@@ -89,7 +87,6 @@ public class LevelSelect : MonoBehaviour {
 		}
 		if ((resetP1 && Input.GetAxis("P1Vertical") < -.5 || resetP2 && Input.GetAxis("P2Vertical") < -.5) && Selected > 0)
 		{
-			Debug.Log(Selected);
 			resetP1 = !(Input.GetAxis("P1Vertical") < -.5);
 			resetP2 = !(Input.GetAxis("P2Vertical") < -.5);
 			LevelsContainer.transform.position = new Vector3(LevelsContainer.transform.position.x, LevelsContainer.transform.position.y + BufferedHeight / 2, LevelsContainer.transform.position.z);
@@ -110,6 +107,7 @@ public class LevelSelect : MonoBehaviour {
 			if (startTime + 1 < Time.time)
 			{
 				SceneManager.LoadSceneAsync(Levels[Selected][1]);
+				// SceneManager.LoadSceneAsync("1");
 			}
 		}
 	}
