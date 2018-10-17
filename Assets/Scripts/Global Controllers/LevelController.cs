@@ -10,8 +10,9 @@ public class LevelController : MonoBehaviour
 	public static GameObject OffPlayer;
 	public static float PlayerMovementSpeed = 5;
 	public static float moveSpeed = .05f;
-	public static float PlayerJumpHeight = 5f;
     public static bool snapJumping = false;
+	public static float PlayerJumpHeight = 6f;
+	public static float flightDampener = 0.3f;
 
 	// Interactable Objects
 	public static GameObject Door;
@@ -79,14 +80,6 @@ public class LevelController : MonoBehaviour
 			time += Time.deltaTime;
             if (rooms.Length !=0) cc.changeCameraPos(rooms[currentLevel][0]);
 		}
-
-		// if ((OnPlayerDoor.transform.position - OnPlayer.transform.position).magnitude < (1.5) * Mathf.Sqrt(2) &&
-		//	(OffPlayerDoor.transform.position - OffPlayer.transform.position).magnitude < (1.5)*Mathf.Sqrt(2))
-		// Debug.Log(OnPlayer.transform.position);
-		//if (OnPlayer.transform.position.x > 4.4 && OffPlayer.transform.position.x > 4.4)
-		//{
-		//	LevelController.endGame("Victory");
-		//}
 	}
 
     public void DoorOpened(int index)
