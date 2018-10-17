@@ -14,9 +14,9 @@ public class Door : Toggleable {
     void Start ()
     {
         lc = GameObject.Find("LevelController").GetComponent<LevelController>();
+        isReady = true;
         if (isOpen) TurnOn();
         else TurnOff();
-        isReady = true;
 	}
 
     public override void TurnOn()

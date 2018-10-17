@@ -70,7 +70,7 @@ public class PlayerBase : MonoBehaviour
         }
         else if (isGrounded)
         {
-            if (moveDirection != Vector3.zero)
+            if (Input.GetButton(jump) && moveDirection != Vector3.zero)
             {
                 var jps = TagCatalogue.FindAllWithTag(Tag.JumpPoint)
                     .Where(obj => obj.transform.parent != this.transform && Utils.InJumpRange(transform.position, obj.transform.position))

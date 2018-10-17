@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
 	public Text TIME_TEXT;
 	public Text GAME_END_STATUS;
+    public Button btnReset;
 
-	void Start()
-	{
-	}
+    void Start()
+    {
+        btnReset.GetComponent<Button>().onClick.AddListener(OnBtnResetClick);
+    }
 
-	void Update()
+    void Update()
 	{
 		int minutes = ((int)LevelController.getTime()) / 60;
 		int seconds = ((int)LevelController.getTime()) % 60;
@@ -20,5 +23,10 @@ public class UIController : MonoBehaviour
 		{
 			GAME_END_STATUS.text = LevelController.getReason();
 		}
-	}
+    }
+
+    void OnBtnResetClick()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

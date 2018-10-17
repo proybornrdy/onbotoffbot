@@ -80,7 +80,7 @@ public class LevelController : MonoBehaviour
 		if (gamePlaying)
 		{
 			time += Time.deltaTime;
-            if (rooms.Length !=0) cc.changeCameraPos(rooms[currentLevel][0]);
+            if (!isTestLevel && rooms.Length !=0) cc.changeCameraPos(rooms[currentLevel][0]);
 		}
 	}
 
