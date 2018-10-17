@@ -16,6 +16,7 @@ public class PlayerBase : MonoBehaviour
     internal string verticalAxis;
     internal string jump;
     internal string interact;
+    internal string reset;
     bool isGrounded;
 
     void Start()

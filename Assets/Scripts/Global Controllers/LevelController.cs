@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
@@ -106,6 +107,11 @@ public class LevelController : MonoBehaviour
                 rooms[index - 1][j].SetActive(false);
             currentLevel = index;
         }
+    }
+
+    public static void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
 

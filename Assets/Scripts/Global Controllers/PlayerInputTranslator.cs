@@ -76,4 +76,9 @@ public class PlayerInputTranslator : MonoBehaviour {
 			return "P2Jump";
 		}
 	}
+
+    public static string GetReset(Player p)
+    {
+        return p == P1 ? "P1Reset" : "P2Reset";
+    }
 }

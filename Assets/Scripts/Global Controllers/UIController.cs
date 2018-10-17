@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -27,6 +26,6 @@ public class UIController : MonoBehaviour
 
     void OnBtnResetClick()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        LevelController.ResetScene();
     }
 }

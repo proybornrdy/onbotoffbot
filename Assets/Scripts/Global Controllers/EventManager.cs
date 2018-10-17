@@ -39,6 +39,12 @@ public class EventManager : MonoBehaviour {
                     lastPressedOff = Time.time;
                 }
             }
+
+            if (Input.GetButton(PlayerInputTranslator.GetReset(PlayerInputTranslator.Player.ON)) ||
+                Input.GetButton(PlayerInputTranslator.GetReset(PlayerInputTranslator.Player.ON)))
+            {
+                LevelController.ResetScene();
+            }
         }
         catch (System.NullReferenceException)
         {

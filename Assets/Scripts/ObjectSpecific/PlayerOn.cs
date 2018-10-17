@@ -13,5 +13,6 @@ public class PlayerOn : PlayerBase
 		verticalAxis = PlayerInputTranslator.GetVerticalAxis(PlayerInputTranslator.Player.ON);
 		jump = PlayerInputTranslator.GetJump(PlayerInputTranslator.Player.ON);
 		interact = PlayerInputTranslator.GetLeftInteract(PlayerInputTranslator.Player.ON);
-	}
+        reset = PlayerInputTranslator.GetReset(PlayerInputTranslator.Player.ON);
+    }
 }
