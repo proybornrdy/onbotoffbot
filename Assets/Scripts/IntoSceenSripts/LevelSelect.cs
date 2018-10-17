@@ -80,8 +80,6 @@ public class LevelSelect : MonoBehaviour {
 	void Update () {
 		if ((resetP1 && Input.GetAxis("P1Vertical") > .5 || resetP2 && Input.GetAxis("P2Vertical") > .5) && Selected < Levels.Count - 1)
 		{
-			Debug.Log(Selected);
-			Debug.Log(Selected > 0);
 			resetP1 = !(Input.GetAxis("P1Vertical") > .5);
 			resetP2 = !(Input.GetAxis("P2Vertical") > .5);
 			LevelsContainer.transform.position = new Vector3(LevelsContainer.transform.position.x, LevelsContainer.transform.position.y - BufferedHeight / 2, LevelsContainer.transform.position.z);
@@ -89,7 +87,6 @@ public class LevelSelect : MonoBehaviour {
 		}
 		if ((resetP1 && Input.GetAxis("P1Vertical") < -.5 || resetP2 && Input.GetAxis("P2Vertical") < -.5) && Selected > 0)
 		{
-			Debug.Log(Selected);
 			resetP1 = !(Input.GetAxis("P1Vertical") < -.5);
 			resetP2 = !(Input.GetAxis("P2Vertical") < -.5);
 			LevelsContainer.transform.position = new Vector3(LevelsContainer.transform.position.x, LevelsContainer.transform.position.y + BufferedHeight / 2, LevelsContainer.transform.position.z);
@@ -110,6 +107,7 @@ public class LevelSelect : MonoBehaviour {
 			if (startTime + 1 < Time.time)
 			{
 				SceneManager.LoadSceneAsync(Levels[Selected][1]);
+				// SceneManager.LoadSceneAsync("1");
 			}
 		}
 	}
