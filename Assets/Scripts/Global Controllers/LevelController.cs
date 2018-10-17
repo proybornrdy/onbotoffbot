@@ -118,7 +118,9 @@ public class LevelController : MonoBehaviour
     public static void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+		time = 0;
+
+	}
 }
 
 [System.Serializable]
