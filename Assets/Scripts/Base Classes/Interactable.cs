@@ -18,7 +18,8 @@ public class Interactable : MonoBehaviour
     void Start () {
         r = GetComponent<Renderer>();
         initShader = r.material.shader;
-        glowShader = Shader.Find("Custom/SelectionGlow");
+        //glowShader = Shader.Find("OutlineShader");
+        glowShader = Shader.Find("SelectionGlow");
         EventManager.OnInteract += OnInteract;
     }
 
@@ -27,6 +28,7 @@ public class Interactable : MonoBehaviour
         if (selectedBy != null) return;
         selectedBy = player;
         r.material.shader = glowShader;
+        //r.material.SetColor("_OutlineColor", Color.white);
     }
 
     public void Deselect()

@@ -50,22 +50,27 @@ public class PlayerBase : MonoBehaviour
 
         if (moveVec != Vector2.zero)
         {
-			transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection, Vector3.up), Time.deltaTime * 10);
         }
 
-		float dampening_factor = 1;
-		if (Mathf.Abs(rb.velocity.y) >= 0.05) // in the air
-		{
-			dampening_factor = LevelController.flightDampener;
-		}
-		transform.Translate(Vector3.forward * moveVertical * LevelController.moveSpeed * dampening_factor, relativeTo: Space.World);
-        transform.Translate(Vector3.left * moveHorizontal * LevelController.moveSpeed * dampening_factor, relativeTo: Space.World);
-
-        if (Input.GetButton(jump) && isGrounded)
+		if (!LevelController.snapJumpingStatic)
         {
-            if (!LevelController.snapJumping)
+            float dampening_factor = 1;
+            if (Mathf.Abs(rb.velocity.y) >= 0.05) // in the air
+            {
+                dampening_factor = LevelController.flightDampener;
+            }
+            transform.Translate(Vector3.forward * moveVertical * LevelController.moveSpeed * dampening_factor, relativeTo: Space.World);
+            transform.Translate(Vector3.left * moveHorizontal * LevelController.moveSpeed * dampening_factor, relativeTo: Space.World);
+
+            if (Input.GetButton(jump) && Mathf.Abs(rb.velocity.y) < 0.05)
+            {
                 rb.velocity = new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical);
-            else if (moveDirection != Vector3.zero)
+            }
+        }
+        else if (isGrounded)
+        {
+            if (moveDirection != Vector3.zero)
             {
                 var jps = TagCatalogue.FindAllWithTag(Tag.JumpPoint)
                     .Where(obj => obj.transform.parent != this.transform && Utils.InJumpRange(transform.position, obj.transform.position))

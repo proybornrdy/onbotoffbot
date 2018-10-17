@@ -5,14 +5,15 @@ public class LevelController : MonoBehaviour
 
     //World constants
     public static float gravity = 20f;
-	// Players
-	public static GameObject OnPlayer;
-	public static GameObject OffPlayer;
-	public static float PlayerMovementSpeed = 5;
-	public static float moveSpeed = .05f;
-    public static bool snapJumping = false;
-	public static float PlayerJumpHeight = 6f;
-	public static float flightDampener = 0.3f;
+    // Players
+    public static GameObject OnPlayer;
+    public static GameObject OffPlayer;
+    public static float PlayerMovementSpeed = 5;
+    public static float moveSpeed = .05f;
+    public static bool snapJumpingStatic = false;
+    public static float PlayerJumpHeight = 6f;
+    public static float flightDampener = 0.3f;
+    public bool snapJumping = false;
 
 	// Interactable Objects
 	public static GameObject Door;
@@ -57,6 +58,7 @@ public class LevelController : MonoBehaviour
 		Door = GameObject.Find("Door");
         for (int i = 0; i < doors.Length; i++) doors[i].index = i;
         cc = GameObject.Find("CameraController").GetComponent<CameraController>();
+        snapJumpingStatic = snapJumping;
     }
 
     private void Start()

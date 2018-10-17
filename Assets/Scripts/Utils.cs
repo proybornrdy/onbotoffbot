@@ -59,6 +59,12 @@ public static class Utils {
 	{
 		return a.x == b.x && a.y == b.y && a.z == b.z;
     }
+
+    public static Quaternion AngleSnap(Quaternion rotation)
+    {
+        float angle = Mathf.LerpAngle(rotation.y, Mathf.Round(rotation.y / 90) * 90, Time.time);
+        return Quaternion.Euler(rotation.x, angle, rotation.z);
+    }
 }
 
 public static class GameObjectExtensions
