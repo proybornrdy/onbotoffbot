@@ -4451,7 +4451,7 @@ Transform:
   m_GameObject: {fileID: 389779699}
   m_LocalRotation: {x: -0.12383791, y: 0.18436335, z: -0.0665014, w: 0.97275484}
   m_LocalPosition: {x: -0.07000017, y: 0.26, z: 0.34000015}
-  m_LocalScale: {x: 0.05241, y: 0.06166, z: 0.060980026}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.060980026}
   m_Children: []
   m_Father: {fileID: 405930417}
   m_RootOrder: 3
@@ -4496,7 +4496,7 @@ ParticleSystemRenderer:
   m_RenderMode: 2
   m_SortMode: 0
   m_MinParticleSize: 0
-  m_MaxParticleSize: 0.5
+  m_MaxParticleSize: 0.1
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
@@ -8235,7 +8235,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 0
+    enabled: 1
     mode: 1
     ratio: 1
     lifetime:
@@ -8367,7 +8367,7 @@ ParticleSystem:
     widthOverTrail:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -10470,7 +10470,7 @@ Transform:
   m_GameObject: {fileID: 470328578}
   m_LocalRotation: {x: 0.09234028, y: 0.05840642, z: -0.03931317, w: 0.99323535}
   m_LocalPosition: {x: -0.07000017, y: 0.26, z: 0.34000015}
-  m_LocalScale: {x: 0.049999982, y: 0.054910004, z: 0.054919995}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.054919995}
   m_Children: []
   m_Father: {fileID: 405930417}
   m_RootOrder: 1
@@ -10515,7 +10515,7 @@ ParticleSystemRenderer:
   m_RenderMode: 2
   m_SortMode: 0
   m_MinParticleSize: 0
-  m_MaxParticleSize: 0.5
+  m_MaxParticleSize: 0.1
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
@@ -14254,7 +14254,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 0
+    enabled: 1
     mode: 1
     ratio: 1
     lifetime:
@@ -14386,7 +14386,7 @@ ParticleSystem:
     widthOverTrail:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -16087,7 +16087,7 @@ Transform:
   m_GameObject: {fileID: 522834451}
   m_LocalRotation: {x: -0.25799942, y: -0.069002196, z: 0.06137066, w: 0.9617217}
   m_LocalPosition: {x: -0.07000017, y: 0.26, z: 0.34000015}
-  m_LocalScale: {x: 0.05241003, y: 0.061660007, z: 0.060980037}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.060980037}
   m_Children: []
   m_Father: {fileID: 405930417}
   m_RootOrder: 2
@@ -16132,7 +16132,7 @@ ParticleSystemRenderer:
   m_RenderMode: 2
   m_SortMode: 0
   m_MinParticleSize: 0
-  m_MaxParticleSize: 0.5
+  m_MaxParticleSize: 0.1
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
@@ -19871,7 +19871,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 0
+    enabled: 1
     mode: 1
     ratio: 1
     lifetime:
@@ -20003,7 +20003,7 @@ ParticleSystem:
     widthOverTrail:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
