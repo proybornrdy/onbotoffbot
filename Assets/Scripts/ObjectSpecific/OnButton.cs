@@ -29,9 +29,9 @@ public class OnButton : MonoBehaviour
     void TurnOn(GameObject player)
     {
         if (!player.HasTag(Tag.PlayerOn)) return;
-        Vector3 onPlayerPos = Utils.closesCorner(player);
-		Vector3 buttonPos = Utils.closesCorner(this.gameObject);
-        if (Utils.vectorEqual(onPlayerPos, buttonPos))
+        Vector3 offPlayerPos = player.transform.position;
+        Vector3 buttonPos = gameObject.transform.position;
+        if (Utils.InRange(offPlayerPos, buttonPos))
         {
             foreach (var t in toggleable)
                 t.TurnOn();

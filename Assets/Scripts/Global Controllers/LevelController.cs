@@ -13,7 +13,7 @@ public class LevelController : MonoBehaviour
     public static float PlayerMovementSpeed = 5;
     public static float moveSpeed = .05f;
     public static bool snapJumpingStatic = false;
-    public static float PlayerJumpHeight = 5f;
+    public static float PlayerJumpHeight = 8f;
     public static float flightDampener = 0.3f;
     public bool snapJumping = false;
 

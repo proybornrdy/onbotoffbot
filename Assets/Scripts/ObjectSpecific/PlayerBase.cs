@@ -35,9 +35,14 @@ public class PlayerBase : MonoBehaviour
 
     void OnCollisionStay()
     {
-        if (!isGrounded && rb.velocity.y == 0) {
+        if (!isGrounded && Mathf.Abs(rb.velocity.y) < 0.005) {
             isGrounded = true;
         }
+    }
+
+    private void OnCollisionExit()
+    {
+        isGrounded = false;
     }
 
     private void handleMovement()
@@ -64,7 +69,7 @@ public class PlayerBase : MonoBehaviour
             transform.Translate(Vector3.forward * moveVertical * LevelController.moveSpeed * dampening_factor, relativeTo: Space.World);
             transform.Translate(Vector3.left * moveHorizontal * LevelController.moveSpeed * dampening_factor, relativeTo: Space.World);
 
-            if (Input.GetButton(jump) && Mathf.Abs(rb.velocity.y) < 0.05)
+            if (Input.GetButton(jump) && isGrounded) //)
             {
                 rb.velocity = new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical);
             }

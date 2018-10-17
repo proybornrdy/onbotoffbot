@@ -4889,6 +4889,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114259497263042098, guid: 21a7853d577bc2243af94beb6c50c807,
+        type: 2}
+      propertyPath: toggleable.Array.size
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4037690332120022, guid: 21a7853d577bc2243af94beb6c50c807, type: 2}
       propertyPath: m_LocalPosition.x
       value: 5.5
@@ -4925,37 +4930,37 @@ Prefab:
         type: 2}
       propertyPath: toggleable.Array.data[0]
       value: 
-      objectReference: {fileID: 442411155}
+      objectReference: {fileID: 1424800236}
     - target: {fileID: 114259497263042098, guid: 21a7853d577bc2243af94beb6c50c807,
         type: 2}
       propertyPath: toggleable.Array.data[1]
       value: 
-      objectReference: {fileID: 2093110839}
+      objectReference: {fileID: 442411155}
     - target: {fileID: 114259497263042098, guid: 21a7853d577bc2243af94beb6c50c807,
         type: 2}
       propertyPath: toggleable.Array.data[2]
       value: 
-      objectReference: {fileID: 2060690444}
+      objectReference: {fileID: 2093110839}
     - target: {fileID: 114259497263042098, guid: 21a7853d577bc2243af94beb6c50c807,
         type: 2}
       propertyPath: toggleable.Array.data[3]
       value: 
-      objectReference: {fileID: 973574686}
+      objectReference: {fileID: 2060690444}
     - target: {fileID: 114259497263042098, guid: 21a7853d577bc2243af94beb6c50c807,
         type: 2}
       propertyPath: toggleable.Array.data[4]
       value: 
-      objectReference: {fileID: 1976170407}
+      objectReference: {fileID: 973574686}
     - target: {fileID: 114259497263042098, guid: 21a7853d577bc2243af94beb6c50c807,
         type: 2}
       propertyPath: toggleable.Array.data[5]
       value: 
-      objectReference: {fileID: 704041585}
+      objectReference: {fileID: 1976170407}
     - target: {fileID: 114259497263042098, guid: 21a7853d577bc2243af94beb6c50c807,
         type: 2}
       propertyPath: toggleable.Array.data[6]
       value: 
-      objectReference: {fileID: 1424800236}
+      objectReference: {fileID: 704041585}
     - target: {fileID: 114259497263042098, guid: 21a7853d577bc2243af94beb6c50c807,
         type: 2}
       propertyPath: toggleable.Array.data[7]
@@ -9773,6 +9778,41 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: rooms.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: doors.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: rooms.Array.data[1].arr.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: rooms.Array.data[2].arr.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: rooms.Array.data[3].arr.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: rooms.Array.data[4].arr.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: rooms.Array.data[0].arr.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4939316746596810, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 5.8838663
@@ -9809,6 +9849,11 @@ Prefab:
         type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: isTestLevel
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
@@ -11127,6 +11172,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114919356604089660, guid: a7d68eaf554e341488ccdb177aaad154,
+        type: 2}
+      propertyPath: toggleable.Array.size
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4079360390228948, guid: a7d68eaf554e341488ccdb177aaad154, type: 2}
       propertyPath: m_LocalPosition.x
       value: 5.5

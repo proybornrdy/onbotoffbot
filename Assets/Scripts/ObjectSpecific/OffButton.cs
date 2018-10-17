@@ -30,9 +30,9 @@ public class OffButton : MonoBehaviour {
     void TurnOff(GameObject player)
     {
         if (!player.HasTag(Tag.PlayerOff)) return;
-        Vector3 offPlayerPos = Utils.closesCorner(player);
-		Vector3 buttonPos = Utils.closesCorner(this.gameObject);
-        if (Utils.vectorEqual(offPlayerPos, buttonPos))
+        Vector3 offPlayerPos = player.transform.position;
+		Vector3 buttonPos = gameObject.transform.position;
+        if (Utils.InRange(offPlayerPos, buttonPos))
         {
             foreach (var t in toggleable)
                 t.TurnOff();
