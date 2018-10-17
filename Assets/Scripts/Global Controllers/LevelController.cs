@@ -10,7 +10,8 @@ public class LevelController : MonoBehaviour
 	public static GameObject OffPlayer;
 	public static float PlayerMovementSpeed = 5;
 	public static float moveSpeed = .05f;
-	public static float PlayerJumpHeight = 6f;
+	public static float PlayerJumpHeight = 5f;
+    public static bool snapJumping = false;
 
 	// Interactable Objects
 	public static GameObject Door;
@@ -20,14 +21,14 @@ public class LevelController : MonoBehaviour
 	static private bool gamePlaying = true; // true: game still going, falst: game over
 	static private string reason; // reason game is over if it's over
 
-    public GameObject[] rooms;
+    public MultiDimensionalGameObject[] rooms;
     public Door[] doors;
     public bool isTestLevel = true;
 
     CameraController cc;
     private int currentLevel = 0;
 
-	public static bool gameGoing()
+    public static bool gameGoing()
 	{
 		return gamePlaying;
 	}
@@ -61,9 +62,13 @@ public class LevelController : MonoBehaviour
     {
         if (rooms.Length > 0)
         {
-            for (int i = 1; i < rooms.Length; i++) rooms[i].SetActive(false);
-            rooms[0].SetActive(true);
+            for (int i = 1; i < rooms.Length; i++)
+                for (int j = 0; j < rooms[i].Length; j++) rooms[i][j].SetActive(false);
+
+            for (int j = 0; j < rooms[0].Length; j++) rooms[0][j].SetActive(true);
         }
+        var jumpPoints = TagCatalogue.FindAllWithTag(Tag.JumpPoint);
+        foreach (var j in jumpPoints) j.gameObject.GetComponent<Renderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -72,7 +77,7 @@ public class LevelController : MonoBehaviour
 		if (gamePlaying)
 		{
 			time += Time.deltaTime;
-            if (rooms.Length !=0) cc.changeCameraPos(rooms[currentLevel]);
+            if (rooms.Length !=0) cc.changeCameraPos(rooms[currentLevel][0]);
 		}
 
 		// if ((OnPlayerDoor.transform.position - OnPlayer.transform.position).magnitude < (1.5) * Mathf.Sqrt(2) &&
@@ -87,21 +92,45 @@ public class LevelController : MonoBehaviour
     public void DoorOpened(int index)
     {
         if (!isTestLevel && index != -1 && index < rooms.Length - 1)
-            rooms[index + 1].SetActive(true);
+            for (int j = 0; j < rooms[index + 1].Length; j++)
+                rooms[index + 1][j].SetActive(true);
     }
 
     public void DoorClosed(int index)
     {
         if (!isTestLevel && index != -1 && index < rooms.Length - 1)
-            rooms[index + 1].SetActive(false);
+            for (int j = 0; j < rooms[index + 1].Length; j++)
+                rooms[index + 1][j].SetActive(false);
     }
 
     public void PlayersMovedToRoom(int index)
     {
         if (index > 0)
         {
-            rooms[index - 1].SetActive(false);
+            for (int j = 0; j < rooms[index - 1].Length; j++)
+                rooms[index - 1][j].SetActive(false);
             currentLevel = index;
         }
+    }
+}
+
+[System.Serializable]
+public class MultiDimensionalGameObject
+{
+    public GameObject[] arr;
+    public GameObject this[int i]
+    {
+        get
+        {
+            return arr[i];
+        }
+        set
+        {
+            arr[i] = value;
+        }
+    }
+    public int Length
+    {
+        get { return arr.Length; }
     }
 }

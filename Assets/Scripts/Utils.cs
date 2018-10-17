@@ -29,7 +29,14 @@ public static class Utils {
             System.Math.Pow(onPlayerPos.y - buttonPos.y, 2) <= 1 &&
             System.Math.Pow(onPlayerPos.z - buttonPos.z, 2) <= 1;
     }
-    
+
+    public static bool InJumpRange(Vector3 onPlayerPos, Vector3 buttonPos)
+    {
+        return Mathf.Abs(onPlayerPos.x - buttonPos.x) <= 1 &&
+            Mathf.Abs(onPlayerPos.y - buttonPos.y) <= 2 &&
+            Mathf.Abs(onPlayerPos.z - buttonPos.z) <= 1;
+    }
+
     public static Vector3 NearestCubeCenter(Vector3 v)
     {
         return new Vector3(

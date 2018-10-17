@@ -6,22 +6,31 @@ using UnityEngine;
 public class Switch : MonoBehaviour {
     public Toggleable[] toggleable;
     public bool on = false;
-    public LineRenderer wire;
+    public LineRenderer wire = null ;
     public Light slotLight;
     public GameObject slot;
+    Material slotMat;
+    Material lightMat;
     Interactable interactable;
+    Color color;
+    bool isReady;
 
     // Use this for initialization
     void Start()
     {
         interactable = GetComponent<Interactable>();
         interactable.InteractAction = Toggle;
+        slotMat = slot.GetComponent<Renderer>().material;
+        lightMat = wire.material;
+        color = slotMat.color;
         if (on) TurnOn();
         else TurnOff();
+        isReady = true;
     }
 
     void Toggle(GameObject player)
     {
+        if (!isReady) return;
         if (on) TurnOff(player);
         else TurnOn(player);
     }
@@ -43,8 +52,10 @@ public class Switch : MonoBehaviour {
         on = true;
         foreach (var t in toggleable)
             t.TurnOn();
-        DynamicGI.SetEmissive(slot.GetComponent<Renderer>(), slot.GetComponent<Renderer>().material.color);
-        if (wire) DynamicGI.SetEmissive(wire, wire.material.color);
+
+        Material slotMat = slot.GetComponent<Renderer>().material;
+        slotMat.SetColor("_EmissionColor", color);
+        if (wire) lightMat.SetColor("_EmissionColor", color);
         slotLight.intensity = 10;
     }
 
@@ -65,8 +76,8 @@ public class Switch : MonoBehaviour {
         on = false;
         foreach (var t in toggleable)
             t.TurnOff();
-        DynamicGI.SetEmissive(slot.GetComponent<Renderer>(), Color.black);
-        if (wire) DynamicGI.SetEmissive(wire, Color.black);
+        slotMat.SetColor("_EmissionColor", Color.black);
+        if (wire) lightMat.SetColor("_EmissionColor", Color.black);
         slotLight.intensity = 1;
     }
 

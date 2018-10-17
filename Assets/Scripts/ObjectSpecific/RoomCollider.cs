@@ -9,7 +9,7 @@ public class RoomCollider : MonoBehaviour
     LevelController lc;
     Door door;
 
-    void Start()
+    void Awake()
     {
         lc = GameObject.Find("LevelController").GetComponent<LevelController>();
         var parent = transform.parent.gameObject;

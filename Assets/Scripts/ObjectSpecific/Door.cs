@@ -8,6 +8,7 @@ public class Door : Toggleable {
     public Light overLight;
     public int index = -1;
     LevelController lc;
+    bool isReady = false;
 
     // Use this for initialization
     void Start ()
@@ -15,15 +16,12 @@ public class Door : Toggleable {
         lc = GameObject.Find("LevelController").GetComponent<LevelController>();
         if (isOpen) TurnOn();
         else TurnOff();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        isReady = true;
 	}
 
     public override void TurnOn()
     {
+        if (!isReady) return;
         isOpen = true;
         slide.transform.localPosition = new Vector3(-0.25f, 1.5f, 0.618f);
         overLight.color = new Color(0, 1, 0);
@@ -32,6 +30,7 @@ public class Door : Toggleable {
 
     public override void TurnOff()
     {
+        if (!isReady) return;
         isOpen = false;
         slide.transform.localPosition = new Vector3(-0.25f, -0.5f, 0.618f);
         overLight.color = new Color(1, 0, 0);

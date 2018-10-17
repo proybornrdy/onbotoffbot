@@ -11,10 +11,12 @@ public class PlayerBase : MonoBehaviour
 
     public GameObject heldItem;
     public GameObject selectedItem;
+    public JumpPoint jumpPoint;
     internal string horizontalAxis;
     internal string verticalAxis;
     internal string jump;
     internal string interact;
+    bool isGrounded;
 
     void Start()
     {
@@ -28,6 +30,13 @@ public class PlayerBase : MonoBehaviour
             return;
         }
         handleMovement();
+    }
+
+    void OnCollisionStay()
+    {
+        if (!isGrounded && rb.velocity.y == 0) {
+            isGrounded = true;
+        }
     }
 
     private void handleMovement()
@@ -51,12 +60,37 @@ public class PlayerBase : MonoBehaviour
         transform.Translate(Vector3.forward * moveVertical * LevelController.moveSpeed, relativeTo: Space.World);
         transform.Translate(Vector3.left * moveHorizontal * LevelController.moveSpeed, relativeTo: Space.World);
 
-        if (Input.GetButton(jump) && Mathf.Abs(rb.velocity.y) < 0.05)
+        if (Input.GetButton(jump) && isGrounded)
         {
-            rb.velocity = new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical);
-            // rb.AddForce(new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical), ForceMode.Impulse);
+            if (!LevelController.snapJumping)
+                rb.AddForce(new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical), ForceMode.Impulse);
+            else if (moveDirection != Vector3.zero)
+            {
+                var jps = TagCatalogue.FindAllWithTag(Tag.JumpPoint)
+                    .Where(obj => obj.transform.parent != this.transform && Utils.InJumpRange(transform.position, obj.transform.position))
+                    .OrderBy(obj => Vector3.Angle(moveDirection, obj.transform.position - transform.position));
+                if (jps.Count() > 0)
+                {
+                    Vector3 pos = transform.position;
+                    transform.position = Vector3.MoveTowards(pos, jps.ElementAt(0).transform.position, 0.15f);
+                }
+                //else rb.velocity = new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical);
+            }
+            //else rb.velocity = new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical);
         }
 
+        Select(moveDirection);
+        
+    }
+
+    private Vector2 movementRotationFix(float h, float v)
+    {
+        Vector2 vec = new Vector2(h, v);
+        return Quaternion.Euler(0, 0, -45) * vec;
+    }
+
+    private void Select(Vector3 moveDirection)
+    {
         if (heldItem != null)
         {
             selectedItem = heldItem;
@@ -83,16 +117,9 @@ public class PlayerBase : MonoBehaviour
                 }
             }
         }
-        
     }
 
-    private Vector2 movementRotationFix(float h, float v)
-    {
-        Vector2 vec = new Vector2(h, v);
-        return Quaternion.Euler(0, 0, -45) * vec;
-    }
-
-    private void Select()
+    private void JumpCoroutine()
     {
 
     }

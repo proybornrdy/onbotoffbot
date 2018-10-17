@@ -13,6 +13,7 @@
     ConveyerBelt,
     Toggle,
     HasWeight,
+    JumpPoint,
 }
 
 public enum Axis
@@ -20,4 +21,20 @@ public enum Axis
     x,
     y,
     z
+}
+
+public enum ColourEnum
+{
+    Red,
+    Purple,
+    Blue,
+    Green,
+    Yellow,
+    Orange,
+}
+
+public enum MatLightingType
+{
+    Dim,
+    Lit
 }
