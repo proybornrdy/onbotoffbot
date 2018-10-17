@@ -41,7 +41,7 @@ public class EventManager : MonoBehaviour {
             }
 
             if (Input.GetButton(PlayerInputTranslator.GetReset(PlayerInputTranslator.Player.ON)) ||
-                Input.GetButton(PlayerInputTranslator.GetReset(PlayerInputTranslator.Player.ON)))
+                Input.GetButton(PlayerInputTranslator.GetReset(PlayerInputTranslator.Player.OFF)))
             {
                 LevelController.ResetScene();
             }
