@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
@@ -12,7 +13,7 @@ public class LevelController : MonoBehaviour
     public static float PlayerMovementSpeed = 5;
     public static float moveSpeed = .05f;
     public static bool snapJumpingStatic = false;
-    public static float PlayerJumpHeight = 6f;
+    public static float PlayerJumpHeight = 5f;
     public static float flightDampener = 0.3f;
     public bool snapJumping = false;
 
@@ -73,6 +74,11 @@ public class LevelController : MonoBehaviour
         }
         var jumpPoints = TagCatalogue.FindAllWithTag(Tag.JumpPoint);
         foreach (var j in jumpPoints) j.gameObject.GetComponent<Renderer>().enabled = false;
+    }
+
+    public static void GoToMenu()
+    {
+        SceneManager.LoadScene("IntoScene");
     }
 
     // Update is called once per frame

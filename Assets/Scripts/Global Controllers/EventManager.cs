@@ -45,6 +45,12 @@ public class EventManager : MonoBehaviour {
             {
                 LevelController.ResetScene();
             }
+
+            if (Input.GetButton(PlayerInputTranslator.GetMenu(PlayerInputTranslator.Player.ON)) ||
+                Input.GetButton(PlayerInputTranslator.GetMenu(PlayerInputTranslator.Player.OFF)))
+            {
+                LevelController.GoToMenu();
+            }
         }
         catch (System.NullReferenceException)
         {

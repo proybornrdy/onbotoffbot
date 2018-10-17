@@ -81,4 +81,9 @@ public class PlayerInputTranslator : MonoBehaviour {
     {
         return p == P1 ? "P1Reset" : "P2Reset";
     }
+
+    public static string GetMenu(Player p)
+    {
+        return p == P1 ? "P1Menu" : "P2Menu";
+    }
 }
