@@ -25,12 +25,8 @@ public class LeaderBoard : MonoBehaviour {
 			lbes.SetParent(LeaderBoardEntriesContainer.transform);
 			lbes.localScale = new Vector3(1, 1, 1);
 			string[] leaderValues = leaderEntries[i].Split('\t');
-			Debug.Log(leaderValues);
-			Debug.Log(leaderValues[0]);
-			Debug.Log(leaderValues[1]);
-			Debug.Log(leaderValues[2]);
 			lbes.GetComponent<LeaderBoardEntry>().
 					setInfo(leaderValues[0], leaderValues[1], Convert.ToInt32(leaderValues[2]));
-		}	
+		}
 	}
 }
