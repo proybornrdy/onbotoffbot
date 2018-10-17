@@ -6,49 +6,70 @@ public class OptoinsSceenController : MonoBehaviour
 	public GameObject Credits;
 	public GameObject LeaderBoard;
 	public GameObject PlayerSelect;
+	public GameObject LevelSelect;
+
+	public GameObject OnBot;
+	public GameObject OffBot;
 
 	// Use this for initialization
 	void Start()
 	{
-		StartPlayerSelect();
+		StartMain();
+		// StartPlayerSelect();
 	}
 
-	// Update is called once per frame
-	void Update()
+	public void StartMain()
 	{
-
+		Options.SetActive(true);
+		Options.GetComponent<OptionsScreen>().SetUp();
 	}
 
-	void StartCredits()
+	public void StopMain()
 	{
 		Options.SetActive(false);
+	}
+
+	public void StartCredits()
+	{
 		Credits.SetActive(true);
 		(Credits.GetComponent<CreditRunner>()).Restart_Scroll();
 	}
 
-	void StopCredits()
+	public void StopCredits()
 	{
-		Options.SetActive(true);
 		Credits.SetActive(false);
 	}
 
-	void StartLeaderBoard()
+	public void StartLeaderBoard()
 	{
-		Options.SetActive(false);
 		LeaderBoard.SetActive(true);
 		(LeaderBoard.GetComponent<LeaderBoard>()).updateLeaderBoard();
 	}
 
-	void StopLeaderBoard()
+	public void StopLeaderBoard()
 	{
-		Options.SetActive(true);
 		LeaderBoard.SetActive(false);
 	}
 
-	void StartPlayerSelect()
+	public void StartPlayerSelect()
 	{
-		Options.SetActive(false);
 		PlayerSelect.SetActive(true);
 		PlayerSelect.GetComponent<PlayerSelect>().SetUp();
+	}
+
+	public void StopPlayerSelect()
+	{
+		PlayerSelect.SetActive(false);
+	}
+
+	public void StartLevelSelect()
+	{
+		LevelSelect.SetActive(true);
+		LevelSelect.GetComponent<LevelSelect>().StartUp();
+	}
+
+	public void StopLevelSelect()
+	{
+		LevelSelect.SetActive(false);
 	}
 }

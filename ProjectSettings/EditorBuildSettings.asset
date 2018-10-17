@@ -5,13 +5,49 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/IntoScene.unity
+    guid: 684fd5507dcb18a45bd6a081c308852b
+  - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: 88a81b084e9568244b04bff4a6024915
+  - enabled: 1
     path: Assets/Scenes/Test/Monica.unity
     guid: d9d38ff9b0b85534eb60dc2593720954
+  - enabled: 1
+    path: Assets/Scenes/Test/Alex.unity
+    guid: d76108bf63d17d84b94e63bca30c8bcd
+  - enabled: 1
+    path: Assets/Scenes/Test/Julia.unity
+    guid: 19b148d8bb052e24296b2106f5b1e2b4
+  - enabled: 1
+    path: Assets/Scenes/Test/Max.unity
+    guid: 0dba488d139df4249a6a8f21f37b44fe
+  - enabled: 1
+    path: Assets/Scenes/Test/Roy.unity
+    guid: 90e6f562907111b4896b672d9d898f51
   - enabled: 1
     path: Assets/Scenes/Progression chunks/2-7.unity
     guid: 61e7cfa2575b4a24ab762a8314b25adf
   - enabled: 1
-    path: Assets/Scenes/IntoScene.unity
-    guid: 684fd5507dcb18a45bd6a081c308852b
+    path: Assets/Scenes/Progression chunks/Section 1.unity
+    guid: 5e87825f99c594a4590551b2d5abb3d1
+  - enabled: 1
+    path: Assets/Scenes/Level Ideas/2-6.unity
+    guid: 7bd80d632825ea641b51f7d550be9c65
+  - enabled: 1
+    path: Assets/Scenes/Level Ideas/BasicPistonPuzzle.unity
+    guid: 2b180f5dba80e914581df40809ef015d
+  - enabled: 1
+    path: Assets/Scenes/Level Ideas/Elevator.unity
+    guid: 418ffa4d4f713894698d386ed88067f8
+  - enabled: 1
+    path: Assets/Scenes/Level Ideas/Magnet.unity
+    guid: 8449ad91ce0d06e408d0d3ae3fbebec7
+  - enabled: 1
+    path: Assets/Scenes/Level Ideas/Piston2.unity
+    guid: d29f353ff355e3b47bc1449ac276d5c2
+  - enabled: 1
+    path: Assets/Scenes/Level Ideas/PressurePlateLevel.unity
+    guid: 733a0f5224656f143abab43dfa2695dd
   m_configObjects: {}
