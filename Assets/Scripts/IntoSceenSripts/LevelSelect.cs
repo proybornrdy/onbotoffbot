@@ -15,6 +15,7 @@ public class LevelSelect : MonoBehaviour {
 	private bool resetP1 = true;
 	private bool resetP2 = true;
 	private float startTime;
+	private float myBufferedHeight;
 
 	public Font textFont;
 
@@ -72,25 +73,33 @@ public class LevelSelect : MonoBehaviour {
 			text.alignment = TextAnchor.MiddleCenter;
 			text.transform.localScale = new Vector3(1, 1, 1);
 			text.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 100);
+			if (i == 0)
+			{
+				myBufferedHeight = text.transform.position.y;
+			}
+			else if (i == 1)
+			{
+				myBufferedHeight -= text.transform.localPosition.y;
+			}
 		}
 		Selected = 0;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if ((resetP1 && Input.GetAxis("P1Vertical") > .5 || resetP2 && Input.GetAxis("P2Vertical") > .5) && Selected < Levels.Count - 1)
+		if ((resetP1 && Input.GetAxis("P1Vertical") > .5 || resetP2 && Input.GetAxis("P2Vertical") > .5) && Selected > 0)
 		{
 			resetP1 = !(Input.GetAxis("P1Vertical") > .5);
 			resetP2 = !(Input.GetAxis("P2Vertical") > .5);
-			LevelsContainer.transform.position = new Vector3(LevelsContainer.transform.position.x, LevelsContainer.transform.position.y - BufferedHeight / 2, LevelsContainer.transform.position.z);
-			Selected += 1;
+			LevelsContainer.transform.position = new Vector3(LevelsContainer.transform.position.x, LevelsContainer.transform.position.y - myBufferedHeight, LevelsContainer.transform.position.z);
+			Selected -= 1;
 		}
-		if ((resetP1 && Input.GetAxis("P1Vertical") < -.5 || resetP2 && Input.GetAxis("P2Vertical") < -.5) && Selected > 0)
+		if ((resetP1 && Input.GetAxis("P1Vertical") < -.5 || resetP2 && Input.GetAxis("P2Vertical") < -.5) && Selected < Levels.Count - 1)
 		{
 			resetP1 = !(Input.GetAxis("P1Vertical") < -.5);
 			resetP2 = !(Input.GetAxis("P2Vertical") < -.5);
-			LevelsContainer.transform.position = new Vector3(LevelsContainer.transform.position.x, LevelsContainer.transform.position.y + BufferedHeight / 2, LevelsContainer.transform.position.z);
-			Selected -= 1;
+			LevelsContainer.transform.position = new Vector3(LevelsContainer.transform.position.x, LevelsContainer.transform.position.y + myBufferedHeight, LevelsContainer.transform.position.z);
+			Selected += 1;
 		}
 
 		if (Input.GetAxis("P1Vertical") > -.5 && Input.GetAxis("P1Vertical") < .5)
@@ -107,7 +116,6 @@ public class LevelSelect : MonoBehaviour {
 			if (startTime + 1 < Time.time)
 			{
 				SceneManager.LoadSceneAsync(Levels[Selected][1]);
-				// SceneManager.LoadSceneAsync("1");
 			}
 		}
 	}

@@ -24,20 +24,6 @@ public class OptionsScreen : MonoBehaviour
 		{
 			resetP1 = !(Input.GetAxis("P1Vertical") > .5);
 			resetP2 = !(Input.GetAxis("P2Vertical") > .5);
-			if (selecterPosition.x == StartPostion.x && selecterPosition.y == StartPostion.y)
-			{
-				selector.transform.localPosition = LeaderBoardPosition;
-			}
-			else if (selecterPosition.x == LeaderBoardPosition.x && selecterPosition.y == LeaderBoardPosition.y)
-			{
-				selector.transform.localPosition = CreditsPosition;
-			}
-		}
-
-		if (Input.GetAxis("P1Vertical") < -.5 && resetP1 || Input.GetAxis("P2Vertical") < -.5 && resetP2)
-		{
-			resetP1 = !(Input.GetAxis("P1Vertical") < -.5);
-			resetP2 = !(Input.GetAxis("P2Vertical") < -.5);
 			if (selecterPosition.x == CreditsPosition.x && selecterPosition.y == CreditsPosition.y)
 			{
 				selector.transform.localPosition = LeaderBoardPosition;
@@ -45,6 +31,20 @@ public class OptionsScreen : MonoBehaviour
 			else if (selecterPosition.x == LeaderBoardPosition.x && selecterPosition.y == LeaderBoardPosition.y)
 			{
 				selector.transform.localPosition = StartPostion;
+			}
+		}
+
+		if (Input.GetAxis("P1Vertical") < -.5 && resetP1 || Input.GetAxis("P2Vertical") < -.5 && resetP2)
+		{
+			resetP1 = !(Input.GetAxis("P1Vertical") < -.5);
+			resetP2 = !(Input.GetAxis("P2Vertical") < -.5);
+			if (selecterPosition.x == StartPostion.x && selecterPosition.y == StartPostion.y)
+			{
+				selector.transform.localPosition = LeaderBoardPosition;
+			}
+			else if (selecterPosition.x == LeaderBoardPosition.x && selecterPosition.y == LeaderBoardPosition.y)
+			{
+				selector.transform.localPosition = CreditsPosition;
 			}
 		}
 
