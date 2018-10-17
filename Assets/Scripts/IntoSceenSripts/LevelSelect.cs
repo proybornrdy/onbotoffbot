@@ -33,7 +33,7 @@ public class LevelSelect : MonoBehaviour {
 		Levels.Add(new string[] { "Roy", "Scenes/Test/Roy" });
 
 		Levels.Add(new string[] { "2-7", "Scenes/Progression chunks/2-7" });
-		Levels.Add(new string[] { "Section 1", "Scenes/Progression chunks/Sectoin 1" });
+		Levels.Add(new string[] { "Section 1", "Scenes/Progression chunks/Section 1" });
 
 		Levels.Add(new string[] { "2-6", "Scenes/Level Ideas/2-6" });
 		Levels.Add(new string[] { "BasicPistonPuzzle", "Scenes/Level Ideas/BasicPistonPuzzle" });
