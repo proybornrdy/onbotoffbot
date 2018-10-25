@@ -95,7 +95,7 @@ public class LevelController : MonoBehaviour
 		if (gamePlaying)
 		{
 			time += Time.deltaTime;
-            if (!isTestLevel && rooms.Length !=0) cc.changeCameraPos(rooms[currentRoom][0]);
+            if (!isTestLevel && rooms.Length !=0) cc.changeCameraPos(rooms[newRoom][0]);
 
 			// log postion every second
 			if (((int)time) != oldTime)
