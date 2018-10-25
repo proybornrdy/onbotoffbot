@@ -24,7 +24,7 @@ public class Door : Toggleable {
         if (!isReady) return;
         isOpen = true;
         slide.transform.localPosition = new Vector3(-0.25f, 1.5f, 0.618f);
-        overLight.color = new Color(0, 1, 0);
+        overLight.color = Color.blue;
         lc.DoorOpened(index);
     }
 
@@ -33,7 +33,7 @@ public class Door : Toggleable {
         if (!isReady) return;
         isOpen = false;
         slide.transform.localPosition = new Vector3(-0.25f, -0.5f, 0.618f);
-        overLight.color = new Color(1, 0, 0);
+        overLight.color = Color.red;
         lc.DoorClosed(index);
     }
 
