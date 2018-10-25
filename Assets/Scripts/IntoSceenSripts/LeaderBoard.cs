@@ -9,6 +9,17 @@ public class LeaderBoard : MonoBehaviour {
 	public float StartHeight;
 	public float BufferedHeight;
 
+	public GameObject SceneController;
+
+	void Update()
+	{
+		if (Input.GetButton("P1Back") || Input.GetButton("P2Back") || Input.GetButton("Back"))
+		{
+			SceneController.GetComponent<OptoinsSceenController>().StopLeaderBoard();
+			SceneController.GetComponent<OptoinsSceenController>().StartMain();
+		}
+	}
+
 	public void updateLeaderBoard()
 	{
 		// remove all old entries

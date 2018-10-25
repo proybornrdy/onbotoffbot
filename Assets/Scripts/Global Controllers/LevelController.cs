@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
@@ -35,6 +34,9 @@ public class LevelController : MonoBehaviour
     private bool roomFadeIn = false;
     private bool roomFadeOut = false;
 
+	private int oldTime = 0;
+	private GameStateLog gameStateLog;
+
     public static bool gameGoing()
     {
         return gamePlaying;
@@ -64,6 +66,8 @@ public class LevelController : MonoBehaviour
         for (int i = 0; i < doors.Length; i++) doors[i].index = i;
         cc = GameObject.Find("CameraController").GetComponent<CameraController>();
         snapJumpingStatic = snapJumping;
+
+		gameStateLog = new GameStateLog(SceneManager.GetActiveScene().name);
     }
 
     private void Start()
@@ -86,12 +90,19 @@ public class LevelController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (gamePlaying)
-        {
-            time += Time.deltaTime;
-            if (!isTestLevel && rooms.Length != 0) cc.changeCameraPos(rooms[newRoom][0]);
 
+	{
+		if (gamePlaying)
+		{
+			time += Time.deltaTime;
+            if (!isTestLevel && rooms.Length !=0) cc.changeCameraPos(rooms[currentLevel][0]);
+
+			// log postion every second
+			if (((int)time) != oldTime)
+			{
+				gameStateLog.LogPositions(OnPlayer.transform.position, OffPlayer.transform.position);
+				oldTime = (int)time;
+			}
             if (roomFadeIn)
             {
                 for (int j = 0; j < rooms[newRoom].Length; j++)
@@ -102,8 +113,8 @@ public class LevelController : MonoBehaviour
                 for (int j = 0; j < rooms[newRoom-1].Length; j++)
                     fadeOutRoom(rooms[newRoom-1][j]);
             }
-        }
-    }
+		}
+	}
 
     public void DoorOpened(int index)
     {

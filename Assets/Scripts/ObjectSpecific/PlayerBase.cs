@@ -19,6 +19,11 @@ public class PlayerBase : MonoBehaviour
     internal string reset;
     bool isGrounded;
 
+    int jumpFrames = 24;
+    Vector3? jumpFrom = null;
+    Vector3? jumpTo = null;
+    bool jumping = false;
+
     void Start()
     {
         Physics.gravity = new Vector3(0, -LevelController.gravity, 0);
@@ -74,25 +79,54 @@ public class PlayerBase : MonoBehaviour
                 rb.velocity = new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical);
             }
         }
-        else if (isGrounded)
+        //else if (isGrounded)
+        else if (!jumping)
         {
-            if (Input.GetButton(jump) && moveDirection != Vector3.zero)
+            if (Input.GetButton(jump))// && moveDirection != Vector3.zero)
             {
                 var jps = TagCatalogue.FindAllWithTag(Tag.JumpPoint)
-                    .Where(obj => obj.transform.parent != this.transform && Utils.InJumpRange(transform.position, obj.transform.position))
-                    .OrderBy(obj => Vector3.Angle(moveDirection, obj.transform.position - transform.position));
+                    .Where(obj => obj.transform.parent != this.transform && Utils.InJumpRange(transform.position, obj.transform.position) &&
+                                    Vector3.Angle(transform.rotation * Vector3.forward, obj.transform.position - transform.position) <= selectionThreshold)
+                    .OrderBy(obj => -Utils.NearestCubeCenter(obj.transform.position).y)
+                    .ThenBy(obj => Vector3.Angle(transform.rotation * Vector3.forward, obj.transform.position - transform.position));
                 if (jps.Count() > 0)
                 {
-                    Vector3 pos = transform.position;
-                    transform.position = Vector3.MoveTowards(pos, jps.ElementAt(0).transform.position, 0.15f);
+                    jumping = true;
+                    jumpFrom = transform.position;
+                    jumpTo = jps.ElementAt(0).transform.position;
+                    StartCoroutine("Jump");
                 }
-                //else rb.velocity = new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical);
             }
-            //else rb.velocity = new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical);
+            float dampening_factor = 1;
+            if (Mathf.Abs(rb.velocity.y) >= 0.05) // in the air
+            {
+                dampening_factor = LevelController.flightDampener;
+            }
+            transform.Translate(Vector3.forward * moveVertical * LevelController.moveSpeed * dampening_factor, relativeTo: Space.World);
+            transform.Translate(Vector3.left * moveHorizontal * LevelController.moveSpeed * dampening_factor, relativeTo: Space.World);
         }
 
         Select(moveDirection);
         
+    }
+
+    IEnumerator Jump()
+    {
+        Vector3 midPoint = new Vector3(
+            (jumpFrom.Value.x + jumpTo.Value.x) / 2,
+            ((jumpFrom.Value.y + jumpTo.Value.y) / 2) + 1,
+            (jumpFrom.Value.z + jumpTo.Value.z) / 2);
+
+        for (int i = 0; i < jumpFrames; i++)
+        {
+            float t = ((float)i) / jumpFrames;
+            transform.position = ((1 - t) * (1 - t) * jumpFrom.Value) + (2 * (1 - t) * t * midPoint) + (t * t * jumpTo.Value);
+            yield return null;
+        }
+        jumping = false;
+        jumpFrom = null;
+        jumpTo = null;
+        yield return null;
     }
 
     private Vector2 movementRotationFix(float h, float v)
