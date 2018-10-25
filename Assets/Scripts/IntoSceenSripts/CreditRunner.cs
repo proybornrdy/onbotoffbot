@@ -8,6 +8,8 @@ public class CreditRunner : MonoBehaviour {
 	public float scrollStart;
 	public float scrollRestart;
 
+	public GameObject SceneController;
+
 	// Use this for initialization
 	void Start () {
 		Restart_Scroll();
@@ -20,6 +22,12 @@ public class CreditRunner : MonoBehaviour {
 		if (this.transform.position.y > scrollRestart)
 		{
 			Restart_Scroll();
+		}
+
+		if (Input.GetButton("P1Back") || Input.GetButton("P2Back") || Input.GetButton("Back"))
+		{
+			SceneController.GetComponent<OptoinsSceenController>().StopCredits();
+			SceneController.GetComponent<OptoinsSceenController>().StartMain();
 		}
 	}
 

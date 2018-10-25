@@ -19,6 +19,8 @@ public class LevelSelect : MonoBehaviour {
 
 	public Font textFont;
 
+	public GameObject SceneController;
+
 	public void Start()
 	{
 		Levels = new List<string[]>();
@@ -117,6 +119,12 @@ public class LevelSelect : MonoBehaviour {
 			{
 				SceneManager.LoadSceneAsync(Levels[Selected][1]);
 			}
+		}
+
+		if (Input.GetButton("P1Back") || Input.GetButton("P2Back") || Input.GetButton("Back"))
+		{
+			SceneController.GetComponent<OptoinsSceenController>().StopLevelSelect();
+			SceneController.GetComponent<OptoinsSceenController>().StartMain();
 		}
 	}
 }
