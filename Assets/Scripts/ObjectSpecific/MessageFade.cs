@@ -4,30 +4,38 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MessageFade : MonoBehaviour {
+    public float fadeSpeed = 2;
+    private bool isFading = false;
 
-    void Start() {
-        //FadeOut();
-    }
-
-    void FadeIn() {
+    public void FadeIn() {
         StartCoroutine(FadeInCoroutine());
     }
 
     IEnumerator FadeInCoroutine() {
-        for (float i = GetComponent<CanvasGroup>().alpha; i < 1; i += (Time.deltaTime * 2)) {
-            GetComponent<CanvasGroup>().alpha = i;
-            yield return null;
+        if (!isFading) {
+            while (GetComponent<CanvasGroup>().alpha < 1) {
+                isFading = true;
+                GetComponent<CanvasGroup>().alpha += Time.deltaTime * fadeSpeed;
+                Debug.Log("a");
+                yield return null;
+            }
+            isFading = false;
         }
     }
 
-    void FadeOut() {
+    public void FadeOut() {
         StartCoroutine(FadeOutCoroutine());
     }
 
     IEnumerator FadeOutCoroutine() {
-        for (float i = GetComponent<CanvasGroup>().alpha; i > 0; i -= (Time.deltaTime * 2)) {
-            GetComponent<CanvasGroup>().alpha = i;
-            yield return null;
+        if (!isFading) {
+            while (GetComponent<CanvasGroup>().alpha > 0) {
+                isFading = true;
+                GetComponent<CanvasGroup>().alpha -= Time.deltaTime * fadeSpeed;
+                Debug.Log("b");
+                yield return null;
+            }
+            isFading = false;
         }
     }
 }
