@@ -25,7 +25,7 @@ public class PickupItem : MonoBehaviour
             obj.transform.SetParent(initParent);
             obj.transform.position = player.transform.position + new Vector3(0, 1, 1.25f);
             obj.transform.RotateAround(player.transform.position, Vector3.up, player.transform.rotation.eulerAngles.y);
-            //obj.transform.position = Utils.NearestCubeCenter(obj.transform.position);
+            obj.transform.position = Utils.NearestCubeCenter(obj.transform.position);
             gameObject.transform.rotation = Utils.AngleSnap(gameObject.transform.rotation);
             GetComponent<Rigidbody>().isKinematic = false;
         } else if (interactable.SelectedBy() == player && (playerBase.heldItem == null || !playerBase.heldItem.Equals(gameObject))) {
