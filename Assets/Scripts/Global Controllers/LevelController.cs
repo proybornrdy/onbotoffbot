@@ -95,7 +95,7 @@ public class LevelController : MonoBehaviour
 		if (gamePlaying)
 		{
 			time += Time.deltaTime;
-            if (!isTestLevel && rooms.Length !=0) cc.changeCameraPos(rooms[newRoom][0]);
+            if (!isTestLevel && rooms.Length !=0) cc.changeCameraPos(rooms[currentRoom][0]);
 
 			// log postion every second
 			if (((int)time) != oldTime)
@@ -103,16 +103,16 @@ public class LevelController : MonoBehaviour
 				gameStateLog.LogPositions(OnPlayer.transform.position, OffPlayer.transform.position);
 				oldTime = (int)time;
 			}
-            if (roomFadeIn)
-            {
-                for (int j = 0; j < rooms[newRoom].Length; j++)
-                    fadeInRoom(rooms[newRoom][j]);
-            }
-            if (roomFadeOut)
-            {
-                for (int j = 0; j < rooms[newRoom-1].Length; j++)
-                    fadeOutRoom(rooms[newRoom-1][j]);
-            }
+            //if (roomFadeIn)
+            //{
+            //    for (int j = 0; j < rooms[newRoom].Length; j++)
+            //        fadeInRoom(rooms[newRoom][j]);
+            //}
+            //if (roomFadeOut)
+            //{
+            //    for (int j = 0; j < rooms[newRoom-1].Length; j++)
+            //        fadeOutRoom(rooms[newRoom-1][j]);
+            //}
 		}
 	}
 
@@ -123,11 +123,11 @@ public class LevelController : MonoBehaviour
             for (int j = 0; j < rooms[index + 1].Length; j++)
             {
                 rooms[index + 1][j].SetActive(true);
-                setRoomInvisible(rooms[index + 1][j]);
+                //setRoomInvisible(rooms[index + 1][j]);
             }
                 
-            roomFadeIn = true;
-            newRoom = index + 1;
+            //roomFadeIn = true;
+            //newRoom = index + 1;
         }
 
     }
@@ -145,13 +145,13 @@ public class LevelController : MonoBehaviour
         {
             for (int j = 0; j < rooms[index - 1].Length; j++)
             {
-                roomFadeOut = true;
-                fadeOutRoom(rooms[index - 1][j]);
-                if (!roomFadeOut)
+                //roomFadeOut = true;
+                //fadeOutRoom(rooms[index - 1][j]);
+                //if (!roomFadeOut)
                     rooms[index - 1][j].SetActive(false);
             }
                 
-            currentRoom = index-1;
+            currentRoom = index;
 
         }
     }
@@ -163,83 +163,83 @@ public class LevelController : MonoBehaviour
 
     }
 
-    private void setRoomInvisible(GameObject room)
-    {
-        Renderer[] rends = room.GetComponentsInChildren<Renderer>();
-        foreach (Renderer r in rends)
-        {
-            changeMaterialModeToFadeMode(r);
-            Color alpha = r.material.color;
-            alpha.a = 0f;
-            r.material.color = alpha;
-        }
-    }
+    //private void setRoomInvisible(GameObject room)
+    //{
+    //    Renderer[] rends = room.GetComponentsInChildren<Renderer>();
+    //    foreach (Renderer r in rends)
+    //    {
+    //        changeMaterialModeToFadeMode(r);
+    //        Color alpha = r.material.color;
+    //        alpha.a = 0f;
+    //        r.material.color = alpha;
+    //    }
+    //}
 
-    private void fadeInRoom(GameObject room)
-    {
-        Renderer[] rends = room.GetComponentsInChildren<Renderer>();
-        foreach (Renderer r in rends)
-        {
-            Color meshColor = r.material.color;
+    //private void fadeInRoom(GameObject room)
+    //{
+    //    Renderer[] rends = room.GetComponentsInChildren<Renderer>();
+    //    foreach (Renderer r in rends)
+    //    {
+    //        Color meshColor = r.material.color;
 
-            //Set Alpha
-            const float alpha = 1f;
-            meshColor.a = alpha;
+    //        //Set Alpha
+    //        const float alpha = 1f;
+    //        meshColor.a = alpha;
 
-            r.material.color = Color.Lerp(r.material.color,meshColor,0.1f);
-            if (Mathf.Approximately(r.material.color.a, 1f))
-            {
-                changeMaterialModeToOpaqueMode(r);
-                roomFadeIn = false;
-            }
-        }
-    }
+    //        r.material.color = Color.Lerp(r.material.color,meshColor,0.1f);
+    //        if (Mathf.Approximately(r.material.color.a, 1f))
+    //        {
+    //            changeMaterialModeToOpaqueMode(r);
+    //            roomFadeIn = false;
+    //        }
+    //    }
+    //}
 
-    private void fadeOutRoom(GameObject room)
-    {
-        Renderer[] rends = room.GetComponentsInChildren<Renderer>();
-        foreach (Renderer r in rends)
-        {
-            changeMaterialModeToFadeMode(r);
-            Color meshColor = r.material.color;
+    //private void fadeOutRoom(GameObject room)
+    //{
+    //    Renderer[] rends = room.GetComponentsInChildren<Renderer>();
+    //    foreach (Renderer r in rends)
+    //    {
+    //        changeMaterialModeToFadeMode(r);
+    //        Color meshColor = r.material.color;
 
-            //Set Alpha
-            const float alpha = 0f;
-            meshColor.a = alpha;
+    //        //Set Alpha
+    //        const float alpha = 0f;
+    //        meshColor.a = alpha;
 
-            r.material.color = Color.Lerp(r.material.color, meshColor, 0.1f);
-            if (Mathf.Approximately(r.material.color.a, 0f))
-            {
-                changeMaterialModeToOpaqueMode(r);
-                roomFadeOut = false;
-            }
+    //        r.material.color = Color.Lerp(r.material.color, meshColor, 0.1f);
+    //        if (Mathf.Approximately(r.material.color.a, 0f))
+    //        {
+    //            changeMaterialModeToOpaqueMode(r);
+    //            roomFadeOut = false;
+    //        }
 
-        }
+    //    }
             
-    }
+    //}
 
-    private void changeMaterialModeToFadeMode(Renderer rd)
-    {
+    //private void changeMaterialModeToFadeMode(Renderer rd)
+    //{
 
-        rd.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-        rd.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-        rd.material.SetInt("_ZWrite", 0);
-        rd.material.DisableKeyword("_ALPHATEST_ON");
-        rd.material.EnableKeyword("_ALPHABLEND_ON");
-        rd.material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-        rd.material.renderQueue = 3000;
-    }
+    //    rd.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+    //    rd.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+    //    rd.material.SetInt("_ZWrite", 0);
+    //    rd.material.DisableKeyword("_ALPHATEST_ON");
+    //    rd.material.EnableKeyword("_ALPHABLEND_ON");
+    //    rd.material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+    //    rd.material.renderQueue = 3000;
+    //}
 
-    private void changeMaterialModeToOpaqueMode(Renderer rd)
-    {
-        rd.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
-        rd.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
-        rd.material.SetInt("_ZWrite", 1);
-        rd.material.DisableKeyword("_ALPHATEST_ON");
-        rd.material.DisableKeyword("_ALPHABLEND_ON");
-        rd.material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-        rd.material.renderQueue = 3000;
-    }
+    //private void changeMaterialModeToOpaqueMode(Renderer rd)
+    //{
+    //    rd.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
+    //    rd.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
+    //    rd.material.SetInt("_ZWrite", 1);
+    //    rd.material.DisableKeyword("_ALPHATEST_ON");
+    //    rd.material.DisableKeyword("_ALPHABLEND_ON");
+    //    rd.material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+    //    rd.material.renderQueue = 3000;
+    //}
 }
 
 [System.Serializable]
