@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class LevelController : MonoBehaviour
 {
@@ -103,16 +104,7 @@ public class LevelController : MonoBehaviour
 				gameStateLog.LogPositions(OnPlayer.transform.position, OffPlayer.transform.position);
 				oldTime = (int)time;
 			}
-            //if (roomFadeIn)
-            //{
-            //    for (int j = 0; j < rooms[newRoom].Length; j++)
-            //        fadeInRoom(rooms[newRoom][j]);
-            //}
-            //if (roomFadeOut)
-            //{
-            //    for (int j = 0; j < rooms[newRoom-1].Length; j++)
-            //        fadeOutRoom(rooms[newRoom-1][j]);
-            //}
+            
 		}
 	}
 
@@ -123,11 +115,13 @@ public class LevelController : MonoBehaviour
             for (int j = 0; j < rooms[index + 1].Length; j++)
             {
                 rooms[index + 1][j].SetActive(true);
-                //setRoomInvisible(rooms[index + 1][j]);
+
+                /*since all rooms are just activated from deactivation, 
+                it needs to be invisible first in order for it to be faded in*/
+                setRoomInvisible(rooms[index + 1][j]);
+                StartCoroutine(RoomFade(rooms[index + 1][j], false));
             }
-                
-            //roomFadeIn = true;
-            //newRoom = index + 1;
+            newRoom = index + 1;
         }
 
     }
@@ -145,10 +139,11 @@ public class LevelController : MonoBehaviour
         {
             for (int j = 0; j < rooms[index - 1].Length; j++)
             {
-                //roomFadeOut = true;
-                //fadeOutRoom(rooms[index - 1][j]);
-                //if (!roomFadeOut)
-                    rooms[index - 1][j].SetActive(false);
+               
+                StartCoroutine(RoomFade(rooms[index - 1][j], true));
+                
+                /*left this line of code just in case needed*/
+                //rooms[index - 1][j].SetActive(false);
             }
                 
             currentRoom = index;
@@ -163,83 +158,67 @@ public class LevelController : MonoBehaviour
 
     }
 
-    //private void setRoomInvisible(GameObject room)
-    //{
-    //    Renderer[] rends = room.GetComponentsInChildren<Renderer>();
-    //    foreach (Renderer r in rends)
-    //    {
-    //        changeMaterialModeToFadeMode(r);
-    //        Color alpha = r.material.color;
-    //        alpha.a = 0f;
-    //        r.material.color = alpha;
-    //    }
-    //}
+    IEnumerator RoomFade(GameObject room, bool isFading)
+    {
+        /*Fade out : targetAlpha=0 < currentAlpha=1 (currentAlpha --0.1f)
+        Fade in :  currentALpha=0 < targetAlpha=1 (currentAlpha ++0.1f)*/
+        Renderer[] rends = room.GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < 100; i++)
+        {
 
-    //private void fadeInRoom(GameObject room)
-    //{
-    //    Renderer[] rends = room.GetComponentsInChildren<Renderer>();
-    //    foreach (Renderer r in rends)
-    //    {
-    //        Color meshColor = r.material.color;
+            foreach (Renderer r in rends)
+            {
+                changeMaterialModeToFadeMode(r);
+                Color alpha = r.material.color;
+                if (isFading)
+                {
+                    if (alpha.a > 0) alpha.a -= 0.01f;                    
+                    else alpha.a = 0.0f;                    
+                }
+                else alpha.a += 0.01f;                
+                r.material.color = alpha;            
 
-    //        //Set Alpha
-    //        const float alpha = 1f;
-    //        meshColor.a = alpha;
+            }
+            yield return null;
+        }
 
-    //        r.material.color = Color.Lerp(r.material.color,meshColor,0.1f);
-    //        if (Mathf.Approximately(r.material.color.a, 1f))
-    //        {
-    //            changeMaterialModeToOpaqueMode(r);
-    //            roomFadeIn = false;
-    //        }
-    //    }
-    //}
+        if (!isFading) /*since the faded out room needs to stay invisible require it to stay in Fade mode. So this only applies to room that is being faded in*/
+        {
+            foreach (Renderer r in rends) changeMaterialModeToOpaqueMode(r);            
+        }       
+    }
 
-    //private void fadeOutRoom(GameObject room)
-    //{
-    //    Renderer[] rends = room.GetComponentsInChildren<Renderer>();
-    //    foreach (Renderer r in rends)
-    //    {
-    //        changeMaterialModeToFadeMode(r);
-    //        Color meshColor = r.material.color;
 
-    //        //Set Alpha
-    //        const float alpha = 0f;
-    //        meshColor.a = alpha;
+    private void setRoomInvisible(GameObject room)
+    {
+        Renderer[] rends = room.GetComponentsInChildren<Renderer>();
+        foreach (Renderer r in rends)
+        {
+            changeMaterialModeToFadeMode(r);
+            Color alpha = r.material.color;
+            alpha.a = 0f;
+            r.material.color = alpha;
+        }
+    }
 
-    //        r.material.color = Color.Lerp(r.material.color, meshColor, 0.1f);
-    //        if (Mathf.Approximately(r.material.color.a, 0f))
-    //        {
-    //            changeMaterialModeToOpaqueMode(r);
-    //            roomFadeOut = false;
-    //        }
+   
 
-    //    }
-            
-    //}
+    private void changeMaterialModeToFadeMode(Renderer rd)
+    {
 
-    //private void changeMaterialModeToFadeMode(Renderer rd)
-    //{
+        rd.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+        rd.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        rd.material.SetInt("_ZWrite", 0);
+        rd.material.EnableKeyword("_ALPHABLEND_ON");
+    }
 
-    //    rd.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-    //    rd.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-    //    rd.material.SetInt("_ZWrite", 0);
-    //    rd.material.DisableKeyword("_ALPHATEST_ON");
-    //    rd.material.EnableKeyword("_ALPHABLEND_ON");
-    //    rd.material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-    //    rd.material.renderQueue = 3000;
-    //}
-
-    //private void changeMaterialModeToOpaqueMode(Renderer rd)
-    //{
-    //    rd.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
-    //    rd.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
-    //    rd.material.SetInt("_ZWrite", 1);
-    //    rd.material.DisableKeyword("_ALPHATEST_ON");
-    //    rd.material.DisableKeyword("_ALPHABLEND_ON");
-    //    rd.material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-    //    rd.material.renderQueue = 3000;
-    //}
+    private void changeMaterialModeToOpaqueMode(Renderer rd)
+    {
+        rd.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
+        rd.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
+        rd.material.SetInt("_ZWrite", 1);
+        rd.material.DisableKeyword("_ALPHABLEND_ON");
+    }
 }
 
 [System.Serializable]
