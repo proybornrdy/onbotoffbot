@@ -43,7 +43,7 @@ public class Magnetic : MonoBehaviour {
         if (other.gameObject == magnetObj)
         {
             SetIsColliding(true);
-            if(tag != "Player")
+            if(tag != "Player" && magnet.IsOn())
             {
                 magneticRb.drag = Mathf.Infinity;
                 gameObject.transform.parent = other.transform;

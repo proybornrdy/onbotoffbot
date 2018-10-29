@@ -57,4 +57,12 @@ public class Rail : Toggleable {
         on = true;
         snapped = false;
     }
+
+    public void SetDirection(int dir) {
+        direction = dir;
+    }
+
+    public int GetDirection() {
+        return direction;
+    }
 }
