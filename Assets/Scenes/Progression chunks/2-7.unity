@@ -3809,6 +3809,7 @@ MonoBehaviour:
   child: {fileID: 2079548003}
   speed: 0.5
   maxOffset: 2.5
+  snappingSpeed: 0.015
   axis: 1
 --- !u!4 &644511734
 Transform:
@@ -8660,6 +8661,7 @@ MonoBehaviour:
   child: {fileID: 1869239451}
   speed: 0.5
   maxOffset: 9
+  snappingSpeed: 0.015
   axis: 0
 --- !u!1001 &1435627560
 Prefab:
@@ -11478,6 +11480,7 @@ MonoBehaviour:
   child: {fileID: 644511732}
   speed: 0.5
   maxOffset: 4
+  snappingSpeed: 0.015
   axis: 2
 --- !u!1 &1886459000
 GameObject:
