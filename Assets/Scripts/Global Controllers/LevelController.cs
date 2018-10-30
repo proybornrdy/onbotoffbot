@@ -37,10 +37,11 @@ public class LevelController : MonoBehaviour
     private bool roomFadeOut = false;
 
 	private string[] LevelProgresion = {
-		"Scenes/Progression chunks/Section 1",
-		"Scenes/Level Ideas/2-6",
-		"Scenes/Level Ideas/BasicPistonPuzzle",
-		"Scenes/Level Ideas/PressurePlateLevel"
+		"Assets/Scenes/Progression chunks/Section 1.unity",
+		"Assets/Scenes/Level Ideas/2-6.unity",
+		"Assets/Scenes/Level Ideas/BasicPistonPuzzle.unity",
+		"Assets/Scenes/Level Ideas/PressurePlateLevel.unity",
+		"Assets/Scenes/IntoScene.unity"
 	};
 
 	private int oldTime = 0;
@@ -127,9 +128,9 @@ public class LevelController : MonoBehaviour
             {
                 rooms[index + 1][j].SetActive(true);
 
-                /*since all rooms are just activated from deactivation, 
+				/*since all rooms are just activated from deactivation, 
                 it needs to be invisible first in order for it to be faded in*/
-                setRoomInvisible(rooms[index + 1][j]);
+				setRoomInvisible(rooms[index + 1][j]);
                 StartCoroutine(RoomFade(rooms[index + 1][j], false));
             }
             newRoom = index + 1;
