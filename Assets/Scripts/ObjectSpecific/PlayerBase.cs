@@ -61,7 +61,9 @@ public class PlayerBase : MonoBehaviour
 
         if (moveVec != Vector2.zero)
         {
-			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection, Vector3.up), Time.deltaTime * 10);
+            var target = Quaternion.LookRotation(moveDirection, Vector3.up);
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 10);
         }
 
 		if (!LevelController.snapJumpingStatic)

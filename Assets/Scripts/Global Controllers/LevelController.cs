@@ -78,7 +78,10 @@ public class LevelController : MonoBehaviour
             for (int i = 1; i < rooms.Length; i++)
                 for (int j = 0; j < rooms[i].Length; j++) rooms[i][j].SetActive(false);
 
-            for (int j = 0; j < rooms[0].Length; j++) rooms[0][j].SetActive(true);
+            for (int j = 0; j < rooms[0].Length; j++)
+            {
+                rooms[0][j].SetActive(true);
+            }
         }
         var jumpPoints = TagCatalogue.FindAllWithTag(Tag.JumpPoint);
         foreach (var j in jumpPoints) j.gameObject.GetComponent<Renderer>().enabled = false;
@@ -128,26 +131,27 @@ public class LevelController : MonoBehaviour
 
     public void DoorClosed(int index)
     {
-        if (!isTestLevel && index != -1 && index < rooms.Length - 1)
-            for (int j = 0; j < rooms[index + 1].Length; j++)
-                rooms[index + 1][j].SetActive(false);
+        //if (!isTestLevel && index != -1 && index < rooms.Length - 1)
+        //    for (int j = 0; j < rooms[index + 1].Length; j++)
+        //        StartCoroutine(RoomFade(rooms[index + 1][j], true));
     }
 
     public void PlayersMovedToRoom(int index)
     {
-        if (index > 0)
-        {
-            for (int j = 0; j < rooms[index - 1].Length; j++)
-            {
-               
-                StartCoroutine(RoomFade(rooms[index - 1][j], true));
-                
-                /*left this line of code just in case needed*/
-                //rooms[index - 1][j].SetActive(false);
-            }
-                
-            currentRoom = index;
+        currentRoom = index;
+    }
 
+    public void PlayerInRoom(int index)
+    {
+        for (int j = 0; j < rooms[index].Length; j++)
+            StartCoroutine(RoomFade(rooms[index][j], false));
+    }
+
+    public void NoPlayersInRoom(int index)
+    {
+        for (int j = 0; j < rooms[index].Length; j++)
+        {
+            StartCoroutine(RoomFade(rooms[index][j], true));
         }
     }
 
@@ -163,7 +167,7 @@ public class LevelController : MonoBehaviour
         /*Fade out : targetAlpha=0 < currentAlpha=1 (currentAlpha --0.1f)
         Fade in :  currentALpha=0 < targetAlpha=1 (currentAlpha ++0.1f)*/
         Renderer[] rends = room.GetComponentsInChildren<Renderer>();
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 80; i++)
         {
 
             foreach (Renderer r in rends)
@@ -172,10 +176,14 @@ public class LevelController : MonoBehaviour
                 Color alpha = r.material.color;
                 if (isFading)
                 {
-                    if (alpha.a > 0) alpha.a -= 0.01f;                    
-                    else alpha.a = 0.0f;                    
+                    if (alpha.a > 0.2f) alpha.a -= 0.01f;
+                    else alpha.a = 0.2f;
                 }
-                else alpha.a += 0.01f;                
+                else
+                {
+                    if (alpha.a < 1)
+                        alpha.a += 0.01f;
+                }                
                 r.material.color = alpha;            
 
             }
@@ -185,7 +193,7 @@ public class LevelController : MonoBehaviour
         if (!isFading) /*since the faded out room needs to stay invisible require it to stay in Fade mode. So this only applies to room that is being faded in*/
         {
             foreach (Renderer r in rends) changeMaterialModeToOpaqueMode(r);            
-        }       
+        }
     }
 
 
@@ -196,7 +204,7 @@ public class LevelController : MonoBehaviour
         {
             changeMaterialModeToFadeMode(r);
             Color alpha = r.material.color;
-            alpha.a = 0f;
+            alpha.a = 0.2f;
             r.material.color = alpha;
         }
     }

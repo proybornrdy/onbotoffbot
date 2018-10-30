@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3fecd48e5eae4a943b7384021ba4a66b
+guid: d857a35118067504597406db41098926
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -14,7 +14,6 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: stand_light_01
-    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
