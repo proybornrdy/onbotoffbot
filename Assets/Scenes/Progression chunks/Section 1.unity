@@ -42975,7 +42975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1390909616
 Transform:
   m_ObjectHideFlags: 0
@@ -53704,6 +53704,11 @@ Prefab:
       propertyPath: rooms.Array.data[5].arr.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: rooms.Array.data[4].arr.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4939316746596810, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 5.8838663
@@ -53938,6 +53943,11 @@ Prefab:
       propertyPath: rooms.Array.data[5].arr.Array.data[2]
       value: 
       objectReference: {fileID: 517935230}
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: rooms.Array.data[4].arr.Array.data[2]
+      value: 
+      objectReference: {fileID: 1390909615}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
   m_IsPrefabAsset: 0
