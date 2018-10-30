@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System;
 
 public class LevelController : MonoBehaviour
 {
@@ -34,6 +35,13 @@ public class LevelController : MonoBehaviour
     private int newRoom;
     private bool roomFadeIn = false;
     private bool roomFadeOut = false;
+
+	private string[] LevelProgresion = {
+		"Scenes/Progression chunks/Section 1",
+		"Scenes/Level Ideas/2-6",
+		"Scenes/Level Ideas/BasicPistonPuzzle",
+		"Scenes/Level Ideas/PressurePlateLevel"
+	};
 
 	private int oldTime = 0;
 	private GameStateLog gameStateLog;
@@ -149,6 +157,13 @@ public class LevelController : MonoBehaviour
 
     public void NoPlayersInRoom(int index)
     {
+		if  (index == rooms.Length - 2) {
+			// left the last room, are now in the final room
+			Debug.Log("Current Sceen:" + SceneManager.GetActiveScene().path);
+			index = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
+			Debug.Log("Current Sceen Index:" + index);
+			SceneManager.LoadSceneAsync(LevelProgresion[index + 1]);
+		}
         for (int j = 0; j < rooms[index].Length; j++)
         {
             StartCoroutine(RoomFade(rooms[index][j], true));
