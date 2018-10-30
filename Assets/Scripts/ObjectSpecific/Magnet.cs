@@ -67,4 +67,47 @@ public class Magnet : Toggleable {
     {
         return on;
     }
+
+    void OnTriggerEnter(Collider other) {
+        Rail yRail = transform.parent.GetComponent<Rail>();
+        if (yRail) {
+            Rail zRail = yRail.transform.parent.GetComponent<Rail>();
+            if (zRail) {Rail xRail = zRail.transform.parent.GetComponent<Rail>();
+                if (xRail) {
+                    //Al of this runs only if the magnet is attached to a 3-axis rail system.
+                    GameObject railSystem = GameObject.Find("RailSystem");
+                    if (!other.transform.IsChildOf(railSystem.transform) && other.name != "RoomCollider") {
+                        if (CollidedOnY(other)) {
+                            yRail.SetDirection(-yRail.GetDirection());
+                        } else if (CollidedOnZ(other)) {
+                            zRail.SetDirection(-zRail.GetDirection());
+                        } else if (CollidedOnX(other)) {
+                            xRail.SetDirection(-xRail.GetDirection());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    bool CollidedOnY(Collider other) { return (CollisionDirection(other.gameObject) == "y"); }
+
+    bool CollidedOnZ(Collider other) { return (CollisionDirection(other.gameObject) == "z"); }
+
+    bool CollidedOnX(Collider other) { return (CollisionDirection(other.gameObject) == "x"); }
+
+    private string CollisionDirection(GameObject other) {
+        RaycastHit RayHit;
+        Vector3 direction = (gameObject.transform.position - other.transform.position).normalized;
+        Ray MyRay = new Ray(other.transform.position, direction);
+        if (Physics.Raycast(MyRay, out RayHit)) {
+            Vector3 HitNormal = RayHit.normal;
+            HitNormal = RayHit.transform.TransformDirection(HitNormal);
+            if (HitNormal == RayHit.transform.up || HitNormal == -RayHit.transform.up) { return "y"; }
+            else if (HitNormal == RayHit.transform.forward || HitNormal == -RayHit.transform.forward) { return "z"; }
+            else if (HitNormal == RayHit.transform.right || HitNormal == -RayHit.transform.right) { return "x"; }
+        }
+        Debug.LogError("shouldn't be getting here");
+        return "";
+    }
 }

@@ -6,12 +6,14 @@ public class Rail : Toggleable {
     public GameObject child;
     public float speed = 0.5f;
     public float maxOffset = 0;
+    public float snappingSpeed = 0.015f;
     float offset = 0;
     int direction = 1;
     Vector3 initialPosition;
     bool on = false;
     public Axis axis = Axis.x;
     bool snapped = true;
+
 
     // Use this for initialization
     void Start ()
@@ -20,7 +22,7 @@ public class Rail : Toggleable {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if (on)
         {
             if (offset >= maxOffset) direction = -1;
@@ -28,11 +30,17 @@ public class Rail : Toggleable {
             offset += speed * direction * Time.deltaTime;
             MoveToNewPosition();
         }
-        else if (!snapped)
+        else if (offset < Mathf.Round(offset))
         {
-            offset = Mathf.Round(offset);
+            offset = Mathf.Min(offset + snappingSpeed, Mathf.Round(offset));
             MoveToNewPosition();
             snapped = true;
+
+        } else if (offset > Mathf.Round(offset)) {
+            offset = Mathf.Max(offset - snappingSpeed, Mathf.Round(offset));
+            MoveToNewPosition();
+            snapped = true;
+
         }
     }
 
@@ -56,5 +64,13 @@ public class Rail : Toggleable {
     {
         on = true;
         snapped = false;
+    }
+
+    public void SetDirection(int dir) {
+        direction = dir;
+    }
+
+    public int GetDirection() {
+        return direction;
     }
 }

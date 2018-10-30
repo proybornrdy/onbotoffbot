@@ -11,6 +11,7 @@ public class Magnetic : MonoBehaviour {
     Rigidbody magnetRb;
     Magnet magnet;
     bool isColliding = false;
+    Transform initialParent;
 
     // Use this for initialization
     void Start () {
@@ -20,6 +21,7 @@ public class Magnetic : MonoBehaviour {
             magnetRb = magnetObj.GetComponent<Rigidbody>();            
         }
         magneticRb = GetComponent<Rigidbody>();
+        initialParent = gameObject.transform.parent;
     }
 	
 	// Update is called once per frame
@@ -40,7 +42,7 @@ public class Magnetic : MonoBehaviour {
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject == magnetObj)
+        if (other.gameObject == magnetObj && magnet.IsOn())
         {
             SetIsColliding(true);
             if(tag != "Player")
@@ -56,8 +58,11 @@ public class Magnetic : MonoBehaviour {
     {
         if (other.gameObject == magnetObj)
         {
-            if (!magnet.IsOn()) {
-                SetIsColliding(false);
+            SetIsColliding(false);
+            if (tag != "Player") 
+            {
+                magneticRb.drag = 0;
+                gameObject.transform.parent = initialParent;
             }
         }
     }
