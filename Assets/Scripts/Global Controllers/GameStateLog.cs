@@ -56,7 +56,7 @@ public class GameStateLog
 		this.randNum = rnd.Next(1024);
 
 		DateTime StartTime = DateTime.Now;
-		string startTime = StartTime.Year + "_" + StartTime.Month + "_" + StartTime.Day + "_" + 
+		startTime = StartTime.Year + "_" + StartTime.Month + "_" + StartTime.Day + "_" + 
 							StartTime.Hour + "_" + StartTime.Minute + "_" + StartTime.Second;
 
 		onPositions = new List<Vector3>();
