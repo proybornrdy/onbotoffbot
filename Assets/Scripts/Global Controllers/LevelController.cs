@@ -160,9 +160,7 @@ public class LevelController : MonoBehaviour
     {
 		if  (index == rooms.Length - 2) {
 			// left the last room, are now in the final room
-			Debug.Log("Current Sceen:" + SceneManager.GetActiveScene().path);
 			index = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
-			Debug.Log("Current Sceen Index:" + index);
 			SceneManager.LoadSceneAsync(LevelProgresion[index + 1]);
 		}
         for (int j = 0; j < rooms[index].Length; j++)
