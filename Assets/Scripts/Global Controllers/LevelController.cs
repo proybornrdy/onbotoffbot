@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System;
 
 public class LevelController : MonoBehaviour
 {
@@ -26,7 +27,8 @@ public class LevelController : MonoBehaviour
     static private string reason; // reason game is over if it's over
 
     public MultiDimensionalGameObject[] rooms;
-    public Door[] doors;
+	public GameObject[] backtrackBlockers;
+	public Door[] doors;
     public bool isTestLevel = true;
 
     CameraController cc;
@@ -34,6 +36,14 @@ public class LevelController : MonoBehaviour
     private int newRoom;
     private bool roomFadeIn = false;
     private bool roomFadeOut = false;
+
+	private string[] LevelProgresion = {
+		"Assets/Scenes/Progression chunks/Section 1.unity",
+		"Assets/Scenes/Level Ideas/PressurePlateLevel.unity",
+		"Assets/Scenes/Level Ideas/2-6.unity",
+		"Assets/Scenes/Level Ideas/BasicPistonPuzzle.unity",
+		"Assets/Scenes/IntoScene.unity"
+	};
 
 	private int oldTime = 0;
 	private GameStateLog gameStateLog;
@@ -115,13 +125,13 @@ public class LevelController : MonoBehaviour
     {
         if (!isTestLevel && index != -1 && index < rooms.Length - 1)
         {
-            for (int j = 0; j < rooms[index + 1].Length; j++)
+			for (int j = 0; j < rooms[index + 1].Length; j++)
             {
-                rooms[index + 1][j].SetActive(true);
+				rooms[index + 1][j].SetActive(true);
 
-                /*since all rooms are just activated from deactivation, 
+				/*since all rooms are just activated from deactivation, 
                 it needs to be invisible first in order for it to be faded in*/
-                setRoomInvisible(rooms[index + 1][j]);
+				setRoomInvisible(rooms[index + 1][j]);
                 StartCoroutine(RoomFade(rooms[index + 1][j], false));
             }
             newRoom = index + 1;
@@ -149,11 +159,17 @@ public class LevelController : MonoBehaviour
 
     public void NoPlayersInRoom(int index)
     {
+		if  (index == rooms.Length - 2) {
+			// left the last room, are now in the final room
+			index = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
+			SceneManager.LoadSceneAsync(LevelProgresion[index + 1]);
+		}
         for (int j = 0; j < rooms[index].Length; j++)
         {
             StartCoroutine(RoomFade(rooms[index][j], true));
-        }
-    }
+		}
+		backtrackBlockers[index].SetActive(true);
+	}
 
     public static void ResetScene()
     {
@@ -167,7 +183,7 @@ public class LevelController : MonoBehaviour
         /*Fade out : targetAlpha=0 < currentAlpha=1 (currentAlpha --0.1f)
         Fade in :  currentALpha=0 < targetAlpha=1 (currentAlpha ++0.1f)*/
         Renderer[] rends = room.GetComponentsInChildren<Renderer>();
-        for (int i = 0; i < 80; i++)
+        for (int i = 0; i < 100; i++)
         {
 
             foreach (Renderer r in rends)
@@ -176,7 +192,7 @@ public class LevelController : MonoBehaviour
                 Color alpha = r.material.color;
                 if (isFading)
                 {
-                    if (alpha.a > 0.2f) alpha.a -= 0.01f;
+                    if (alpha.a > 0f) alpha.a -= 0.01f;
                     else alpha.a = 0.2f;
                 }
                 else

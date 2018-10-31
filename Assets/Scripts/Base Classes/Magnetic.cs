@@ -71,7 +71,6 @@ public class Magnetic : MonoBehaviour {
     {
         if (InPullingRange(magnetRb, magneticRb, magnet.maxRange))
         {
-            print(name + " is in pulling range and getting pulled");
             if (tag == "Player")
             {
                 float Distance = Vector3.Distance(magneticRb.transform.position, magnetRb.transform.position);
