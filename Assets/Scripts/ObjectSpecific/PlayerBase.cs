@@ -20,6 +20,7 @@ public class PlayerBase : MonoBehaviour
     internal string reset;
     public GameObject jumpArrow;
     GameObject jumpArrowInstance;
+    public Quaternion lookRotation;
     bool isGrounded;
 
     int jumpFrames = 24;
@@ -68,9 +69,9 @@ public class PlayerBase : MonoBehaviour
 
         if (moveVec != Vector2.zero)
         {
-            var target = Quaternion.LookRotation(moveDirection, Vector3.up);
+            lookRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 10);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10);
 
             //a.Play("Walking");
         }
@@ -174,9 +175,9 @@ public class PlayerBase : MonoBehaviour
     {
         var jps = TagCatalogue.FindAllWithTag(Tag.JumpPoint)
                     .Where(obj => obj.transform.parent != this.transform && Utils.InJumpRange(transform.position, obj.transform.position) &&
-                                    Vector3.Angle(transform.rotation * Vector3.forward, obj.transform.position - transform.position) <= selectionThreshold)
-                    .OrderBy(obj => -Utils.NearestCubeCenter(obj.transform.position).y)
-                    .ThenBy(obj => Vector3.Angle(transform.rotation * Vector3.forward, obj.transform.position - transform.position));
+                                    Vector3.Angle(transform.rotation * Vector3.forward, obj.transform.position - transform.position) <= selectionThreshold &&
+                                    obj.transform.position.y > transform.position.y)
+                    .OrderBy(obj => Vector3.Angle(transform.rotation * Vector3.forward, obj.transform.position - transform.position));
         if (jps.Count() > 0)
         {
             jumpFrom = transform.position;
@@ -185,7 +186,6 @@ public class PlayerBase : MonoBehaviour
             Vector3 direction = transform.position - jumpTo.Value;
             direction.y = 0;
             direction = Utils.NearestCardinal(direction) * 0.5f;
-            print(direction);
             if (direction.z == 0) jumpArrowInstance.transform.rotation = Quaternion.Euler(0, 90, 0);
             else jumpArrowInstance.transform.rotation = Quaternion.Euler(0, 0, 0);
             Vector3 jumpArrowPos = jumpTo.Value + Vector3.down + direction;
