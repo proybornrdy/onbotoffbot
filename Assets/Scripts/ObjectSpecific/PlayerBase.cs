@@ -11,6 +11,7 @@ public class PlayerBase : MonoBehaviour
 
     public GameObject heldItem;
     public GameObject selectedItem;
+    Animator a;
     public JumpPoint jumpPoint;
     internal string horizontalAxis;
     internal string verticalAxis;
@@ -24,12 +25,14 @@ public class PlayerBase : MonoBehaviour
     Vector3? jumpTo = null;
     bool jumping = false;
 
-    void Start()
+    public void Start()
     {
+        a = GetComponent<Animator>();
+        print(a);
         Physics.gravity = new Vector3(0, -LevelController.gravity, 0);
     }
 
-    void Update()
+    public void Update()
     {
         if (!LevelController.gameGoing())
         {
@@ -64,6 +67,8 @@ public class PlayerBase : MonoBehaviour
             var target = Quaternion.LookRotation(moveDirection, Vector3.up);
 
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 10);
+
+            a.Play("Walking");
         }
 
 		if (!LevelController.snapJumpingStatic)

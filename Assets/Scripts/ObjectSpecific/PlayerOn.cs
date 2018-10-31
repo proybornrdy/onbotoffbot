@@ -2,7 +2,7 @@
 
 public class PlayerOn : PlayerBase
 {
-    void Start ()
+    new void Start ()
     {
 		rb = GetComponent<Rigidbody>();
         /*horizontalAxis = "POnHorizontal";
@@ -14,5 +14,11 @@ public class PlayerOn : PlayerBase
 		jump = PlayerInputTranslator.GetJump(PlayerInputTranslator.Player.ON);
 		interact = PlayerInputTranslator.GetLeftInteract(PlayerInputTranslator.Player.ON);
         reset = PlayerInputTranslator.GetReset(PlayerInputTranslator.Player.ON);
+        base.Start();
+    }
+
+    new void Update()
+    {
+        base.Update();
     }
 }
