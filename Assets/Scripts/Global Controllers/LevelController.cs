@@ -157,7 +157,7 @@ public class LevelController : MonoBehaviour
             index = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
             SceneManager.LoadSceneAsync(LevelProgresion[index + 1]);
         }
-        if (!isTestLevel && index != -1 && index < rooms.Length - 1)
+        if (!isTestLevel && index > 0 && index < rooms.Length - 1)
         {
             for (int j = 0; j < rooms[index - 1].Length; j++)
             {
