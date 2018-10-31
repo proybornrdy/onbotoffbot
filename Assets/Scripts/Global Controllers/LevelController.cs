@@ -157,11 +157,14 @@ public class LevelController : MonoBehaviour
             index = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
             SceneManager.LoadSceneAsync(LevelProgresion[index + 1]);
         }
-        for (int j = 0; j < rooms[index - 1].Length; j++)
+        if (!isTestLevel && index != -1 && index < rooms.Length - 1)
         {
-            StartCoroutine(RoomFade(rooms[index - 1][j], true));
+            for (int j = 0; j < rooms[index - 1].Length; j++)
+            {
+                StartCoroutine(RoomFade(rooms[index - 1][j], true));
+            }
+            backtrackBlockers[index - 1].SetActive(true);
         }
-        backtrackBlockers[index - 1].SetActive(true);
     }
 
     public static void ResetScene()
