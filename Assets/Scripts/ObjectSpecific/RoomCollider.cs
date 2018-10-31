@@ -31,11 +31,6 @@ public class RoomCollider : MonoBehaviour
                 lc.PlayersMovedToRoom(door.index);
                 if (text) text.TurnOn();
             }
-            else if ((playerOnEnters > 0 || playerOffEnters > 0) && faded)
-            {
-                lc.PlayerInRoom(door.index);
-                faded = false;
-            }
         }
     }
 
@@ -53,11 +48,6 @@ public class RoomCollider : MonoBehaviour
             if (playerOnEnters > 0 && playerOffEnters > 0)
             {
                 if (text) text.TurnOff();
-            }
-            else if (playerOffEnters == 0 && playerOnEnters == 0 && !faded)
-            {
-                lc.NoPlayersInRoom(door.index);
-                faded = true;
             }
         }
     }
