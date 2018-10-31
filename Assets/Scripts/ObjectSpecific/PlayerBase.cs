@@ -68,7 +68,7 @@ public class PlayerBase : MonoBehaviour
 
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 10);
 
-            a.Play("Walking");
+            //a.Play("Walking");
         }
 
 		if (!LevelController.snapJumpingStatic)
