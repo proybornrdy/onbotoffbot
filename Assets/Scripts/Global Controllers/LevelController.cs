@@ -38,9 +38,9 @@ public class LevelController : MonoBehaviour
 
 	private string[] LevelProgresion = {
 		"Assets/Scenes/Progression chunks/Section 1.unity",
+		"Assets/Scenes/Level Ideas/PressurePlateLevel.unity",
 		"Assets/Scenes/Level Ideas/2-6.unity",
 		"Assets/Scenes/Level Ideas/BasicPistonPuzzle.unity",
-		"Assets/Scenes/Level Ideas/PressurePlateLevel.unity",
 		"Assets/Scenes/IntoScene.unity"
 	};
 
@@ -124,9 +124,9 @@ public class LevelController : MonoBehaviour
     {
         if (!isTestLevel && index != -1 && index < rooms.Length - 1)
         {
-            for (int j = 0; j < rooms[index + 1].Length; j++)
+			for (int j = 0; j < rooms[index + 1].Length; j++)
             {
-                rooms[index + 1][j].SetActive(true);
+				rooms[index + 1][j].SetActive(true);
 
 				/*since all rooms are just activated from deactivation, 
                 it needs to be invisible first in order for it to be faded in*/
@@ -181,7 +181,7 @@ public class LevelController : MonoBehaviour
         /*Fade out : targetAlpha=0 < currentAlpha=1 (currentAlpha --0.1f)
         Fade in :  currentALpha=0 < targetAlpha=1 (currentAlpha ++0.1f)*/
         Renderer[] rends = room.GetComponentsInChildren<Renderer>();
-        for (int i = 0; i < 80; i++)
+        for (int i = 0; i < 100; i++)
         {
 
             foreach (Renderer r in rends)
@@ -190,7 +190,7 @@ public class LevelController : MonoBehaviour
                 Color alpha = r.material.color;
                 if (isFading)
                 {
-                    if (alpha.a > 0.2f) alpha.a -= 0.01f;
+                    if (alpha.a > 0f) alpha.a -= 0.01f;
                     else alpha.a = 0.2f;
                 }
                 else

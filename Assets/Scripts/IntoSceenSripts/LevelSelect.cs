@@ -26,6 +26,7 @@ public class LevelSelect : MonoBehaviour {
 		Levels = new List<string[]>();
 
 		//{"Level Name", "Path To Level"}
+		/*
 		Levels.Add(new string[]{"Level 1", "Scenes/Level 1"});
 
 		Levels.Add(new string[] { "Alex", "Scenes/Test/Alex" });
@@ -42,7 +43,12 @@ public class LevelSelect : MonoBehaviour {
 		Levels.Add(new string[] { "Elevator", "Scenes/Level Ideas/Elevator" });
 		Levels.Add(new string[] { "Magnet", "Scenes/Level Ideas/Magnet" });
 		Levels.Add(new string[] { "Piston2", "Scenes/Level Ideas/Piston2/" });
+		Levels.Add(new string[] { "PressurePlateLevel", "Scenes/Level Ideas/PressurePlateLevel" });*/
+
+		Levels.Add(new string[] { "Section 1", "Scenes/Progression chunks/Section 1" });
 		Levels.Add(new string[] { "PressurePlateLevel", "Scenes/Level Ideas/PressurePlateLevel" });
+		Levels.Add(new string[] { "2-6", "Scenes/Level Ideas/2-6" });
+		Levels.Add(new string[] { "BasicPistonPuzzle", "Scenes/Level Ideas/BasicPistonPuzzle" });
 	}
 
 	public void StartUp()
