@@ -27,7 +27,8 @@ public class LevelController : MonoBehaviour
     static private string reason; // reason game is over if it's over
 
     public MultiDimensionalGameObject[] rooms;
-    public Door[] doors;
+	public GameObject[] backtrackBlockers;
+	public Door[] doors;
     public bool isTestLevel = true;
 
     CameraController cc;
@@ -166,8 +167,9 @@ public class LevelController : MonoBehaviour
         for (int j = 0; j < rooms[index].Length; j++)
         {
             StartCoroutine(RoomFade(rooms[index][j], true));
-        }
-    }
+		}
+		backtrackBlockers[index].SetActive(true);
+	}
 
     public static void ResetScene()
     {
