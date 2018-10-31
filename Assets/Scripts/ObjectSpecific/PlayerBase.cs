@@ -176,7 +176,7 @@ public class PlayerBase : MonoBehaviour
         var jps = TagCatalogue.FindAllWithTag(Tag.JumpPoint)
                     .Where(obj => obj.transform.parent != this.transform && Utils.InJumpRange(transform.position, obj.transform.position) &&
                                     Vector3.Angle(transform.rotation * Vector3.forward, obj.transform.position - transform.position) <= selectionThreshold &&
-                                    obj.transform.position.y > transform.position.y)
+                                    Utils.NearestCubeCenter(obj.transform.position).y > Utils.NearestCubeCenter(transform.position).y)
                     .OrderBy(obj => Vector3.Angle(transform.rotation * Vector3.forward, obj.transform.position - transform.position));
         if (jps.Count() > 0)
         {
@@ -188,7 +188,7 @@ public class PlayerBase : MonoBehaviour
             direction = Utils.NearestCardinal(direction) * 0.5f;
             if (direction.z == 0) jumpArrowInstance.transform.rotation = Quaternion.Euler(0, 90, 0);
             else jumpArrowInstance.transform.rotation = Quaternion.Euler(0, 0, 0);
-            Vector3 jumpArrowPos = jumpTo.Value + Vector3.down + direction;
+            Vector3 jumpArrowPos = jumpTo.Value + (Vector3.down * 0.5f) + direction;
             jumpArrowInstance.transform.position = jumpArrowPos;
         }
         else
