@@ -14,6 +14,7 @@
     Toggle,
     HasWeight,
     JumpPoint,
+    Collider,
 }
 
 public enum Axis

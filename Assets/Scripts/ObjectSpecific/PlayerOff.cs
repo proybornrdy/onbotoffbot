@@ -16,9 +16,4 @@ public class PlayerOff : PlayerBase
         reset = PlayerInputTranslator.GetReset(PlayerInputTranslator.Player.OFF);
         base.Start();
     }
-
-    new void Update()
-    {
-        base.Update();
-    }
 }

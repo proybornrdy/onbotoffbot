@@ -95,6 +95,8 @@ public class LevelController : MonoBehaviour
         }
         var jumpPoints = TagCatalogue.FindAllWithTag(Tag.JumpPoint);
         foreach (var j in jumpPoints) j.gameObject.GetComponent<Renderer>().enabled = false;
+        var colliders = TagCatalogue.FindAllWithTag(Tag.Collider);
+        foreach (var j in colliders) j.gameObject.GetComponent<Renderer>().enabled = false;
     }
 
     public static void GoToMenu()
@@ -149,27 +151,18 @@ public class LevelController : MonoBehaviour
     public void PlayersMovedToRoom(int index)
     {
         currentRoom = index;
-    }
-
-    public void PlayerInRoom(int index)
-    {
-        for (int j = 0; j < rooms[index].Length; j++)
-            StartCoroutine(RoomFade(rooms[index][j], false));
-    }
-
-    public void NoPlayersInRoom(int index)
-    {
-		if  (index == rooms.Length - 2) {
-			// left the last room, are now in the final room
-			index = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
-			SceneManager.LoadSceneAsync(LevelProgresion[index + 1]);
-		}
-        for (int j = 0; j < rooms[index].Length; j++)
+        if (index == rooms.Length - 2)
         {
-            StartCoroutine(RoomFade(rooms[index][j], true));
-		}
-		backtrackBlockers[index].SetActive(true);
-	}
+            // left the last room, are now in the final room
+            index = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
+            SceneManager.LoadSceneAsync(LevelProgresion[index + 1]);
+        }
+        for (int j = 0; j < rooms[index - 1].Length; j++)
+        {
+            StartCoroutine(RoomFade(rooms[index - 1][j], true));
+        }
+        backtrackBlockers[index - 1].SetActive(true);
+    }
 
     public static void ResetScene()
     {
@@ -193,7 +186,7 @@ public class LevelController : MonoBehaviour
                 if (isFading)
                 {
                     if (alpha.a > 0f) alpha.a -= 0.01f;
-                    else alpha.a = 0.2f;
+                    else alpha.a = 0.0f;
                 }
                 else
                 {
