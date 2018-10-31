@@ -28,8 +28,9 @@ public class RoomCollider : MonoBehaviour
 
             if (playerOnEnters > 0 && playerOffEnters > 0)
             {
-                lc.PlayersMovedToRoom(door.index);
-                if (text) text.TurnOn();
+				if(door) lc.PlayersMovedToRoom(door.index);
+				else lc.PlayersMovedToRoom(-1);
+				if (text) text.TurnOn();
             }
         }
     }

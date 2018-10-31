@@ -123,7 +123,7 @@ public class LevelSelect : MonoBehaviour {
 		{
 			if (startTime + 1 < Time.time)
 			{
-				SceneManager.LoadSceneAsync(Levels[Selected][1]);
+				SceneManager.LoadScene(Levels[Selected][1]);
 			}
 		}
 

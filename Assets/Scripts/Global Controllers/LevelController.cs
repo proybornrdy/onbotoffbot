@@ -150,13 +150,12 @@ public class LevelController : MonoBehaviour
 
     public void PlayersMovedToRoom(int index)
     {
-        currentRoom = index;
-        if (index == rooms.Length - 2)
-        {
-            // left the last room, are now in the final room
-            index = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
-            SceneManager.LoadSceneAsync(LevelProgresion[index + 1]);
-        }
+		if (index == -1)
+		{
+			int nextSceneIndex = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
+			SceneManager.LoadScene(LevelProgresion[nextSceneIndex + 1]);
+		}
+
         if (!isTestLevel && index > 0 && index < rooms.Length - 1)
         {
             for (int j = 0; j < rooms[index - 1].Length; j++)
