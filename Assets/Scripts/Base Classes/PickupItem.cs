@@ -19,6 +19,12 @@ public class PickupItem : MonoBehaviour
         PlayerBase playerBase = player.GetComponent<PlayerBase>();
 
         if (playerBase.heldItem != null) {
+            Vector3 lookDirection = playerBase.lookRotation * Vector3.forward; 
+            bool inWay = Physics.Raycast(player.transform.position, lookDirection, 1f);
+            print(inWay);
+            if (!inWay)
+            {
+
             GameObject obj = playerBase.heldItem;
             playerBase.heldItem = null;
 
@@ -28,6 +34,8 @@ public class PickupItem : MonoBehaviour
             obj.transform.position = Utils.NearestCubeCenter(obj.transform.position);
             gameObject.transform.rotation = Utils.AngleSnap(gameObject.transform.rotation);
             GetComponent<Rigidbody>().isKinematic = false;
+            }
+
         } else if (interactable.SelectedBy() == player && (playerBase.heldItem == null || !playerBase.heldItem.Equals(gameObject))) {
             playerBase.heldItem = gameObject;
             GetComponent<Rigidbody>().isKinematic = true;
