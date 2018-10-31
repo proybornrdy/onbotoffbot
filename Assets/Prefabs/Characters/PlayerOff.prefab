@@ -1436,7 +1436,8 @@ MonoBehaviour:
   selectionThreshold: 90
   heldItem: {fileID: 0}
   selectedItem: {fileID: 0}
-  jumpPoint: {fileID: 0}
+  jumpPoint: {fileID: 114620403703769066}
+  jumpArrow: {fileID: 1797504783790262, guid: 794d2ff3102c50e4da7606494a7d3233, type: 2}
 --- !u!114 &114620403703769066
 MonoBehaviour:
   m_ObjectHideFlags: 1

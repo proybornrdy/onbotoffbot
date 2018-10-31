@@ -18,6 +18,8 @@ public class PlayerBase : MonoBehaviour
     internal string jump;
     internal string interact;
     internal string reset;
+    public GameObject jumpArrow;
+    GameObject jumpArrowInstance;
     bool isGrounded;
 
     int jumpFrames = 24;
@@ -30,6 +32,8 @@ public class PlayerBase : MonoBehaviour
         a = GetComponent<Animator>();
         print(a);
         Physics.gravity = new Vector3(0, -LevelController.gravity, 0);
+        jumpArrowInstance = Instantiate(jumpArrow);
+        jumpArrowInstance.GetComponent<Renderer>().enabled = false;
     }
 
     public void Update()
@@ -89,18 +93,12 @@ public class PlayerBase : MonoBehaviour
         //else if (isGrounded)
         else if (!jumping)
         {
+            JumpSelect(moveDirection);
             if (Input.GetButton(jump))// && moveDirection != Vector3.zero)
             {
-                var jps = TagCatalogue.FindAllWithTag(Tag.JumpPoint)
-                    .Where(obj => obj.transform.parent != this.transform && Utils.InJumpRange(transform.position, obj.transform.position) &&
-                                    Vector3.Angle(transform.rotation * Vector3.forward, obj.transform.position - transform.position) <= selectionThreshold)
-                    .OrderBy(obj => -Utils.NearestCubeCenter(obj.transform.position).y)
-                    .ThenBy(obj => Vector3.Angle(transform.rotation * Vector3.forward, obj.transform.position - transform.position));
-                if (jps.Count() > 0)
+                if (jumpTo.HasValue)
                 {
                     jumping = true;
-                    jumpFrom = transform.position;
-                    jumpTo = jps.ElementAt(0).transform.position;
                     StartCoroutine("Jump");
                 }
             }
@@ -172,8 +170,32 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
-    private void JumpCoroutine()
+    private void JumpSelect(Vector3 moveDirection)
     {
-
+        var jps = TagCatalogue.FindAllWithTag(Tag.JumpPoint)
+                    .Where(obj => obj.transform.parent != this.transform && Utils.InJumpRange(transform.position, obj.transform.position) &&
+                                    Vector3.Angle(transform.rotation * Vector3.forward, obj.transform.position - transform.position) <= selectionThreshold)
+                    .OrderBy(obj => -Utils.NearestCubeCenter(obj.transform.position).y)
+                    .ThenBy(obj => Vector3.Angle(transform.rotation * Vector3.forward, obj.transform.position - transform.position));
+        if (jps.Count() > 0)
+        {
+            jumpFrom = transform.position;
+            jumpTo = jps.ElementAt(0).transform.position;
+            jumpArrowInstance.GetComponent<Renderer>().enabled = true;
+            Vector3 direction = transform.position - jumpTo.Value;
+            direction.y = 0;
+            direction = Utils.NearestCardinal(direction) * 0.5f;
+            print(direction);
+            if (direction.z == 0) jumpArrowInstance.transform.rotation = Quaternion.Euler(0, 90, 0);
+            else jumpArrowInstance.transform.rotation = Quaternion.Euler(0, 0, 0);
+            Vector3 jumpArrowPos = jumpTo.Value + Vector3.down + direction;
+            jumpArrowInstance.transform.position = jumpArrowPos;
+        }
+        else
+        {
+            jumpTo = null;
+            jumpFrom = null;
+            jumpArrowInstance.GetComponent<Renderer>().enabled = false;
+        }
     }
 }
