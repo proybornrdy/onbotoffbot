@@ -40,7 +40,7 @@ public class LevelController : MonoBehaviour
 	private string[] LevelProgresion = {
 		"Assets/Scenes/Progression chunks/Section 1.unity",
 		"Assets/Scenes/Level Ideas/PressurePlateLevel.unity",
-		"Assets/Scenes/Level Ideas/2-6.unity",
+		//"Assets/Scenes/Level Ideas/2-6.unity",
 		"Assets/Scenes/Level Ideas/BasicPistonPuzzle.unity",
 		"Assets/Scenes/IntoScene.unity"
 	};
@@ -164,6 +164,8 @@ public class LevelController : MonoBehaviour
             }
             backtrackBlockers[index - 1].SetActive(true);
         }
+
+        currentRoom = index;
     }
 
     public static void ResetScene()

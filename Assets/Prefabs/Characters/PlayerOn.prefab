@@ -1438,6 +1438,7 @@ MonoBehaviour:
   selectedItem: {fileID: 0}
   jumpPoint: {fileID: 114733156073799416}
   jumpArrow: {fileID: 1931351838779774, guid: de9d61bc81ef09b43b0b0bb92f1d67d4, type: 2}
+  lookRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &114733156073799416
 MonoBehaviour:
   m_ObjectHideFlags: 1
