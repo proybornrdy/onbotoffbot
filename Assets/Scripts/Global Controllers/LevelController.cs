@@ -153,6 +153,8 @@ public class LevelController : MonoBehaviour
 		if (index == -1)
 		{
 			int nextSceneIndex = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
+			//save the log, and move on to next level
+			gameStateLog.SaveGameStateLog();
 			SceneManager.LoadScene(LevelProgresion[nextSceneIndex + 1]);
 		}
 
