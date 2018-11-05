@@ -17,6 +17,7 @@ public class BrokenMachine : Toggleable {
         on = false;
         foreach (var p in particles) p.SetActive(false);
         particleCollider.SetActive(false);
+        GetComponent<AudioSource>().Stop();
     }
 
     public override void TurnOn()
@@ -24,6 +25,7 @@ public class BrokenMachine : Toggleable {
         on = true;
         foreach (var p in particles) p.SetActive(true);
         particleCollider.SetActive(true);
+        GetComponent<AudioSource>().Play();
     }
 
     // Use this for initialization

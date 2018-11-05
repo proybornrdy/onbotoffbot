@@ -7,6 +7,7 @@ public class Door : Toggleable {
     public int index = -1;
     LevelController lc;
     bool isReady = false;
+    bool muteSoundOnInit = true;
 
     // Use this for initialization
     void Start ()
@@ -24,6 +25,8 @@ public class Door : Toggleable {
         slide.transform.localPosition = new Vector3(-0.25f, 1.5f, 0.618f);
         overLight.color = Color.blue;
         lc.DoorOpened(index);
+        if (!muteSoundOnInit) SoundController.instance.playSoundEffect("DoorOn");
+        else muteSoundOnInit = false;
     }
 
     public override void TurnOff()
@@ -33,6 +36,8 @@ public class Door : Toggleable {
         slide.transform.localPosition = new Vector3(-0.25f, -0.5f, 0.618f);
         overLight.color = Color.red;
         lc.DoorClosed(index);
+        if (!muteSoundOnInit) SoundController.instance.playSoundEffect("DoorOff");
+        else muteSoundOnInit = false;
     }
 
     public override bool IsOn()
