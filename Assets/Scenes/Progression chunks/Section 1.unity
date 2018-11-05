@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.5645232, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21579,7 +21579,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &780863417
 Transform:
   m_ObjectHideFlags: 0
@@ -46495,6 +46495,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: rooms.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: rooms.Array.data[5].arr.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4939316746596810, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 5.8838663
@@ -46551,12 +46561,12 @@ Prefab:
         type: 2}
       propertyPath: rooms.Array.data[4].arr.Array.data[0]
       value: 
-      objectReference: {fileID: 1390909615}
+      objectReference: {fileID: 780863416}
     - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
         type: 2}
       propertyPath: rooms.Array.data[4].arr.Array.data[1]
       value: 
-      objectReference: {fileID: 1390909615}
+      objectReference: {fileID: 517935230}
     - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
         type: 2}
       propertyPath: backtrackBlockers.Array.data[0]
@@ -46607,6 +46617,21 @@ Prefab:
       propertyPath: m_Volume
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 224092638885681674, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: rooms.Array.data[5].arr.Array.data[0]
+      value: 
+      objectReference: {fileID: 1390909615}
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: rooms.Array.data[5].arr.Array.data[1]
+      value: 
+      objectReference: {fileID: 1390909615}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
   m_IsPrefabAsset: 0
