@@ -14,6 +14,7 @@ public class Switch : MonoBehaviour {
     Interactable interactable;
     Color color;
     bool isReady;
+    bool muteSoundOnInit = true;
 
     // Use this for initialization
     void Start()
@@ -57,6 +58,8 @@ public class Switch : MonoBehaviour {
         slotMat.SetColor("_EmissionColor", color);
         if (wire) lightMat.SetColor("_EmissionColor", color);
         slotLight.intensity = 10;
+        if (!muteSoundOnInit) SoundController.instance.playSoundEffect("SwitchOn");
+        else muteSoundOnInit = false;
     }
 
 
@@ -79,6 +82,8 @@ public class Switch : MonoBehaviour {
         slotMat.SetColor("_EmissionColor", Color.black);
         if (wire) lightMat.SetColor("_EmissionColor", Color.black);
         slotLight.intensity = 1;
+        if (!muteSoundOnInit) SoundController.instance.playSoundEffect("SwitchOff");
+        else muteSoundOnInit = false;
     }
 
     void OnEnable()

@@ -7,6 +7,10 @@ public class SoundController : MonoBehaviour {
 
     public AudioClip pistonOnSound;
     public AudioClip pistonOffSound;
+    public AudioClip switchOnSound;
+    public AudioClip switchOffSound;
+    public AudioClip doorOpenSound;
+    public AudioClip doorCloseSound;
 
     private AudioSource audioSource;
 
@@ -27,12 +31,23 @@ public class SoundController : MonoBehaviour {
     public void playSoundEffect(string typeOfSound) {
         switch (typeOfSound) {
             case "pistonOn":
-                audioSource.clip = pistonOnSound;
+                audioSource.PlayOneShot(pistonOnSound);
                 break;
             case "pistonOff":
-                audioSource.clip = pistonOffSound;
+                audioSource.PlayOneShot(pistonOffSound);
+                break;
+            case "DoorOn":
+                audioSource.PlayOneShot(doorOpenSound);
+                break;
+            case "DoorOff":
+                audioSource.PlayOneShot(doorCloseSound);
+                break;
+            case "SwitchOn":
+                audioSource.PlayOneShot(switchOnSound);
+                break;
+            case "SwitchOff":
+                audioSource.PlayOneShot(switchOffSound);
                 break;
         }
-        audioSource.Play();
     }
 }
