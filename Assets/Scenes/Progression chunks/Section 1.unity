@@ -46639,12 +46639,20 @@ Prefab:
       objectReference: {fileID: 1786619063}
     - target: {fileID: 4607294316724672, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -11.84
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 20008169876474734, guid: e9b31108965c1ea4084dd3f256f339e2,
         type: 2}
       propertyPath: orthographic size
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4607294316724672, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 6.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4607294316724672, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -8.24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}

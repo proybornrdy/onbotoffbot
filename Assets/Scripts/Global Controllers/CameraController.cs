@@ -16,39 +16,52 @@ public class CameraController : MonoBehaviour {
     {
         currentPos = mainCamera.transform.position;
 
-        Transform roomCollider = room.transform.Find("RoomCollider");
+        Renderer[] rends = room.GetComponentsInChildren<Renderer>(); 
+        if (rends.Length == 0)//error checking just in case if room element is empty gameobject	
+        {
+            newPos = room.transform.position;
+        }
+        Bounds parent = rends[0].bounds;
+        foreach (Renderer r in rends) //find center of the lelel and find suitable camera position from there	
+        {
+            parent.Encapsulate(r.bounds);
+        }
+        newPos = parent.center + cameraPos;
+        mainCamera.transform.position = Vector3.Lerp(currentPos, newPos, Time.deltaTime);
 
 
 
 
-        Vector3 roomSize = roomCollider.GetComponent<Collider>().bounds.size;
-        float zoomFactor;
-        if (roomSize.y < 5) zoomFactor = roomSize.y;
-        else zoomFactor = roomSize.y * 0.6f;
-        mainCamera.orthographicSize = zoomFactor;
-        Bounds parent = roomCollider.GetComponent<Collider>().bounds;
+        //Transform roomCollider = room.transform.Find("RoomCollider");
 
-        Vector3 roomCenter = parent.center - new Vector3(0, parent.center.y, 0);
+        //Vector3 roomSize = roomCollider.GetComponent<Collider>().bounds.size;
+        //float zoomFactor;
+        //if (roomSize.y < 5) zoomFactor = roomSize.y;
+        //else zoomFactor = roomSize.y * 0.6f;
+        //mainCamera.orthographicSize = zoomFactor;
+        //Bounds parent = roomCollider.GetComponent<Collider>().bounds;
+
+        //Vector3 roomCenter = parent.center - new Vector3(0, roomSize.y*0.5f, 0);
 
         //Debug.DrawLine(roomCenter, roomCenter + Vector3.up * 6, Color.red);
 
 
-        //Renderer[] rends = room.GetComponentsInChildren<Renderer>();
-        //if(rends.Length == 0)//error checking just in case if room element is empty gameobject
-        //{
-        //    newPos = room.transform.position;
-        //}
+        ////Renderer[] rends = room.GetComponentsInChildren<Renderer>();
+        ////if(rends.Length == 0)//error checking just in case if room element is empty gameobject
+        ////{
+        ////    newPos = room.transform.position;
+        ////}
 
-        //Bounds parent = rends[0].bounds;
-        //foreach (Renderer r in rends) //find center of the lelel and find suitable camera position from there
-        //{
-        //    parent.Encapsulate(r.bounds);
-        //}
+        ////Bounds parent = rends[0].bounds;
+        ////foreach (Renderer r in rends) //find center of the lelel and find suitable camera position from there
+        ////{
+        ////    parent.Encapsulate(r.bounds);
+        ////}
 
-        newPos = roomCenter + new Vector3(roomSize.x * -0.5f, zoomFactor + 2f, roomSize.z * -0.5f);
+        //newPos = roomCenter + new Vector3(roomSize.x * -0.5f, zoomFactor + 2f, roomSize.z * -0.5f);
 
-        mainCamera.transform.position = Vector3.Lerp(currentPos, newPos, Time.deltaTime);
-        //Debug.DrawLine(mainCamera.transform.position, newPos, Color.red);
+        //mainCamera.transform.position = Vector3.Lerp(currentPos, newPos, Time.deltaTime);
+        ////Debug.DrawLine(mainCamera.transform.position, newPos, Color.red);
     }
     public void zoomCamera(GameObject player1 , GameObject player2)
     {
