@@ -5020,7 +5020,7 @@ Prefab:
         type: 2}
       propertyPath: rooms.Array.data[0]
       value: 
-      objectReference: {fileID: 633198984}
+      objectReference: {fileID: 0}
     - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
         type: 2}
       propertyPath: isTestLevel
@@ -5038,9 +5038,24 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: -6.49
       objectReference: {fileID: 0}
+    - target: {fileID: 114493194325201468, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 819128339}
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: rooms.Array.data[0].arr.Array.data[0]
+      value: 
+      objectReference: {fileID: 633198984}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
   m_IsPrefabAsset: 0
+--- !u!20 &819128339 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 20008169876474734, guid: e9b31108965c1ea4084dd3f256f339e2,
+    type: 2}
+  m_PrefabInternal: {fileID: 819128338}
 --- !u!1001 &819246557
 Prefab:
   m_ObjectHideFlags: 0
@@ -7029,6 +7044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7693117e2b4b07841ae64f70347ed853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faded: 0
 --- !u!65 &1163479495
 BoxCollider:
   m_ObjectHideFlags: 0
