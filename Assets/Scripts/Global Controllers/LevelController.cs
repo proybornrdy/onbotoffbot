@@ -112,6 +112,8 @@ public class LevelController : MonoBehaviour
 		{
 			time += Time.deltaTime;
             if (!isTestLevel && rooms.Length !=0) cc.changeCameraPos(rooms[currentRoom][0]);
+            //if (!isTestLevel && rooms.Length != 0) cc.zoomCamera(OnPlayer, OffPlayer); 
+            
 
 			// log postion every second
 			if (((int)time) != oldTime)

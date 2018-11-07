@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.5645232, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -46632,9 +46632,28 @@ Prefab:
       propertyPath: rooms.Array.data[5].arr.Array.data[1]
       value: 
       objectReference: {fileID: 1390909615}
+    - target: {fileID: 114493194325201468, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1786619063}
+    - target: {fileID: 4607294316724672, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -11.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 20008169876474734, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: orthographic size
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
   m_IsPrefabAsset: 0
+--- !u!20 &1786619063 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 20008169876474734, guid: e9b31108965c1ea4084dd3f256f339e2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1786619062}
 --- !u!1001 &1787126813
 Prefab:
   m_ObjectHideFlags: 0
