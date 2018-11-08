@@ -18,63 +18,33 @@ public class PlayerInputTranslator : MonoBehaviour {
 	}
 
 	public static string GetHorizontalAxis(Player p)
-	{
-		if (p == P1)
-		{
-			return "P1Horizontal";
-		}
-		else
-		{
-			return "P2Horizontal";
-		}
+    {
+        return p == P1 ? "P1Horizontal" : "P2Horizontal";
 	}
 
 	public static string GetVerticalAxis(Player p)
-	{
-		if (p == P1)
-		{
-			return "P1Vertical";
-		}
-		else
-		{
-			return "P2Vertical";
-		}
+    {
+        return p == P1 ? "P1Vertical" : "P2Vertical";
 	}
 
 	public static string GetLeftInteract(Player p)
-	{
-		if (p == P1)
-		{
-			return "P1LeftInteract";
-		}
-		else
-		{
-			return "P2LeftInteract";
-		}
+    {
+        return p == P1 ? "P1LeftInteract" : "P2LeftInteract";
 	}
 
 	public static string GetRightInteract(Player p)
-	{
-		if (p == P1)
-		{
-			return "P1RightInteract";
-		}
-		else
-		{
-			return "P2RightInteract";
-		}
-	}
+    {
+        return p == P1 ? "P1RightInteract" : "P2RightInteract";
+    }
 
-	public static string GetJump(Player p)
+    public static string GetPickup(Player p)
+    {
+        return p == P1 ? "P1Pickup" : "P2Pickup";
+    }
+
+    public static string GetJump(Player p)
 	{
-		if (p == P1)
-		{
-			return "P1Jump";
-		}
-		else
-		{
-			return "P2Jump";
-		}
+        return p == P1 ? "P1Jump" : "P2Jump";
 	}
 
     public static string GetReset(Player p)

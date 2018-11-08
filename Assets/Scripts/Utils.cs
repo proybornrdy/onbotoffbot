@@ -75,4 +75,11 @@ public static class GameObjectExtensions
         if (!tags) return false;
         return tags.HasTag(tag);
     }
+
+    public static bool IsPickup(this GameObject obj)
+    {
+        Tags tags = obj.GetComponent<Tags>();
+        if (!tags) return false;
+        return tags.HasTag(Tag.Pickupable);
+    }
 }

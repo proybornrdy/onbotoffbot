@@ -9,7 +9,7 @@ public class PlayerBase : MonoBehaviour
     internal Rigidbody rb;
     public float selectionThreshold = 120;
 
-    public GameObject heldItem;
+    public PickupItem heldItem;
     public GameObject selectedItem;
     Animator a;
     public JumpPoint jumpPoint;
@@ -18,6 +18,7 @@ public class PlayerBase : MonoBehaviour
     internal string jump;
     internal string interact;
     internal string reset;
+    internal string pickUp;
     public GameObject jumpArrow;
     GameObject jumpArrowInstance;
     public Quaternion lookRotation;
@@ -27,6 +28,8 @@ public class PlayerBase : MonoBehaviour
     Vector3? jumpFrom = null;
     Vector3? jumpTo = null;
     bool jumping = false;
+    public float pickupCooldown = 1f;
+    float lastPickup = 0f;
 
     public void Start()
     {
@@ -44,6 +47,14 @@ public class PlayerBase : MonoBehaviour
             return;
         }
         handleMovement();
+        if (Input.GetButton(pickUp))
+        {
+            if (Time.time - lastPickup >= pickupCooldown)
+            {
+                lastPickup = Time.time;
+                PickUp();
+            }
+        }
     }
 
     void OnCollisionStay()
@@ -143,30 +154,64 @@ public class PlayerBase : MonoBehaviour
 
     private void Select(Vector3 moveDirection)
     {
-        if (heldItem != null)
+        if (selectedItem != null)
         {
-            selectedItem = heldItem;
+            selectedItem.GetComponent<Interactable>().Deselect();
+            selectedItem = null;
         }
-        else
+
+        var interactables = TagCatalogue.FindAllWithTag(Tag.Interactable)
+            .Where(obj => Utils.InRange(transform.position, obj.transform.position) && (heldItem == null || !obj.Equals(heldItem.gameObject)))
+            .OrderBy(obj => Vector3.Angle(moveDirection, obj.transform.position - transform.position));
+        if (interactables.Count() != 0)
         {
-            if (selectedItem != null)
+            GameObject closest = interactables.ElementAt(0);
+            if (Vector3.Angle(moveDirection, closest.transform.position - transform.position)
+                <= selectionThreshold)
             {
-                selectedItem.GetComponent<Interactable>().Deselect();
-                selectedItem = null;
+                closest.GetComponent<Interactable>().Select(gameObject);
+                selectedItem = closest;
+            }
+        }
+    }
+
+    void PickUp() {
+
+        //drop held item
+        if (heldItem != null) {
+            Vector3 newPos = Utils.NearestCubeCenter(transform.position + transform.forward + transform.up);
+            print("pos");
+            print(transform.position);
+            print(newPos);
+            var hits = Physics.RaycastAll(transform.position + transform.up, newPos, 1.5f);
+            bool inWay = false;
+            foreach( var h in hits)
+            {
+                print(h.transform.gameObject);
+                if (!h.transform.gameObject.Equals(heldItem.gameObject)) inWay = true;
+            }
+            if (!inWay)
+            {
+                PickupItem item = heldItem;
+                heldItem = null;
+
+                item.transform.SetParent(item.initParent);
+                item.transform.position = newPos;
+                item.transform.rotation = Utils.AngleSnap(item.transform.rotation);
+                item.GetComponent<Rigidbody>().isKinematic = false;
             }
 
-            var interactables = TagCatalogue.FindAllWithTag(Tag.Interactable)
-                .Where(obj => Utils.InRange(transform.position, obj.transform.position))
-                .OrderBy(obj => Vector3.Angle(moveDirection, obj.transform.position - transform.position));
-            if (interactables.Count() != 0)
+        } else {
+            if (selectedItem.IsPickup())
             {
-                GameObject closest = interactables.ElementAt(0);
-                if (Vector3.Angle(moveDirection, closest.transform.position - transform.position)
-                    <= selectionThreshold)
-                {
-                    closest.GetComponent<Interactable>().Select(gameObject);
-                    selectedItem = closest;
-                }
+                var item = selectedItem.GetComponent<PickupItem>();
+                heldItem = item;
+                heldItem.GetComponent<Rigidbody>().isKinematic = true;
+                heldItem.transform.position = transform.position + new Vector3(0, GetComponent<Collider>().bounds.size.y, 0) + new Vector3(0, item.GetComponent<Collider>().bounds.size.y / 2, 0);
+                heldItem.transform.SetParent(transform);
+                heldItem.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                selectedItem = null;
+                heldItem.GetComponent<Interactable>().Deselect();
             }
         }
     }

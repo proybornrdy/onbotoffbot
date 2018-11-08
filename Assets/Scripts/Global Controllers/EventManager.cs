@@ -6,6 +6,8 @@ public class EventManager : MonoBehaviour {
 
     public delegate void InteractAction(GameObject player);
     public static event InteractAction OnInteract;
+    public delegate void PickupAction(GameObject player);
+    public static event PickupAction OnPickup;
     float lastPressedOn = 0;
     float lastPressedOff = 0;
     public float pressThreshold = 0.5f;

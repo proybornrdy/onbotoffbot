@@ -36,12 +36,12 @@ public class CameraController : MonoBehaviour {
         
         mainCamera.orthographicSize = longSide*0.65f;
 
-        Debug.Log("~~~~~"+ room.name);
-        Debug.Log(roomSize);
-        Debug.Log(longSide);
-        Debug.Log(cameraPos);
-        Debug.Log(roomCenter);
-        Debug.Log(roomCenter*0.5f);
+        //Debug.Log("~~~~~"+ room.name);
+        //Debug.Log(roomSize);
+        //Debug.Log(longSide);
+        //Debug.Log(cameraPos);
+        //Debug.Log(roomCenter);
+        //Debug.Log(roomCenter*0.5f);
 
 
         mainCamera.transform.position = Vector3.Lerp(currentPos, cameraPos, Time.deltaTime);

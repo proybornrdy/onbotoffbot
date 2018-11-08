@@ -14,6 +14,7 @@ public class PlayerOn : PlayerBase
 		jump = PlayerInputTranslator.GetJump(PlayerInputTranslator.Player.ON);
 		interact = PlayerInputTranslator.GetLeftInteract(PlayerInputTranslator.Player.ON);
         reset = PlayerInputTranslator.GetReset(PlayerInputTranslator.Player.ON);
+        pickUp = PlayerInputTranslator.GetPickup(PlayerInputTranslator.Player.ON);
         base.Start();
     }
 }
