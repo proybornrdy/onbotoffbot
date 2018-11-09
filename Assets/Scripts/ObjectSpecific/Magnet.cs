@@ -76,7 +76,7 @@ public class Magnet : Toggleable {
                 if (xRail) {
                     //Al of this runs only if the magnet is attached to a 3-axis rail system.
                     GameObject railSystem = GameObject.Find("RailSystem");
-                    if (!other.transform.IsChildOf(railSystem.transform) && other.name != "RoomCollider") {
+                    if ((!other.transform.IsChildOf(railSystem.transform) || other.transform.IsChildOf(transform)) && other.name != "RoomCollider") {
                         if (CollidedOnY(other)) {
                             yRail.SetDirection(-yRail.GetDirection());
                         } else if (CollidedOnZ(other)) {
@@ -87,6 +87,15 @@ public class Magnet : Toggleable {
                     }
                 }
             }
+        }
+    }
+
+    private void OnTriggerStay(Collider other) {
+        Rail yRail = transform.parent.GetComponent<Rail>();
+        if (other.transform.IsChildOf(transform) && transform.position.y - transform.GetComponent<BoxCollider>().bounds.size.y / 2 + 0.05 < other.transform.position.y + other.transform.GetComponent<BoxCollider>().bounds.size.y / 2) {
+            transform.position = new Vector3(transform.position.x, transform.position.y + 0.05f, transform.position.z);
+            other.transform.position = new Vector3(other.transform.position.x, other.transform.position.y - 0.05f, other.transform.position.z);
+            yRail.SetDirection(-yRail.GetDirection());
         }
     }
 
