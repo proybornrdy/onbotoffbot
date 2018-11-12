@@ -23,8 +23,8 @@ public class EventManager : MonoBehaviour {
         
         try
         {
-			if (Input.GetAxis(PlayerInputTranslator.GetLeftInteract(PlayerInputTranslator.Player.ON)) > 0.8
-				|| Input.GetButton(PlayerInputTranslator.GetLeftInteract(PlayerInputTranslator.Player.ON)))
+			if (Input.GetAxis(PlayerInputTranslator.GetLeftInteract(Player.ON)) > 0.8
+				|| Input.GetButton(PlayerInputTranslator.GetLeftInteract(Player.ON)))
 			{
                 if (Time.time - lastPressedOn > pressThreshold)
                 {
@@ -32,8 +32,8 @@ public class EventManager : MonoBehaviour {
                     lastPressedOn = Time.time;
                 }
             }
-			if (Input.GetAxis(PlayerInputTranslator.GetRightInteract(PlayerInputTranslator.Player.OFF)) > 0.8
-				|| Input.GetButton(PlayerInputTranslator.GetRightInteract(PlayerInputTranslator.Player.OFF)))
+			if (Input.GetAxis(PlayerInputTranslator.GetRightInteract(Player.OFF)) > 0.8
+				|| Input.GetButton(PlayerInputTranslator.GetRightInteract(Player.OFF)))
             {
 				if (Time.time - lastPressedOff > pressThreshold)
                 {
@@ -42,14 +42,14 @@ public class EventManager : MonoBehaviour {
                 }
             }
 
-            if (Input.GetButton(PlayerInputTranslator.GetReset(PlayerInputTranslator.Player.ON)) ||
-                Input.GetButton(PlayerInputTranslator.GetReset(PlayerInputTranslator.Player.OFF)))
+            if (Input.GetButton(PlayerInputTranslator.GetReset(Player.ON)) ||
+                Input.GetButton(PlayerInputTranslator.GetReset(Player.OFF)))
             {
                 LevelController.ResetScene();
             }
 
-            if (Input.GetButton(PlayerInputTranslator.GetMenu(PlayerInputTranslator.Player.ON)) ||
-                Input.GetButton(PlayerInputTranslator.GetMenu(PlayerInputTranslator.Player.OFF)))
+            if (Input.GetButton(PlayerInputTranslator.GetMenu(Player.ON)) ||
+                Input.GetButton(PlayerInputTranslator.GetMenu(Player.OFF)))
             {
                 LevelController.GoToMenu();
             }

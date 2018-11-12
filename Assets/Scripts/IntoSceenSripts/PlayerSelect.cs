@@ -137,11 +137,11 @@ public class PlayerSelect : MonoBehaviour
 			if (P1Select.transform.position.x == OnPosition)
 			{
 				// P1 can move left, so they must be off bot
-				PlayerInputTranslator.SetP1P2(PlayerInputTranslator.Player.ON, PlayerInputTranslator.Player.OFF);
+				PlayerInputTranslator.SetP1P2(Player.ON, Player.OFF);
 			}
 			else
 			{
-				PlayerInputTranslator.SetP1P2(PlayerInputTranslator.Player.OFF, PlayerInputTranslator.Player.ON);
+				PlayerInputTranslator.SetP1P2(Player.OFF, Player.ON);
 			}
 
 			SceneController.GetComponent<OptoinsSceenController>().StopPlayerSelect();

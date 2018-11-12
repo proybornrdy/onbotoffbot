@@ -19,14 +19,14 @@
         color: white;
         background-color: #464646;
     }
-    button:hover {
-        background-color: steelblue;
-    }
     button:active {
         left: 0;
     }
     button:focus {
         background-color: steelblue;
+    }
+    .disabled {
+        background-color: lightcoral;
     }
     #main {
         border: 1px solid red;
@@ -112,6 +112,59 @@
     .blue{
         color: #2e37e0;
     }
+
+    #playerSelect{
+        width: 450px;
+    }
+
+    .btnPlayer{
+        width: 180px;
+        height: 180px;
+    }
+
+    #playerOn {
+        background-color: royalblue;
+        display: inline-block;
+        margin: 2px;
+        padding: 10px;
+    }
+
+    #playerOff {
+        background-color: darkred;
+        margin: 2px;
+        padding: 10px;
+        margin-left: 40px;
+        display: inline-block;
+    }
+
+    .playerSelector{
+        background-color: yellow;
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        text-align: center;
+        color: black;
+        vertical-align: middle;
+        position: absolute;
+        display: inline-block;
+    }
+
+    #player1Selector {
+        left: 207px;
+        top: 125px;
+    }
+    #player2Selector {
+        left: 207px;
+        top: 175px;
+    }
+
+    h3 {
+        display: block;
+    }
+
+    #btnPlayerSelectDone {
+        display: block;
+    }
 </style>
 
 <body>
@@ -127,15 +180,24 @@
         <div id="header">
             <h1><strong><span class="blue">ON-BOT</span>/<span class="red">OFF-BOT</span></strong></h1>
         </div>
-        <div id="mainMenu" class="menu">
-            <button id="btnStart" tabindex="0">Start</button>
-            <button id="btnLeaderboards" tabindex="1">Leaderboards</button>
-            <button id="btnCredits" tabindex="2">Credits</button>
-            <button id="btnExit" tabindex="3">Exit</button>
-        </div>
         <div id="levelSelect" class="menu">
-            one two three
-            <button id="lvlSelectBack" class="btnBack">Back</button>
+            <h3>Select level</h3>
+            <button id="btnLevelSelectBack" class="btnBack">Back</button>
+        </div>
+        <div id="playerSelect" class="menu">
+            <h3>Choose your player</h3>
+            <div id="playerOn" class="btnPlayer">PlayerOn</div>
+            <div id="playerOff" class="btnPlayer">PlayerOff</div>
+            <div id="player1Selector" class="playerSelector">P1</div>
+            <div id="player2Selector" class="playerSelector">P2</div>
+            <button id="btnPlayerSelectDone">Done</button>
+            <button id="btnPlayerSelectBack">Back</button>
+        </div>
+        <div id="mainMenu" class="menu">
+            <button id="btnStart">Start</button>
+            <button id="btnLeaderboards">Leaderboards</button>
+            <button id="btnCredits">Credits</button>
+            <button id="btnExit">Exit</button>
         </div>
     </div>
 </body>

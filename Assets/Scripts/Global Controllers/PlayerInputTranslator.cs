@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInputTranslator : MonoBehaviour {
-	public enum Player
-	{
-		ON, OFF
-	}
 
 	private static Player P1 = Player.ON;
 	private static Player P2 = Player.OFF;

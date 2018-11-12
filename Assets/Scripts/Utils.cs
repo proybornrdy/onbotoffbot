@@ -13,7 +13,6 @@ public static class Utils {
         return cardinal;
 	}
 
-    public enum Coordinate { x, y, z }
 
     public static Coordinate LargestComponent(Vector3 v)
     {
