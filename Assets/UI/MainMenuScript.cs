@@ -29,6 +29,8 @@ public class MainMenuScript : MonoBehaviour {
     HtmlButtonElement[] levelButtons;
     HtmlButtonElement btnLevelSelectBack;
 
+    Dom.Element loadingScreen;
+
     // Use this for initialization
     void Start()
     {
@@ -56,6 +58,7 @@ public class MainMenuScript : MonoBehaviour {
         btnPlayerSelectDone = (HtmlButtonElement)document.getElementById("btnPlayerSelectDone");
         btnPlayerSelectDone.onclick = btnPlayerSelectDone_Click;
         btnPlayerSelectBack = (HtmlButtonElement)document.getElementById("btnPlayerSelectBack");
+        btnPlayerSelectBack.onclick = btnPlayerSelectBack_Click;
 
         PopulateLevels();
 
@@ -70,11 +73,14 @@ public class MainMenuScript : MonoBehaviour {
             button.innerText = levels[i][0];
             button.id = "btnLevel" + i;
             var index = i;
-            button.onclick = delegate (MouseEvent mouseEvent) { SceneManager.LoadScene(levels[index][1]); };
+            button.onclick = delegate (MouseEvent mouseEvent) { LoadLoadingScreen();  SceneManager.LoadScene(levels[index][1]); };
             button.tabIndex = -1;
             levelSelect.insertBefore(button, btnLevelSelectBack);
             levelButtons[i] = button;
         }
+
+        loadingScreen = document.getElementById("loadingScreen");
+        loadingScreen.style.display = "none";
     }
     // Update is called once per frame
     void Update()
@@ -104,7 +110,7 @@ public class MainMenuScript : MonoBehaviour {
 
     void btnLvlSelectBack_Click(MouseEvent mouseEvent)
     {
-        LoadMainMenu();
+        LoadPlayerSelect();
     }
 
     void btnPlayerSelectDone_Click(MouseEvent mouseEvent)
@@ -115,6 +121,11 @@ public class MainMenuScript : MonoBehaviour {
             selectingPlayers = false;
             LoadLevelSelect();
         }
+    }
+
+    void btnPlayerSelectBack_Click(MouseEvent mouseEvent)
+    {
+        LoadMainMenu();
     }
 
     private void HandleInput()
@@ -274,6 +285,12 @@ public class MainMenuScript : MonoBehaviour {
         foreach (var b in levelButtons) b.tabIndex = 0;
         btnLevelSelectBack.tabIndex = 0;
         levelSelect.style.display = "flex";
+    }
+
+    private void LoadLoadingScreen()
+    {
+        UnloadAllMenus();
+        loadingScreen.style.display = "flex";
     }
 
     private void LoadLeaderboards()
