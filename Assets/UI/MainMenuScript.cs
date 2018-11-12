@@ -34,53 +34,9 @@ public class MainMenuScript : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        PopulateLevels();
         SetupElements();
         LoadMainMenu();
-    }
-
-    void SetupElements()
-    {
-        document = UI.document;
-
-        mainMenu = document.getElementById("mainMenu");
-        btnStart = (HtmlButtonElement)document.getElementById("btnStart");
-        btnStart.onclick = btnStart_Click;
-        btnLeaderboards = (HtmlButtonElement)document.getElementById("btnLeaderboards");
-        btnLeaderboards.onclick = btnLeaderboards_Click;
-        btnCredits = (HtmlButtonElement)document.getElementById("btnCredits");
-        btnCredits.onclick = btnCredits_Click;
-        btnExit = (HtmlButtonElement)document.getElementById("btnExit");
-        btnExit.onclick = btnExit_Click;
-
-        playerSelect = document.getElementById("playerSelect");
-        player1Selector = document.getElementById("player1Selector");
-        player2Selector = document.getElementById("player2Selector");
-        btnPlayerSelectDone = (HtmlButtonElement)document.getElementById("btnPlayerSelectDone");
-        btnPlayerSelectDone.onclick = btnPlayerSelectDone_Click;
-        btnPlayerSelectBack = (HtmlButtonElement)document.getElementById("btnPlayerSelectBack");
-        btnPlayerSelectBack.onclick = btnPlayerSelectBack_Click;
-
-        PopulateLevels();
-
-        levelSelect = document.getElementById("levelSelect");
-        btnLevelSelectBack = (HtmlButtonElement)document.getElementById("btnLevelSelectBack");
-        levelButtons = new HtmlButtonElement[levels.Count];
-        btnLevelSelectBack.tabIndex = -1;
-        btnLevelSelectBack.onclick = btnLvlSelectBack_Click;
-        for (int i = 0; i < levels.Count; i++)
-        {
-            var button = (HtmlButtonElement)document.createElement("button");
-            button.innerText = levels[i][0];
-            button.id = "btnLevel" + i;
-            var index = i;
-            button.onclick = delegate (MouseEvent mouseEvent) { LoadLoadingScreen();  SceneManager.LoadScene(levels[index][1]); };
-            button.tabIndex = -1;
-            levelSelect.insertBefore(button, btnLevelSelectBack);
-            levelButtons[i] = button;
-        }
-
-        loadingScreen = document.getElementById("loadingScreen");
-        loadingScreen.style.display = "none";
     }
     // Update is called once per frame
     void Update()
@@ -126,6 +82,50 @@ public class MainMenuScript : MonoBehaviour {
     void btnPlayerSelectBack_Click(MouseEvent mouseEvent)
     {
         LoadMainMenu();
+    }
+
+    void SetupElements()
+    {
+        document = UI.document;
+
+        mainMenu = document.getElementById("mainMenu");
+        btnStart = (HtmlButtonElement)document.getElementById("btnStart");
+        btnStart.onclick = btnStart_Click;
+        btnLeaderboards = (HtmlButtonElement)document.getElementById("btnLeaderboards");
+        btnLeaderboards.onclick = btnLeaderboards_Click;
+        btnCredits = (HtmlButtonElement)document.getElementById("btnCredits");
+        btnCredits.onclick = btnCredits_Click;
+        btnExit = (HtmlButtonElement)document.getElementById("btnExit");
+        btnExit.onclick = btnExit_Click;
+
+        playerSelect = document.getElementById("playerSelect");
+        player1Selector = document.getElementById("player1Selector");
+        player2Selector = document.getElementById("player2Selector");
+        btnPlayerSelectDone = (HtmlButtonElement)document.getElementById("btnPlayerSelectDone");
+        btnPlayerSelectDone.onclick = btnPlayerSelectDone_Click;
+        btnPlayerSelectBack = (HtmlButtonElement)document.getElementById("btnPlayerSelectBack");
+        btnPlayerSelectBack.onclick = btnPlayerSelectBack_Click;
+
+
+        levelSelect = document.getElementById("levelSelect");
+        btnLevelSelectBack = (HtmlButtonElement)document.getElementById("btnLevelSelectBack");
+        levelButtons = new HtmlButtonElement[levels.Count];
+        btnLevelSelectBack.tabIndex = -1;
+        btnLevelSelectBack.onclick = btnLvlSelectBack_Click;
+        for (int i = 0; i < levels.Count; i++)
+        {
+            var button = (HtmlButtonElement)document.createElement("button");
+            button.innerText = levels[i][0];
+            button.id = "btnLevel" + i;
+            var index = i;
+            button.onclick = delegate (MouseEvent mouseEvent) { LoadLoadingScreen(); SceneManager.LoadScene(levels[index][1]); };
+            button.tabIndex = -1;
+            levelSelect.insertBefore(button, btnLevelSelectBack);
+            levelButtons[i] = button;
+        }
+
+        loadingScreen = document.getElementById("loadingScreen");
+        loadingScreen.style.display = "none";
     }
 
     private void HandleInput()
