@@ -9,12 +9,12 @@ public class PlayerOn : PlayerBase
         verticalAxis = "POnVertical";
         jump = "POnJump";
         interact = "Button On";*/
-		horizontalAxis = PlayerInputTranslator.GetHorizontalAxis(PlayerInputTranslator.Player.ON);
-		verticalAxis = PlayerInputTranslator.GetVerticalAxis(PlayerInputTranslator.Player.ON);
-		jump = PlayerInputTranslator.GetJump(PlayerInputTranslator.Player.ON);
-		interact = PlayerInputTranslator.GetLeftInteract(PlayerInputTranslator.Player.ON);
-        reset = PlayerInputTranslator.GetReset(PlayerInputTranslator.Player.ON);
-        pickUp = PlayerInputTranslator.GetPickup(PlayerInputTranslator.Player.ON);
+		horizontalAxis = PlayerInputTranslator.GetHorizontalAxis(Player.ON);
+		verticalAxis = PlayerInputTranslator.GetVerticalAxis(Player.ON);
+		jump = PlayerInputTranslator.GetJump(Player.ON);
+		interact = PlayerInputTranslator.GetLeftInteract(Player.ON);
+        reset = PlayerInputTranslator.GetReset(Player.ON);
+        pickUp = PlayerInputTranslator.GetPickup(Player.ON);
         base.Start();
     }
 }

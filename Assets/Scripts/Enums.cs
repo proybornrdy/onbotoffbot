@@ -39,3 +39,10 @@ public enum MatLightingType
     Dim,
     Lit
 }
+
+public enum Coordinate { x, y, z }
+
+public enum Player
+{
+    ON, OFF
+}

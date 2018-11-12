@@ -46,12 +46,12 @@ public class RailPushed : MonoBehaviour {
             }
             else
                 pushDirection = transform.position - collision.collider.transform.position;
-            Utils.Coordinate largestComponent = Utils.LargestComponent(pushDirection);
-            if (largestComponent == Utils.Coordinate.x)
+            Coordinate largestComponent = Utils.LargestComponent(pushDirection);
+            if (largestComponent == Coordinate.x)
             {
                 rb.constraints = initialConstraints | RigidbodyConstraints.FreezePositionZ;
             }
-            else if (largestComponent == Utils.Coordinate.y)
+            else if (largestComponent == Coordinate.y)
             {
                 rb.constraints = initialConstraints | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
             }
