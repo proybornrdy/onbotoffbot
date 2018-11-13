@@ -56,7 +56,7 @@ public class Magnetic : MonoBehaviour {
 
     void OnCollisionExit(Collision other)
     {
-        if (other.gameObject == magnetObj)
+        if (other.gameObject == magnetObj && !magnet.IsOn())
         {
             SetIsColliding(false);
             if (tag != "Player") 
