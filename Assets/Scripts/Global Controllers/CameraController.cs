@@ -6,7 +6,6 @@ public class CameraController : MonoBehaviour {
 
     public Vector3 newPos;
     public Vector3 currentPos;
-    public Camera mainCamera;
 
     private Vector3 cameraPos; 
 
@@ -14,7 +13,7 @@ public class CameraController : MonoBehaviour {
 
     public void changeCameraPos(GameObject room)
     {
-        currentPos = mainCamera.transform.position;
+        currentPos = Camera.main.transform.position;
 
         Transform roomCollider = room.transform.Find("RoomCollider");
         Vector3 roomSize = roomCollider.GetComponent<Collider>().bounds.size;
@@ -30,11 +29,12 @@ public class CameraController : MonoBehaviour {
         
         float longSide = Mathf.Max(lengths);
 
-        float yAxis = Mathf.Tan(mainCamera.transform.eulerAngles.x) * Mathf.Sqrt(Mathf.Pow(longSide,2f)*2);
+        float yAxis = Mathf.Tan(Camera.main.transform.eulerAngles.x) * Mathf.Sqrt(Mathf.Pow(longSide,2f)*2);
 
         cameraPos = new Vector3(roomCenter.x - longSide, roomCenter.y+yAxis, roomCenter.z - longSide) ;
-        
-        mainCamera.orthographicSize = longSide*0.65f;
+
+        //this below line deals how much screen is zoomed. Bigger the multiplier, lesser the screen zoomed.
+        Camera.main.orthographicSize = longSide*0.8f;
 
         //Debug.Log("~~~~~"+ room.name);
         //Debug.Log(roomSize);
@@ -44,19 +44,21 @@ public class CameraController : MonoBehaviour {
         //Debug.Log(roomCenter*0.5f);
 
 
-        mainCamera.transform.position = Vector3.Lerp(currentPos, cameraPos, Time.deltaTime);
+        Camera.main.transform.position = Vector3.Lerp(currentPos, cameraPos, Time.deltaTime);
 
-        Debug.DrawLine(mainCamera.transform.position, roomCenter, Color.red);
+        Debug.DrawLine(Camera.main.transform.position, roomCenter, Color.red);
     }
-    public void zoomCamera(GameObject player1 , GameObject player2)
-    {
-        currentPos = mainCamera.transform.position;
-        Vector3 player_1 = player1.transform.position;
-        Vector3 player_2 = player2.transform.position;
-        player_1 = player_1 * 0.5f;
-        player_2 = player_2 * 0.5f;
-        Vector3 newCamCenter = player_1 + player_2 +cameraPos ;
-        mainCamera.transform.position = Vector3.Lerp(currentPos, newCamCenter, Time.deltaTime);
-    }
+
+
+    //public void zoomCamera(GameObject player1 , GameObject player2)
+    //{
+    //    currentPos = Camera.main.transform.position;
+    //    Vector3 player_1 = player1.transform.position;
+    //    Vector3 player_2 = player2.transform.position;
+    //    player_1 = player_1 * 0.5f;
+    //    player_2 = player_2 * 0.5f;
+    //    Vector3 newCamCenter = player_1 + player_2 +cameraPos ;
+    //    Camera.main.transform.position = Vector3.Lerp(currentPos, newCamCenter, Time.deltaTime);
+    //}
 
 }
