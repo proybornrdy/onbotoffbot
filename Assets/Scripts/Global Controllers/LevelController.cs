@@ -73,7 +73,6 @@ public class LevelController : MonoBehaviour
     {
         OnPlayer = GameObject.Find("PlayerOn");
         OffPlayer = GameObject.Find("PlayerOff");
-        Door = GameObject.Find("Door");
         for (int i = 0; i < doors.Length; i++) doors[i].index = i;
         cc = GameObject.Find("CameraController").GetComponent<CameraController>();
         snapJumpingStatic = snapJumping;
