@@ -1,8 +1,7 @@
-﻿using System.Collections;
+﻿using PowerUI;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using PowerUI;
 
 public class MainMenuScript : MonoBehaviour {
     HtmlDocument document;
@@ -156,65 +155,79 @@ public class MainMenuScript : MonoBehaviour {
                 {
                     if (player1Selection == Player.OFF)
                     {
-                        player1Selector.style.left = "207";
+                        player1Selector.style.left = "0vw";
                         player1Selection = null;
                     }
                     else
                     {
-                        player1Selector.style.left = "107";
+                        player1Selector.style.left = "-10.5vw";
                         player1Selection = Player.ON;
                     }
                     lastInteracted = Time.time;
-                    print(player1Selection);
+                    SetDoneButton();
                 }
                 if (UnityEngine.Input.GetAxis("P2Horizontal") < -0.5)
                 {
                     if (player2Selection == Player.OFF)
                     {
-                        player2Selector.style.left = "207";
+                        player2Selector.style.left = "0vw";
                         player2Selection = null;
                     }
                     else
                     {
-                        player2Selector.style.left = "107";
+                        player2Selector.style.left = "-10vw";
                         player2Selection = Player.ON;
                     }
                     lastInteracted = Time.time;
-                    print(player2Selection);
+                    SetDoneButton();
                 }
                 if (UnityEngine.Input.GetAxis("P1Horizontal") > 0.5)
                 {
                     if (player1Selection == Player.ON)
                     {
-                        player1Selector.style.left = "207";
+                        player1Selector.style.left = "0vw";
                         player1Selection = null;
                     }
                     else
                     {
-                        player1Selector.style.left = "307";
+                        player1Selector.style.left = "10vw";
                         player1Selection = Player.OFF;
                     }
                     lastInteracted = Time.time;
-                    print(player1Selection);
+                    SetDoneButton();
                 }
                 if (UnityEngine.Input.GetAxis("P2Horizontal") > 0.5)
                 {
                     if (player2Selection == Player.ON)
                     {
-                        player2Selector.style.left = "207";
+                        player2Selector.style.left = "0vw";
                         player2Selection = null;
                     }
                     else
                     {
-                        player2Selector.style.left = "307";
+                        player2Selector.style.left = "10vw";
                         player2Selection = Player.OFF;
                     }
-                    print(player2Selection);
                     lastInteracted = Time.time;
+                    SetDoneButton();
                 }
             }
         }
 
+    }
+
+    private void SetDoneButton()
+    {
+        if (!player1Selection.HasValue || !player2Selection.HasValue || player1Selection == player2Selection)
+        {
+            btnPlayerSelectDone.className = "disabled";
+            btnPlayerSelectDone.tabIndex = -1;
+        }
+        else
+        {
+            btnPlayerSelectDone.tabIndex = 0;
+            btnPlayerSelectDone.className = "";
+        }
     }
 
     private void UnloadAllMenus()
@@ -277,6 +290,8 @@ public class MainMenuScript : MonoBehaviour {
         btnPlayerSelectDone.tabIndex = 0;
         btnPlayerSelectBack.tabIndex = 0;
         playerSelect.style.display = "flex";
+        SetDoneButton();
+        document.TabNext();
     }
 
     private void LoadLevelSelect()
