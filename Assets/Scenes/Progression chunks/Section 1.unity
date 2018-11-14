@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.5645232, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -36874,13 +36874,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1543270770}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 6.12, y: 2.06, z: -2.4}
   m_LocalScale: {x: 0.19999999, y: 0.2000001, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1390909616}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
 --- !u!64 &1543270772
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -56923,6 +56923,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: backtrackBlockers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4939316746596810, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 5.8838663
@@ -57109,6 +57114,11 @@ Prefab:
 
 '
       objectReference: {fileID: 0}
+    - target: {fileID: 114519673108559002, guid: e9b31108965c1ea4084dd3f256f339e2,
+        type: 2}
+      propertyPath: backtrackBlockers.Array.data[4]
+      value: 
+      objectReference: {fileID: 1795404509}
     m_RemovedComponents:
     - {fileID: 114714811857465818, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
     - {fileID: 114970113086167418, guid: e9b31108965c1ea4084dd3f256f339e2, type: 2}
