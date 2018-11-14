@@ -208,7 +208,7 @@ public class LevelController : MonoBehaviour
 
     IEnumerator RoomFadeDelay(int index)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
 
         if (index == -1)
         {
