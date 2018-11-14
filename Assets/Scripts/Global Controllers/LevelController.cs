@@ -191,7 +191,10 @@ public class LevelController : MonoBehaviour
 		}
 
 		Time.timeScale = (InMenue) ? 0.00f : 1.00f;
-		PauseSceneRoot.SetActive(InMenue);
+        if (PauseSceneRoot)
+        {
+            PauseSceneRoot.SetActive(InMenue);
+        }
 	}
 
     public void DoorOpened(int index)
