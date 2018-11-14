@@ -46,3 +46,12 @@ public enum Player
 {
     ON, OFF
 }
+
+public enum TutorialState
+{
+    Jump,
+    InteractOn,
+    InteractOff,
+    SpeakToNPC,
+    PickUpItem,
+}

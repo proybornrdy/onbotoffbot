@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public class LevelController : MonoBehaviour
@@ -45,6 +46,12 @@ public class LevelController : MonoBehaviour
 		"Assets/Scenes/IntoScene.unity"
 	};
 
+    delegate void RoomAction();
+
+    TutorialStateMachine tutorialStateMachine;
+    HUDController hudController;
+    List<RoomAction> roomActions;
+
 	private int oldTime = 0;
 	private GameStateLog gameStateLog;
 
@@ -69,6 +76,45 @@ public class LevelController : MonoBehaviour
         return time;
     }
 
+    void SetUpRoomActions()
+    {
+        roomActions = new List<RoomAction>();
+        //room 1.1
+        roomActions.Add(delegate ()
+        {
+            ShowTutorial(TutorialState.Jump);
+        });
+        //room 1.2
+        roomActions.Add(delegate ()
+        {
+            ShowTutorial(TutorialState.InteractOn);
+        });
+        //room 1.3
+        roomActions.Add(delegate ()
+        {
+            ShowTutorial(TutorialState.InteractOff);
+        });
+        //room 1.4
+        roomActions.Add(delegate ()
+        {
+            ;
+        });
+        //room 2.1
+        roomActions.Add(delegate ()
+        {
+            ShowTutorial(TutorialState.PickUpItem);
+        });
+    }
+
+    void ShowTutorial(TutorialState state)
+    {
+        if (!tutorialStateMachine.GetStateValue(state))
+        {
+            tutorialStateMachine.SetStateValue(state, true);
+            hudController.ReceiveText(tutorialStateMachine.GetStateText(state));
+        }
+    }
+
     void Awake()
     {
         OnPlayer = GameObject.Find("PlayerOn");
@@ -78,10 +124,13 @@ public class LevelController : MonoBehaviour
         snapJumpingStatic = snapJumping;
 
 		gameStateLog = new GameStateLog(SceneManager.GetActiveScene().name);
+        //tutorialStateMachine = FindObjectOfType<TutorialStateMachine>();
+        //hudController = FindObjectOfType<HUDController>();
     }
 
     private void Start()
     {
+        //SetUpRoomActions();
         if (rooms.Length > 0)
         {
             for (int i = 1; i < rooms.Length; i++)
@@ -96,6 +145,7 @@ public class LevelController : MonoBehaviour
         foreach (var j in jumpPoints) j.gameObject.GetComponent<Renderer>().enabled = false;
         var colliders = TagCatalogue.FindAllWithTag(Tag.Collider);
         foreach (var j in colliders) j.gameObject.GetComponent<Renderer>().enabled = false;
+        //roomActions[0]();
     }
 
     public static void GoToMenu()
@@ -132,9 +182,11 @@ public class LevelController : MonoBehaviour
             {
 				rooms[index + 1][j].SetActive(true);
 
-				/*since all rooms are just activated from deactivation, 
+                //rooms[index + 1][j].transform.Find("Walls").gameObject.SetActive(false);
+
+                /*since all rooms are just activated from deactivation, 
                 it needs to be invisible first in order for it to be faded in*/
-				setRoomInvisible(rooms[index + 1][j]);
+                setRoomInvisible(rooms[index + 1][j]);
                 StartCoroutine(RoomFade(rooms[index + 1][j], false));
             }
             newRoom = index + 1;
@@ -151,13 +203,20 @@ public class LevelController : MonoBehaviour
 
     public void PlayersMovedToRoom(int index)
     {
-		if (index == -1)
-		{
-			int nextSceneIndex = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
-			//save the log, and move on to next level
-			gameStateLog.SaveGameStateLog();
-			SceneManager.LoadScene(LevelProgresion[nextSceneIndex + 1]);
-		}
+        StartCoroutine("RoomFadeDelay", index);
+    }
+
+    IEnumerator RoomFadeDelay(int index)
+    {
+        yield return new WaitForSeconds(1);
+
+        if (index == -1)
+        {
+            int nextSceneIndex = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
+            //save the log, and move on to next level
+            gameStateLog.SaveGameStateLog();
+            SceneManager.LoadScene(LevelProgresion[nextSceneIndex + 1]);
+        }
 
         if (!isTestLevel && index > 0 && index < rooms.Length - 1)
         {
@@ -166,6 +225,7 @@ public class LevelController : MonoBehaviour
                 StartCoroutine(RoomFade(rooms[index - 1][j], true));
             }
             backtrackBlockers[index - 1].SetActive(true);
+            //roomActions[index]();
         }
 
         currentRoom = index;
