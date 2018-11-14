@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/IntoScene.unity
     guid: 684fd5507dcb18a45bd6a081c308852b
   - enabled: 1
+    path: Assets/Scenes/InGameMenue.unity
+    guid: 3953a47a52fbf854bb9254eb721b5065
+  - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 88a81b084e9568244b04bff4a6024915
   - enabled: 1
