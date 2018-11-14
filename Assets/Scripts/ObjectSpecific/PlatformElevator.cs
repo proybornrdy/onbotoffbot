@@ -33,7 +33,7 @@ public class PlatformElevator : Toggleable {
 			}
 		}
 		else if (lowering) {
-			if (platform.position.y > minY) {
+			if (platform.position.y > minY && !PlayerUnderneath()) {
 				Lower();
 			} else {
 				lowering = false;
@@ -48,8 +48,23 @@ public class PlatformElevator : Toggleable {
 	void Lower() {
 		 platform.position += Vector3.down * Time.deltaTime * 2;
 	}
-	
-	public override void TurnOn()
+
+    bool PlayerUnderneath()
+    {
+        RaycastHit[] hits = Physics.RaycastAll(platform.transform.position, -Vector3.up, 3F);
+        for (int i = 0; i < hits.Length; i++)
+        {
+            RaycastHit hit = hits[i];
+            if (hit.collider.gameObject.HasTag(Tag.Player))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public override void TurnOn()
     {
         if (!on)
         {
