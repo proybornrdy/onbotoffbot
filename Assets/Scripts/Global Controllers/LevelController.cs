@@ -42,12 +42,13 @@ public class LevelController : MonoBehaviour
 	private GameObject PauseSceneRoot;
 
 	private string[] LevelProgresion = {
-		"Assets/Scenes/Progression chunks/Section 1.unity",
-		"Assets/Scenes/Level Ideas/BasicPistonPuzzle.unity",
-		"Assets/Scenes/Level Ideas/PressurePlateLevel.unity",
+        "Assets/Scenes/Progression chunks/Section 1.unity",
+        "Assets/Scenes/Progression chunks/Section 2.unity",
+        "Assets/Scenes/Level Ideas/BasicPistonPuzzle.unity",
+        "Assets/Scenes/Level Ideas/PressurePlateLevel.unity",
 		//"Assets/Scenes/Level Ideas/2-6.unity",
 		"Assets/Scenes/IntoScene.unity"
-	};
+    };
 
     delegate void RoomAction();
 
