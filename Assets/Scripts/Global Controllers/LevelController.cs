@@ -38,11 +38,14 @@ public class LevelController : MonoBehaviour
     private bool roomFadeIn = false;
     private bool roomFadeOut = false;
 
+	public static bool InMenue = false;
+	private GameObject PauseSceneRoot;
+
 	private string[] LevelProgresion = {
 		"Assets/Scenes/Progression chunks/Section 1.unity",
+		"Assets/Scenes/Level Ideas/BasicPistonPuzzle.unity",
 		"Assets/Scenes/Level Ideas/PressurePlateLevel.unity",
 		//"Assets/Scenes/Level Ideas/2-6.unity",
-		"Assets/Scenes/Level Ideas/BasicPistonPuzzle.unity",
 		"Assets/Scenes/IntoScene.unity"
 	};
 
@@ -145,18 +148,31 @@ public class LevelController : MonoBehaviour
         foreach (var j in jumpPoints) j.gameObject.GetComponent<Renderer>().enabled = false;
         var colliders = TagCatalogue.FindAllWithTag(Tag.Collider);
         foreach (var j in colliders) j.gameObject.GetComponent<Renderer>().enabled = false;
-        //roomActions[0]();
-    }
 
-    public static void GoToMenu()
+		PauseSceneRoot = GameObject.FindWithTag("PauseSceenRoot");
+		if (!PauseSceneRoot)
+		{
+			Debug.Log("Not Found");
+			// SceneManager.LoadScene("InGameMenue", LoadSceneMode.Additive);
+		}
+	}
+
+    public static void ToggleMenue()
     {
-        SceneManager.LoadScene("IntoScene");
-    }
+		InMenue = !InMenue;
+	}
 
-    // Update is called once per frame
-    void Update()
-
+	// Update is called once per frame
+	void Update()
 	{
+		if (!PauseSceneRoot)
+		{
+			PauseSceneRoot = GameObject.FindWithTag("PauseSceenRoot");
+			if (PauseSceneRoot)
+			{
+				PauseSceneRoot.SetActive(false);
+			}
+		}
 		if (gamePlaying)
 		{
 			time += Time.deltaTime;
@@ -172,6 +188,9 @@ public class LevelController : MonoBehaviour
 			}
             
 		}
+
+		Time.timeScale = (InMenue) ? 0.00f : 1.00f;
+		PauseSceneRoot.SetActive(InMenue);
 	}
 
     public void DoorOpened(int index)

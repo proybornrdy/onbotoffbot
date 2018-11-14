@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class EventManager : MonoBehaviour {
@@ -12,8 +11,12 @@ public class EventManager : MonoBehaviour {
     float lastPressedOff = 0;
     public float pressThreshold = 0.5f;
 
-    // Use this for initialization
-    void Start () {
+	DateTime lastPressedOnMenue = DateTime.Now;
+	DateTime lastPressedOffMenue = DateTime.Now;
+	public float pressThresholdMenue = .5f;
+
+	// Use this for initialization
+	void Start () {
 		
 	}
 	
@@ -42,17 +45,23 @@ public class EventManager : MonoBehaviour {
                 }
             }
 
-            if (Input.GetButton(PlayerInputTranslator.GetReset(Player.ON)) ||
-                Input.GetButton(PlayerInputTranslator.GetReset(Player.OFF)))
+            if (Input.GetButton(PlayerInputTranslator.GetMenu(Player.ON)))
             {
-                LevelController.ResetScene();
-            }
-
-            if (Input.GetButton(PlayerInputTranslator.GetMenu(Player.ON)) ||
-                Input.GetButton(PlayerInputTranslator.GetMenu(Player.OFF)))
-            {
-                LevelController.GoToMenu();
-            }
+				if ((DateTime.Now - lastPressedOnMenue).TotalSeconds > pressThresholdMenue)
+				{
+					LevelController.ToggleMenue();
+					lastPressedOnMenue = DateTime.Now;
+				}
+			}
+			/*
+			if (Input.GetButton(PlayerInputTranslator.GetMenu(Player.OFF)))
+			{
+				if (Time.time - lastPressedOffMenue > pressThresholdMenue)
+				{
+					LevelController.ToggleMenue();
+					lastPressedOffMenue = Time.time;
+				}
+			}*/
         }
         catch (System.NullReferenceException)
         {
