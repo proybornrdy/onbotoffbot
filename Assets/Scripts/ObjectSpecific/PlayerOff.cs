@@ -18,6 +18,6 @@ public class PlayerOff : PlayerBase
         
         base.Start();
 
-        animator.SetBool("PlayerOff", true);
+        //animator.SetBool("PlayerOff", true);
     }
 }
