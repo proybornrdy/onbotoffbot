@@ -15,6 +15,9 @@ public class PlayerOff : PlayerBase
         interact = PlayerInputTranslator.GetRightInteract(Player.OFF);
         reset = PlayerInputTranslator.GetReset(Player.OFF);
         pickUp = PlayerInputTranslator.GetPickup(Player.OFF);
+        
         base.Start();
+
+        animator.SetBool("PlayerOff", true);
     }
 }

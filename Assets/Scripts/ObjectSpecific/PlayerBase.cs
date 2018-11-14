@@ -9,9 +9,10 @@ public class PlayerBase : MonoBehaviour
     internal Rigidbody rb;
     public float selectionThreshold = 120;
 
+    public bool animations;
     public PickupItem heldItem;
     public GameObject selectedItem;
-    Animator a;
+    internal Animator animator;
     public JumpPoint jumpPoint;
     internal string horizontalAxis;
     internal string verticalAxis;
@@ -33,10 +34,11 @@ public class PlayerBase : MonoBehaviour
 
     public void Start()
     {
-        a = GetComponent<Animator>();
         Physics.gravity = new Vector3(0, -LevelController.gravity, 0);
         jumpArrowInstance = Instantiate(jumpArrow);
         jumpArrowInstance.GetComponent<Renderer>().enabled = false;
+        animator = transform.Find("Model").GetComponent<Animator>();
+        if (animations) animator.SetBool("Walking", false);
     }
 
     public void Update()
@@ -58,7 +60,7 @@ public class PlayerBase : MonoBehaviour
 
     void OnCollisionStay()
     {
-        if (!isGrounded && Mathf.Abs(rb.velocity.y) < 0.005) {
+        if (!isGrounded && Mathf.Approximately(rb.velocity.y, 0)) {
             isGrounded = true;
         }
     }
@@ -83,7 +85,11 @@ public class PlayerBase : MonoBehaviour
 
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10);
 
-            //a.Play("Walking");
+            if (animations) animator.SetBool("Walking", true);
+        }
+        else
+        {
+            if (animations) animator.SetBool("Walking", false);
         }
 
 		if (!LevelController.snapJumpingStatic)

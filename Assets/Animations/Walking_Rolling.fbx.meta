@@ -29,6 +29,15 @@ ModelImporter:
     100046: Upper_Arm_01
     100048: Upper_Arm_02
     100050: //RootNode
+    100052: nurbsCircle1
+    100054: nurbsCircle2
+    100056: nurbsCircle3
+    100058: nurbsCircle4
+    100060: UofT_Robot_revised:Broken_Arm
+    100062: UofT_Robot_revised:Front_Plating1
+    100064: UofT_Robot_revised:Prong_Arm
+    100066: UofT_Robot_revised:Tire
+    100068: UofT_Robot_revised:Visor
     400000: arm_CTRL
     400002: Axel_01
     400004: Axel_02
@@ -55,6 +64,15 @@ ModelImporter:
     400046: Upper_Arm_01
     400048: Upper_Arm_02
     400050: //RootNode
+    400052: nurbsCircle1
+    400054: nurbsCircle2
+    400056: nurbsCircle3
+    400058: nurbsCircle4
+    400060: UofT_Robot_revised:Broken_Arm
+    400062: UofT_Robot_revised:Front_Plating1
+    400064: UofT_Robot_revised:Prong_Arm
+    400066: UofT_Robot_revised:Tire
+    400068: UofT_Robot_revised:Visor
     2100000: lambert1
     2300000: Axel_01
     2300002: Axel_02
@@ -72,6 +90,11 @@ ModelImporter:
     2300026: Tire
     2300028: Upper_Arm_01
     2300030: Upper_Arm_02
+    2300032: UofT_Robot_revised:Broken_Arm
+    2300034: UofT_Robot_revised:Front_Plating1
+    2300036: UofT_Robot_revised:Prong_Arm
+    2300038: UofT_Robot_revised:Tire
+    2300040: UofT_Robot_revised:Visor
     3300000: Axel_01
     3300002: Axel_02
     3300004: Badge
@@ -88,6 +111,11 @@ ModelImporter:
     3300026: Tire
     3300028: Upper_Arm_01
     3300030: Upper_Arm_02
+    3300032: UofT_Robot_revised:Broken_Arm
+    3300034: UofT_Robot_revised:Front_Plating1
+    3300036: UofT_Robot_revised:Prong_Arm
+    3300038: UofT_Robot_revised:Tire
+    3300040: UofT_Robot_revised:Visor
     4300000: Upper_Arm_02
     4300002: Upper_Arm_01
     4300004: Body
@@ -104,8 +132,14 @@ ModelImporter:
     4300026: Button_02
     4300028: Button_01
     4300030: Tire
-    7400000: Take 001
+    4300032: UofT_Robot_revised:Front_Plating1
+    4300034: UofT_Robot_revised:Prong_Arm
+    4300036: UofT_Robot_revised:Broken_Arm
+    4300038: UofT_Robot_revised:Visor
+    4300040: UofT_Robot_revised:Tire
+    7400000: Walking
     9500000: //RootNode
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -133,7 +167,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Walking
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -157,7 +219,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
-    previousCalculatedGlobalScale: 0.1
+    previousCalculatedGlobalScale: 0.07
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
