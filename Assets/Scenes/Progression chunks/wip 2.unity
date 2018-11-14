@@ -8170,6 +8170,11 @@ Prefab:
       propertyPath: m_Name
       value: Crate_Prefab (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 54937097134006480, guid: d94e1b7e815e0fa47be11ae6d110cc9c,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d94e1b7e815e0fa47be11ae6d110cc9c, type: 2}
   m_IsPrefabAsset: 0
@@ -29439,6 +29444,11 @@ Prefab:
       propertyPath: m_Name
       value: Crate_Prefab (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 54937097134006480, guid: d94e1b7e815e0fa47be11ae6d110cc9c,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d94e1b7e815e0fa47be11ae6d110cc9c, type: 2}
   m_IsPrefabAsset: 0
@@ -37131,7 +37141,7 @@ Transform:
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 1859465753}
-  m_RootOrder: 36
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1711419800
 Rigidbody:
@@ -40877,9 +40887,9 @@ Transform:
   - {fileID: 379242823}
   - {fileID: 336100034}
   - {fileID: 1698534025}
+  - {fileID: 1711419799}
   - {fileID: 362560652}
   - {fileID: 1471171826}
-  - {fileID: 1711419799}
   - {fileID: 137488433}
   - {fileID: 2143873247}
   - {fileID: 273302665}
