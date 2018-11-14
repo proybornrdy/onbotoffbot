@@ -34,7 +34,6 @@ public class PlayerBase : MonoBehaviour
     public void Start()
     {
         a = GetComponent<Animator>();
-        print(a);
         Physics.gravity = new Vector3(0, -LevelController.gravity, 0);
         jumpArrowInstance = Instantiate(jumpArrow);
         jumpArrowInstance.GetComponent<Renderer>().enabled = false;
