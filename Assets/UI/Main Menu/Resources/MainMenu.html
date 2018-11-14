@@ -1,0 +1,227 @@
+<!-- Time for a little CSS! -->
+<style type='text/css'>
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 2vw;
+    }
+    button {
+        box-sizing: border-box;
+        width: 20vw;
+        height: 4vw;
+        margin: 0.5vw;
+        padding: 1.25vw 1.25vw 1.25vw 2vw;
+        font-weight: bold;
+        border: none;
+        text-align: left;
+        color: black;
+        background-color: #aaaaaa;
+        font-size: 1.5vw;
+        display: inline-block;
+        align-self: flex-end;
+        border-radius: 0.5vw;
+    }
+    button:active {
+        left: 0;
+    }
+    button:not(.disabled):active {
+        background-color: steelblue;
+    }
+    button:not(.disabled):focus {
+        background-color: steelblue;
+    }
+    button:not(.disabled):hover {
+        background-color: steelblue;
+    }
+    button.disabled {
+        background-color: lightcoral;
+    }
+    #header {
+        font-size: 3vw;
+        display: inline-block;
+        margin: 1vw auto 0 4vw
+    }
+    #main {
+        height: 100%;
+        background-color: #111111;
+    }
+    .menu {
+        position: absolute;
+        display: inline-block;
+        width: 23vw;
+        background-color: #222222;
+        padding: 1vw;
+        bottom: 4vw;
+        left: 4vw;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#666666+0,4e4e4e+24,323232+50,454545+79,535353+100 */
+        background: rgb(102,102,102); /* Old browsers */
+        background: -moz-linear-gradient(top, rgba(102,102,102,1) 0%, rgba(78,78,78,1) 24%, rgba(50,50,50,1) 50%, rgba(69,69,69,1) 79%, rgba(83,83,83,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(102,102,102,1) 0%,rgba(78,78,78,1) 24%,rgba(50,50,50,1) 50%,rgba(69,69,69,1) 79%,rgba(83,83,83,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(102,102,102,1) 0%,rgba(78,78,78,1) 24%,rgba(50,50,50,1) 50%,rgba(69,69,69,1) 79%,rgba(83,83,83,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#666666', endColorstr='#535353',GradientType=0 ); /* IE6-9 */
+    }
+
+    .gear {
+        height: 14vw;
+        width: 14vw;
+        position: absolute;
+        right: 6vw;
+    }
+
+    .gear .center {
+        background-color: darkslategrey;
+        border-radius: 5vw;
+        display: inline-block;
+        width: 10vw;
+        height: 10vw;
+        position: absolute;
+        left: 2vw;
+        top: 2vw;
+        z-index: 1;
+    }
+    .gear .bar {
+        background-color: darkslategrey;
+        width: 2vw;
+        height: 12vw;
+        position: absolute;
+        left: 6vw;
+        top: 1vw;
+        z-index: 1;
+    }
+
+    .gear .bar:nth-child(2) {
+        transform: rotate(45deg);
+    }
+
+    .gear .bar:nth-child(3) {
+        transform: rotate(90deg);
+    }
+
+    .gear .bar:nth-child(4) {
+        transform: rotate(135deg);
+    }
+    .gear .hole {
+        background-color: black;
+        width: 6vw;
+        height: 6vw;
+        border-radius: 3vw;
+        position: absolute;
+        z-index: 10;
+        left: 4vw;
+        top: 4vw;
+    }
+
+    .largeGear{
+        transform: scale(5, 5);
+    }
+
+    .red{
+        color: red;
+    }
+    .blue{
+        color: #2e37e0;
+    }
+
+    #playerSelect {
+        width: 40vw;
+        padding: 0 2.5vw 2.5vw 2.5vw;
+    }
+
+    #selectionArea{
+        position: relative;
+    }
+
+    .btnPlayer {
+        width: 15vw;
+        height: 15vw;
+        border-radius: 0.5vw;
+        padding: 1vw;
+    }
+
+    #playerOn {
+        background-color: royalblue;
+        display: inline-block;
+        margin: 0;
+    }
+
+    #playerOff {
+        background-color: darkred;
+        margin: 0 0 0 5vw;
+        display: inline-block;
+    }
+
+    .playerSelector {
+        background-color: yellow;
+        width: 3vw;
+        height: 3vw;
+        border-radius: 1.5vw;
+        text-align: center;
+        color: black;
+        vertical-align: middle;
+        position: absolute;
+        display: inline-block;
+        left: 0;
+        right: 0;
+        margin-left: 16vw;
+        margin-right: auto;
+        padding: 0;
+    }
+
+    #player1Selector {
+        top: 3.5vw;
+    }
+    #player2Selector {
+        bottom: 3.5vw;
+    }
+
+    h3 {
+        display: block;
+    }
+
+    #btnPlayerSelectDone {
+        display: block;
+    }
+</style>
+
+<body>
+    <div id="main">
+        <div class="gear largeGear">
+            <div class="center"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="hole"></div>
+        </div>
+        <div id="header">
+            <h1><strong><span class="blue">ON-BOT</span>/<span class="red">OFF-BOT</span></strong></h1>
+        </div>
+        <div id="levelSelect" class="menu">
+            <h3>Select level</h3>
+            <button id="btnLevelSelectBack" class="btnBack">Back</button>
+        </div>
+        <div id="playerSelect" class="menu">
+            <h3>Choose your player</h3>
+            <div id="selectionArea">
+                <div id="playerOn" class="btnPlayer">PlayerOn</div>
+                <div id="playerOff" class="btnPlayer">PlayerOff</div>
+                <div id="player1Selector" class="playerSelector">P1</div>
+                <div id="player2Selector" class="playerSelector">P2</div>
+            </div>
+            <button id="btnPlayerSelectDone">Done</button>
+            <button id="btnPlayerSelectBack">Back</button>
+        </div>
+        <div id="mainMenu" class="menu">
+            <button id="btnStart">Start</button>
+            <button id="btnLeaderboards">Leaderboards</button>
+            <button id="btnCredits">Credits</button>
+            <button id="btnExit">Exit</button>
+        </div>
+
+        <div id="loadingScreen" class="menu">
+            <h1>Loading</h1>
+        </div>
+    </div>
+</body>
