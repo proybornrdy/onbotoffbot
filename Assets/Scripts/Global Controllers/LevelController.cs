@@ -57,7 +57,7 @@ public class LevelController : MonoBehaviour
     List<RoomAction> roomActions;
 
 	private int oldTime = 0;
-	private GameStateLog gameStateLog;
+	private static GameStateLog gameStateLog;
 
     public static bool gameGoing()
     {
@@ -256,8 +256,9 @@ public class LevelController : MonoBehaviour
 
     public static void ResetScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        time = 0;
+		gameStateLog.SaveGameStateLog();
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		time = 0;
 
     }
 

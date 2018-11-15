@@ -1,6 +1,6 @@
 import os
 import sys
-import json
+import jsonz
 
 for i in range(1, len(sys.argv)):
     file_path =  sys.argv[i]
