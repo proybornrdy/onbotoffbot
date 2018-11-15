@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 1.unity
     guid: 88a81b084e9568244b04bff4a6024915
   - enabled: 1
+    path: Assets/Scenes/Progression chunks/Section 2.unity
+    guid: 6fee9f6862dee074d95eebad4af7fcc5
+  - enabled: 1
     path: Assets/Scenes/Test/Monica.unity
     guid: d9d38ff9b0b85534eb60dc2593720954
   - enabled: 1

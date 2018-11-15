@@ -324,6 +324,6 @@ public class MainMenuScript : MonoBehaviour {
     {
         levels = new List<string[]>();
         levels.Add(new string[] { "Section 1", "Scenes/Progression chunks/Section 1" });
-        levels.Add(new string[] { "PressurePlateLevel", "Scenes/Level Ideas/PressurePlateLevel" });
+        levels.Add(new string[] { "Section 2", "Scenes/Progression chunks/Section 2" });
     }
 }

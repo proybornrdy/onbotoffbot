@@ -44,8 +44,8 @@ public class LevelController : MonoBehaviour
 	private string[] LevelProgresion = {
         "Assets/Scenes/Progression chunks/Section 1.unity",
         "Assets/Scenes/Progression chunks/Section 2.unity",
-        "Assets/Scenes/Level Ideas/BasicPistonPuzzle.unity",
-        "Assets/Scenes/Level Ideas/PressurePlateLevel.unity",
+        //"Assets/Scenes/Level Ideas/BasicPistonPuzzle.unity",
+       //"Assets/Scenes/Level Ideas/PressurePlateLevel.unity",
 		//"Assets/Scenes/Level Ideas/2-6.unity",
 		"Assets/Scenes/IntoScene.unity"
     };
@@ -266,28 +266,33 @@ public class LevelController : MonoBehaviour
         /*Fade out : targetAlpha=0 < currentAlpha=1 (currentAlpha --0.1f)
         Fade in :  currentALpha=0 < targetAlpha=1 (currentAlpha ++0.1f)*/
         Renderer[] rends = room.GetComponentsInChildren<Renderer>();
-        for (int i = 0; i < 100; i++)
+
+        if (!isFading)
         {
-
-            foreach (Renderer r in rends)
+            for (int i = 0; i < 100; i++)
             {
-                changeMaterialModeToFadeMode(r);
-                Color alpha = r.material.color;
-                if (isFading)
-                {
-                    if (alpha.a > 0f) alpha.a -= 0.01f;
-                    else alpha.a = 0.0f;
-                }
-                else
-                {
-                    if (alpha.a < 1)
-                        alpha.a += 0.01f;
-                }                
-                r.material.color = alpha;            
 
+                foreach (Renderer r in rends)
+                {
+                    changeMaterialModeToFadeMode(r);
+                    Color alpha = r.material.color;
+                    if (isFading)
+                    {
+                        if (alpha.a > 0f) alpha.a -= 0.01f;
+                        else alpha.a = 0.0f;
+                    }
+                    else
+                    {
+                        if (alpha.a < 1)
+                            alpha.a += 0.01f;
+                    }
+                    r.material.color = alpha;
+
+                }
+                yield return null;
             }
-            yield return null;
         }
+        else foreach (Renderer r in rends) r.enabled = false;
 
         if (!isFading) /*since the faded out room needs to stay invisible require it to stay in Fade mode. So this only applies to room that is being faded in*/
         {
