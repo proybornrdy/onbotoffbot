@@ -267,33 +267,28 @@ public class LevelController : MonoBehaviour
         /*Fade out : targetAlpha=0 < currentAlpha=1 (currentAlpha --0.1f)
         Fade in :  currentALpha=0 < targetAlpha=1 (currentAlpha ++0.1f)*/
         Renderer[] rends = room.GetComponentsInChildren<Renderer>();
+		for (int i = 0; i < 100; i++)
+		{
 
-        if (!isFading)
-        {
-            for (int i = 0; i < 100; i++)
-            {
+			foreach (Renderer r in rends)
+			{
+				changeMaterialModeToFadeMode(r);
+				Color alpha = r.material.color;
+				if (isFading)
+				{
+					if (alpha.a > 0f) alpha.a -= 0.01f;
+					else alpha.a = 0.0f;
+				}
+				else
+				{
+					if (alpha.a < 1)
+						alpha.a += 0.01f;
+				}
+				r.material.color = alpha;
 
-                foreach (Renderer r in rends)
-                {
-                    changeMaterialModeToFadeMode(r);
-                    Color alpha = r.material.color;
-                    if (isFading)
-                    {
-                        if (alpha.a > 0f) alpha.a -= 0.01f;
-                        else alpha.a = 0.0f;
-                    }
-                    else
-                    {
-                        if (alpha.a < 1)
-                            alpha.a += 0.01f;
-                    }
-                    r.material.color = alpha;
-
-                }
-                yield return null;
-            }
-        }
-        else foreach (Renderer r in rends) r.enabled = false;
+			}
+			yield return null;
+		}
 
         if (!isFading) /*since the faded out room needs to stay invisible require it to stay in Fade mode. So this only applies to room that is being faded in*/
         {
