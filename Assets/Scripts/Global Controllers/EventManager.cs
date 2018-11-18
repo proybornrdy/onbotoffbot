@@ -15,10 +15,12 @@ public class EventManager : MonoBehaviour {
 	DateTime lastPressedOffMenue = DateTime.Now;
 	public float pressThresholdMenue = .5f;
 
+    HUDController hudController;
+
 	// Use this for initialization
 	void Start () {
-		
-	}
+		hudController = FindObjectOfType<HUDController>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -26,8 +28,7 @@ public class EventManager : MonoBehaviour {
         
         try
         {
-			if (Input.GetAxis(PlayerInputTranslator.GetLeftInteract(Player.ON)) > 0.8
-				|| Input.GetButton(PlayerInputTranslator.GetLeftInteract(Player.ON)))
+			if (Input.GetButton(PlayerInputTranslator.GetLeftInteract(Player.ON)))
 			{
                 if (Time.time - lastPressedOn > pressThreshold)
                 {
@@ -35,8 +36,7 @@ public class EventManager : MonoBehaviour {
                     lastPressedOn = Time.time;
                 }
             }
-			if (Input.GetAxis(PlayerInputTranslator.GetRightInteract(Player.OFF)) > 0.8
-				|| Input.GetButton(PlayerInputTranslator.GetRightInteract(Player.OFF)))
+			if (Input.GetButton(PlayerInputTranslator.GetRightInteract(Player.OFF)))
             {
 				if (Time.time - lastPressedOff > pressThreshold)
                 {
@@ -45,7 +45,7 @@ public class EventManager : MonoBehaviour {
                 }
             }
 
-            if (Input.GetButton(PlayerInputTranslator.GetMenu(Player.ON)))
+            if (Input.GetButton(PlayerInputTranslator.GetMenu(Player.ON)) || Input.GetButton(PlayerInputTranslator.GetMenu(Player.OFF)))
             {
 				if ((DateTime.Now - lastPressedOnMenue).TotalSeconds > pressThresholdMenue)
 				{
@@ -53,7 +53,15 @@ public class EventManager : MonoBehaviour {
 					lastPressedOnMenue = DateTime.Now;
 				}
 			}
-			/*
+
+
+            if (Input.GetButtonUp(PlayerInputTranslator.GetDismiss(Player.ON)) || Input.GetButtonUp(PlayerInputTranslator.GetDismiss(Player.OFF)))
+            {
+                print("y");
+                hudController.DismissDialogue();
+
+            }
+            /*
 			if (Input.GetButton(PlayerInputTranslator.GetMenu(Player.OFF)))
 			{
 				if (Time.time - lastPressedOffMenue > pressThresholdMenue)

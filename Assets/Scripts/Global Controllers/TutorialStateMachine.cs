@@ -15,11 +15,11 @@ public class TutorialStateMachine : MonoBehaviour {
 
         states.Add(TutorialState.InteractOn, new TutorialNode());
         states[TutorialState.InteractOn].Value = false;
-        states[TutorialState.InteractOn].Text = "<span class=\"blue\">ON BOT</span>: Press LEFT TRIGGER to interact with objects.  You can only turn machines <span class=\"blue\">ON</span>";
+        states[TutorialState.InteractOn].Text = "<color=\"#9999ffff\">ON BOT</color>: Press LEFT TRIGGER to interact with objects.  You can only turn machines <color=\"#9999ffff\">ON</color>";
 
         states.Add(TutorialState.InteractOff, new TutorialNode());
         states[TutorialState.InteractOff].Value = false;
-        states[TutorialState.InteractOff].Text = "<span class=\"red\">OFF BOT</span>: Press RIGHT TRIGGER to interact with objects.  You can only turn machines <span class=\"red\">OFF</span>";
+        states[TutorialState.InteractOff].Text = "<color=\"#ff9999ff\">OFF BOT</color>: Press RIGHT TRIGGER to interact with objects.  You can only turn machines <color=\"#ff9999ff\">OFF</color>";
 
         states.Add(TutorialState.SpeakToNPC, new TutorialNode());
         states[TutorialState.SpeakToNPC].Value = false;

@@ -376,6 +376,21 @@ Prefab:
       propertyPath: startOn
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 65667979179680256, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65245013799599300, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 1.3145375
+      objectReference: {fileID: 0}
+    - target: {fileID: 65245013799599300, guid: 3b25668ad9c32c84aaf2c4efa71d9727,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.14062905
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b25668ad9c32c84aaf2c4efa71d9727, type: 2}
   m_IsPrefabAsset: 0

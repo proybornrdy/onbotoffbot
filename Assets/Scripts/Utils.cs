@@ -45,7 +45,16 @@ public static class Utils {
             );
     }
 
-	public static Vector3 closesCorner(GameObject query)
+    public static Vector3 NearestCubeQuarterCenter(Vector3 v)
+    {
+        return new Vector3(
+            Mathf.Round(v.x * 4f) / 4f,
+            Mathf.Round(v.y),
+            Mathf.Round(v.z * 4f) / 4f
+            );
+    }
+
+    public static Vector3 closesCorner(GameObject query)
 	{
 		Vector3 globalPosition = query.GetComponent<Renderer>().bounds.min;
 		globalPosition.x = (float)Math.Round((double)globalPosition.x);

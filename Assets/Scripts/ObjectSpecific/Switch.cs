@@ -12,9 +12,7 @@ public class Switch : MonoBehaviour {
     Material slotMat;
     Material lightMat;
     Interactable interactable;
-    //Color color;
-    Material onMat;
-    Material offMat;
+    Color color;
     bool isReady;
     bool muteSoundOnInit = true;
 
@@ -23,12 +21,14 @@ public class Switch : MonoBehaviour {
     {
         interactable = GetComponent<Interactable>();
         interactable.InteractAction = Toggle;
-        //slotMat = slot.GetComponent<Renderer>().material;
-        //lightMat = wire.material;
-        //color = slotMat.color;
-        onMat = (Material)Resources.Load("Wire Materials/Blue", typeof(Material));
-        offMat = (Material)Resources.Load("Wire Materials/Red", typeof(Material));
-        print(onMat);
+        slotMat = slot.GetComponent<Renderer>().material;
+        color = slotMat.color;
+        if (wire)
+        {
+            lightMat = wire.material;
+            lightMat.color = color;
+        }
+        slotLight.color = slotMat.color;
         if (on) TurnOn();
         else TurnOff();
         isReady = true;
@@ -61,12 +61,9 @@ public class Switch : MonoBehaviour {
             t.TurnOn();
         }
 
-        //slotMat.SetColor("_EmissionColor", color);
-        //if (wire) lightMat.SetColor("_EmissionColor", color);
-        //slotLight.intensity = 10;
-        slot.GetComponent<Renderer>().material = onMat;
-        if (wire) wire.material = onMat;
-        slotLight.color = onMat.color;
+        slotMat.SetColor("_EmissionColor", color);
+        if (wire) lightMat.SetColor("_EmissionColor", color);
+        slotLight.intensity = 20;
         if (!muteSoundOnInit) SoundController.instance.playSoundEffect("SwitchOn");
         else muteSoundOnInit = false;
     }
@@ -88,12 +85,9 @@ public class Switch : MonoBehaviour {
         on = false;
         foreach (var t in toggleable)
             t.TurnOff();
-        //slotMat.SetColor("_EmissionColor", Color.black);
-        //if (wire) lightMat.SetColor("_EmissionColor", Color.black);
-        //slotLight.intensity = 1;
-        slot.GetComponent<Renderer>().material = offMat;
-        if (wire) wire.material = offMat;
-        slotLight.color = offMat.color;
+        slotMat.SetColor("_EmissionColor", Color.black);
+        if (wire) lightMat.SetColor("_EmissionColor", Color.black);
+        slotLight.intensity = 1;
         if (!muteSoundOnInit) SoundController.instance.playSoundEffect("SwitchOff");
         else muteSoundOnInit = false;
     }

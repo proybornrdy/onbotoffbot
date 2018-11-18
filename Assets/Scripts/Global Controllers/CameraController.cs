@@ -11,13 +11,12 @@ public class CameraController : MonoBehaviour {
 
     //public GameObject[] rooms;
 
-    public void changeCameraPos(GameObject room)
+    public void changeCameraPos(Room room)
     {
         currentPos = Camera.main.transform.position;
-
-        Transform roomCollider = room.transform.Find("RoomCollider");
-        Vector3 roomSize = roomCollider.GetComponent<Collider>().bounds.size;
-        Bounds roomBound = roomCollider.GetComponent<Collider>().bounds;
+        
+        Vector3 roomSize = room.GetComponent<Collider>().bounds.size;
+        Bounds roomBound = room.GetComponent<Collider>().bounds;
         Vector3 roomCenter = roomBound.center;
         roomCenter.x = roomCenter.x -roomSize.x *0.25f;
         roomCenter.z = roomCenter.z - roomSize.z * 0.25f;

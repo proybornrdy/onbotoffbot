@@ -301,7 +301,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1155756531858820}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -6.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -310,7 +310,7 @@ Transform:
   - {fileID: 4861720619682740}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4800677826911638
 Transform:
   m_ObjectHideFlags: 1
@@ -776,7 +776,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!65 &65433228506954818
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -856,6 +856,8 @@ MonoBehaviour:
   jumpPoint: {fileID: 114620403703769066}
   jumpArrow: {fileID: 1797504783790262, guid: 794d2ff3102c50e4da7606494a7d3233, type: 2}
   lookRotation: {x: 0, y: 0, z: 0, w: 0}
+  dropIndicator: {fileID: 1552221659094064, guid: 64383e03f44c75f4c953e98a61f55e5d,
+    type: 2}
   pickupCooldown: 1
 --- !u!114 &114620403703769066
 MonoBehaviour:
@@ -879,7 +881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b33452e40480374c90d76920c26d2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags: 00000000010000000400000008000000060000000c000000
+  tags: 000000000100000004000000080000000c000000
 --- !u!114 &114828292766788322
 MonoBehaviour:
   m_ObjectHideFlags: 1

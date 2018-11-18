@@ -52,4 +52,9 @@ public class PlayerInputTranslator : MonoBehaviour {
     {
         return p == P1 ? "P1Menu" : "P2Menu";
     }
+
+    public static string GetDismiss(Player p)
+    {
+        return p == P1 ? "P1Dismiss" : "P1Dismiss";
+    }
 }

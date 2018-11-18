@@ -23,6 +23,8 @@ public class PlayerBase : MonoBehaviour
     public GameObject jumpArrow;
     GameObject jumpArrowInstance;
     public Quaternion lookRotation;
+    public GameObject dropIndicator;
+    GameObject dropIndicatorInstance;
     bool isGrounded;
 
     int jumpFrames = 24;
@@ -34,10 +36,13 @@ public class PlayerBase : MonoBehaviour
 
     public void Start()
     {
-        Physics.gravity = new Vector3(0, -LevelController.gravity, 0);
         jumpArrowInstance = Instantiate(jumpArrow);
         jumpArrowInstance.GetComponent<Renderer>().enabled = false;
         animator = transform.Find("Model").GetComponent<Animator>();
+        dropIndicatorInstance = Instantiate(dropIndicator);
+        dropIndicatorInstance.GetComponent<Renderer>().enabled = false;
+
+
         if (animations) animator.SetBool("Walking", false);
     }
 
@@ -55,6 +60,10 @@ public class PlayerBase : MonoBehaviour
                 lastPickup = Time.time;
                 PickUp();
             }
+        }
+        if (heldItem != null)
+        {
+            PlaceDropIndicator();
         }
     }
 
@@ -99,8 +108,8 @@ public class PlayerBase : MonoBehaviour
             {
                 dampening_factor = LevelController.flightDampener;
             }
-            transform.Translate(Vector3.forward * moveVertical * LevelController.moveSpeed * dampening_factor, relativeTo: Space.World);
-            transform.Translate(Vector3.left * moveHorizontal * LevelController.moveSpeed * dampening_factor, relativeTo: Space.World);
+            transform.Translate(Vector3.forward * moveVertical * LevelController.PlayerMovementSpeed * dampening_factor, relativeTo: Space.World);
+            transform.Translate(Vector3.left * moveHorizontal * LevelController.PlayerMovementSpeed * dampening_factor, relativeTo: Space.World);
 
             if (Input.GetButton(jump) && isGrounded) //)
             {
@@ -124,8 +133,8 @@ public class PlayerBase : MonoBehaviour
             {
                 dampening_factor = LevelController.flightDampener;
             }
-            transform.Translate(Vector3.forward * moveVertical * LevelController.moveSpeed * dampening_factor, relativeTo: Space.World);
-            transform.Translate(Vector3.left * moveHorizontal * LevelController.moveSpeed * dampening_factor, relativeTo: Space.World);
+            transform.Translate(Vector3.forward * moveVertical * LevelController.PlayerMovementSpeed * dampening_factor, relativeTo: Space.World);
+            transform.Translate(Vector3.left * moveHorizontal * LevelController.PlayerMovementSpeed * dampening_factor, relativeTo: Space.World);
         }
 
         Select(moveDirection);
@@ -184,15 +193,11 @@ public class PlayerBase : MonoBehaviour
 
         //drop held item
         if (heldItem != null) {
-            Vector3 newPos = Utils.NearestCubeCenter(transform.position + transform.forward + transform.up);
-            print("pos");
-            print(transform.position);
-            print(newPos);
-            var hits = Physics.RaycastAll(transform.position + transform.up, newPos, 1.5f);
+            Vector3 newPos = Utils.NearestCubeQuarterCenter(transform.position + transform.forward + transform.up);
+            var hits = Physics.RaycastAll(transform.position + transform.up, newPos, 1f);
             bool inWay = false;
             foreach( var h in hits)
             {
-                print(h.transform.gameObject);
                 if (!h.transform.gameObject.Equals(heldItem.gameObject)) inWay = true;
             }
             if (!inWay)
@@ -204,6 +209,7 @@ public class PlayerBase : MonoBehaviour
                 item.transform.position = newPos;
                 item.transform.rotation = Utils.AngleSnap(item.transform.rotation);
                 item.GetComponent<Rigidbody>().isKinematic = false;
+                dropIndicatorInstance.GetComponent<Renderer>().enabled = false;
             }
 
         } else {
@@ -217,6 +223,7 @@ public class PlayerBase : MonoBehaviour
                 heldItem.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 selectedItem = null;
                 heldItem.GetComponent<Interactable>().Deselect();
+                dropIndicatorInstance.GetComponent<Renderer>().enabled = true;
             }
         }
     }
@@ -246,6 +253,23 @@ public class PlayerBase : MonoBehaviour
             jumpTo = null;
             jumpFrom = null;
             jumpArrowInstance.GetComponent<Renderer>().enabled = false;
+        }
+    }
+
+    private void PlaceDropIndicator()
+    {
+        Vector3 newPos = Utils.NearestCubeQuarterCenter(transform.position + transform.forward + transform.up);
+        var hits = Physics.RaycastAll(transform.position + transform.up, newPos, 1f);
+        bool inWay = false;
+        foreach (var h in hits)
+        {
+            if (!h.transform.gameObject.Equals(heldItem.gameObject)) inWay = true;
+        }
+        if (!inWay)
+        {
+            RaycastHit hit;
+            Physics.Raycast(newPos, Vector3.down, out hit);
+            dropIndicatorInstance.transform.position = hit.point + (Vector3.up * 0.1f);
         }
     }
 }

@@ -80,16 +80,6 @@ public class Magnet : Toggleable {
             on = false;
             print("Magnet is OFF");
             Stop();
-            //foreach (GameObject magneticObject in magneticObjects)
-            //{
-            //    Rigidbody magneticRb = magneticObject.GetComponent<Rigidbody>();
-            //    if (magneticObject.tag != "Player" && magneticRb.drag == Mathf.Infinity)
-            //    {
-            //        magneticRb.drag = 0;
-            //        magneticObject.transform.parent = null;
-            //    }
-            //    magneticObject.GetComponent<Magnetic>().SetIsColliding(false);
-            //}
         }
     }
 
