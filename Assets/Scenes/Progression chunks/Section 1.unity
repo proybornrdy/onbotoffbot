@@ -38011,7 +38011,7 @@ Prefab:
     - target: {fileID: 23487849328820074, guid: c3578433561f5504ca3df515d2904176,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4834212008917500, guid: c3578433561f5504ca3df515d2904176, type: 2}
       propertyPath: m_LocalScale.x
