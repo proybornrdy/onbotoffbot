@@ -133,12 +133,21 @@ public class PlayerBase : MonoBehaviour
             {
                 dampening_factor = LevelController.flightDampener;
             }
-            transform.Translate(Vector3.forward * moveVertical * LevelController.PlayerMovementSpeed * dampening_factor, relativeTo: Space.World);
-            transform.Translate(Vector3.left * moveHorizontal * LevelController.PlayerMovementSpeed * dampening_factor, relativeTo: Space.World);
+            Vector3 translation = (moveDirection * LevelController.PlayerMovementSpeed * dampening_factor);
+            var hits = Physics.RaycastAll(transform.position + (Vector3.up * 0.5f), translation, 0.25f);
+            bool inWay = false;
+            foreach (var h in hits)
+            {
+                if (h.transform != this.transform)
+                    inWay = true;
+            }
+            if (!inWay) {
+                transform.Translate(translation, relativeTo: Space.World);
+            }
         }
-
         Select(moveDirection);
-        
+
+
     }
 
     IEnumerator Jump()

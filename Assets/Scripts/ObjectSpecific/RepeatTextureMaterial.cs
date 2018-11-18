@@ -46,35 +46,35 @@ public class RepeatTextureMaterial : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        var renderer = GetComponent<Renderer>();
-        float x;
-        switch (textureXCoordinate)
-        {
-            case Coordinate.y:
-                x = transform.lossyScale.y * 10 / scaleX;
-                break;
-            case Coordinate.z:
-                x = transform.lossyScale.z * 10 / scaleX;
-                break;
-            default:
-                x = transform.lossyScale.x * 10 / scaleX;
-                break;
-        }
-        float y;
-        switch (textureYCoordinate)
-        {
-            case Coordinate.x:
-                y = transform.lossyScale.x * 10 / scaleY;
-                break;
-            case Coordinate.y:
-                y = transform.lossyScale.y * 10 / scaleY;
-                break;
-            default:
-                y = transform.lossyScale.z * 10 / scaleY;
-                break;
-        }
-        renderer.material.mainTextureScale = new Vector2(x, y);
-        renderer.material.mainTextureOffset = new Vector2(offsetX, offsetY);
+        //var renderer = GetComponent<Renderer>();
+        //float x;
+        //switch (textureXCoordinate)
+        //{
+        //    case Coordinate.y:
+        //        x = transform.lossyScale.y * 10 / scaleX;
+        //        break;
+        //    case Coordinate.z:
+        //        x = transform.lossyScale.z * 10 / scaleX;
+        //        break;
+        //    default:
+        //        x = transform.lossyScale.x * 10 / scaleX;
+        //        break;
+        //}
+        //float y;
+        //switch (textureYCoordinate)
+        //{
+        //    case Coordinate.x:
+        //        y = transform.lossyScale.x * 10 / scaleY;
+        //        break;
+        //    case Coordinate.y:
+        //        y = transform.lossyScale.y * 10 / scaleY;
+        //        break;
+        //    default:
+        //        y = transform.lossyScale.z * 10 / scaleY;
+        //        break;
+        //}
+        //renderer.material.mainTextureScale = new Vector2(x, y);
+        //renderer.material.mainTextureOffset = new Vector2(offsetX, offsetY);
 
     }
 }
