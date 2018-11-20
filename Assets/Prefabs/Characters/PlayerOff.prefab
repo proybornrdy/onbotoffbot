@@ -224,7 +224,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1904178564664694}
   m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: -0.5000019, y: 33.2, z: 10.4}
+  m_LocalPosition: {x: 0, y: 1.01, z: 0.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4789844190133800}
@@ -810,10 +810,10 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 0
-  m_Color: {r: 0.9339623, g: 0.5362057, b: 0.4008989, a: 1}
+  m_Color: {r: 1, g: 0.103087686, b: 0, a: 1}
   m_Intensity: 6
   m_Range: 2.8340845
-  m_SpotAngle: 62.883614
+  m_SpotAngle: 36.116013
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
@@ -854,6 +854,7 @@ MonoBehaviour:
   heldItem: {fileID: 0}
   selectedItem: {fileID: 0}
   jumpPoint: {fileID: 114620403703769066}
+  selectionCooldown: 1
   jumpArrow: {fileID: 1797504783790262, guid: 794d2ff3102c50e4da7606494a7d3233, type: 2}
   lookRotation: {x: 0, y: 0, z: 0, w: 0}
   dropIndicator: {fileID: 1552221659094064, guid: 64383e03f44c75f4c953e98a61f55e5d,

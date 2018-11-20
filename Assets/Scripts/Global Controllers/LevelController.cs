@@ -163,7 +163,7 @@ public class LevelController : MonoBehaviour
 		}
         currentRoom = 0;
         if (!isTestLevel && rooms.Length != 0) cc.changeCameraPos(rooms[currentRoom][0]);
-        PlayersMovedToRoom(0);
+        if (!isTestLevel )PlayersMovedToRoom(0);
     }
 
     public static void ToggleMenue()

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4866546555003940}
   - component: {fileID: 33712769524562384}
   - component: {fileID: 23384836956512426}
+  - component: {fileID: 65918968017249882}
   m_Layer: 0
   m_Name: skid
   m_TagString: Untagged
@@ -34,8 +35,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1908122720602014}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.69, z: -1.021}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.7942522, y: 4.77, z: 1.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,3 +84,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1908122720602014}
   m_Mesh: {fileID: 4300000, guid: 8424bae3548db084da2ff531cb554a8a, type: 3}
+--- !u!65 &65918968017249882
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1908122720602014}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99494934, y: 0.13681826, z: 0.9649498}
+  m_Center: {x: 0.49747527, y: -0.00022758916, z: 0.50532806}

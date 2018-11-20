@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class ConveyerBelt : Toggleable {
     public bool on = false;
-    public GameObject beltFront;
-    public GameObject beltMiddle;
-    public GameObject beltBack;
+    public GameObject belt;
     public float scrollSpeed = 5f;
+    public bool reverse;
 
     // Use this for initialization
     void Start () {
@@ -19,12 +18,12 @@ public class ConveyerBelt : Toggleable {
         if (on)
         {
             float offset = scrollSpeed * Time.deltaTime;
-            Renderer mr = beltMiddle.GetComponent<Renderer>();
+            Renderer mr = belt.GetComponent<Renderer>();
             string[] texProperties = mr.material.GetTexturePropertyNames();
             for (int i = 0; i < texProperties.Length; i++)
             {
                 Vector2 pos = mr.material.GetTextureOffset(texProperties[i]);
-                mr.material.SetTextureOffset(texProperties[i], pos + (Vector2.left * offset));
+                mr.material.SetTextureOffset(texProperties[i], pos + ((reverse ? Vector2.right : Vector2.left) * offset) * scrollSpeed / 20);
             }
         }
 	}
@@ -54,7 +53,7 @@ public class ConveyerBelt : Toggleable {
         if (!on || !other.gameObject.GetComponent<Tags>()) return;
         if (other.gameObject.GetComponent<Tags>().HasTag(Tag.Pushable))
         {
-            Vector3 direction = (beltFront.transform.position - beltBack.transform.position).normalized;
+            Vector3 direction = reverse?  Vector3.back : Vector3.forward;
             //other.gameObject.GetComponent<Rigidbody>().AddForce(scrollSpeed * direction * Time.deltaTime, ForceMode.VelocityChange);
             other.gameObject.GetComponent<Rigidbody>().velocity = scrollSpeed * direction * Time.deltaTime * 20;
 
