@@ -11,59 +11,46 @@ public class Piston : Toggleable
     public Transform moveablePart;
     public bool startOn = false;
     bool on = false;
-    float initMoveablePosition;
-    float initExtension;
-    float endMoveablePosition;
-    float endExtension;
+    bool moving = false;
+    float t;
+    Vector3 initPos;
+    Vector3 maxPos;
+    float distance;
+    int enters = 0;
 
     // Use this for initialization
     void Start()
     {
+        t = 0;
+        initPos = moveablePart.position;
+        maxPos = initPos + (transform.forward * extensionRange);
+        distance = Vector3.Distance(initPos, maxPos);
         if (startOn)
         {
             TurnOn();
         }
-        initMoveablePosition = moveablePart.localPosition.x;
-        initExtension = arm.localScale.x;
-        endMoveablePosition = moveablePart.localPosition.x + (-extensionRange);
-        endExtension = arm.localScale.x + 4f * extensionRange;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!LevelController.gameGoing())
-        {
-            return;
-        }
-        
-        if(on)
-        {
-            Extend();
-        }
-        else
-        {
-            Contract();
-        }
-        
+        if (on && !moving) Extend();
+        if (!on && !moving) Retract();
+
     }
 
     public override void TurnOn()
     {
-        if (!on)
-        {
-            on = true;
-            SoundController.instance.playSoundEffect("pistonOn");
-        }
+        on = true;
+        Extend();
+        SoundController.instance.playSoundEffect("pistonOn");
     }
 
     public override void TurnOff()
     {
-        if (on)
-        {
-            on = false;
-            SoundController.instance.playSoundEffect("pistonOff");
-        }
+        on = false;
+        Retract();
+        SoundController.instance.playSoundEffect("pistonOff");
     }
 
     public override bool IsOn()
@@ -73,28 +60,43 @@ public class Piston : Toggleable
 
     public void Extend()
     {
-        if (arm.localScale.x < endExtension && moveablePart.localPosition.x > endMoveablePosition)
-        {
-            arm.localScale += new Vector3(speed, 0, 0);
-            moveablePart.localPosition -= new Vector3((speed/4), 0, 0);
-        }
+        StartCoroutine("ExtendCoroutine");
     }
 
-    public void Contract()
-    {        
-        if (arm.localScale.x > initExtension && moveablePart.localPosition.x < initMoveablePosition)
-        {
-            arm.localScale -= new Vector3(speed, 0, 0);
-            moveablePart.localPosition += new Vector3((speed/4), 0, 0);
-        }
-    }
-    
-    void OnCollisionStay(Collision other)
+    IEnumerator ExtendCoroutine()
     {
-        if (on && other.gameObject.tag == "MoveableBlock")
+        StopCoroutine("RetractCoroutine");
+        moving = true;
+        while (t < 1)
         {
-            Vector3 moveDirection = Utils.NearestCardinal(other.transform.position - transform.position);
-            other.transform.position += moveDirection * speed;
+            float increment = speed * Time.deltaTime / distance;
+            t += increment;
+            moveablePart.position = Vector3.Lerp(initPos, maxPos, t);
+            arm.localScale += Vector3.right * increment * 4;
+            yield return null;
         }
-    }    
+        t = 1;
+        moving = false;
+    }
+
+    public void Retract()
+    {
+        StartCoroutine("RetractCoroutine");
+    }
+
+    IEnumerator RetractCoroutine()
+    {
+        StopCoroutine("ExtendCoroutine");
+        moving = true;
+        while (t > 0)
+        {
+            float increment = speed * Time.deltaTime / distance;
+            t -= increment;
+            moveablePart.position = Vector3.Lerp(initPos, maxPos, t);
+            arm.localScale -= Vector3.right * increment * 4;
+            yield return null;
+        }
+        moving = false;
+        t = 0;
+    }
 }

@@ -12,7 +12,7 @@ public class Switch : MonoBehaviour {
     Material slotMat;
     Material lightMat;
     Interactable interactable;
-    Color color;
+    public Color color;
     bool isReady;
     bool muteSoundOnInit = true;
 
@@ -22,7 +22,7 @@ public class Switch : MonoBehaviour {
         interactable = GetComponent<Interactable>();
         interactable.InteractAction = Toggle;
         slotMat = slot.GetComponent<Renderer>().material;
-        color = slotMat.color;
+        slotMat.color = color;
         if (wire)
         {
             lightMat = wire.material;

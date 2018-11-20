@@ -127,7 +127,7 @@ public class LevelController : MonoBehaviour
     {
         OnPlayer = GameObject.Find("PlayerOn");
         OffPlayer = GameObject.Find("PlayerOff");
-        for (int i = 0; i < doors.Length; i++) doors[i].index = i;
+        if (!isTestLevel) for (int i = 0; i < doors.Length; i++) doors[i].index = i;
         cc = GameObject.Find("CameraController").GetComponent<CameraController>();
         snapJumpingStatic = snapJumping;
 
@@ -140,7 +140,7 @@ public class LevelController : MonoBehaviour
     {
         Physics.gravity = new Vector3(0, -LevelController.gravity, 0);
         SetUpRoomActions();
-        if (rooms.Length > 0)
+        if (!isTestLevel && rooms.Length > 0)
         {
             for (int i = 1; i < rooms.Length; i++)
                 for (int j = 0; j < rooms[i].Length; j++) rooms[i][j].SetActive(false);
@@ -162,7 +162,7 @@ public class LevelController : MonoBehaviour
 			// SceneManager.LoadScene("InGameMenue", LoadSceneMode.Additive);
 		}
         currentRoom = 0;
-        if (rooms.Length != 0) cc.changeCameraPos(rooms[currentRoom][0]);
+        if (!isTestLevel && rooms.Length != 0) cc.changeCameraPos(rooms[currentRoom][0]);
         PlayersMovedToRoom(0);
     }
 
@@ -196,7 +196,7 @@ public class LevelController : MonoBehaviour
 			}
 
         }
-        cc.changeCameraPos(rooms[currentRoom][0]);
+        if (!isTestLevel) cc.changeCameraPos(rooms[currentRoom][0]);
 
         Time.timeScale = (InMenue) ? 0.00f : 1.00f;
         if (PauseSceneRoot)

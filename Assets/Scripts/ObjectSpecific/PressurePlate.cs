@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PressurePlate : MonoBehaviour {
-    public Toggleable toggleable;
+    public Toggleable[] toggleables;
+    Transform prevParent;
     int enters = 0;
 
-    private void Toggle()
+    private void ToggleControlled()
     {
-        if (toggleable.IsOn()) toggleable.TurnOff();
-        else toggleable.TurnOn();
+        foreach (var t in toggleables) t.Toggle();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -17,7 +17,12 @@ public class PressurePlate : MonoBehaviour {
         if (other.gameObject.HasTag(Tag.HasWeight))
         {
             enters++;
-            if (enters == 1) Toggle();
+            if (enters == 1)
+            {
+                ToggleControlled();
+                prevParent = other.transform.parent;
+                other.transform.parent = transform;
+            }
         }
     }
 
@@ -26,7 +31,10 @@ public class PressurePlate : MonoBehaviour {
         if (other.gameObject.HasTag(Tag.HasWeight))
         {
             enters--;
-            if (enters == 0) Toggle();
+            if (enters == 0) {
+                ToggleControlled();
+                other.transform.parent = prevParent;
+            }
             else if (enters < 0) enters = 0;
         }
     }

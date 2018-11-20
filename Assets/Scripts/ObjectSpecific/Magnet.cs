@@ -11,6 +11,7 @@ public class Magnet : Toggleable {
     public bool startOn = false;
     bool on = false;
     public Light spotLight;
+    public GameObject pullPoint;
 
     // Use this for initialization
     void Start () {
@@ -49,8 +50,9 @@ public class Magnet : Toggleable {
         foreach (var o in objs)
         {
             var rb = o.GetComponent<Rigidbody>();
-            rb.velocity = (transform.position - o.transform.position);
+            rb.velocity = (pullPoint.transform.position - o.transform.position) * maxStrength;
         }
+        
     }
 
     void Stop()

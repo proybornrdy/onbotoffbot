@@ -10,4 +10,10 @@ public abstract class Toggleable : MonoBehaviour {
     public abstract void TurnOff();
 
     public abstract bool IsOn();
+
+    public void Toggle()
+    {
+        if (IsOn()) TurnOff();
+        else TurnOn();
+    }
 }

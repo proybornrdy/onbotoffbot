@@ -14,6 +14,8 @@ public class PlayerBase : MonoBehaviour
     public GameObject selectedItem;
     internal Animator animator;
     public JumpPoint jumpPoint;
+    public float selectionCooldown = 1f;
+    float lastSelected;
     internal string horizontalAxis;
     internal string verticalAxis;
     internal string jump;
@@ -134,18 +136,22 @@ public class PlayerBase : MonoBehaviour
                 dampening_factor = LevelController.flightDampener;
             }
             Vector3 translation = (moveDirection * LevelController.PlayerMovementSpeed * dampening_factor);
-            var hits = Physics.RaycastAll(transform.position + (Vector3.up * 0.5f), translation, 0.25f);
+            var hits = Physics.RaycastAll(transform.position + (Vector3.up * 0.25f), translation, 0.5f);
             bool inWay = false;
             foreach (var h in hits)
             {
                 if (h.transform != this.transform)
+                {
                     inWay = true;
+                    break;
+                }
             }
             if (!inWay) {
                 transform.Translate(translation, relativeTo: Space.World);
             }
         }
-        Select(moveDirection);
+        if (Time.time - lastSelected >= selectionCooldown)
+            Select(moveDirection);
 
 
     }
@@ -196,6 +202,7 @@ public class PlayerBase : MonoBehaviour
                 selectedItem = closest;
             }
         }
+        lastSelected = Time.time;
     }
 
     void PickUp() {
