@@ -854,7 +854,6 @@ MonoBehaviour:
   heldItem: {fileID: 0}
   selectedItem: {fileID: 0}
   jumpPoint: {fileID: 114620403703769066}
-  selectionCooldown: 1
   jumpArrow: {fileID: 1797504783790262, guid: 794d2ff3102c50e4da7606494a7d3233, type: 2}
   lookRotation: {x: 0, y: 0, z: 0, w: 0}
   dropIndicator: {fileID: 1552221659094064, guid: 64383e03f44c75f4c953e98a61f55e5d,

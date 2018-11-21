@@ -14,8 +14,6 @@ public class PlayerBase : MonoBehaviour
     public GameObject selectedItem;
     internal Animator animator;
     public JumpPoint jumpPoint;
-    public float selectionCooldown = 1f;
-    float lastSelected;
     internal string horizontalAxis;
     internal string verticalAxis;
     internal string jump;
@@ -94,7 +92,7 @@ public class PlayerBase : MonoBehaviour
         {
             lookRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
 
             if (animations) animator.SetBool("Walking", true);
         }
@@ -110,8 +108,8 @@ public class PlayerBase : MonoBehaviour
             {
                 dampening_factor = LevelController.flightDampener;
             }
-            transform.Translate(Vector3.forward * moveVertical * LevelController.PlayerMovementSpeed * dampening_factor, relativeTo: Space.World);
-            transform.Translate(Vector3.left * moveHorizontal * LevelController.PlayerMovementSpeed * dampening_factor, relativeTo: Space.World);
+            transform.Translate(Vector3.forward * moveVertical * LevelController.PlayerMovementSpeed * dampening_factor * Time.deltaTime, relativeTo: Space.World);
+            transform.Translate(Vector3.left * moveHorizontal * LevelController.PlayerMovementSpeed * dampening_factor * Time.deltaTime, relativeTo: Space.World);
 
             if (Input.GetButton(jump) && isGrounded) //)
             {
@@ -150,10 +148,7 @@ public class PlayerBase : MonoBehaviour
                 transform.Translate(translation, relativeTo: Space.World);
             }
         }
-        if (Time.time - lastSelected >= selectionCooldown)
-            Select(moveDirection);
-
-
+        Select(moveDirection);
     }
 
     IEnumerator Jump()
@@ -189,20 +184,24 @@ public class PlayerBase : MonoBehaviour
             selectedItem = null;
         }
 
+        foreach (var i in TagCatalogue.FindAllWithTag(Tag.Interactable)
+            .Where(obj => Utils.InRange(transform.position, obj.transform.position) && (heldItem == null || !obj.Equals(heldItem.gameObject)))
+            .Select(obj => Vector3.Angle(transform.forward, obj.transform.position - transform.position)))
+            print(i);
+
         var interactables = TagCatalogue.FindAllWithTag(Tag.Interactable)
             .Where(obj => Utils.InRange(transform.position, obj.transform.position) && (heldItem == null || !obj.Equals(heldItem.gameObject)))
-            .OrderBy(obj => Vector3.Angle(moveDirection, obj.transform.position - transform.position));
+            .OrderBy(obj => Mathf.Abs(Vector3.Angle(transform.forward, obj.transform.position - transform.position)));
         if (interactables.Count() != 0)
         {
             GameObject closest = interactables.ElementAt(0);
-            if (Vector3.Angle(moveDirection, closest.transform.position - transform.position)
+            if (Vector3.Angle(transform.forward, closest.transform.position - transform.position)
                 <= selectionThreshold)
             {
                 closest.GetComponent<Interactable>().Select(gameObject);
                 selectedItem = closest;
             }
         }
-        lastSelected = Time.time;
     }
 
     void PickUp() {
@@ -229,7 +228,7 @@ public class PlayerBase : MonoBehaviour
             }
 
         } else {
-            if (selectedItem.IsPickup())
+            if (selectedItem && selectedItem.IsPickup())
             {
                 var item = selectedItem.GetComponent<PickupItem>();
                 heldItem = item;
@@ -285,7 +284,7 @@ public class PlayerBase : MonoBehaviour
         {
             RaycastHit hit;
             Physics.Raycast(newPos, Vector3.down, out hit);
-            dropIndicatorInstance.transform.position = hit.point + (Vector3.up * 0.1f);
+            dropIndicatorInstance.transform.position = hit.point + (Vector3.up * 0.2f);
         }
     }
 }

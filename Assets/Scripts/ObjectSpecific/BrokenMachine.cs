@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BrokenMachine : Toggleable {
     bool on = true;
-    public GameObject[] particles;
+    public ParticleSystem[] particles;
     public GameObject particleCollider;
 
     public override bool IsOn()
@@ -15,7 +15,7 @@ public class BrokenMachine : Toggleable {
     public override void TurnOff()
     {
         on = false;
-        foreach (var p in particles) p.SetActive(false);
+        foreach (var p in particles) p.Stop();
         particleCollider.SetActive(false);
         GetComponent<AudioSource>().Stop();
     }
@@ -23,7 +23,7 @@ public class BrokenMachine : Toggleable {
     public override void TurnOn()
     {
         on = true;
-        foreach (var p in particles) p.SetActive(true);
+        foreach (var p in particles) p.Play();
         particleCollider.SetActive(true);
         GetComponent<AudioSource>().Play();
     }

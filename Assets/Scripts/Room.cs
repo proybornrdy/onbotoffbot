@@ -81,7 +81,12 @@ public class Room : MonoBehaviour {
     {
         /*Fade out : targetAlpha=0 < currentAlpha=1 (currentAlpha --0.1f)
         Fade in :  currentALpha=0 < targetAlpha=1 (currentAlpha ++0.1f)*/
+
         Renderer[] rends = GetComponentsInChildren<Renderer>();
+        if (!fadingOut)
+        {
+            foreach (var r in rends) r.enabled = true;
+        }
         for (int i = 0; i < 100; i++)
         {
 
@@ -105,7 +110,12 @@ public class Room : MonoBehaviour {
             yield return null;
         }
 
-        if (!fadingOut) /*since the faded out room needs to stay invisible require it to stay in Fade mode. So this only applies to room that is being faded in*/
+        if (fadingOut)
+        {
+            foreach (Renderer r in rends) r.enabled = false;
+
+        }
+        else /*since the faded out room needs to stay invisible require it to stay in Fade mode. So this only applies to room that is being faded in*/
         {
             foreach (Renderer r in rends) changeMaterialModeToOpaqueMode(r);
         }
@@ -119,7 +129,7 @@ public class Room : MonoBehaviour {
         {
             changeMaterialModeToFadeMode(r);
             Color alpha = r.material.color;
-            alpha.a = 0.2f;
+            alpha.a = 0.0f;
             r.material.color = alpha;
         }
     }
