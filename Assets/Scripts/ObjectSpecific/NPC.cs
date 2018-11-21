@@ -51,7 +51,6 @@ public class NPC : MonoBehaviour {
             isSpeaking = true;
             panel.SetActive(true);
             text.gameObject.SetActive(true);
-            continueButton.SetActive(true);
             text.text = dialogue[line];
             line++;
         }
@@ -69,7 +68,6 @@ public class NPC : MonoBehaviour {
         panel.SetActive(false);
         text.gameObject.SetActive(false);
         line = 0;
-        continueButton.SetActive(false);
     }
 
     void FlashSign()
