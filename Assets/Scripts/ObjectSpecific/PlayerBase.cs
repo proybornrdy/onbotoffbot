@@ -108,8 +108,8 @@ public class PlayerBase : MonoBehaviour
             {
                 dampening_factor = LevelController.flightDampener;
             }
-            transform.Translate(Vector3.forward * moveVertical * LevelController.PlayerMovementSpeed * dampening_factor, relativeTo: Space.World);
-            transform.Translate(Vector3.left * moveHorizontal * LevelController.PlayerMovementSpeed * dampening_factor, relativeTo: Space.World);
+            transform.Translate(Vector3.forward * moveVertical * LevelController.PlayerMovementSpeed * dampening_factor * Time.deltaTime, relativeTo: Space.World);
+            transform.Translate(Vector3.left * moveHorizontal * LevelController.PlayerMovementSpeed * dampening_factor * Time.deltaTime, relativeTo: Space.World);
 
             if (Input.GetButton(jump) && isGrounded) //)
             {
@@ -284,7 +284,7 @@ public class PlayerBase : MonoBehaviour
         {
             RaycastHit hit;
             Physics.Raycast(newPos, Vector3.down, out hit);
-            dropIndicatorInstance.transform.position = hit.point + (Vector3.up * 0.1f);
+            dropIndicatorInstance.transform.position = hit.point + (Vector3.up * 0.2f);
         }
     }
 }
