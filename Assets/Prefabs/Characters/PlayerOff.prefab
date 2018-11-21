@@ -849,7 +849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933313478e7be174a81593f027041bbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectionThreshold: 60
+  selectionThreshold: 90
   animations: 0
   heldItem: {fileID: 0}
   selectedItem: {fileID: 0}
