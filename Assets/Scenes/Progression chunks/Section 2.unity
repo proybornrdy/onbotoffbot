@@ -21028,6 +21028,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1869889787}
     m_Modifications:
+    - target: {fileID: 114650720929991484, guid: 69a4f798b589fa64d99c665d49d6fb02,
+        type: 2}
+      propertyPath: toggleables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4547084059428096, guid: 69a4f798b589fa64d99c665d49d6fb02, type: 2}
       propertyPath: m_LocalPosition.x
       value: -3.3427734
@@ -21078,6 +21083,11 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114650720929991484, guid: 69a4f798b589fa64d99c665d49d6fb02,
+        type: 2}
+      propertyPath: toggleables.Array.data[0]
+      value: 
+      objectReference: {fileID: 771219511}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69a4f798b589fa64d99c665d49d6fb02, type: 2}
   m_IsPrefabAsset: 0
@@ -37654,6 +37664,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1918950071}
     m_Modifications:
+    - target: {fileID: 114650720929991484, guid: 69a4f798b589fa64d99c665d49d6fb02,
+        type: 2}
+      propertyPath: toggleables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4547084059428096, guid: 69a4f798b589fa64d99c665d49d6fb02, type: 2}
       propertyPath: m_LocalPosition.x
       value: -7.34
@@ -37720,6 +37735,11 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114650720929991484, guid: 69a4f798b589fa64d99c665d49d6fb02,
+        type: 2}
+      propertyPath: toggleables.Array.data[0]
+      value: 
+      objectReference: {fileID: 1635212332}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69a4f798b589fa64d99c665d49d6fb02, type: 2}
   m_IsPrefabAsset: 0
@@ -38850,7 +38870,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4789844190133800, guid: 4304a732440dc9747b5580d4f3aa6d8b, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.128
+      value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: 4789844190133800, guid: 4304a732440dc9747b5580d4f3aa6d8b, type: 2}
       propertyPath: m_LocalRotation.x
@@ -38953,6 +38973,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1918950071}
     m_Modifications:
+    - target: {fileID: 114650720929991484, guid: 69a4f798b589fa64d99c665d49d6fb02,
+        type: 2}
+      propertyPath: toggleables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4547084059428096, guid: 69a4f798b589fa64d99c665d49d6fb02, type: 2}
       propertyPath: m_LocalPosition.x
       value: -9.35
@@ -39002,6 +39027,11 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114650720929991484, guid: 69a4f798b589fa64d99c665d49d6fb02,
+        type: 2}
+      propertyPath: toggleables.Array.data[0]
+      value: 
+      objectReference: {fileID: 1743087270}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69a4f798b589fa64d99c665d49d6fb02, type: 2}
   m_IsPrefabAsset: 0
@@ -41853,6 +41883,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1918950071}
     m_Modifications:
+    - target: {fileID: 114650720929991484, guid: 69a4f798b589fa64d99c665d49d6fb02,
+        type: 2}
+      propertyPath: toggleables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4547084059428096, guid: 69a4f798b589fa64d99c665d49d6fb02, type: 2}
       propertyPath: m_LocalPosition.x
       value: -10.342773
@@ -41912,6 +41947,11 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114650720929991484, guid: 69a4f798b589fa64d99c665d49d6fb02,
+        type: 2}
+      propertyPath: toggleables.Array.data[0]
+      value: 
+      objectReference: {fileID: 1743087270}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69a4f798b589fa64d99c665d49d6fb02, type: 2}
   m_IsPrefabAsset: 0

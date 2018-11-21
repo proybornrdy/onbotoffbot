@@ -7,7 +7,7 @@ public class TextTrigger : MonoBehaviour {
     public GameObject panel;
     public GameObject text;
 
-	public void TurnOn()
+    public void TurnOn()
     {
         TurnAllDialogueOff();
         panel.SetActive(true);
