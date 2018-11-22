@@ -120,6 +120,7 @@ public class LevelController : MonoBehaviour
         {
             tutorialStateMachine.SetStateValue(state, true);
             hudController.ReceiveText(tutorialStateMachine.GetStateText(state));
+            hudController.ReceiveButtons(tutorialStateMachine.GetStateButtons(state));
         }
     }
 

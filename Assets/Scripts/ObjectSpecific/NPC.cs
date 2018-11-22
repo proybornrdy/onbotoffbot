@@ -8,7 +8,6 @@ public class NPC : MonoBehaviour {
     public string[] dialogue;
     public GameObject panel;
     public Text text;
-    public GameObject continueButton;
     public GameObject flashingSign;
     bool isSpeaking = false;
     int line = 0;
@@ -17,9 +16,13 @@ public class NPC : MonoBehaviour {
     private float timer;
     public float flashSpeed = 1f; //seconds
     Interactable interactable;
+    HUDController hudController;
 
     private void Start()
     {
+        hudController = FindObjectOfType<HUDController>();
+        hudController.DismissButtons();
+        hudController.xboxButtonImg.SetActive(false);
         interactable = GetComponent<Interactable>();
         interactable.InteractAction = onInteract;
         InvokeRepeating("FlashSign", 0.1f, flashSpeed);
@@ -48,7 +51,6 @@ public class NPC : MonoBehaviour {
             isSpeaking = true;
             panel.SetActive(true);
             text.gameObject.SetActive(true);
-            continueButton.SetActive(true);
             text.text = dialogue[line];
             line++;
         }
@@ -66,7 +68,6 @@ public class NPC : MonoBehaviour {
         panel.SetActive(false);
         text.gameObject.SetActive(false);
         line = 0;
-        continueButton.SetActive(false);
     }
 
     void FlashSign()
