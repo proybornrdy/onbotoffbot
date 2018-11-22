@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerBase : MonoBehaviour
@@ -253,15 +254,17 @@ public class PlayerBase : MonoBehaviour
         if (jps.Count() > 0)
         {
             jumpFrom = transform.position;
-            jumpTo = jps.ElementAt(0).transform.position;
-            jumpArrowInstance.GetComponent<Renderer>().enabled = true;
-            Vector3 direction = transform.position - jumpTo.Value;
-            direction.y = 0;
-            direction = Utils.NearestCardinal(direction) * 0.5f;
-            if (direction.z == 0) jumpArrowInstance.transform.rotation = Quaternion.Euler(0, 90, 0);
-            else jumpArrowInstance.transform.rotation = Quaternion.Euler(0, 0, 0);
-            Vector3 jumpArrowPos = jumpTo.Value + (Vector3.down * 0.5f) + direction;
-            jumpArrowInstance.transform.position = jumpArrowPos;
+            if (!isHoldingObj(jps.ElementAt(0))) {
+                jumpTo = jps.ElementAt(0).transform.position;
+                jumpArrowInstance.GetComponent<Renderer>().enabled = true;
+                Vector3 direction = transform.position - jumpTo.Value;
+                direction.y = 0;
+                direction = Utils.NearestCardinal(direction) * 0.5f;
+                if (direction.z == 0) jumpArrowInstance.transform.rotation = Quaternion.Euler(0, 90, 0);
+                else jumpArrowInstance.transform.rotation = Quaternion.Euler(0, 0, 0);
+                Vector3 jumpArrowPos = jumpTo.Value + (Vector3.down * 0.5f) + direction;
+                jumpArrowInstance.transform.position = jumpArrowPos;
+            }
         }
         else
         {
@@ -269,6 +272,22 @@ public class PlayerBase : MonoBehaviour
             jumpFrom = null;
             jumpArrowInstance.GetComponent<Renderer>().enabled = false;
         }
+    }
+
+    private bool isHoldingObj(GameObject gameObject)
+    {
+        GameObject gameObjectParent = gameObject.transform.parent.gameObject;
+        if (gameObjectParent.HasTag(Tag.Player))
+        {
+            foreach(Transform child in gameObjectParent.transform)
+            {
+                if(child.gameObject.HasTag(Tag.Pickupable))
+                {
+                    return true;
+                }
+            }            
+        }
+        return false;
     }
 
     private void PlaceDropIndicator()
