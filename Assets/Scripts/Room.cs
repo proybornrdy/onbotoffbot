@@ -21,6 +21,10 @@ public class Room : MonoBehaviour {
 
     private void Start()
     {
+    }
+
+    public void HideBlockingWalls()
+    {
         if (wallsToHide) wallsToHide.SetActive(false);
     }
 
@@ -85,7 +89,9 @@ public class Room : MonoBehaviour {
         Renderer[] rends = GetComponentsInChildren<Renderer>();
         if (!fadingOut)
         {
-            foreach (var r in rends) r.enabled = true;
+            foreach (var r in rends)
+                if (!r.gameObject.HasTag(Tag.JumpPoint) || !r.gameObject.HasTag(Tag.Collider))
+                    r.enabled = true;
         }
         for (int i = 0; i < 100; i++)
         {

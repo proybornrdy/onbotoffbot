@@ -14,6 +14,7 @@ public class CartTrack : Toggleable
     int maxT;
     float currentT;
     bool paused = false;
+    int currentPt;
 
     // Use this for initialization
     void Start () {

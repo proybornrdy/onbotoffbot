@@ -150,10 +150,6 @@ public class LevelController : MonoBehaviour
                 rooms[0][j].SetActive(true);
             }
         }
-        var jumpPoints = TagCatalogue.FindAllWithTag(Tag.JumpPoint);
-        foreach (var j in jumpPoints) j.gameObject.GetComponent<Renderer>().enabled = false;
-        var colliders = TagCatalogue.FindAllWithTag(Tag.Collider);
-        foreach (var j in colliders) j.gameObject.GetComponent<Renderer>().enabled = false;
 
 		PauseSceneRoot = GameObject.FindWithTag("PauseSceenRoot");
 		if (!PauseSceneRoot)
@@ -209,17 +205,22 @@ public class LevelController : MonoBehaviour
     {
         if (!isTestLevel && index != -1 && index < rooms.Length - 1)
         {
-            for (int j = 0; j < rooms[index + 1].Length; j++)
+            newRoom = index + 1;
+            rooms[newRoom][0].HideBlockingWalls();
+            for (int j = 0; j < rooms[newRoom].Length; j++)
             {
-				rooms[index + 1][j].SetActive(true);
+				rooms[newRoom][j].SetActive(true);
 
                 //rooms[index + 1][j].transform.Find("Walls").gameObject.SetActive(false);
 
                 /*since all rooms are just activated from deactivation, 
                 it needs to be invisible first in order for it to be faded in*/
-                rooms[index + 1][j].FadeIn();
+                rooms[newRoom][j].FadeIn();
             }
-            newRoom = index + 1;
+            var jumpPoints = TagCatalogue.FindAllWithTag(Tag.JumpPoint);
+            foreach (var j in jumpPoints) j.gameObject.GetComponent<Renderer>().enabled = false;
+            var colliders = TagCatalogue.FindAllWithTag(Tag.Collider);
+            foreach (var j in colliders) j.gameObject.GetComponent<Renderer>().enabled = false;
         }
 
     }
@@ -247,7 +248,7 @@ public class LevelController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
 
-        if (!isTestLevel && index > 0 && index < rooms.Length - 1)
+        if (!isTestLevel && index > 0 && index <= rooms.Length - 1)
         {
             if (index == 6)
             {
