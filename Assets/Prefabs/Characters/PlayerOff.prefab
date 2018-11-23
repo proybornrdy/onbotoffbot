@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114622001594962154}
   - component: {fileID: 65787836838757024}
   - component: {fileID: 65433228506954818}
+  - component: {fileID: 95930553856481750}
   m_Layer: 0
   m_Name: PlayerOff
   m_TagString: Untagged
@@ -242,7 +243,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4861720619682740}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4299443035485704
 Transform:
   m_ObjectHideFlags: 1
@@ -255,7 +256,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4861720619682740}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4407786206683724
 Transform:
   m_ObjectHideFlags: 1
@@ -323,7 +324,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4861720619682740}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4847402806976200
 Transform:
   m_ObjectHideFlags: 1
@@ -357,7 +358,7 @@ Transform:
   - {fileID: 4178404657244344}
   m_Father: {fileID: 4789844190133800}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -4.739804e-16, y: -180, z: 0}
 --- !u!4 &4869841641152634
 Transform:
   m_ObjectHideFlags: 1
@@ -801,6 +802,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.67892265, y: 1.2, z: 0.6}
   m_Center: {x: -0.07510424, y: 0.6, z: 0}
+--- !u!95 &95930553856481750
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1155756531858820}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: caeebb6b0f28c9541ae61a0668827a11, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!108 &108135746944780038
 Light:
   m_ObjectHideFlags: 1
@@ -850,7 +869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionThreshold: 90
-  animations: 0
+  animations: 1
   heldItem: {fileID: 0}
   selectedItem: {fileID: 0}
   jumpPoint: {fileID: 114620403703769066}
