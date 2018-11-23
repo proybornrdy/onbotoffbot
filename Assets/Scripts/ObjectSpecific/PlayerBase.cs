@@ -39,7 +39,7 @@ public class PlayerBase : MonoBehaviour
     {
         jumpArrowInstance = Instantiate(jumpArrow);
         jumpArrowInstance.GetComponent<Renderer>().enabled = false;
-        animator = transform.Find("Model").GetComponent<Animator>();
+        animator = transform.GetComponent<Animator>();
         dropIndicatorInstance = Instantiate(dropIndicator);
         dropIndicatorInstance.GetComponent<Renderer>().enabled = false;
 
@@ -65,6 +65,14 @@ public class PlayerBase : MonoBehaviour
         if (heldItem != null)
         {
             PlaceDropIndicator();
+        }
+
+        if (Input.GetButtonDown(interact)) 
+        {
+            if (animations) 
+            {
+                animator.SetTrigger("Press Button");
+            }
         }
     }
 
