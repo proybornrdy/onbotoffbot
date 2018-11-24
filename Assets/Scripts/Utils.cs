@@ -91,3 +91,36 @@ public static class GameObjectExtensions
         return tags.HasTag(Tag.Pickupable);
     }
 }
+
+[System.Serializable]
+public class RoomArray2D
+{
+    public Room[] arr;
+    public Room this[int i]
+    {
+        get
+        {
+            return arr[i];
+        }
+        set
+        {
+            arr[i] = value;
+        }
+    }
+    public int Length
+    {
+        get { return arr.Length; }
+    }
+}
+
+
+public class MyPair<A, B>
+{
+    public A First { get; set; }
+    public B Second { get; set; }
+
+    public MyPair(A first, B second){
+        First = first;
+        Second = second;
+    }
+}

@@ -6,13 +6,13 @@ public class Room : MonoBehaviour {
     int playerOnEnters = 0;
     int playerOffEnters = 0;
     LevelController lc;
-    TextTrigger text;
     public bool faded = false;
     public Door door;
     public GameObject floor;
     public GameObject wallsToHide;
     public GameObject walls;
     public GameObject cutawayWalls;
+    public GameObject backtrackBlocker;
 
     void Awake()
     {
@@ -21,6 +21,12 @@ public class Room : MonoBehaviour {
 
     private void Start()
     {
+        GameObject.Find("TagCatalogue").GetComponent<TagCatalogue>().UpdateCatalogue(transform);
+        var jumpPoints = TagCatalogue.FindAllWithTag(Tag.JumpPoint);
+        foreach (var j in jumpPoints) j.gameObject.GetComponent<Renderer>().enabled = false;
+        var colliders = TagCatalogue.FindAllWithTag(Tag.Collider);
+        foreach (var j in colliders) j.gameObject.GetComponent<Renderer>().enabled = false;
+        if (backtrackBlocker) backtrackBlocker.SetActive(false);
     }
 
     public void HideBlockingWalls()
@@ -41,7 +47,6 @@ public class Room : MonoBehaviour {
             {
                 if (door) PlayersInRoom();
                 else lc.PlayersMovedToRoom(-1);
-                if (text) text.TurnOn();
             }
         }
     }
@@ -52,22 +57,9 @@ public class Room : MonoBehaviour {
         lc.PlayersMovedToRoom(door.index);
     }
 
-    private void OnTriggerExit(Collider other)
+    public void ActivateBacktrackBlocker()
     {
-        if (other.gameObject.HasTag(Tag.Player))
-        {
-            if (other.gameObject.HasTag(Tag.PlayerOn))
-                playerOnEnters--;
-            else if (other.gameObject.HasTag(Tag.PlayerOff))
-                playerOffEnters--;
-
-            if (playerOnEnters < 0) playerOnEnters = 0;
-            if (playerOffEnters < 0) playerOffEnters = 0;
-            if (playerOnEnters > 0 && playerOffEnters > 0)
-            {
-                if (text) text.TurnOff();
-            }
-        }
+        backtrackBlocker.SetActive(true);
     }
 
     public void FadeIn()

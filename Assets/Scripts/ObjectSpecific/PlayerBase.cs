@@ -34,6 +34,7 @@ public class PlayerBase : MonoBehaviour
     bool jumping = false;
     public float pickupCooldown = 1f;
     float lastPickup = 0f;
+    public float movementSpeed;
 
     public void Start()
     {
@@ -117,8 +118,8 @@ public class PlayerBase : MonoBehaviour
             {
                 dampening_factor = LevelController.flightDampener;
             }
-            transform.Translate(Vector3.forward * moveVertical * LevelController.PlayerMovementSpeed * dampening_factor * Time.deltaTime, relativeTo: Space.World);
-            transform.Translate(Vector3.left * moveHorizontal * LevelController.PlayerMovementSpeed * dampening_factor * Time.deltaTime, relativeTo: Space.World);
+            transform.Translate(Vector3.forward * moveVertical * movementSpeed * dampening_factor * Time.deltaTime, relativeTo: Space.World);
+            transform.Translate(Vector3.left * moveHorizontal * movementSpeed * dampening_factor * Time.deltaTime, relativeTo: Space.World);
 
             if (Input.GetButton(jump) && isGrounded) //)
             {
@@ -142,7 +143,7 @@ public class PlayerBase : MonoBehaviour
             {
                 dampening_factor = LevelController.flightDampener;
             }
-            Vector3 translation = (moveDirection * LevelController.PlayerMovementSpeed * dampening_factor);
+            Vector3 translation = (moveDirection * movementSpeed * dampening_factor);
             var hits = Physics.RaycastAll(transform.position + (Vector3.up * 0.25f), translation, 0.5f);
             bool inWay = false;
             foreach (var h in hits)

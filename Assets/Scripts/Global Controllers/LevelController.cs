@@ -12,7 +12,8 @@ public class LevelController : MonoBehaviour
     // Players
     public static GameObject OnPlayer;
     public static GameObject OffPlayer;
-    public static float PlayerMovementSpeed = 0.05f;
+    public float playerMovementSpeed;
+
     public static bool snapJumpingStatic = false;
     public static float PlayerJumpHeight = 8f;
     public static float flightDampener = 0.3f;
@@ -48,6 +49,9 @@ public class LevelController : MonoBehaviour
 		//"Assets/Scenes/Level Ideas/2-6.unity",
 		"Assets/Scenes/IntoScene.unity"
     };
+
+    public string[] RoomScenes;
+    public string[] RoomNames;
 
     delegate void RoomAction();
 
@@ -128,7 +132,9 @@ public class LevelController : MonoBehaviour
     {
         OnPlayer = GameObject.Find("PlayerOn");
         OffPlayer = GameObject.Find("PlayerOff");
-        if (!isTestLevel) for (int i = 0; i < doors.Length; i++) doors[i].index = i;
+        OnPlayer.GetComponent<PlayerOn>().movementSpeed = playerMovementSpeed;
+        OffPlayer.GetComponent<PlayerOff>().movementSpeed = playerMovementSpeed;
+        //if (!isTestLevel) for (int i = 0; i < doors.Length; i++) doors[i].index = i;
         cc = GameObject.Find("CameraController").GetComponent<CameraController>();
         snapJumpingStatic = snapJumping;
 
@@ -151,6 +157,9 @@ public class LevelController : MonoBehaviour
                 rooms[0][j].SetActive(true);
             }
         }
+
+
+        for (int i = 0; i < doors.Length; i++) doors[i].index = i;
 
 		PauseSceneRoot = GameObject.FindWithTag("PauseSceenRoot");
 		if (!PauseSceneRoot)
@@ -204,6 +213,7 @@ public class LevelController : MonoBehaviour
 
     public void DoorOpened(int index)
     {
+        print("here");
         if (!isTestLevel && index != -1 && index < rooms.Length - 1)
         {
             newRoom = index + 1;
@@ -218,10 +228,6 @@ public class LevelController : MonoBehaviour
                 it needs to be invisible first in order for it to be faded in*/
                 rooms[newRoom][j].FadeIn();
             }
-            var jumpPoints = TagCatalogue.FindAllWithTag(Tag.JumpPoint);
-            foreach (var j in jumpPoints) j.gameObject.GetComponent<Renderer>().enabled = false;
-            var colliders = TagCatalogue.FindAllWithTag(Tag.Collider);
-            foreach (var j in colliders) j.gameObject.GetComponent<Renderer>().enabled = false;
         }
 
     }
@@ -273,26 +279,5 @@ public class LevelController : MonoBehaviour
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		time = 0;
 
-    }
-}
-
-[System.Serializable]
-public class RoomArray2D
-{
-    public Room[] arr;
-    public Room this[int i]
-    {
-        get
-        {
-            return arr[i];
-        }
-        set
-        {
-            arr[i] = value;
-        }
-    }
-    public int Length
-    {
-        get { return arr.Length; }
     }
 }

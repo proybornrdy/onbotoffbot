@@ -6,9 +6,9 @@ using System;
 
 public class TagCatalogue : MonoBehaviour
 {
-    public static Dictionary<Tag, List<GameObject>> tagCatalogue;
+    public static Dictionary<Tag, HashSet<GameObject>> tagCatalogue;
 
-    public static List<GameObject> FindAllWithTag(Tag t)
+    public static HashSet<GameObject> FindAllWithTag(Tag t)
     {
         if (!tagCatalogue.ContainsKey(t)) Debug.LogError("No objects with tag " + t.ToString());
         return tagCatalogue[t];
@@ -29,9 +29,21 @@ public class TagCatalogue : MonoBehaviour
 
     private void Awake()
     {
-        tagCatalogue = new Dictionary<Tag, List<GameObject>>();
+        tagCatalogue = new Dictionary<Tag, HashSet<GameObject>>();
         foreach (Tag t in Enum.GetValues(typeof(Tag)))
-            tagCatalogue[t] = new List<GameObject>();
+            tagCatalogue[t] = new HashSet<GameObject>();
+    }
+
+    public void UpdateCatalogue(Transform parent)
+    {
+
+        var objs = parent.GetComponentsInChildren<Tags>();
+        objs = objs.ToArray();
+        foreach (var o in objs)
+        {
+            foreach (var t in o.GetComponent<Tags>().tags)
+                tagCatalogue[t].Add(o.gameObject);
+        }
     }
 
 
