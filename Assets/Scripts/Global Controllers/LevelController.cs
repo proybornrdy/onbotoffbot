@@ -62,6 +62,10 @@ public class LevelController : MonoBehaviour
 	private int oldTime = 0;
 	private static GameStateLog gameStateLog;
 
+    public static int? startInStatic { get; set; }
+
+    public int startIn = 0;
+
     public static bool gameGoing()
     {
         return gamePlaying;
@@ -82,8 +86,6 @@ public class LevelController : MonoBehaviour
     {
         return time;
     }
-
-    public int startIn = 0;
 
     void SetUpRoomActions()
     {
@@ -143,10 +145,13 @@ public class LevelController : MonoBehaviour
 		gameStateLog = new GameStateLog(SceneManager.GetActiveScene().name);
         tutorialStateMachine = FindObjectOfType<TutorialStateMachine>();
         hudController = FindObjectOfType<HUDController>();
+
+        if (startInStatic.HasValue) startIn = startInStatic.Value;
     }
 
     private void Start()
     {
+        if (startInStatic.HasValue) startIn = startInStatic.Value;
         Physics.gravity = new Vector3(0, -LevelController.gravity, 0);
         if (!isTestLevel)
         {

@@ -5,6 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 02aa3a56a0964b747a5e66ca32ae9f62
+  - enabled: 1
+    path: Assets/Scenes/Progression chunks/Section 1.unity
+    guid: 5e87825f99c594a4590551b2d5abb3d1
   - enabled: 0
     path: Assets/Scenes/IntoScene.unity
     guid: 684fd5507dcb18a45bd6a081c308852b
@@ -36,9 +42,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Progression chunks/2-7.unity
     guid: 61e7cfa2575b4a24ab762a8314b25adf
   - enabled: 0
-    path: Assets/Scenes/Progression chunks/Section 1.unity
-    guid: 5e87825f99c594a4590551b2d5abb3d1
-  - enabled: 0
     path: Assets/Scenes/Level Ideas/2-6.unity
     guid: 7bd80d632825ea641b51f7d550be9c65
   - enabled: 0
@@ -56,7 +59,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Level Ideas/PressurePlateLevel.unity
     guid: 733a0f5224656f143abab43dfa2695dd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test/FadeTest.unity
     guid: c3da140b5b2915844a43984e15ac6326
   m_configObjects: {}
