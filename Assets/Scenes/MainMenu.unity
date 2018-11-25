@@ -1044,7 +1044,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 49.99998, y: 50.000004}
+  m_AnchoredPosition: {x: 50, y: 50}
   m_SizeDelta: {x: 350, y: 400}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &376200127
@@ -1896,7 +1896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0000076293945}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -178}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &747343325
@@ -2055,7 +2055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &780514001
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2066,14 +2066,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1319097010}
   - {fileID: 982800929}
+  - {fileID: 1319097010}
   m_Father: {fileID: 673390179}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 49.99998, y: 50.000004}
+  m_AnchoredPosition: {x: 50, y: 50}
   m_SizeDelta: {x: 350, y: 400}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &780514002
@@ -2450,12 +2450,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 780514001}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 40, y: -21}
-  m_SizeDelta: {x: 160, y: 34}
+  m_SizeDelta: {x: 200, y: 34}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &982800930
 MonoBehaviour:
@@ -2851,7 +2851,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 6.0000076}
+  m_AnchoredPosition: {x: 0, y: 6}
   m_SizeDelta: {x: 200, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1168889949
@@ -3026,7 +3026,7 @@ RectTransform:
   m_Children:
   - {fileID: 773924013}
   m_Father: {fileID: 780514001}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4464,6 +4464,11 @@ MonoBehaviour:
   btnPlayerSelectBack: {fileID: 441428}
   pnlLevelSelect: {fileID: 1561687737}
   scrollViewContent: {fileID: 910595669}
+  btnLevelSelectBack: {fileID: 1785551882}
+  pnlLeaderboard: {fileID: 780514000}
+  btnLeaderboardBack: {fileID: 1319097011}
+  pnlCredits: {fileID: 376200125}
+  btnCreditsBack: {fileID: 342018989}
   eventSystem: {fileID: 1612673170}
   buttonPrefab: {fileID: 114758052320452858, guid: 86e88ae58e14f8b4a98bf9bbe3c9558b,
     type: 2}
