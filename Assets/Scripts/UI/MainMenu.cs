@@ -37,7 +37,15 @@ public class MainMenu : MonoBehaviour
 
     public EventSystem eventSystem;
     public Button buttonPrefab;
-    
+    public Image gear0;
+    public Image gear1;
+    public Image gear2;
+    public Image gear3;
+    public Image gear4;
+    public Image gear5;
+    public Image gear6;
+    public Image gear7;
+
     private bool newGame = true;
 
     bool selectingPlayers = false;
@@ -48,6 +56,14 @@ public class MainMenu : MonoBehaviour
         SetUpButtons();
         ShowMain();
 
+        StartCoroutine("Rotate", new MyPair<Transform, float>(gear0.transform, 3f));
+        StartCoroutine("Rotate", new MyPair<Transform, float>(gear1.transform, 7f));
+        StartCoroutine("Rotate", new MyPair<Transform, float>(gear2.transform, -5f));
+        StartCoroutine("Rotate", new MyPair<Transform, float>(gear3.transform, 15f));
+        StartCoroutine("Rotate", new MyPair<Transform, float>(gear4.transform, -15f));
+        StartCoroutine("Rotate", new MyPair<Transform, float>(gear5.transform, -15f));
+        StartCoroutine("Rotate", new MyPair<Transform, float>(gear6.transform, 15f));
+        StartCoroutine("Rotate", new MyPair<Transform, float>(gear7.transform, -15f));
     }
 
     // Update is called once per frame
@@ -246,5 +262,14 @@ public class MainMenu : MonoBehaviour
         ShowMain();
     }
 
+
+    IEnumerator Rotate(MyPair<Transform, float> input)
+    {
+        while (true)
+        {
+            input.First.Rotate(0, 0, 1 * input.Second * Time.deltaTime);
+            yield return null;
+        }
+    }
 
 }

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="100mm"
+   height="21.721216mm"
+   viewBox="0 0 100 21.721217"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="C:\Users\Monica\Documents\GitHub\on_bot_off_bot\Assets\Sprites\logo.png"
+   inkscape:export-xdpi="127"
+   inkscape:export-ydpi="127"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2454">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop2450" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop2452" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2401"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop2399" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2454"
+       id="linearGradient2458"
+       x1="35.489998"
+       y1="10.030433"
+       x2="44.146832"
+       y2="10.030433"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="321.36268"
+     inkscape:cy="-142.01072"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2"
+     transform="translate(-0.3358976,2.5171817)" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-0.3358976,2.5171817)">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot815"
+       style="font-style:normal;font-weight:normal;font-size:48px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.30861594,0,0,0.30861594,-21.249738,-22.594698)"
+       inkscape:export-filename="C:\Users\Monica\text949.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><flowRegion
+         id="flowRegion817"
+         style="font-size:48px"><rect
+           id="rect819"
+           width="322.14288"
+           height="102.14285"
+           x="66.428574"
+           y="55.376827"
+           style="font-size:48px" /></flowRegion><flowPara
+         id="flowPara821"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift"><flowSpan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#004ef7;fill-opacity:1"
+           id="flowSpan871">ON</flowSpan><flowSpan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#ffffff;fill-opacity:1"
+           id="flowSpan2414">BOT</flowSpan></flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:14.81356525px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.30861592"
+       x="47.779568"
+       y="17.862108"
+       id="text825"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       inkscape:export-filename="C:\Users\Monica\text949.png"><tspan
+         sodipodi:role="line"
+         id="tspan823"
+         x="47.779568"
+         y="17.862108"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.81356525px;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;stroke-width:0.30861592"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.81356525px;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#ff1200;fill-opacity:1;stroke-width:0.30861592"
+           id="tspan827">OFF</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.81356525px;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#ffffff;fill-opacity:1;stroke-width:0.30861592"
+           id="tspan2416">BOT</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:23.04332352px;line-height:1.25;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;letter-spacing:0px;word-spacing:0px;fill:#ffffee;fill-opacity:1;stroke:none;stroke-width:0.30861592;stroke-opacity:1"
+       x="41.60725"
+       y="16.098587"
+       id="text949"
+       inkscape:export-filename="C:\Users\Monica\text949.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         sodipodi:role="line"
+         id="tspan947"
+         x="41.60725"
+         y="16.098587"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:23.04332352px;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#ffffee;fill-opacity:1;stroke:none;stroke-width:0.30861592;stroke-opacity:1">/</tspan></text>
+  </g>
+</svg>
