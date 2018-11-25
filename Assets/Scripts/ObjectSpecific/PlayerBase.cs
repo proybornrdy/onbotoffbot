@@ -91,7 +91,11 @@ public class PlayerBase : MonoBehaviour
 
     private void handleMovement()
     {
-        Vector2 moveVec = movementRotationFix(Input.GetAxis(verticalAxis), -1 * Input.GetAxis(horizontalAxis));
+		if (Time.deltaTime == 0)
+		{
+			return;
+		}
+		Vector2 moveVec = movementRotationFix(Input.GetAxis(verticalAxis), -1 * Input.GetAxis(horizontalAxis));
 
         float moveHorizontal = moveVec.y;
         float moveVertical = moveVec.x;
@@ -144,7 +148,7 @@ public class PlayerBase : MonoBehaviour
             {
                 dampening_factor = LevelController.flightDampener;
             }
-            Vector3 translation = (moveDirection * movementSpeed * dampening_factor);
+			Vector3 translation = (moveDirection * movementSpeed * dampening_factor);
             var hits = Physics.RaycastAll(transform.position + (Vector3.up * 0.25f), translation, 0.5f);
             bool inWay = false;
             foreach (var h in hits)

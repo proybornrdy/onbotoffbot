@@ -14,15 +14,14 @@ public class InGameMenueController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		Debug.Log(Input.GetButton(PlayerInputTranslator.GetVerticalAxis(Player.ON)));
-		if (Input.GetButton(PlayerInputTranslator.GetVerticalAxis(Player.ON))||
-			Input.GetButton(PlayerInputTranslator.GetVerticalAxis(Player.OFF)))
+		if (Input.GetAxisRaw(PlayerInputTranslator.GetVerticalAxis(Player.ON)) > .5||
+			Input.GetAxisRaw(PlayerInputTranslator.GetVerticalAxis(Player.OFF)) > .5)
 		{
 			left_pointer.transform.localPosition = new Vector3(top_left.x, top_left.y, left_pointer.transform.localPosition.z);
 			right_pointer.transform.localPosition = new Vector3(top_right.x, top_right.y, left_pointer.transform.localPosition.z); ;
 		}
-		if (Input.GetButton(PlayerInputTranslator.GetVerticalAxis(Player.ON)) ||
-			Input.GetButton(PlayerInputTranslator.GetVerticalAxis(Player.OFF)))
+		if (Input.GetAxisRaw(PlayerInputTranslator.GetVerticalAxis(Player.ON)) < -.5 ||
+			Input.GetAxisRaw(PlayerInputTranslator.GetVerticalAxis(Player.OFF)) < -.5)
 		{
 			left_pointer.transform.localPosition = new Vector3(bottom_left.x, bottom_left.y, left_pointer.transform.localPosition.z);
 			right_pointer.transform.localPosition = new Vector3(bottom_right.x, bottom_right.y, left_pointer.transform.localPosition.z);
@@ -33,7 +32,7 @@ public class InGameMenueController : MonoBehaviour {
 		{
 			if (left_pointer.transform.localPosition.y == top_left.y)
 			{
-				SceneManager.LoadScene("IntoScene");
+				SceneManager.LoadScene("MainMenue");
 			}
 			else
 			{

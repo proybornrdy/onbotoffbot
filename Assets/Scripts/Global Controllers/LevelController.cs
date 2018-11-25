@@ -50,7 +50,7 @@ public class LevelController : MonoBehaviour
         //"Assets/Scenes/Level Ideas/BasicPistonPuzzle.unity",
        //"Assets/Scenes/Level Ideas/PressurePlateLevel.unity",
 		//"Assets/Scenes/Level Ideas/2-6.unity",
-		"Assets/Scenes/IntoScene.unity"
+		"Assets/Scenes/MainMenue.unity"
     };
 
     delegate void RoomAction();
@@ -178,7 +178,7 @@ public class LevelController : MonoBehaviour
             if (!PauseSceneRoot)
             {
                 Debug.Log("Not Found");
-                // SceneManager.LoadScene("InGameMenue", LoadSceneMode.Additive);
+                SceneManager.LoadScene("InGameMenue", LoadSceneMode.Additive);
             }
              
         }
