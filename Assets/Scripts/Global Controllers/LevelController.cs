@@ -32,6 +32,9 @@ public class LevelController : MonoBehaviour
 	public Door[] doors;
     public bool isTestLevel = true;
 
+    public float musicFadeSpeed;
+    public AudioClip[] musicTracks;
+
     CameraController cc;
     private int currentRoom = 0;
     private int newRoom;
@@ -227,6 +230,14 @@ public class LevelController : MonoBehaviour
                 /*since all rooms are just activated from deactivation, 
                 it needs to be invisible first in order for it to be faded in*/
                 rooms[newRoom][j].FadeIn();
+                if (rooms[newRoom][j].name == "2.1") 
+                {
+                    StartCoroutine("ChangeMusicTrack", 1);
+                } 
+                else if (rooms[newRoom][j].name == "3.1") 
+                {
+                    StartCoroutine("ChangeMusicTrack", 2);
+                }
             }
         }
 
@@ -279,5 +290,19 @@ public class LevelController : MonoBehaviour
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		time = 0;
 
+    }
+
+    IEnumerator ChangeMusicTrack(int index) {
+        AudioSource musicSource = GameObject.Find("/Basic Level Boilerplate/MusicSource").GetComponent<AudioSource>();
+        while (musicSource.volume > 0) {
+            musicSource.volume -= musicFadeSpeed;
+            yield return null;
+        }
+        musicSource.clip = musicTracks[index];
+        musicSource.Play();
+        while (musicSource.volume < 1) {
+            musicSource.volume += musicFadeSpeed;
+            yield return null;
+        }
     }
 }
