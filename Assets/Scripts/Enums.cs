@@ -15,6 +15,7 @@
     HasWeight,
     JumpPoint,
     Collider,
+    SpawnPoint,
 }
 
 public enum Axis

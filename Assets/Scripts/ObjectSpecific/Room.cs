@@ -14,8 +14,8 @@ public class Room : MonoBehaviour {
     public GameObject cutawayWalls;
     public GameObject backtrackBlocker;
 
-    public Vector3? onBotSpawnPoint;
-    public Vector3? offBotSpawnPoint;
+    public GameObject onBotSpawnPoint;
+    public GameObject offBotSpawnPoint;
 
     void Awake()
     {
@@ -29,6 +29,8 @@ public class Room : MonoBehaviour {
         foreach (var j in jumpPoints) j.gameObject.GetComponent<Renderer>().enabled = false;
         var colliders = TagCatalogue.FindAllWithTag(Tag.Collider);
         foreach (var j in colliders) j.gameObject.GetComponent<Renderer>().enabled = false;
+        var spawnPoints = TagCatalogue.FindAllWithTag(Tag.SpawnPoint);
+        foreach (var j in spawnPoints) j.gameObject.GetComponent<Renderer>().enabled = false;
         if (backtrackBlocker) backtrackBlocker.SetActive(false);
     }
 
@@ -86,7 +88,7 @@ public class Room : MonoBehaviour {
         if (!fadingOut)
         {
             foreach (var r in rends)
-                if (!r.gameObject.HasTag(Tag.JumpPoint) && !r.gameObject.HasTag(Tag.Collider))
+                if (!r.gameObject.HasTag(Tag.JumpPoint) && !r.gameObject.HasTag(Tag.Collider) && !r.gameObject.HasTag(Tag.SpawnPoint))
                     r.enabled = true;
             foreach (Light l in lights) l.enabled = true;
         }

@@ -83,7 +83,7 @@ public class LevelController : MonoBehaviour
         return time;
     }
 
-    public int StartIn = 0;
+    public int startIn = 0;
 
     void SetUpRoomActions()
     {
@@ -148,30 +148,35 @@ public class LevelController : MonoBehaviour
     private void Start()
     {
         Physics.gravity = new Vector3(0, -LevelController.gravity, 0);
-        SetUpRoomActions();
-        if (!isTestLevel && rooms.Length > 0)
+        if (!isTestLevel)
         {
-            for (int i = 1; i < rooms.Length; i++)
-                for (int j = 0; j < rooms[i].Length; j++) rooms[i][j].SetActive(false);
-
-            for (int j = 0; j < rooms[0].Length; j++)
+            SetUpRoomActions();
+            currentRoom = startIn;
+            if (rooms.Length > 0)
             {
-                rooms[0][j].SetActive(true);
+                for (int i = 0; i < rooms.Length; i++)
+                    for (int j = 0; j < rooms[i].Length; j++) rooms[i][j].SetActive(false);
+
+                for (int j = 0; j < rooms[currentRoom].Length; j++)
+                {
+                    rooms[currentRoom][j].SetActive(true);
+                }
+                cc.changeCameraPos(rooms[currentRoom][0]);
+                OnPlayer.transform.position = rooms[currentRoom][0].onBotSpawnPoint.transform.position;
+                OffPlayer.transform.position = rooms[currentRoom][0].offBotSpawnPoint.transform.position;
+                PlayersMovedToRoom(currentRoom);
+                for (int i = 0; i < doors.Length; i++) doors[i].index = i;
             }
+
+
+            PauseSceneRoot = GameObject.FindWithTag("PauseSceenRoot");
+            if (!PauseSceneRoot)
+            {
+                Debug.Log("Not Found");
+                // SceneManager.LoadScene("InGameMenue", LoadSceneMode.Additive);
+            }
+             
         }
-
-
-        for (int i = 0; i < doors.Length; i++) doors[i].index = i;
-
-		PauseSceneRoot = GameObject.FindWithTag("PauseSceenRoot");
-		if (!PauseSceneRoot)
-		{
-			Debug.Log("Not Found");
-			// SceneManager.LoadScene("InGameMenue", LoadSceneMode.Additive);
-		}
-        currentRoom = 0;
-        if (!isTestLevel && rooms.Length != 0) cc.changeCameraPos(rooms[currentRoom][0]);
-        if (!isTestLevel )PlayersMovedToRoom(0);
     }
 
     public static void ToggleMenue()
@@ -244,14 +249,14 @@ public class LevelController : MonoBehaviour
 
     public void DoorClosed(int index)
     {
-        //if (!isTestLevel && index != -1 && index < rooms.Length - 1)
-        //    for (int j = 0; j < rooms[index + 1].Length; j++)
-        //        StartCoroutine(RoomFade(rooms[index + 1][j], true));
+        if (!isTestLevel && index != -1 && index < rooms.Length - 1)
+            for (int j = 0; j < rooms[index + 1].Length; j++)
+                rooms[index + 1][j].FadeOut();
     }
 
     public void PlayersMovedToRoom(int index)
     {
-        if (index != -1)
+        if (index != -1 && index != startIn)
         {
             print(index);
             currentRoom = index;
@@ -267,13 +272,13 @@ public class LevelController : MonoBehaviour
 
         if (!isTestLevel && index > 0 && index <= rooms.Length - 1)
         {
-            if (index == 6)
-            {
-                int nextSceneIndex = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
-                //save the log, and move on to next level
-                gameStateLog.SaveGameStateLog();
-                SceneManager.LoadScene(LevelProgresion[nextSceneIndex + 1]);
-            }
+            //if (index == 6)
+            //{
+            //    int nextSceneIndex = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
+            //    //save the log, and move on to next level
+            //    gameStateLog.SaveGameStateLog();
+            //    SceneManager.LoadScene(LevelProgresion[nextSceneIndex + 1]);
+            //}
 
             for (int j = 0; j < rooms[index - 1].Length; j++)
             {
