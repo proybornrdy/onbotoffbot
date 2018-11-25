@@ -40,9 +40,8 @@ GameObject:
   - component: {fileID: 33869283914249570}
   - component: {fileID: 23547448941918452}
   - component: {fileID: 65318021245121646}
-  - component: {fileID: 65458940361567334}
-  - component: {fileID: 65892716427319484}
   - component: {fileID: 65488856564531448}
+  - component: {fileID: 54930567131560130}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -80,7 +79,6 @@ GameObject:
   - component: {fileID: 33656815409121164}
   - component: {fileID: 23477905518934018}
   - component: {fileID: 65398376021037598}
-  - component: {fileID: 65195165632538510}
   m_Layer: 0
   m_Name: Belt
   m_TagString: Untagged
@@ -120,8 +118,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1211917743765090}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: -1}
+  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 9.98, y: 4, z: -0.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4271629427417802}
@@ -129,7 +127,7 @@ Transform:
   - {fileID: 4742059623494506}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!4 &4742059623494506
 Transform:
   m_ObjectHideFlags: 1
@@ -284,18 +282,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!65 &65195165632538510
-BoxCollider:
+--- !u!54 &54930567131560130
+Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1621979092358658}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
+  m_GameObject: {fileID: 1449712869083412}
   serializedVersion: 2
-  m_Size: {x: 0.76433617, y: 0.43345642, z: 0.9913462}
-  m_Center: {x: -0.07304102, y: 0.13412333, z: -0.000000012387988}
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65318021245121646
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -320,18 +321,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.76433617, y: 0.43345642, z: 0.9913462}
   m_Center: {x: -0.07304102, y: 0.13412333, z: -0.000000012387988}
---- !u!65 &65458940361567334
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1449712869083412}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.28458706, y: 0.871248, z: 1.0000002}
-  m_Center: {x: 0.46568066, y: 0, z: -0.00000011102691}
 --- !u!65 &65488856564531448
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -344,18 +333,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.28458706, y: 0.871248, z: 1.0000002}
   m_Center: {x: 0.46568066, y: 0, z: -0.00000011102691}
---- !u!65 &65892716427319484
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1449712869083412}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2222744, y: 0.3696655, z: 1.0000002}
-  m_Center: {x: 0.008566141, y: -0.25079125, z: -0.000000002042327}
 --- !u!114 &114077045408134704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -382,7 +359,7 @@ MonoBehaviour:
   on: 0
   belt: {fileID: 1621979092358658}
   scrollSpeed: 2.5
-  reverse: 0
+  reverse: 1
 --- !u!114 &114338787011505588
 MonoBehaviour:
   m_ObjectHideFlags: 1
