@@ -36,12 +36,26 @@ public class EventManager : MonoBehaviour {
                     lastPressedOn = Time.time;
                 }
             }
-			if (Input.GetButton(PlayerInputTranslator.GetRightInteract(Player.OFF)))
+            if (Input.GetButton(PlayerInputTranslator.GetLeftInteract(Player.OFF)))
+            {
+                if (Time.time - lastPressedOn > pressThreshold)
+                {
+                    LevelController.OffPlayer.GetComponent<Animator>().SetTrigger("UseWrongArm");
+                }
+            }
+            if (Input.GetButton(PlayerInputTranslator.GetRightInteract(Player.OFF)))
             {
 				if (Time.time - lastPressedOff > pressThreshold)
                 {
                     OnInteract(LevelController.OffPlayer);
                     lastPressedOff = Time.time;
+                }
+            }
+            if (Input.GetButton(PlayerInputTranslator.GetRightInteract(Player.ON)))
+            {
+                if (Time.time - lastPressedOn > pressThreshold)
+                {
+                    LevelController.OnPlayer.GetComponent<Animator>().SetTrigger("UseWrongArm");
                 }
             }
 

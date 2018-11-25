@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour {
     public Toggleable[] toggleables;
-    Transform prevParent;
     int enters = 0;
 
     private void ToggleControlled()
@@ -20,8 +19,6 @@ public class PressurePlate : MonoBehaviour {
             if (enters == 1)
             {
                 ToggleControlled();
-                prevParent = other.transform.parent;
-                other.transform.parent = transform;
             }
         }
     }
@@ -33,7 +30,6 @@ public class PressurePlate : MonoBehaviour {
             enters--;
             if (enters == 0) {
                 ToggleControlled();
-                other.transform.parent = prevParent;
             }
             else if (enters < 0) enters = 0;
         }

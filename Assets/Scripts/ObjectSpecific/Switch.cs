@@ -44,6 +44,8 @@ public class Switch : MonoBehaviour {
 
     void TurnOn(GameObject onPlayer)
     {
+        if (!onPlayer.HasTag(Tag.PlayerOn))
+            onPlayer.GetComponent<Animator>().SetTrigger("Electrocution");
         if (on || !onPlayer.HasTag(Tag.PlayerOn)) return;
         Vector3 onPlayerPos = onPlayer.transform.position;
         Vector3 buttonPos = transform.position;
@@ -71,6 +73,8 @@ public class Switch : MonoBehaviour {
 
     void TurnOff(GameObject offPlayer)
     {
+        if (!offPlayer.HasTag(Tag.PlayerOff))
+            offPlayer.GetComponent<Animator>().SetTrigger("Electrocution");
         if (!on || !offPlayer.HasTag(Tag.PlayerOff)) return;
         Vector3 offPlayerPos = offPlayer.transform.position;
         Vector3 buttonPos = transform.position;

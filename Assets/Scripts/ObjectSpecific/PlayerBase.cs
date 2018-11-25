@@ -105,6 +105,7 @@ public class PlayerBase : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
 
             if (animations) animator.SetBool("Walking", true);
+            Select(moveDirection);
         }
         else
         {
@@ -158,7 +159,6 @@ public class PlayerBase : MonoBehaviour
                 transform.Translate(translation, relativeTo: Space.World);
             }
         }
-        Select(moveDirection);
     }
 
     IEnumerator Jump()
@@ -194,18 +194,20 @@ public class PlayerBase : MonoBehaviour
             selectedItem = null;
         }
 
-        foreach (var i in TagCatalogue.FindAllWithTag(Tag.Interactable)
-            .Where(obj => Utils.InRange(transform.position, obj.transform.position) && (heldItem == null || !obj.Equals(heldItem.gameObject)))
-            .Select(obj => Vector3.Angle(transform.forward, obj.transform.position - transform.position)))
-            print(i);
-
         var interactables = TagCatalogue.FindAllWithTag(Tag.Interactable)
             .Where(obj => Utils.InRange(transform.position, obj.transform.position) && (heldItem == null || !obj.Equals(heldItem.gameObject)))
             .OrderBy(obj => Mathf.Abs(Vector3.Angle(transform.forward, obj.transform.position - transform.position)));
+
+        foreach (var i in TagCatalogue.FindAllWithTag(Tag.Interactable)
+            .Where(obj => Utils.InRange(transform.position, obj.transform.position) && (heldItem == null || !obj.Equals(heldItem.gameObject))))
+            Debug.DrawRay(transform.position, i.transform.position - transform.position);
         if (interactables.Count() != 0)
         {
             GameObject closest = interactables.ElementAt(0);
-            if (Vector3.Angle(transform.forward, closest.transform.position - transform.position)
+            Vector3 v = closest.transform.position - transform.position;
+            v.y = 0;
+            print(v);
+            if (Vector3.Angle(transform.forward, v)
                 <= selectionThreshold)
             {
                 closest.GetComponent<Interactable>().Select(gameObject);

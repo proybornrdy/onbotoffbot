@@ -64,7 +64,7 @@ Shader "SelectionGlow"
 				// darken light's illumination with shadow, keep ambient intact
 				fixed3 lighting = i.diff * shadow + i.ambient;
 				col.rgb *= lighting;
-				float rim = 1.0 - saturate(dot(normalize(i.worldNormal), normalize(i.viewDir)));
+				float rim = saturate(dot(normalize(i.worldNormal), normalize(i.viewDir)));
 				col.r += rim;
 				col.g += rim;
 				col.b += rim;

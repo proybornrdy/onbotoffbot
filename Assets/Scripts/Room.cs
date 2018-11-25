@@ -79,11 +79,13 @@ public class Room : MonoBehaviour {
         Fade in :  currentALpha=0 < targetAlpha=1 (currentAlpha ++0.1f)*/
 
         Renderer[] rends = GetComponentsInChildren<Renderer>();
+        Light[] lights = GetComponentsInChildren<Light>();
         if (!fadingOut)
         {
             foreach (var r in rends)
-                if (!r.gameObject.HasTag(Tag.JumpPoint) || !r.gameObject.HasTag(Tag.Collider))
+                if (!r.gameObject.HasTag(Tag.JumpPoint) && !r.gameObject.HasTag(Tag.Collider))
                     r.enabled = true;
+            foreach (Light l in lights) l.enabled = true;
         }
         for (int i = 0; i < 100; i++)
         {
@@ -111,6 +113,7 @@ public class Room : MonoBehaviour {
         if (fadingOut)
         {
             foreach (Renderer r in rends) r.enabled = false;
+            foreach (Light l in lights) l.enabled = false;
 
         }
         else /*since the faded out room needs to stay invisible require it to stay in Fade mode. So this only applies to room that is being faded in*/

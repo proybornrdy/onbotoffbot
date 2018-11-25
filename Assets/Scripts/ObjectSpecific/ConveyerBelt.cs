@@ -50,8 +50,8 @@ public class ConveyerBelt : Toggleable {
 
     private void OnTriggerStay(Collider other)
     {
-        if (!on || !other.gameObject.GetComponent<Tags>()) return;
-        if (other.gameObject.GetComponent<Tags>().HasTag(Tag.Pushable))
+        if (!on) return;
+        if (other.gameObject.HasTag(Tag.Pushable))
         {
             Vector3 direction = reverse?  Vector3.back : Vector3.forward;
             //other.gameObject.GetComponent<Rigidbody>().AddForce(scrollSpeed * direction * Time.deltaTime, ForceMode.VelocityChange);
