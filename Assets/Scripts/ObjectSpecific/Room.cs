@@ -14,6 +14,9 @@ public class Room : MonoBehaviour {
     public GameObject cutawayWalls;
     public GameObject backtrackBlocker;
 
+    public Vector3? onBotSpawnPoint;
+    public Vector3? offBotSpawnPoint;
+
     void Awake()
     {
         lc = GameObject.Find("LevelController").GetComponent<LevelController>();

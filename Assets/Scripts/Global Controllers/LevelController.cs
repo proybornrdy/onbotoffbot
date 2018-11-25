@@ -50,9 +50,6 @@ public class LevelController : MonoBehaviour
 		"Assets/Scenes/IntoScene.unity"
     };
 
-    public string[] RoomScenes;
-    public string[] RoomNames;
-
     delegate void RoomAction();
 
     TutorialStateMachine tutorialStateMachine;
@@ -82,6 +79,8 @@ public class LevelController : MonoBehaviour
     {
         return time;
     }
+
+    public int StartIn = 0;
 
     void SetUpRoomActions()
     {
