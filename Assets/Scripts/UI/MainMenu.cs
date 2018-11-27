@@ -292,6 +292,7 @@ public class MainMenu : MonoBehaviour
 		}
 		else
 		{
+			leaderScrollViewContent.transform.DetachChildren();
 			Debug.Log("Received: " + uwr.downloadHandler.text);
 			LeaderBoardEntry[] leaderScores = JsonHelper.FromJson<LeaderBoardEntry>(uwr.downloadHandler.text);
 			for (int i = 0; i < leaderScores.Length; i++)
@@ -300,6 +301,7 @@ public class MainMenu : MonoBehaviour
 				{
 					break;
 				}
+
 				GameObject btnSection3 = Instantiate<GameObject>(leaderBoardEntryPrefab);
 				btnSection3.transform.Find("Team Name").gameObject.GetComponent<Text>().text = leaderScores[i].team_name;
 				btnSection3.transform.Find("Score").gameObject.GetComponent<Text>().text = leaderScores[i].score;
