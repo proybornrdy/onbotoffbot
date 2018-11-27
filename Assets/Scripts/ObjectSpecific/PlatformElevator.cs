@@ -46,7 +46,7 @@ public class PlatformElevator : Toggleable {
 	
 	void Raise() {
         bool inWay = false;
-        var hits = Physics.RaycastAll(platform.position + (Vector3.back * 0.5f), platform.up, 0.25f);
+        var hits = Physics.RaycastAll(platform.position + (Vector3.back * 0.5f), platform.up, 0.1f);
         foreach (var h in hits)
         {
             if (h.transform != platform.transform) inWay = true;
@@ -56,7 +56,7 @@ public class PlatformElevator : Toggleable {
 	
 	void Lower() {
         bool inWay = false;
-        var hits = Physics.RaycastAll(platform.position + (Vector3.back * 0.5f), platform.up * -1, 0.25f);
+        var hits = Physics.RaycastAll(platform.position + (Vector3.back * 0.5f), platform.up * -1, 0.1f);
         foreach (var h in hits)
         {
             print(h);

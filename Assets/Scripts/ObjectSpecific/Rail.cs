@@ -47,7 +47,7 @@ public class Rail : Toggleable {
                 MoveToNewPosition();
             }
         }
-        else if (t < 1 && !paused) //move to next position, then stop
+        else if (t < 1 && t > 0 && !paused) //move to next position, then stop
         {
             MoveToNewPosition();
         }

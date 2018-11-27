@@ -99,11 +99,9 @@ public class Magnet : Toggleable {
     {
         //use a raycast so that range will only have to reach the collider, not the object's origin.
         //will only travel as far as the magnet's range
-        print(obj.transform.position);
-        print(pullPoint.transform.position);
         if (obj.transform.position == pullPoint.transform.position) return true;
         var hits = Physics.RaycastAll(pullPoint.transform.position, obj.transform.position - pullPoint.transform.position, maxRange).OrderBy(h => h.distance);
-        if (hits.Count() == 0) return false;//|| hits.ElementAt(0).transform != obj.transform) return false; // there is something in front of it
+        if (hits.Count() == 0 || hits.ElementAt(0).transform != obj.transform) return false; // there is something in front of it
         return true;
     }
 

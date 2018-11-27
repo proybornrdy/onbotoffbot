@@ -149,7 +149,8 @@ public class PlayerBase : MonoBehaviour
                 dampening_factor = LevelController.flightDampener;
             }
 			Vector3 translation = (moveDirection * movementSpeed * dampening_factor);
-            var hits = Physics.BoxCastAll(transform.position + (Vector3.up * 0.65f), new Vector3(0.2f, 0.5f, 0.2f), translation, Quaternion.Euler(transform.forward), 0.25f);
+            var hits = Physics.BoxCastAll(transform.position + (Vector3.up * 0.7f), new Vector3(0.2f, 0.4f, 0.2f), translation, Quaternion.Euler(transform.forward), 0.25f);
+            
             bool inWay = false;
             foreach (var h in hits)
             {
@@ -157,6 +158,18 @@ public class PlayerBase : MonoBehaviour
                 {
                     inWay = true;
                     break;
+                }
+            }
+            if (heldItem != null)
+            {
+                hits = Physics.BoxCastAll(transform.position + (Vector3.up * 1.05f), new Vector3(0.4f, 0.4f, 0.4f), translation, Quaternion.Euler(transform.forward), 0.25f);
+                foreach (var h in hits)
+                {
+                    if (h.transform != this.transform && h.transform != heldItem.transform)
+                    {
+                        inWay = true;
+                        break;
+                    }
                 }
             }
             if (!inWay) {
