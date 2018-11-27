@@ -70,7 +70,7 @@ public class Room : MonoBehaviour {
     private void PlayersInRoom()
     {
         if (wallsToHide) wallsToHide.SetActive(true);
-        lc.PlayersMovedToRoom(door.index);
+        if (door) lc.PlayersMovedToRoom(door.index);
     }
 
     public void ActivateBacktrackBlocker()
