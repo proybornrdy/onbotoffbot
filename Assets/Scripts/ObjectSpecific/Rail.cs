@@ -26,8 +26,8 @@ public class Rail : Toggleable {
     // Use this for initialization
     void Start ()
     {
-        moveFrom = child.transform.position;
-        moveTo = child.transform.position;
+        moveFrom = child.transform.localPosition;
+        moveTo = child.transform.localPosition;
         i = 0;
         numIncrements = (int)(Mathf.Abs(maxOffset) * 2);
         if (maxOffset < 0) reverse = true;
@@ -56,7 +56,7 @@ public class Rail : Toggleable {
     void MoveToNewPosition()
     {
         Vector3 pos = Vector3.Lerp(moveFrom, moveTo, t);
-        child.transform.position = pos;
+        child.transform.localPosition = pos;
         t += speed * Time.deltaTime;
     }
 

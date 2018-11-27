@@ -12,13 +12,11 @@ public class Magnet : Toggleable {
     bool on = false;
     public Light spotLight;
     public GameObject pullPoint;
-    List<GameObject> children;
-    List<GameObject> prevParents;
+    Transform child;
+    Transform prevParent;
 
     // Use this for initialization
     void Start () {
-        children = new List<GameObject>();
-        prevParents = new List<GameObject>();
         spotLight.range = maxRange;
         if (startOn)
         {
@@ -29,6 +27,15 @@ public class Magnet : Toggleable {
     // Update is called once per frame
     void Update()
     {
+        if (on && child == null)
+        {
+            var obj = TagCatalogue.FindAllWithTag(Tag.Magnetic).Where(o => InMaxRange(o)).OrderBy(o => Vector3.Distance(transform.position, o.transform.position)).First();
+            print(obj);
+            prevParent = obj.transform.parent;
+            child = obj.transform;
+            child.SetParent(transform);
+            StartCoroutine("Pull", obj);
+        }
     }
 
     void FixedUpdate() {
@@ -39,11 +46,7 @@ public class Magnet : Toggleable {
         if (!on)
         {
             on = true;
-            var objs = TagCatalogue.FindAllWithTag(Tag.Magnetic).Where(o => InMaxRange(o));
-            foreach (var o in objs)
-            {
-                StartCoroutine("Pull", o);
-            }
+            
             print("Magnet is ON");
         }
     }
@@ -58,41 +61,14 @@ public class Magnet : Toggleable {
             obj.transform.position = Vector3.Lerp(init, pullPoint.transform.position, i / 10f);
             yield return null;
         }
-        children.Add(obj);
-        prevParents.Add(obj.transform.parent == null ? null : obj.transform.parent.gameObject);
-        obj.transform.SetParent(transform);
         yield return null;
     }
 
-    //void Pull()
-    //{
-    //    var objs = TagCatalogue.FindAllWithTag(Tag.Magnetic).Where(o => InMaxRange(o));
-    //    foreach (var o in objs)
-    //    {
-    //        //o.transform.position = Vector3.MoveTowards(o.transform.position, pullPoint.transform.position, maxStrength * Time.deltaTime);
-    //        var rb = o.GetComponent<Rigidbody>();
-    //        rb.velocity = pullPoint.transform.position - o.transform.position;
-    //    }
-        
-    //}
-
     void Stop()
     {
-        //var objs = TagCatalogue.FindAllWithTag(Tag.Magnetic).Where(o => InMaxRange(o));
-        //foreach (var o in objs)
-        //{
-        //    print(o);
-        //    var rb = o.GetComponent<Rigidbody>();
-        //    rb.isKinematic = false;
-        //}
-        for (int i = 0; i < children.Count; i++)
-        {
-            children[i].transform.SetParent(prevParents[i] ==  null ? null : prevParents[i].transform);
-            children[i].GetComponent<Rigidbody>().isKinematic = false;
-            children[i].GetComponent<Rigidbody>().useGravity = true;
-        }
-        children.Clear();
-        prevParents.Clear();
+        child.SetParent(prevParent);
+        child.GetComponent<Rigidbody>().isKinematic = false;
+        child.GetComponent<Rigidbody>().useGravity = true;
     }
 
     bool InMaxRange(GameObject obj)
