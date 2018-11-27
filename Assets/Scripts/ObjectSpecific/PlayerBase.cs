@@ -106,10 +106,10 @@ public class PlayerBase : MonoBehaviour
         {
             lookRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 3);
 
             if (animations) animator.SetBool("Walking", true);
-            Select(moveDirection);
+            Select();
         }
         else
         {
@@ -134,7 +134,7 @@ public class PlayerBase : MonoBehaviour
         //else if (isGrounded)
         else if (!jumping)
         {
-            JumpSelect(moveDirection);
+            JumpSelect();
             if (Input.GetButton(jump))// && moveDirection != Vector3.zero)
             {
                 if (jumpTo.HasValue)
@@ -181,6 +181,8 @@ public class PlayerBase : MonoBehaviour
         jumping = false;
         jumpFrom = null;
         jumpTo = null;
+        Select();
+        JumpSelect();
         yield return null;
     }
 
@@ -190,7 +192,7 @@ public class PlayerBase : MonoBehaviour
         return Quaternion.Euler(0, 0, -45) * vec;
     }
 
-    private void Select(Vector3 moveDirection)
+    private void Select()
     {
         if (selectedItem != null)
         {
@@ -199,12 +201,11 @@ public class PlayerBase : MonoBehaviour
         }
 
         var interactables = TagCatalogue.FindAllWithTag(Tag.Interactable)
-            .Where(obj => Utils.InRange(transform.position, obj.transform.position) && (heldItem == null || !obj.Equals(heldItem.gameObject)))
+            .Where(
+                obj => Utils.InRange(transform.position, obj.transform.position) &&
+                transform.position.y < obj.transform.position.y &&
+                (heldItem == null || !obj.Equals(heldItem.gameObject)))
             .OrderBy(obj => Mathf.Abs(Vector3.Angle(transform.forward, obj.transform.position - transform.position)));
-
-        foreach (var i in TagCatalogue.FindAllWithTag(Tag.Interactable)
-            .Where(obj => Utils.InRange(transform.position, obj.transform.position) && (heldItem == null || !obj.Equals(heldItem.gameObject))))
-            Debug.DrawRay(transform.position, i.transform.position - transform.position);
         if (interactables.Count() != 0)
         {
             GameObject closest = interactables.ElementAt(0);
@@ -259,13 +260,15 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
-    private void JumpSelect(Vector3 moveDirection)
+    private void JumpSelect()
     {
         var jps = TagCatalogue.FindAllWithTag(Tag.JumpPoint)
-                    .Where(obj => obj.transform.parent != this.transform && Utils.InJumpRange(transform.position, obj.transform.position) &&
-                                    Vector3.Angle(transform.rotation * Vector3.forward, obj.transform.position - transform.position) <= selectionThreshold &&
-                                    Utils.NearestCubeCenter(obj.transform.position).y > Utils.NearestCubeCenter(transform.position).y)
-                    .OrderBy(obj => Vector3.Angle(transform.rotation * Vector3.forward, obj.transform.position - transform.position));
+                    .Where(obj => obj.transform.parent != this.transform &&
+                        Utils.InJumpRange(transform.position, obj.transform.position) && 
+                        transform.position.y + 0.25 < obj.transform.position.y &&
+                        Vector3.Angle(transform.forward, obj.transform.position - transform.position) <= selectionThreshold &&
+                        Utils.NearestCubeCenter(obj.transform.position).y > Utils.NearestCubeCenter(transform.position).y)
+                    .OrderBy(obj => Vector3.Angle(transform.forward, obj.transform.position - transform.position));
         if (jps.Count() > 0)
         {
             jumpFrom = transform.position;

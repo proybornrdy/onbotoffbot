@@ -27,15 +27,11 @@ public class Magnet : Toggleable {
     }
 
     // Update is called once per frame
-    void Update() {
-        
+    void Update()
+    {
     }
 
     void FixedUpdate() {
-        if (on)
-        {
-            Pull();
-        }
     }
 
     public override void TurnOn()
@@ -43,39 +39,71 @@ public class Magnet : Toggleable {
         if (!on)
         {
             on = true;
-            Pull();
+            var objs = TagCatalogue.FindAllWithTag(Tag.Magnetic).Where(o => InMaxRange(o));
+            foreach (var o in objs)
+            {
+                StartCoroutine("Pull", o);
+            }
             print("Magnet is ON");
         }
     }
 
-    void Pull()
+    IEnumerator Pull(GameObject obj)
     {
-        var objs = TagCatalogue.FindAllWithTag(Tag.Magnetic).Where(o => InMaxRange(o));
-        foreach (var o in objs)
+        Vector3 init = obj.transform.position;
+        obj.GetComponent<Rigidbody>().isKinematic = true;
+        obj.GetComponent<Rigidbody>().useGravity = false;
+        for (int i = 0; i < 10; i++)
         {
-            var rb = o.GetComponent<Rigidbody>();
-            rb.velocity = (pullPoint.transform.position - o.transform.position) * maxStrength;
+            obj.transform.position = Vector3.Lerp(init, pullPoint.transform.position, i / 10f);
+            yield return null;
         }
-        
+        children.Add(obj);
+        prevParents.Add(obj.transform.parent == null ? null : obj.transform.parent.gameObject);
+        obj.transform.SetParent(transform);
+        yield return null;
     }
+
+    //void Pull()
+    //{
+    //    var objs = TagCatalogue.FindAllWithTag(Tag.Magnetic).Where(o => InMaxRange(o));
+    //    foreach (var o in objs)
+    //    {
+    //        //o.transform.position = Vector3.MoveTowards(o.transform.position, pullPoint.transform.position, maxStrength * Time.deltaTime);
+    //        var rb = o.GetComponent<Rigidbody>();
+    //        rb.velocity = pullPoint.transform.position - o.transform.position;
+    //    }
+        
+    //}
 
     void Stop()
     {
-        var objs = TagCatalogue.FindAllWithTag(Tag.Magnetic).Where(o => InMaxRange(o));
-        foreach (var o in objs)
+        //var objs = TagCatalogue.FindAllWithTag(Tag.Magnetic).Where(o => InMaxRange(o));
+        //foreach (var o in objs)
+        //{
+        //    print(o);
+        //    var rb = o.GetComponent<Rigidbody>();
+        //    rb.isKinematic = false;
+        //}
+        for (int i = 0; i < children.Count; i++)
         {
-            var rb = o.GetComponent<Rigidbody>();
-            rb.velocity = Vector3.zero;
+            children[i].transform.SetParent(prevParents[i] ==  null ? null : prevParents[i].transform);
+            children[i].GetComponent<Rigidbody>().isKinematic = false;
+            children[i].GetComponent<Rigidbody>().useGravity = true;
         }
-
+        children.Clear();
+        prevParents.Clear();
     }
 
     bool InMaxRange(GameObject obj)
     {
         //use a raycast so that range will only have to reach the collider, not the object's origin.
         //will only travel as far as the magnet's range
+        print(obj.transform.position);
+        print(pullPoint.transform.position);
+        if (obj.transform.position == pullPoint.transform.position) return true;
         var hits = Physics.RaycastAll(pullPoint.transform.position, obj.transform.position - pullPoint.transform.position, maxRange).OrderBy(h => h.distance);
-        if (hits.Count() == 0 || hits.ElementAt(0).transform != obj.transform) return false; // there is something in front of it
+        if (hits.Count() == 0) return false;//|| hits.ElementAt(0).transform != obj.transform) return false; // there is something in front of it
         return true;
     }
 
@@ -86,40 +114,12 @@ public class Magnet : Toggleable {
             on = false;
             print("Magnet is OFF");
             Stop();
-            for (int i = 0; i < children.Count; i++)
-            {
-                children[i].transform.SetParent(prevParents[i].transform);
-                children[i].GetComponent<Rigidbody>().isKinematic = false;
-            }
-            children.Clear();
-            prevParents.Clear();
         }
     }
 
     public override bool IsOn()
     {
         return on;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (on && other.gameObject.HasTag(Tag.Magnetic))
-        {
-            children.Add(other.gameObject);
-            prevParents.Add(other.transform.parent.gameObject);
-            other.transform.SetParent(transform);
-            other.transform.position = pullPoint.transform.position;
-            other.GetComponent<Rigidbody>().isKinematic = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (children.Contains(other.gameObject))
-        {
-            var i = children.FindIndex(c => c == other.gameObject);
-            other.transform.SetParent(prevParents[i].transform);
-        }
     }
 
     //void OnTriggerEnter(Collider other) {

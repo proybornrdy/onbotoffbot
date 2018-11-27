@@ -40,7 +40,7 @@ public class EventManager : MonoBehaviour {
             {
                 if (Time.time - lastPressedOn > pressThreshold)
                 {
-                    LevelController.OffPlayer.GetComponent<Animator>().SetTrigger("UseWrongArm");
+                    LevelController.OffPlayer.GetComponent<Animator>().SetTrigger("Use Wrong Arm");
                 }
             }
             if (Input.GetButton(PlayerInputTranslator.GetRightInteract(Player.OFF)))
@@ -55,7 +55,7 @@ public class EventManager : MonoBehaviour {
             {
                 if (Time.time - lastPressedOn > pressThreshold)
                 {
-                    LevelController.OnPlayer.GetComponent<Animator>().SetTrigger("UseWrongArm");
+                    LevelController.OnPlayer.GetComponent<Animator>().SetTrigger("Use Wrong Arm");
                 }
             }
 
