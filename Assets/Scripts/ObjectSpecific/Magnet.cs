@@ -12,9 +12,13 @@ public class Magnet : Toggleable {
     bool on = false;
     public Light spotLight;
     public GameObject pullPoint;
+    List<GameObject> children;
+    List<GameObject> prevParents;
 
     // Use this for initialization
     void Start () {
+        children = new List<GameObject>();
+        prevParents = new List<GameObject>();
         spotLight.range = maxRange;
         if (startOn)
         {
@@ -70,7 +74,7 @@ public class Magnet : Toggleable {
     {
         //use a raycast so that range will only have to reach the collider, not the object's origin.
         //will only travel as far as the magnet's range
-        var hits = Physics.RaycastAll(transform.position, obj.transform.position - transform.position, maxRange).OrderBy(h => h.distance);
+        var hits = Physics.RaycastAll(pullPoint.transform.position, obj.transform.position - pullPoint.transform.position, maxRange).OrderBy(h => h.distance);
         if (hits.Count() == 0 || hits.ElementAt(0).transform != obj.transform) return false; // there is something in front of it
         return true;
     }
@@ -82,12 +86,40 @@ public class Magnet : Toggleable {
             on = false;
             print("Magnet is OFF");
             Stop();
+            for (int i = 0; i < children.Count; i++)
+            {
+                children[i].transform.SetParent(prevParents[i].transform);
+                children[i].GetComponent<Rigidbody>().isKinematic = false;
+            }
+            children.Clear();
+            prevParents.Clear();
         }
     }
 
     public override bool IsOn()
     {
         return on;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (on && other.gameObject.HasTag(Tag.Magnetic))
+        {
+            children.Add(other.gameObject);
+            prevParents.Add(other.transform.parent.gameObject);
+            other.transform.SetParent(transform);
+            other.transform.position = pullPoint.transform.position;
+            other.GetComponent<Rigidbody>().isKinematic = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (children.Contains(other.gameObject))
+        {
+            var i = children.FindIndex(c => c == other.gameObject);
+            other.transform.SetParent(prevParents[i].transform);
+        }
     }
 
     //void OnTriggerEnter(Collider other) {

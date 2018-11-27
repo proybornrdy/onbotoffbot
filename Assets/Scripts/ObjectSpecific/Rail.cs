@@ -20,6 +20,7 @@ public class Rail : Toggleable {
     int numIncrements;
     int i;
     bool paused = false;
+    bool reverse = false;
 
 
     // Use this for initialization
@@ -28,7 +29,8 @@ public class Rail : Toggleable {
         moveFrom = child.transform.position;
         moveTo = child.transform.position;
         i = 0;
-        numIncrements = (int)(maxOffset * 2);
+        numIncrements = (int)(Mathf.Abs(maxOffset) * 2);
+        if (maxOffset < 0) reverse = true;
     }
 	
 	// Update is called once per frame
@@ -95,7 +97,7 @@ public class Rail : Toggleable {
         if (i == numIncrements) direction = -1;
         else if (i < 0) direction = 1;
         moveFrom = moveTo;
-        moveTo = moveFrom + ((axis == Axis.x? Vector3.right : axis == Axis.z? Vector3.forward : Vector3.up) * increment);
+        moveTo = (moveFrom + ((axis == Axis.x? Vector3.right : axis == Axis.z? Vector3.forward : Vector3.up) * (reverse ? -1 : 1) * increment));
         print("MoveFrom: " + moveFrom + ", MoveTo: " + moveTo);
         i += direction;
         t = 0;
