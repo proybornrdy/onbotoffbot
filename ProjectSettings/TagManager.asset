@@ -8,6 +8,7 @@ TagManager:
   - Floor
   - MoveableBlock
   - PauseSceenRoot
+  - test
   layers:
   - Default
   - TransparentFX

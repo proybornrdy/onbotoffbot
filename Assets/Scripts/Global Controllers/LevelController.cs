@@ -219,7 +219,7 @@ public class LevelController : MonoBehaviour
         Time.timeScale = (InMenue) ? 0.00f : 1.00f;
         if (PauseSceneRoot)
         {
-            PauseSceneRoot.SetActive(InMenue);
+            PauseSceneRoot.SetActive((!LevelController.gameGoing())? false: InMenue);
         }
 	}
 
@@ -269,14 +269,24 @@ public class LevelController : MonoBehaviour
         Debug.Log("playermoved to room is called" + index);
         if (index != -1 && index != startIn)
         {
-            
-            if (OnPlayer.GetComponent<PlayerOn>().playerCurrentRoom == OffPlayer.GetComponent<PlayerOff>().playerCurrentRoom)
+			if (OnPlayer.GetComponent<PlayerOn>().playerCurrentRoom == OffPlayer.GetComponent<PlayerOff>().playerCurrentRoom)
             {
                 print("both player has moved to current room index = " + index);
                 currentRoom = index;
                 StartCoroutine("RoomFadeDelay", index);
                 if (index < roomActions.Count) roomActions[index]();
-            }
+
+				if (index == rooms.Length - 1)
+				{
+					//    int nextSceneIndex = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
+					//    //save the log, and move on to next level
+					//    gameStateLog.SaveGameStateLog();
+					//    SceneManager.LoadScene(LevelProgresion[nextSceneIndex + 1]);
+					Time.timeScale = 0f;
+					LevelController.endGame("reasons");
+					SceneManager.LoadScene("GameEndScene", LoadSceneMode.Additive);
+				}
+			}
                
         }
     }
@@ -288,15 +298,7 @@ public class LevelController : MonoBehaviour
 
         if (!isTestLevel && index > 0 && index <= rooms.Length - 1)
         {
-            //if (index == 6)
-            //{
-            //    int nextSceneIndex = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
-            //    //save the log, and move on to next level
-            //    gameStateLog.SaveGameStateLog();
-            //    SceneManager.LoadScene(LevelProgresion[nextSceneIndex + 1]);
-            //}
-
-            for (int j = 0; j < rooms[index - 1].Length; j++)
+			for (int j = 0; j < rooms[index - 1].Length; j++)
             {
                 if (OnPlayer.GetComponent<PlayerOn>().playerCurrentRoom == OffPlayer.GetComponent<PlayerOff>().playerCurrentRoom)
                     rooms[index - 1][j].FadeOut();
