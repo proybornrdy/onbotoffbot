@@ -2,9 +2,13 @@
 
 public class PlayerOn : PlayerBase
 {
+    public string playerCurrentRoom;
+    public string playerRoomCheck;
     new void Start ()
     {
 		rb = GetComponent<Rigidbody>();
+        playerCurrentRoom = "";
+        playerRoomCheck = "";
         /*horizontalAxis = "POnHorizontal";
         verticalAxis = "POnVertical";
         jump = "POnJump";
@@ -17,4 +21,5 @@ public class PlayerOn : PlayerBase
         pickUp = PlayerInputTranslator.GetPickup(Player.ON);
         base.Start();
     }
+    
 }

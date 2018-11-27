@@ -23,6 +23,7 @@ public class RoomCollider : MonoBehaviour
         {
             if (other.gameObject.HasTag(Tag.PlayerOn))
                 playerOnEnters++;
+                
             else if (other.gameObject.HasTag(Tag.PlayerOff))
                 playerOffEnters++;
 

@@ -225,11 +225,12 @@ public class LevelController : MonoBehaviour
 
     public void DoorOpened(int index)
     {
-        print("here");
+        Debug.Log("door is opened room being opened = " + (index+1) +"  rooms.length = " + rooms.Length);
         if (!isTestLevel && index != -1 && index < rooms.Length - 1)
         {
             newRoom = index + 1;
             rooms[newRoom][0].HideBlockingWalls();
+
             for (int j = 0; j < rooms[newRoom].Length; j++)
             {
 				rooms[newRoom][j].SetActive(true);
@@ -238,7 +239,9 @@ public class LevelController : MonoBehaviour
 
                 /*since all rooms are just activated from deactivation, 
                 it needs to be invisible first in order for it to be faded in*/
+                Debug.Log("from origin room is being faded in: " + rooms[newRoom][j].name + " " + newRoom);
                 rooms[newRoom][j].FadeIn();
+                
                 if (rooms[newRoom][j].name == "2.1") 
                 {
                     StartCoroutine("ChangeMusicTrack", 1);
@@ -256,17 +259,25 @@ public class LevelController : MonoBehaviour
     {
         if (!isTestLevel && index != -1 && index < rooms.Length - 1)
             for (int j = 0; j < rooms[index + 1].Length; j++)
-                rooms[index + 1][j].FadeOut();
+                // fadeout rooms only when both bots are in the same room
+                if (OnPlayer.GetComponent<PlayerOn>().playerCurrentRoom == OffPlayer.GetComponent < PlayerOff >().playerCurrentRoom )
+                    rooms[index + 1][j].FadeOut();
     }
 
     public void PlayersMovedToRoom(int index)
     {
+        Debug.Log("playermoved to room is called" + index);
         if (index != -1 && index != startIn)
         {
-            print(index);
-            currentRoom = index;
-            StartCoroutine("RoomFadeDelay", index);
-            roomActions[index]();
+            
+            if (OnPlayer.GetComponent<PlayerOn>().playerCurrentRoom == OffPlayer.GetComponent<PlayerOff>().playerCurrentRoom)
+            {
+                print("both player has moved to current room index = " + index);
+                currentRoom = index;
+                StartCoroutine("RoomFadeDelay", index);
+                if (index < roomActions.Count) roomActions[index]();
+            }
+               
         }
     }
 
@@ -287,9 +298,10 @@ public class LevelController : MonoBehaviour
 
             for (int j = 0; j < rooms[index - 1].Length; j++)
             {
-                rooms[index - 1][j].FadeOut();
+                if (OnPlayer.GetComponent<PlayerOn>().playerCurrentRoom == OffPlayer.GetComponent<PlayerOff>().playerCurrentRoom)
+                    rooms[index - 1][j].FadeOut();
             }
-            backtrackBlockers[index - 1].SetActive(true);
+            if (index-1 < backtrackBlockers.Length &&index-1 >= 0) backtrackBlockers[index - 1].SetActive(true);
         }
     }
 

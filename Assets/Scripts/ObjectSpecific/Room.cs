@@ -43,10 +43,21 @@ public class Room : MonoBehaviour {
     {
         if (other.gameObject.HasTag(Tag.Player))
         {
+            Debug.Log("the room being triggered = " + gameObject.name);
             if (other.gameObject.HasTag(Tag.PlayerOn))
+            {
                 playerOnEnters++;
+                other.gameObject.GetComponent<PlayerOn>().playerCurrentRoom = gameObject.name;
+                other.gameObject.GetComponent<PlayerOn>().playerRoomCheck = gameObject.name;
+            }
+                
             else if (other.gameObject.HasTag(Tag.PlayerOff))
+            {
                 playerOffEnters++;
+                other.gameObject.GetComponent<PlayerOff>().playerCurrentRoom = gameObject.name;
+                other.gameObject.GetComponent<PlayerOff>().playerRoomCheck = gameObject.name;
+            }
+                
 
             if (playerOnEnters > 0 && playerOffEnters > 0)
             {

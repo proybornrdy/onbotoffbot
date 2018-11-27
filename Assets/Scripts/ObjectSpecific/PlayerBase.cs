@@ -210,7 +210,7 @@ public class PlayerBase : MonoBehaviour
             GameObject closest = interactables.ElementAt(0);
             Vector3 v = closest.transform.position - transform.position;
             v.y = 0;
-            print(v);
+            //print(v);
             if (Vector3.Angle(transform.forward, v)
                 <= selectionThreshold)
             {
