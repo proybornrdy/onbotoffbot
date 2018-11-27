@@ -102,8 +102,8 @@ public class MainMenu : MonoBehaviour
     void SetUpButtons()
     {
         //main
-        btnContinue.enabled = false;
         btnContinue.onClick.AddListener(Continue);
+        btnContinue.gameObject.SetActive(false);
         btnStart.onClick.AddListener(NewGame);
         btnLeaderboards.onClick.AddListener(Leaderboards);
         btnCredits.onClick.AddListener(Credits);
