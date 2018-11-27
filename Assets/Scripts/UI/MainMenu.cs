@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
+using System;
 
 public class MainMenu : MonoBehaviour
 {
     //main
     public GameObject pnlMain;
-    public Button btnContinue;
     public Button btnStart;
     public Button btnLeaderboards;
     public Button btnCredits;
@@ -29,7 +30,9 @@ public class MainMenu : MonoBehaviour
 
     //leaderboard
     public GameObject pnlLeaderboard;
-    public Button btnLeaderboardBack;
+	public GameObject leaderScrollViewContent;
+	public GameObject leaderBoardEntryPrefab;
+	public Button btnLeaderboardBack;
 
     //credits
     public GameObject pnlCredits;
@@ -102,8 +105,6 @@ public class MainMenu : MonoBehaviour
     void SetUpButtons()
     {
         //main
-        btnContinue.onClick.AddListener(Continue);
-        btnContinue.gameObject.SetActive(false);
         btnStart.onClick.AddListener(NewGame);
         btnLeaderboards.onClick.AddListener(Leaderboards);
         btnCredits.onClick.AddListener(Credits);
@@ -169,7 +170,9 @@ public class MainMenu : MonoBehaviour
     {
         DeactivateAllPanels();
         pnlLeaderboard.SetActive(true);
-    }
+		Debug.Log("hi");
+		StartCoroutine(GetRequest("https://www.mdshulman.com/game/onbotoffbot/scores"));
+	}
 
     void ShowCredits()
     {
@@ -200,27 +203,32 @@ public class MainMenu : MonoBehaviour
         btnSection2.transform.parent = scrollViewContent.transform;
         btnSection2.transform.localPosition = new Vector3(166.5f, -110, 0);
         btnSection2.transform.localScale = new Vector3(1, 1, 1);
-    }
+
+		Button btnSection3 = Instantiate<Button>(buttonPrefab);
+		btnSection3.GetComponentInChildren<Text>().text = "Section 3";
+		btnSection3.onClick.AddListener(delegate ()
+		{
+			LevelController.startInStatic = 12;
+			SceneManager.LoadScene("Scenes/Progression chunks/Section 1");
+		});
+		btnSection3.transform.parent = scrollViewContent.transform;
+		btnSection3.transform.localPosition = new Vector3(166.5f, -170, 0);
+		btnSection3.transform.localScale = new Vector3(1, 1, 1);
+	}
 
     public void NewGame()
     {
         ShowPlayerSelect();
     }
 
-    public void Continue()
-    {
-        newGame = false;
-        ;
-    }
-
     public void Leaderboards()
     {
-        ;
+		ShowLeaderboard();
     }
 
     public void Credits()
     {
-        ;
+		ShowCredits();
     }
 
     public void Quit()
@@ -272,4 +280,64 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+	IEnumerator GetRequest(string uri)
+	{
+		Debug.Log("starting");
+		UnityWebRequest uwr = UnityWebRequest.Get(uri);
+		yield return uwr.SendWebRequest();
+
+		if (uwr.isNetworkError)
+		{
+			Debug.Log("Error While Sending: " + uwr.error);
+		}
+		else
+		{
+			Debug.Log("Received: " + uwr.downloadHandler.text);
+			LeaderBoardEntry[] leaderScores = JsonHelper.FromJson<LeaderBoardEntry>(uwr.downloadHandler.text);
+			for (int i = 0; i < leaderScores.Length; i++)
+			{
+				if (i == 7)
+				{
+					break;
+				}
+				GameObject btnSection3 = Instantiate<GameObject>(leaderBoardEntryPrefab);
+				btnSection3.transform.Find("Team Name").gameObject.GetComponent<Text>().text = leaderScores[i].team_name;
+				btnSection3.transform.Find("Score").gameObject.GetComponent<Text>().text = leaderScores[i].score;
+				btnSection3.transform.parent = leaderScrollViewContent.transform;
+				btnSection3.transform.localPosition = new Vector3(50, 90 - i*30, 0);
+				btnSection3.transform.localScale = new Vector3(1, 1, 1);
+			}
+		}
+	}
+
+}
+
+
+public static class JsonHelper
+{
+	public static T[] FromJson<T>(string json)
+	{
+		Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
+		return wrapper.Items;
+	}
+
+	public static string ToJson<T>(T[] array)
+	{
+		Wrapper<T> wrapper = new Wrapper<T>();
+		wrapper.Items = array;
+		return JsonUtility.ToJson(wrapper);
+	}
+
+	public static string ToJson<T>(T[] array, bool prettyPrint)
+	{
+		Wrapper<T> wrapper = new Wrapper<T>();
+		wrapper.Items = array;
+		return JsonUtility.ToJson(wrapper, prettyPrint);
+	}
+
+	[Serializable]
+	private class Wrapper<T>
+	{
+		public T[] Items;
+	}
 }
