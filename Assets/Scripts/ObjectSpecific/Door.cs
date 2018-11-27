@@ -15,17 +15,15 @@ public class Door : Toggleable {
     {
         lc = GameObject.Find("LevelController").GetComponent<LevelController>();
         isReady = true;
-        if (isOpen) TurnOn();
-        else TurnOff();
+        if (isOpen) Open();
+        else Close();
 	}
 
     public override void TurnOn()
     {
         if (!isReady) return;
         isOpen = true;
-        slide.transform.localPosition = new Vector3(-0.25f, 1.5f, 0.618f);
-        overLight.color = Color.blue;
-        print(name + ": " + index.ToString());
+        Open();
         lc.DoorOpened(index);
         if (!muteSoundOnInit) SoundController.instance.playSoundEffect("DoorOn");
         else muteSoundOnInit = false;
@@ -35,11 +33,22 @@ public class Door : Toggleable {
     {
         if (!isReady) return;
         isOpen = false;
-        slide.transform.localPosition = new Vector3(-0.25f, -0.5f, 0.618f);
-        overLight.color = Color.red;
+        Close();
         lc.DoorClosed(index);
         if (!muteSoundOnInit) SoundController.instance.playSoundEffect("DoorOff");
         else muteSoundOnInit = false;
+    }
+
+    void Open()
+    {
+        slide.transform.localPosition = new Vector3(-0.25f, 1.5f, 0.618f);
+        overLight.color = Color.blue;
+    }
+
+    void Close()
+    {
+        slide.transform.localPosition = new Vector3(-0.25f, -0.5f, 0.618f);
+        overLight.color = Color.red;
     }
 
     public override bool IsOn()

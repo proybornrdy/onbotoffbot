@@ -59,7 +59,6 @@ public class PlatformElevator : Toggleable {
         var hits = Physics.RaycastAll(platform.position + (Vector3.back * 0.5f), platform.up * -1, 0.1f);
         foreach (var h in hits)
         {
-            print(h);
             if (h.transform != platform.transform) inWay = true;
         }
 		if (!inWay) platform.position += Vector3.down * Time.deltaTime * 2;

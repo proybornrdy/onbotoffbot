@@ -106,7 +106,7 @@ public class PlayerBase : MonoBehaviour
         {
             lookRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 3);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
 
             if (animations) animator.SetBool("Walking", true);
             Select();
