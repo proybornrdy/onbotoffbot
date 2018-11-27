@@ -98,7 +98,6 @@ public class Rail : Toggleable {
         else if (i < 0) direction = 1;
         moveFrom = moveTo;
         moveTo = (moveFrom + ((axis == Axis.x? Vector3.right : axis == Axis.z? Vector3.forward : Vector3.up) * (reverse ? -1 : 1) * increment));
-        print("MoveFrom: " + moveFrom + ", MoveTo: " + moveTo);
         i += direction;
         t = 0;
     }
