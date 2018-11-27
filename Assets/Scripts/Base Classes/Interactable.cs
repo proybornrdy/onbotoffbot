@@ -27,7 +27,7 @@ public class Interactable : MonoBehaviour
     {
         if (selectedBy != null) return;
         selectedBy = player;
-        r.material.shader = glowShader;
+        GetComponent<Renderer>().material.shader = glowShader;
         //r.material.SetColor("_OutlineColor", Color.white);
     }
 
@@ -36,7 +36,7 @@ public class Interactable : MonoBehaviour
         if (selectedBy == null) return;
 
         selectedBy = null;
-        r.material.shader = initShader;
+        GetComponent<Renderer>().material.shader = initShader;
     }
 
     public void OnInteract(GameObject player)

@@ -149,7 +149,7 @@ public class PlayerBase : MonoBehaviour
                 dampening_factor = LevelController.flightDampener;
             }
 			Vector3 translation = (moveDirection * movementSpeed * dampening_factor);
-            var hits = Physics.RaycastAll(transform.position + (Vector3.up * 0.25f), translation, 0.5f);
+            var hits = Physics.BoxCastAll(transform.position + (Vector3.up * 0.65f), new Vector3(0.2f, 0.5f, 0.2f), translation, Quaternion.Euler(transform.forward), 0.25f);
             bool inWay = false;
             foreach (var h in hits)
             {
