@@ -80,13 +80,18 @@ public class Room : MonoBehaviour {
 
     public void FadeIn()
     {
-        SetRoomInvisible();
-        StartCoroutine("Fade", false);
+        if (gameObject.activeSelf)
+        {
+            SetRoomInvisible();
+            StartCoroutine("Fade", false);
+        }
+            
     }
 
     public void FadeOut()
     {
-        StartCoroutine("Fade", true);
+        if (gameObject.activeSelf)
+            StartCoroutine("Fade", true);
     }
 
     IEnumerator Fade(bool fadingOut)
