@@ -25,7 +25,7 @@ public static class Utils {
     public static bool InRange(Vector3 onPlayerPos, Vector3 buttonPos)
     {
         return Math.Pow(onPlayerPos.x - buttonPos.x, 2) <= 1 &&
-            Math.Pow(onPlayerPos.y - buttonPos.y, 2) <= 1 &&
+            Math.Pow(onPlayerPos.y + .5f - buttonPos.y, 2) <= 1 &&
             Math.Pow(onPlayerPos.z - buttonPos.z, 2) <= 1;
     }
 

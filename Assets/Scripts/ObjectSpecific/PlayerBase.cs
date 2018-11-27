@@ -70,7 +70,7 @@ public class PlayerBase : MonoBehaviour
 
         if (Input.GetButtonDown(interact)) 
         {
-            if (animations) 
+            if (animations && !animator.GetBool("Electrocution")) 
             {
                 animator.SetTrigger("Press Button");
             }
