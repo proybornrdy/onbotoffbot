@@ -277,10 +277,11 @@ public class PlayerBase : MonoBehaviour
         var jps = TagCatalogue.FindAllWithTag(Tag.JumpPoint)
                     .Where(obj => obj.transform.parent != this.transform &&
                         Utils.InJumpRange(transform.position, obj.transform.position) && 
-                        transform.position.y + 0.25 < obj.transform.position.y &&
-                        Vector3.Angle(transform.forward, obj.transform.position - transform.position) <= selectionThreshold &&
-                        Utils.NearestCubeCenter(obj.transform.position).y > Utils.NearestCubeCenter(transform.position).y)
+                        transform.position.y + 0.5f < obj.transform.position.y)
                     .OrderBy(obj => Vector3.Angle(transform.forward, obj.transform.position - transform.position));
+
+        jps = jps.Where(j => Vector3.Angle(new Vector3(j.transform.position.x, 0, j.transform.position.z), new Vector3(transform.position.x, 0, transform.position.z)) <= selectionThreshold)
+            .OrderBy(j => Vector3.Angle(new Vector3(j.transform.position.x, 0, j.transform.position.z), new Vector3(transform.position.x, 0, transform.position.z)));
         if (jps.Count() > 0)
         {
             jumpFrom = transform.position;
@@ -306,6 +307,7 @@ public class PlayerBase : MonoBehaviour
 
     private bool isHoldingObj(GameObject gameObject)
     {
+        if (!gameObject.transform.parent) return false;
         GameObject gameObjectParent = gameObject.transform.parent.gameObject;
         if (gameObjectParent.HasTag(Tag.Player))
         {
