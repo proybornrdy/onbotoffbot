@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Room : MonoBehaviour {
     int playerOnEnters = 0;
@@ -101,6 +102,7 @@ public class Room : MonoBehaviour {
 
         Renderer[] rends = GetComponentsInChildren<Renderer>();
         Light[] lights = GetComponentsInChildren<Light>();
+        RawImage[] images = GetComponentsInChildren<RawImage>();
         if (!fadingOut)
         {
             foreach (var r in rends)
@@ -135,6 +137,7 @@ public class Room : MonoBehaviour {
         {
             foreach (Renderer r in rends) r.enabled = false;
             foreach (Light l in lights) l.enabled = false;
+            foreach (RawImage i in images) i.enabled = false;
 
         }
         else /*since the faded out room needs to stay invisible require it to stay in Fade mode. So this only applies to room that is being faded in*/

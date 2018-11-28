@@ -148,7 +148,7 @@ public class PlayerBase : MonoBehaviour
             {
                 dampening_factor = LevelController.flightDampener;
             }
-			Vector3 translation = (moveDirection * movementSpeed * dampening_factor);
+			Vector3 translation = (moveDirection * movementSpeed * dampening_factor * Time.deltaTime);
             var hits = Physics.BoxCastAll(transform.position + (Vector3.up * 0.7f), new Vector3(0.2f, 0.4f, 0.2f), translation, Quaternion.Euler(transform.forward), 0.25f);
             
             bool inWay = false;
@@ -277,7 +277,7 @@ public class PlayerBase : MonoBehaviour
         var jps = TagCatalogue.FindAllWithTag(Tag.JumpPoint)
                     .Where(obj => obj.transform.parent != this.transform &&
                         Utils.InJumpRange(transform.position, obj.transform.position) && 
-                        transform.position.y + 0.5f < obj.transform.position.y)
+                        transform.position.y + 0.6f < obj.transform.position.y)
                     .OrderBy(obj => Vector3.Angle(transform.forward, obj.transform.position - transform.position));
 
         jps = jps.Where(j => Vector3.Angle(new Vector3(j.transform.position.x, 0, j.transform.position.z), new Vector3(transform.position.x, 0, transform.position.z)) <= selectionThreshold)
@@ -333,9 +333,14 @@ public class PlayerBase : MonoBehaviour
         }
         if (!inWay)
         {
+            dropIndicatorInstance.GetComponent<Renderer>().enabled = true;
             RaycastHit hit;
             Physics.Raycast(newPos, Vector3.down, out hit);
             dropIndicatorInstance.transform.position = hit.point + (Vector3.up * 0.2f);
+        }
+        else
+        {
+            dropIndicatorInstance.GetComponent<Renderer>().enabled = false;
         }
     }
 }

@@ -134,6 +134,7 @@ public class LevelController : MonoBehaviour {
         gameStateLog = new GameStateLog(SceneManager.GetActiveScene().name);
         tutorialStateMachine = FindObjectOfType<TutorialStateMachine>();
         hudController = FindObjectOfType<HUDController>();
+        Application.targetFrameRate = 300;
 
         if (startInStatic.HasValue) startIn = startInStatic.Value;
     }
