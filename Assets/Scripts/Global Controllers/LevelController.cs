@@ -108,6 +108,10 @@ public class LevelController : MonoBehaviour {
         roomActions.Add(delegate () {
             ShowTutorial(TutorialState.PickUpItem);
         });
+        //room 2.1
+        roomActions.Add(delegate () {
+            hudController.DismissDialogue();
+        });
     }
 
     void ShowTutorial(TutorialState state) {
