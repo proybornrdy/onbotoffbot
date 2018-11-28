@@ -36,6 +36,13 @@ public class Magnet : Toggleable {
                 print(obj);
                 prevParent = obj.transform.parent;
                 child = obj.transform;
+                foreach (Transform j in child)
+                {
+                    if (j.gameObject.name == "JumpPoint")
+                    {
+                        j.gameObject.SetActive(false);
+                    }
+                }
                 child.SetParent(transform);
                 StartCoroutine("Pull", obj);
             }
@@ -73,6 +80,13 @@ public class Magnet : Toggleable {
         child.SetParent(prevParent);
         child.GetComponent<Rigidbody>().isKinematic = false;
         child.GetComponent<Rigidbody>().useGravity = true;
+        foreach (Transform j in child)
+        {
+            if (j.gameObject.name == "JumpPoint")
+            {
+                j.gameObject.SetActive(false);
+            }
+        }
         child = null;
         prevParent = null;
     }
