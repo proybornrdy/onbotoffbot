@@ -157,16 +157,22 @@ public class LevelController : MonoBehaviour {
                 PlayersMovedToRoom(currentRoom);
                 for (int i = 0; i < doors.Length; i++) doors[i].index = i;
             }
-
-
-            PauseSceneRoot = GameObject.FindWithTag("PauseSceenRoot");
-            if (!PauseSceneRoot) {
-                Debug.Log("Not Found");
-                SceneManager.LoadScene("InGameMenue", LoadSceneMode.Additive);
-            }
-
         }
-    }
+
+		PauseSceneRoot = GameObject.FindWithTag("PauseSceenRoot");
+		if (!PauseSceneRoot)
+		{
+			Debug.Log("Not Found");
+			SceneManager.LoadScene("InGameMenue", LoadSceneMode.Additive);
+		}
+
+		if (currentRoom != 0)
+		{
+			backtrackBlockers[currentRoom - 1].SetActive(true);
+		}
+
+		InMenue = false;
+	}
 
     public static void ToggleMenue() {
         InMenue = !InMenue;
