@@ -230,7 +230,7 @@ InputManager:
     axis: 0
     joyNum: 2
   - serializedVersion: 3
-    m_Name: P1Reset
+    m_Name: P1Menue
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -246,7 +246,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: P2Reset
+    m_Name: P2Menue
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 

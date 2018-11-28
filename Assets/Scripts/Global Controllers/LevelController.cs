@@ -36,7 +36,7 @@ public class LevelController : MonoBehaviour
     public AudioClip[] musicTracks;
 
     CameraController cc;
-    private int currentRoom = 0;
+    public static int currentRoom = 0;
     private int newRoom;
     private bool roomFadeIn = false;
     private bool roomFadeOut = false;

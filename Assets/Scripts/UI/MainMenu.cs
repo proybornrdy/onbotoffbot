@@ -170,7 +170,7 @@ public class MainMenu : MonoBehaviour
     {
         DeactivateAllPanels();
         pnlLeaderboard.SetActive(true);
-		Debug.Log("hi");
+		btnLeaderboardBack.Select();
 		StartCoroutine(GetRequest("https://www.mdshulman.com/game/onbotoffbot/scores"));
 	}
 
@@ -178,6 +178,7 @@ public class MainMenu : MonoBehaviour
     {
         DeactivateAllPanels();
         pnlCredits.SetActive(true);
+		btnCreditsBack.Select();
     }
 
     void SetUpLevelButtons()
@@ -282,7 +283,6 @@ public class MainMenu : MonoBehaviour
 
 	IEnumerator GetRequest(string uri)
 	{
-		Debug.Log("starting");
 		UnityWebRequest uwr = UnityWebRequest.Get(uri);
 		yield return uwr.SendWebRequest();
 
@@ -304,7 +304,9 @@ public class MainMenu : MonoBehaviour
 
 				GameObject btnSection3 = Instantiate<GameObject>(leaderBoardEntryPrefab);
 				btnSection3.transform.Find("Team Name").gameObject.GetComponent<Text>().text = leaderScores[i].team_name;
-				btnSection3.transform.Find("Score").gameObject.GetComponent<Text>().text = leaderScores[i].score;
+				int seconds = 0;
+				Int32.TryParse(leaderScores[i].score.Split('.')[0], out seconds);
+				btnSection3.transform.Find("Score").gameObject.GetComponent<Text>().text = (seconds/60) + ":" + (seconds%60);
 				btnSection3.transform.parent = leaderScrollViewContent.transform;
 				btnSection3.transform.localPosition = new Vector3(50, 90 - i*30, 0);
 				btnSection3.transform.localScale = new Vector3(1, 1, 1);

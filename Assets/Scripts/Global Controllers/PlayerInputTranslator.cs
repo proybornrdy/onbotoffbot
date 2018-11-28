@@ -55,6 +55,6 @@ public class PlayerInputTranslator : MonoBehaviour {
 
     public static string GetDismiss(Player p)
     {
-        return p == P1 ? "P1Dismiss" : "P1Dismiss";
+        return p == P1 ? "P1Dismiss" : "P2Dismiss";
     }
 }

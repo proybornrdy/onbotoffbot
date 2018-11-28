@@ -20,7 +20,8 @@ public class InGameMenueController : MonoBehaviour {
     {
         btnToMenu.onClick.AddListener(delegate () { SceneManager.LoadScene("MainMenu"); });
         reset.onClick.AddListener(delegate () {
-            LevelController.ResetScene();
+			LevelController.startInStatic = LevelController.currentRoom;
+			LevelController.ResetScene();
             LevelController.InMenue = false;
             });
         }
