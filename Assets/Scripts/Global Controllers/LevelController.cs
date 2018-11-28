@@ -250,17 +250,19 @@ public class LevelController : MonoBehaviour {
                 StartCoroutine("RoomFadeDelay", index);
                 if (index < roomActions.Count) roomActions[index]();
 
-                if (index == rooms.Length - 1) {
-                    //    int nextSceneIndex = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
-                    //    //save the log, and move on to next level
-                    //    gameStateLog.SaveGameStateLog();
-                    //    SceneManager.LoadScene(LevelProgresion[nextSceneIndex + 1]);
-                    Time.timeScale = 0f;
-                    LevelController.endGame("reasons");
-                    SceneManager.LoadScene("GameEndScene", LoadSceneMode.Additive);
-                }
+                
             }
 
+        }
+
+        if (index == - 1) {
+            //    int nextSceneIndex = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
+            //    //save the log, and move on to next level
+            //    gameStateLog.SaveGameStateLog();
+            //    SceneManager.LoadScene(LevelProgresion[nextSceneIndex + 1]);
+            Time.timeScale = 0f;
+            LevelController.endGame("reasons");
+            SceneManager.LoadScene("GameEndScene", LoadSceneMode.Additive);
         }
         if (index == startIn && index < roomActions.Count) roomActions[index]();
     }
