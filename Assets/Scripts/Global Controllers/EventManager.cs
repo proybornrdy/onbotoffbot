@@ -10,6 +10,7 @@ public class EventManager : MonoBehaviour {
     float lastPressedOn = 0;
     float lastPressedOff = 0;
     public float pressThreshold = 0.5f;
+    public NPC npc;
 
 	DateTime lastPressedOnMenue = DateTime.Now;
 	DateTime lastPressedOffMenue = DateTime.Now;
@@ -75,6 +76,7 @@ public class EventManager : MonoBehaviour {
             {
                 print("y");
                 hudController.DismissDialogue();
+                npc.Dismiss();
 
             }
             /*

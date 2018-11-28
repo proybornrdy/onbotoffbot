@@ -51,18 +51,24 @@ public class NPC : MonoBehaviour {
             isSpeaking = true;
             panel.SetActive(true);
             text.gameObject.SetActive(true);
-            text.text = dialogue[line];
+            hudController.ReceiveText(dialogue[line]);
+            List<XboxButton> buttons = new List<XboxButton>();
+            buttons.Add(new XboxButton("Xbox Buttons/xbox_y", new Vector2(-145F, 2F), new Vector2(15F, 15F)));
+            hudController.ReceiveButtons(buttons);
             line++;
         }
         else if(line == dialogue.Length) Dismiss();
         else
         {
-            text.text = dialogue[line];
+            hudController.ReceiveText(dialogue[line]);
+            List<XboxButton> buttons = new List<XboxButton>();
+            buttons.Add(new XboxButton("Xbox Buttons/xbox_y", new Vector2(-145F, 2F), new Vector2(15F, 15F)));
+            hudController.ReceiveButtons(buttons);
             line++;
         }
     }
 
-    void Dismiss()
+    public void Dismiss()
     {
         isSpeaking = false;
         panel.SetActive(false);
