@@ -24,7 +24,8 @@ public class InGameMenueController : MonoBehaviour {
 			LevelController.ResetScene();
             LevelController.InMenue = false;
             });
-        }
+		reset.Select();
+	}
 
     // Update is called once per frame
         void Update () {
