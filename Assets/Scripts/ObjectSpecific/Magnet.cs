@@ -29,12 +29,16 @@ public class Magnet : Toggleable {
     {
         if (on && child == null)
         {
-            var obj = TagCatalogue.FindAllWithTag(Tag.Magnetic).Where(o => InMaxRange(o)).OrderBy(o => Vector3.Distance(transform.position, o.transform.position)).First();
-            print(obj);
-            prevParent = obj.transform.parent;
-            child = obj.transform;
-            child.SetParent(transform);
-            StartCoroutine("Pull", obj);
+            var objs = TagCatalogue.FindAllWithTag(Tag.Magnetic).Where(o => InMaxRange(o)).OrderBy(o => Vector3.Distance(transform.position, o.transform.position));
+            if (objs.Count() > 0)
+            {
+                var obj = objs.First();
+                print(obj);
+                prevParent = obj.transform.parent;
+                child = obj.transform;
+                child.SetParent(transform);
+                StartCoroutine("Pull", obj);
+            }
         }
     }
 
