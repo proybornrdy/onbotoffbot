@@ -34,10 +34,10 @@ public class PlatformElevator : Toggleable {
 		}
 		else if (lowering) {
 			if (platform.position.y > minY) {
-                if(!PlayerUnderneath())
-                {
+                //if(!PlayerUnderneath())
+                //{
                     Lower();
-                }				
+                //}				
 			} else {
 				lowering = false;
 			}
@@ -64,7 +64,7 @@ public class PlatformElevator : Toggleable {
 		if (!inWay) platform.position += Vector3.down * Time.deltaTime * 2;
 	}
 
-    bool PlayerUnderneath()
+    /*bool PlayerUnderneath()
     {
         Vector3 origin = platform.transform.position + new Vector3(0, 0, 0.6f);
         Vector3 direction = transform.TransformDirection(-Vector3.up);
@@ -77,7 +77,7 @@ public class PlatformElevator : Toggleable {
             }
         }
         return false;
-    }
+    }*/
 
 
     public override void TurnOn()
