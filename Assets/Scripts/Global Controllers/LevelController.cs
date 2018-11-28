@@ -22,7 +22,7 @@ public class LevelController : MonoBehaviour {
     public static GameObject Door;
 
     // Game State
-    static private float time = 0; // time since game began
+    static public float time = 0; // time since game began
     static private bool gamePlaying = true; // true: game still going, falst: game over
     static private string reason; // reason game is over if it's over
 
@@ -270,8 +270,6 @@ public class LevelController : MonoBehaviour {
     public static void ResetScene() {
         gameStateLog.SaveGameStateLog();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        time = 0;
-
     }
 
     IEnumerator ChangeMusicTrack(int index) {
