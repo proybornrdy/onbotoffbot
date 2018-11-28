@@ -42,7 +42,7 @@ public class TutorialStateMachine : MonoBehaviour {
         states[TutorialState.PickUpItem].Value = false;
         states[TutorialState.PickUpItem].Text = "Some objects can be picked up. Press     to pick it up, then press     again to drop it.";
         states[TutorialState.PickUpItem].Buttons = new List<XboxButton>();
-        states[TutorialState.PickUpItem].Buttons.Add(new XboxButton("Xbox Buttons/xbox_b", new Vector2(60F, 17F), new Vector2(15F, 15F)));
+        states[TutorialState.PickUpItem].Buttons.Add(new XboxButton("Xbox Buttons/xbox_b", new Vector2(53F, 17F), new Vector2(15F, 15F)));
         states[TutorialState.PickUpItem].Buttons.Add(new XboxButton("Xbox Buttons/xbox_b", new Vector2(-146F, 1F), new Vector2(15F, 15F)));
         states[TutorialState.PickUpItem].Buttons.Add(new XboxButton("Xbox Buttons/xbox_y", new Vector2(-145F, -15F), new Vector2(15F, 15F)));
     }
