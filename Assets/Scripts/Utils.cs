@@ -32,7 +32,7 @@ public static class Utils {
     public static bool InJumpRange(Vector3 onPlayerPos, Vector3 buttonPos)
     {
         return Mathf.Abs(onPlayerPos.x - buttonPos.x) <= 1 &&
-            Mathf.Abs(onPlayerPos.y - buttonPos.y) <= 2 &&
+            Mathf.Abs(onPlayerPos.y + .25f - buttonPos.y) <= 2.5 &&
             Mathf.Abs(onPlayerPos.z - buttonPos.z) <= 1;
     }
 
