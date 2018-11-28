@@ -60,7 +60,9 @@ public class EventManager : MonoBehaviour {
                 }
             }
 
-            if (Input.GetButton(PlayerInputTranslator.GetMenu(Player.ON)) || Input.GetButton(PlayerInputTranslator.GetMenu(Player.OFF)))
+            if ( (Input.GetButton(PlayerInputTranslator.GetMenu(Player.ON)) || Input.GetButton(PlayerInputTranslator.GetMenu(Player.OFF))) ||
+				 (LevelController.InMenue && (Input.GetButton(PlayerInputTranslator.GetPickup(Player.ON)) || Input.GetButton(PlayerInputTranslator.GetPickup(Player.OFF))) )
+			)
             {
 				if ((DateTime.Now - lastPressedOnMenue).TotalSeconds > pressThresholdMenue)
 				{
