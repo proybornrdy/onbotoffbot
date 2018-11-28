@@ -238,10 +238,11 @@ public class PlayerBase : MonoBehaviour
         //drop held item
         if (heldItem != null) {
             Vector3 newPos = Utils.NearestCubeQuarterCenter(transform.position + transform.forward + transform.up);
-            var hits = Physics.RaycastAll(transform.position + transform.up, newPos, 1f);
+            var hits = Physics.BoxCastAll(transform.position + (Vector3.up * 1.6f), new Vector3(0.3f, 0.3f, 0.3f), transform.forward, Quaternion.Euler(transform.forward), 0.5f);
             bool inWay = false;
             foreach( var h in hits)
             {
+                print(h.transform.name);
                 if (!h.transform.gameObject.Equals(heldItem.gameObject)) inWay = true;
             }
             if (!inWay)
@@ -325,7 +326,7 @@ public class PlayerBase : MonoBehaviour
     private void PlaceDropIndicator()
     {
         Vector3 newPos = Utils.NearestCubeQuarterCenter(transform.position + transform.forward + transform.up);
-        var hits = Physics.RaycastAll(transform.position + transform.up, newPos, 1f);
+        var hits = Physics.BoxCastAll(transform.position + (Vector3.up * 1.6f), new Vector3(0.3f, 0.3f, 0.3f), transform.forward, Quaternion.Euler(transform.forward), 0.5f);
         bool inWay = false;
         foreach (var h in hits)
         {
