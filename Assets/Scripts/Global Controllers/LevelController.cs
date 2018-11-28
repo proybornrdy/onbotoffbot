@@ -255,7 +255,7 @@ public class LevelController : MonoBehaviour {
             }
 
         }
-        if (index == startIn) roomActions[index]();
+        if (index == startIn && index < roomActions.Count) roomActions[index]();
     }
 
     IEnumerator RoomFadeDelay(int index) {
