@@ -32,13 +32,10 @@ public class CameraController : MonoBehaviour
             roomCenter.z += colCenter.z;
             roomCenter.y += colCenter.y;
 
-            Debug.Log(colSize + " " + i);
-
             lengths[0 + i * 3] = colSize.x;
             lengths[1 + i * 3] = colSize.y;
             lengths[2 + i * 3] = colSize.z;
             i++;
-            Debug.Log("length/?? " + lengths[0] + " " + lengths[1] + " " + lengths[2]);
 
         }
         roomCenter.x = roomCenter.x / room.GetComponents(typeof(Collider)).Length;
@@ -52,7 +49,7 @@ public class CameraController : MonoBehaviour
 
 
         float longSide = Mathf.Max(lengths);
-        Debug.Log("longside check " + lengths[0] + " " + lengths[1] + " " + lengths[2]);
+
 
         float yAxis = Mathf.Tan(Camera.main.transform.eulerAngles.x) * Mathf.Sqrt(Mathf.Pow(longSide, 2f) * 2);
 
@@ -70,8 +67,6 @@ public class CameraController : MonoBehaviour
 
 
         Camera.main.transform.position = Vector3.Lerp(currentPos, cameraPos, Time.deltaTime);
-
-        Debug.DrawLine(Camera.main.transform.position, roomCenter, Color.red);
     }
 
 
