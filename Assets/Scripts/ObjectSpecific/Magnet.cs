@@ -69,6 +69,8 @@ public class Magnet : Toggleable {
         child.SetParent(prevParent);
         child.GetComponent<Rigidbody>().isKinematic = false;
         child.GetComponent<Rigidbody>().useGravity = true;
+        child = null;
+        prevParent = null;
     }
 
     bool InMaxRange(GameObject obj)
