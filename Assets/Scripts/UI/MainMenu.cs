@@ -67,7 +67,9 @@ public class MainMenu : MonoBehaviour
         StartCoroutine("Rotate", new MyPair<Transform, float>(gear5.transform, -15f));
         StartCoroutine("Rotate", new MyPair<Transform, float>(gear6.transform, 15f));
         StartCoroutine("Rotate", new MyPair<Transform, float>(gear7.transform, -15f));
-    }
+
+		LevelController.time = 0;
+	}
 
     // Update is called once per frame
     void Update()
@@ -187,7 +189,7 @@ public class MainMenu : MonoBehaviour
         btnSection1.GetComponentInChildren<Text>().text = "Section 1";
         btnSection1.onClick.AddListener(delegate ()
         {
-            LevelController.startInStatic = 0;
+			LevelController.startInStatic = 0;
             SceneManager.LoadScene("Scenes/Progression chunks/Section 1");
         });
         btnSection1.transform.parent = scrollViewContent.transform;
