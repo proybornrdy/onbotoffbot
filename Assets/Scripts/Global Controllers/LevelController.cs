@@ -173,6 +173,16 @@ public class LevelController : MonoBehaviour {
 		}
 
 		InMenue = false;
+
+        AudioSource musicSource = GameObject.Find("/Basic Level Boilerplate/MusicSource").GetComponent<AudioSource>();
+        if (currentRoom < 6) {
+            musicSource.clip = musicTracks[0];
+        } else if (currentRoom < 12) {
+            musicSource.clip = musicTracks[1];
+        } else if (currentRoom >= 12) {
+            musicSource.clip = musicTracks[2];
+        }
+        musicSource.Play();
 	}
 
     public static void ToggleMenue() {

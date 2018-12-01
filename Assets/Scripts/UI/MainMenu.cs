@@ -96,10 +96,12 @@ public class MainMenu : MonoBehaviour
             if (player1Selector.value != 0.5f && player2Selector.value != 0.5f && player1Selector.value != player2Selector.value)
             {
                 btnPlayerSelectDone.interactable = true;
+                btnPlayerSelectDone.Select();
             }
             else
             {
                 btnPlayerSelectDone.interactable = false;
+                btnPlayerSelectBack.Select();
             }
         }
     }
