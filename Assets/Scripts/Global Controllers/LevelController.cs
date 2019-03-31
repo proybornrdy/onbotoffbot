@@ -191,30 +191,30 @@ public class LevelController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (!PauseSceneRoot) {
-            PauseSceneRoot = GameObject.FindWithTag("PauseSceenRoot");
-            if (PauseSceneRoot) {
-                PauseSceneRoot.SetActive(false);
-            }
-        }
-        if (gamePlaying) {
-            time += Time.deltaTime;
-            //if (!isTestLevel && rooms.Length != 0) cc.zoomCamera(OnPlayer, OffPlayer); 
+        //if (!PauseSceneRoot) {
+        //    PauseSceneRoot = GameObject.FindWithTag("PauseSceenRoot");
+        //    if (PauseSceneRoot) {
+        //        PauseSceneRoot.SetActive(false);
+        //    }
+        //}
+        //if (gamePlaying) {
+        //    time += Time.deltaTime;
+        //    //if (!isTestLevel && rooms.Length != 0) cc.zoomCamera(OnPlayer, OffPlayer); 
 
 
-            // log postion every second
-            if (((int)time) != oldTime) {
-                gameStateLog.LogPositions(OnPlayer.transform.position, OffPlayer.transform.position);
-                oldTime = (int)time;
-            }
+        //    // log postion every second
+        //    if (((int)time) != oldTime) {
+        //        gameStateLog.LogPositions(OnPlayer.transform.position, OffPlayer.transform.position);
+        //        oldTime = (int)time;
+        //    }
 
-        }
-        if (!isTestLevel) cc.changeCameraPos(rooms[currentRoom][0]);
+        //}
+        //if (!isTestLevel) cc.changeCameraPos(rooms[currentRoom][0]);
 
-        Time.timeScale = (InMenue) ? 0.00f : 1.00f;
-        if (PauseSceneRoot) {
-            PauseSceneRoot.SetActive((!LevelController.gameGoing()) ? false : InMenue);
-        }
+        //Time.timeScale = (InMenue) ? 0.00f : 1.00f;
+        //if (PauseSceneRoot) {
+        //    PauseSceneRoot.SetActive((!LevelController.gameGoing()) ? false : InMenue);
+        //}
     }
 
     public void DoorOpened(int index) {
@@ -265,16 +265,16 @@ public class LevelController : MonoBehaviour {
 
         }
 
-        if (index == - 1) {
-            //    int nextSceneIndex = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
-            //    //save the log, and move on to next level
-            //    gameStateLog.SaveGameStateLog();
-            //    SceneManager.LoadScene(LevelProgresion[nextSceneIndex + 1]);
-            Time.timeScale = 0f;
-            LevelController.endGame("reasons");
-            SceneManager.LoadScene("GameEndScene", LoadSceneMode.Additive);
-        }
-        if (index == startIn && index < roomActions.Count) roomActions[index]();
+        //if (index == - 1) {
+        //    //    int nextSceneIndex = Array.IndexOf(LevelProgresion, SceneManager.GetActiveScene().path);
+        //    //    //save the log, and move on to next level
+        //    //    gameStateLog.SaveGameStateLog();
+        //    //    SceneManager.LoadScene(LevelProgresion[nextSceneIndex + 1]);
+        //    Time.timeScale = 0f;
+        //    LevelController.endGame("reasons");
+        //    SceneManager.LoadScene("GameEndScene", LoadSceneMode.Additive);
+        //}
+        //if (index == startIn && index < roomActions.Count) roomActions[index]();
     }
 
     IEnumerator RoomFadeDelay(int index) {
