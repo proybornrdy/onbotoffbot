@@ -44,7 +44,7 @@ public class Room : MonoBehaviour {
     {
         if (other.gameObject.HasTag(Tag.Player))
         {
-            Debug.Log("the room being triggered = " + gameObject.name);
+            //Debug.Log("the room being triggered = " + gameObject.name);
             if (other.gameObject.HasTag(Tag.PlayerOn))
             {
                 playerOnEnters++;
