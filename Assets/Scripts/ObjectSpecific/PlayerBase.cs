@@ -242,7 +242,7 @@ public class PlayerBase : MonoBehaviour
             bool inWay = false;
             foreach( var h in hits)
             {
-                //print(h.transform.name);
+                print(h.transform.name);
                 if (!h.transform.gameObject.Equals(heldItem.gameObject)) inWay = true;
             }
             if (!inWay)
