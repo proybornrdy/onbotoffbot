@@ -163,7 +163,7 @@ public class LevelController : MonoBehaviour {
 		PauseSceneRoot = GameObject.FindWithTag("PauseSceenRoot");
 		if (!PauseSceneRoot)
 		{
-			Debug.Log("Not Found");
+			//Debug.Log("Not Found");
 			SceneManager.LoadScene("InGameMenue", LoadSceneMode.Additive);
 		}
 
@@ -252,7 +252,7 @@ public class LevelController : MonoBehaviour {
     }
 
     public void PlayersMovedToRoom(int index) {
-        Debug.Log("playermoved to room is called" + index);
+        //Debug.Log("playermoved to room is called" + index);
         if (index != -1 && index != startIn) {
             if (OnPlayer.GetComponent<PlayerOn>().playerCurrentRoom == OffPlayer.GetComponent<PlayerOff>().playerCurrentRoom) {
                 print("both player has moved to current room index = " + index);
