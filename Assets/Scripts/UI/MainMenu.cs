@@ -22,11 +22,21 @@ public class MainMenu : MonoBehaviour
     public Slider player2Selector;
     public Button btnPlayerSelectDone;
     public Button btnPlayerSelectBack;
+    public Button btnOnbot;
+    public Button btnOffbot;
 
     //level select
     public GameObject pnlLevelSelect;
     public GameObject scrollViewContent;
     public Button btnLevelSelectBack;
+
+    public GameObject section1;
+    public GameObject section2;
+    public GameObject section3;
+    public Button left;
+    public Button right;
+    public Button go;
+
 
     //leaderboard
     public GameObject pnlLeaderboard;
@@ -76,6 +86,18 @@ public class MainMenu : MonoBehaviour
     {
         if (selectingPlayers)
         {
+            if ((player1Selector.value < 0.5f && player2Selector.value >= 0.5f) || (player2Selector.value < 0.5f && player1Selector.value >= 0.5f))
+            {
+                btnOnbot.interactable = true;
+            }
+            else btnOnbot.interactable = false;
+            if ((player1Selector.value > 0.5f && player2Selector.value <= 0.5f) || (player2Selector.value > 0.5f && player1Selector.value <= 0.5f))
+            {
+                btnOffbot.interactable = true;
+            }
+            else btnOffbot.interactable = false;
+
+
             if (Input.GetAxis("P1Horizontal") < -0.5)
             {
                 player1Selector.value -= 0.5f;
@@ -84,6 +106,7 @@ public class MainMenu : MonoBehaviour
             {
                 player1Selector.value += 0.5f;
             }
+
             if (Input.GetAxis("P2Horizontal") < -0.5)
             {
                 player2Selector.value -= 0.5f;
@@ -117,9 +140,10 @@ public class MainMenu : MonoBehaviour
         //player select
         btnPlayerSelectDone.onClick.AddListener(PlayerSelectDone);
         btnPlayerSelectBack.onClick.AddListener(PlayerSelectBack);
-        
+
         //level select
-        SetUpLevelButtons();
+        //SetUpLevelButtons();
+        SetUpLevelButtons2();
         btnLevelSelectBack.onClick.AddListener(LevelSelectBack);
 
         //leaderboard
@@ -167,7 +191,14 @@ public class MainMenu : MonoBehaviour
     {
         DeactivateAllPanels();
         pnlLevelSelect.SetActive(true);
-        scrollViewContent.GetComponentInChildren<Button>().Select();
+        //scrollViewContent.GetComponentInChildren<Button>().Select();
+
+        right.Select();
+        section1.SetActive(true);
+        section2.SetActive(false);
+        section3.SetActive(false);
+
+        //right.Select();
     }
 
     void ShowLeaderboard()
@@ -183,6 +214,56 @@ public class MainMenu : MonoBehaviour
         DeactivateAllPanels();
         pnlCredits.SetActive(true);
 		btnCreditsBack.Select();
+    }
+    void SetUpLevelButtons2()
+    {
+        right.onClick.AddListener(delegate ()
+        {
+            if (section1.activeSelf)
+            {
+                section1.SetActive(false);
+                section2.SetActive(true);
+                LevelController.startInStatic = 6;
+            }
+            else if (section2.activeSelf)
+            {
+                section2.SetActive(false);
+                section3.SetActive(true);
+                LevelController.startInStatic = 12;
+            }
+            else
+            {
+                section3.SetActive(false);
+                section1.SetActive(true);
+                LevelController.startInStatic = 0;
+            }
+        });
+        left.onClick.AddListener(delegate ()
+        {
+            if (section1.activeSelf)
+            {
+                section1.SetActive(false);
+                section3.SetActive(true);
+                LevelController.startInStatic = 12;
+            }
+            else if (section2.activeSelf)
+            {
+                section2.SetActive(false);
+                section1.SetActive(true);
+                LevelController.startInStatic = 0;
+            }
+            else
+            {
+                section3.SetActive(false);
+                section2.SetActive(true);
+                LevelController.startInStatic = 6;
+            }
+        });
+
+        go.onClick.AddListener(delegate ()
+        {
+            SceneManager.LoadScene("Scenes/Progression chunks/Section 1");
+        });
     }
 
     void SetUpLevelButtons()
