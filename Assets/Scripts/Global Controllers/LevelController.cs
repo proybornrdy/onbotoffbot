@@ -163,7 +163,7 @@ public class LevelController : MonoBehaviour {
 		PauseSceneRoot = GameObject.FindWithTag("PauseSceenRoot");
 		if (!PauseSceneRoot)
 		{
-			Debug.Log("Not Found");
+			//Debug.Log("Not Found");
 			SceneManager.LoadScene("InGameMenue", LoadSceneMode.Additive);
 		}
 
