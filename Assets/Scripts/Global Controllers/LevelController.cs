@@ -68,6 +68,7 @@ public class LevelController : MonoBehaviour {
     public Slider loadingBar;
     public GameObject[] loadingDesigns;
 
+
     public static bool gameGoing() {
         return gamePlaying;
     }
@@ -265,7 +266,20 @@ public class LevelController : MonoBehaviour {
         }
         
     }
-
+    public void sectionCleared(int section, GameObject checkpoint)
+    {
+        
+        if (section == 1)
+        {            
+            startInStatic = 6;
+            ResetScene();
+        }
+        if (section == 2)
+        {
+            startInStatic = 12;
+            ResetScene();
+        }
+    }
     public void DoorOpened(int index) {
         Debug.Log("door is opened room being opened = " + (index + 1) + "  rooms.length = " + rooms.Length);
         if (!isTestLevel && index != -1 && index < rooms.Length - 1) {
@@ -273,19 +287,24 @@ public class LevelController : MonoBehaviour {
             rooms[newRoom][0].HideBlockingWalls();
 
             for (int j = 0; j < rooms[newRoom].Length; j++) {
-                rooms[newRoom][j].SetActive(true);
+                //rooms[newRoom][j].SetActive(true);
 
                 //rooms[index + 1][j].transform.Find("Walls").gameObject.SetActive(false);
 
                 /*since all rooms are just activated from deactivation, 
                 it needs to be invisible first in order for it to be faded in*/
-                Debug.Log("from origin room is being faded in: " + rooms[newRoom][j].name + " " + newRoom);
-                rooms[newRoom][j].FadeIn();
+                //Debug.Log("from origin room is being faded in: " + rooms[newRoom][j].name + " " + newRoom);
+                //rooms[newRoom][j].FadeIn();
 
                 if (rooms[newRoom][j].name == "2.1") {
                     StartCoroutine("ChangeMusicTrack", 1);
                 } else if (rooms[newRoom][j].name == "3.1") {
                     StartCoroutine("ChangeMusicTrack", 2);
+                }
+                else
+                {
+                    rooms[newRoom][j].SetActive(true);
+                    rooms[newRoom][j].FadeIn();
                 }
             }
         }

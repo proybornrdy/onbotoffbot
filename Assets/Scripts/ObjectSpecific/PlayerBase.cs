@@ -253,19 +253,33 @@ public class PlayerBase : MonoBehaviour
                 //print(h.transform.name);
                 if (!h.transform.gameObject.Equals(heldItem.gameObject)) inWay = true;
             }
-            if (!inWay)
-            {
-                PickupItem item = heldItem;
-                heldItem = null;
 
-                item.transform.SetParent(item.initParent);
-                item.transform.position = newPos;
-                item.transform.rotation = Utils.AngleSnap(item.transform.rotation);
-                item.GetComponent<Rigidbody>().isKinematic = false;
-                dropIndicatorInstance.GetComponent<Renderer>().enabled = false;
-            }
+            //Debug.Log("trying to drop");
+            PickupItem item = heldItem;
+            heldItem = null;
 
-        } else {
+            item.transform.SetParent(item.initParent);
+            item.transform.position = newPos;
+            item.transform.rotation = Utils.AngleSnap(item.transform.rotation);
+            item.GetComponent<Rigidbody>().isKinematic = false;
+            dropIndicatorInstance.GetComponent<Renderer>().enabled = false;
+
+            //temporarily disabled if statement to make things work at least
+            //if (!inWay)
+            //{
+            //    Debug.Log("??????");
+            //    PickupItem item = heldItem;
+            //    heldItem = null;
+
+            //    item.transform.SetParent(item.initParent);
+            //    item.transform.position = newPos;
+            //    item.transform.rotation = Utils.AngleSnap(item.transform.rotation);
+            //    item.GetComponent<Rigidbody>().isKinematic = false;
+            //    dropIndicatorInstance.GetComponent<Renderer>().enabled = false;
+            //}
+
+        }
+        else {
             if (selectedItem && selectedItem.IsPickup())
             {
                 var item = selectedItem.GetComponent<PickupItem>();
