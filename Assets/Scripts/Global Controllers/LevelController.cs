@@ -134,7 +134,7 @@ public class LevelController : MonoBehaviour {
                 for (int i = 0; i < doors.Length; i++) doors[i].index = i;
             }
         }
-
+        
         PauseSceneRoot = GameObject.FindWithTag("PauseSceneRoot");
         if (!PauseSceneRoot)
         {
@@ -183,24 +183,27 @@ public class LevelController : MonoBehaviour {
         //        PauseSceneRoot.SetActive(false);
         //    }
         //}
-        //if (gamePlaying) {
-        //    time += Time.deltaTime;
-        //    //if (!isTestLevel && rooms.Length != 0) cc.zoomCamera(OnPlayer, OffPlayer); 
+        if (gamePlaying)
+        {
+            time += Time.deltaTime;
+            //if (!isTestLevel && rooms.Length != 0) cc.zoomCamera(OnPlayer, OffPlayer); 
 
 
-        //    // log postion every second
-        //    if (((int)time) != oldTime) {
-        //        gameStateLog.LogPositions(OnPlayer.transform.position, OffPlayer.transform.position);
-        //        oldTime = (int)time;
-        //    }
+            // log postion every second
+            if (((int)time) != oldTime)
+            {
+                gameStateLog.LogPositions(OnPlayer.transform.position, OffPlayer.transform.position);
+                oldTime = (int)time;
+            }
 
-        //}
-        //if (!isTestLevel) cc.changeCameraPos(rooms[currentRoom][0]);
+        }
+        if (!isTestLevel) cc.changeCameraPos(rooms[currentRoom][0]);
 
-        //Time.timeScale = (InMenue) ? 0.00f : 1.00f;
-        //if (PauseSceneRoot) {
-        //    PauseSceneRoot.SetActive((!LevelController.gameGoing()) ? false : InMenue);
-        //}
+        Time.timeScale = (InMenue) ? 0.00f : 1.00f;
+        if (PauseSceneRoot)
+        {
+            PauseSceneRoot.SetActive((!LevelController.gameGoing()) ? false : InMenue);
+        }
     }
 
     public void DoorOpened(int index) {
@@ -238,7 +241,7 @@ public class LevelController : MonoBehaviour {
     }
 
     public void PlayersMovedToRoom(int index) {
-        Debug.Log("playermoved to room is called" + index);
+        //Debug.Log("playermoved to room is called" + index);
         if (index != -1 && index != startIn) {
             if (Parameters.OnPlayer.GetComponent<PlayerOn>().playerCurrentRoom == Parameters.OffPlayer.GetComponent<PlayerOff>().playerCurrentRoom) {
                 print("both player has moved to current room index = " + index);
