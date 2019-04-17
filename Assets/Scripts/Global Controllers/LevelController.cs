@@ -192,7 +192,7 @@ public class LevelController : MonoBehaviour {
             // log postion every second
             if (((int)time) != oldTime)
             {
-                gameStateLog.LogPositions(OnPlayer.transform.position, OffPlayer.transform.position);
+                gameStateLog.LogPositions(Parameters.OnPlayer.transform.position, Parameters.OffPlayer.transform.position);
                 oldTime = (int)time;
             }
 
