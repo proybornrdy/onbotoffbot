@@ -37,6 +37,10 @@ public class destroy : MonoBehaviour
             {
                 lc.sectionCleared(2, this.gameObject);
             }
+            if (transform.name == "sect3_clear")
+            {
+                lc.sectionCleared(3, this.gameObject);
+            }
         }
     }
 }

@@ -272,12 +272,13 @@ public class LevelController : MonoBehaviour {
         if (section == 1)
         {            
             startInStatic = 6;
-            ResetScene();
+            StartCoroutine(forceLoad(6));
+            
         }
         if (section == 2)
         {
             startInStatic = 12;
-            ResetScene();
+            StartCoroutine(forceLoad(12));
         }
     }
     public void DoorOpened(int index) {
@@ -343,6 +344,32 @@ public class LevelController : MonoBehaviour {
         //    SceneManager.LoadScene("GameEndScene", LoadSceneMode.Additive);
         //}
         //if (index == startIn && index < roomActions.Count) roomActions[index]();
+    }
+
+    IEnumerator forceLoad(int roomindex)
+    {
+        loadingScreen.SetActive(true);
+        foreach (GameObject obj in loadingDesigns)
+        {
+            obj.SetActive(false);
+        }
+        int index = UnityEngine.Random.Range(0, loadingDesigns.Length);
+        loadingDesigns[index].SetActive(true);
+
+        loadingBar.value = 0;
+        while (loadingBar.value < 1)
+        {
+            //float progress = Mathf.Clamp01(operation.progress / .9f);
+            loadingBar.value += 0.1f;
+            yield return new WaitForSeconds(0.05f);
+        }
+        foreach (GameObject obj in loadingDesigns)
+        {
+            obj.SetActive(false);
+        }
+        startInStatic = roomindex;
+        ResetScene();
+
     }
 
     IEnumerator loadAsync(int sceneIndex)
