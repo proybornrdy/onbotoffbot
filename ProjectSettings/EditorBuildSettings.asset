@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Progression chunks/Section 1.unity
     guid: 5e87825f99c594a4590551b2d5abb3d1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/InGameMenue.unity
     guid: 3953a47a52fbf854bb9254eb721b5065
   m_configObjects: {}
