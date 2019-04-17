@@ -21,6 +21,7 @@ public class Interactable : MonoBehaviour
         //glowShader = Shader.Find("OutlineShader");
         glowShader = Shader.Find("SelectionGlow");
         EventManager.OnInteract += OnInteract;
+
     }
 
     public void Select(GameObject player)

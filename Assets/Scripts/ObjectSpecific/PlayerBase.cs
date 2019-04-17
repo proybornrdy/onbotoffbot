@@ -150,7 +150,7 @@ public class PlayerBase : MonoBehaviour
             //    dampening_factor = Parameters.flightDampener;
             //}
 			Vector3 translation = (moveDirection * movementSpeed * dampening_factor * Time.deltaTime);
-            print(translation);
+            //print(translation);
             var hits = Physics.BoxCastAll(transform.position + (Vector3.up * 0.7f), new Vector3(0.2f, 0.4f, 0.2f), translation, Quaternion.Euler(transform.forward), 0.25f);
             
             bool inWay = false;
@@ -219,7 +219,7 @@ public class PlayerBase : MonoBehaviour
             selectedItem.GetComponent<Interactable>().Deselect();
             selectedItem = null;
         }
-
+        
         var interactables = TagCatalogue.FindAllWithTag(Tag.Interactable)
             .Where(
                 obj => Utils.InRange(transform.position, obj.transform.position) &&
@@ -228,6 +228,7 @@ public class PlayerBase : MonoBehaviour
             .OrderBy(obj => Mathf.Abs(Vector3.Angle(transform.forward, obj.transform.position - transform.position)));
         if (interactables.Count() != 0)
         {
+            
             GameObject closest = interactables.ElementAt(0);
             Vector3 v = closest.transform.position - transform.position;
             v.y = 0;
