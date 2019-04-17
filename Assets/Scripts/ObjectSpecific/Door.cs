@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Door : Toggleable {
     public bool isOpen = false;
@@ -9,11 +10,14 @@ public class Door : Toggleable {
     bool isReady = false;
     bool muteSoundOnInit = true;
     Color color;
+    public float openSpeed;
+    bool closing = false;
+    bool opening = false;
 
     // Use this for initialization
     void Start ()
     {
-        lc = GameObject.Find("LevelController").GetComponent<LevelController>();
+        lc = GameObject.Find("LevelController")?.GetComponent<LevelController>();
         isReady = true;
         if (isOpen) Open();
         else Close();
@@ -24,7 +28,7 @@ public class Door : Toggleable {
         if (!isReady) return;
         isOpen = true;
         Open();
-        lc.DoorOpened(index);
+        lc?.DoorOpened(index);
         if (!muteSoundOnInit) SoundController.instance.playSoundEffect("DoorOn");
         else muteSoundOnInit = false;
     }
@@ -34,25 +38,47 @@ public class Door : Toggleable {
         if (!isReady) return;
         isOpen = false;
         Close();
-        lc.DoorClosed(index);
+        lc?.DoorClosed(index);
         if (!muteSoundOnInit) SoundController.instance.playSoundEffect("DoorOff");
         else muteSoundOnInit = false;
     }
 
     void Open()
     {
-        slide.transform.localPosition = new Vector3(-0.25f, 1.5f, 0.618f);
-        overLight.color = Color.blue;
+        StopCoroutine("CloseAnimation");
+        StartCoroutine("OpenAnimation");
+        if (overLight)
+            overLight.color = Color.blue;
     }
 
     void Close()
     {
-        slide.transform.localPosition = new Vector3(-0.25f, -0.5f, 0.618f);
-        overLight.color = Color.red;
+        StopCoroutine("OpenAnimation");
+        StartCoroutine("CloseAnimation");
+        if (overLight)
+            overLight.color = Color.red;
     }
 
     public override bool IsOn()
     {
         return isOpen;
+    }
+
+    IEnumerator OpenAnimation()
+    {
+        while (slide.transform.localPosition.y < 1.5f)
+        {
+            slide.transform.localPosition += Vector3.up * Time.deltaTime * openSpeed;
+            yield return null;
+        }
+    }
+
+    IEnumerator CloseAnimation()
+    {
+        while (slide.transform.localPosition.y > -0.5f)
+        {
+            slide.transform.localPosition += Vector3.down * Time.deltaTime * openSpeed;
+            yield return null;
+        }
     }
 }

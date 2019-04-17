@@ -6,7 +6,8 @@ public class PlayerOff : PlayerBase
     public string playerRoomCheck;
     new void Start ()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
         playerCurrentRoom = "";
         playerRoomCheck = "";
         /*horizontalAxis = "POffHorizontal";

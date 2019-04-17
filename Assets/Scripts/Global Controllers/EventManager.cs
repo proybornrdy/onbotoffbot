@@ -25,7 +25,7 @@ public class EventManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!LevelController.gameGoing()) return;
+        //if (!LevelController.gameGoing()) return;
         
         try
         {
@@ -33,7 +33,7 @@ public class EventManager : MonoBehaviour {
 			{
                 if (Time.time - lastPressedOn > pressThreshold)
                 {
-                    OnInteract(LevelController.OnPlayer);
+                    OnInteract(Parameters.OnPlayer);
                     lastPressedOn = Time.time;
                 }
             }
@@ -41,14 +41,14 @@ public class EventManager : MonoBehaviour {
             {
                 if (Time.time - lastPressedOn > pressThreshold)
                 {
-                    LevelController.OffPlayer.GetComponent<Animator>().SetTrigger("Use Wrong Arm");
+                    Parameters.OffPlayer.GetComponent<Animator>().SetTrigger("Use Wrong Arm");
                 }
             }
             if (Input.GetButton(PlayerInputTranslator.GetRightInteract(Player.OFF)))
             {
 				if (Time.time - lastPressedOff > pressThreshold)
                 {
-                    OnInteract(LevelController.OffPlayer);
+                    OnInteract(Parameters.OffPlayer);
                     lastPressedOff = Time.time;
                 }
             }
@@ -56,7 +56,7 @@ public class EventManager : MonoBehaviour {
             {
                 if (Time.time - lastPressedOn > pressThreshold)
                 {
-                    LevelController.OnPlayer.GetComponent<Animator>().SetTrigger("Use Wrong Arm");
+                    Parameters.OnPlayer.GetComponent<Animator>().SetTrigger("Use Wrong Arm");
                 }
             }
 

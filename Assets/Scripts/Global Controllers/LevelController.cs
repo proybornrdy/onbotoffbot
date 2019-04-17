@@ -6,17 +6,6 @@ using System;
 
 public class LevelController : MonoBehaviour {
 
-    //World constants
-    public static float gravity = 20f;
-    // Players
-    public static GameObject OnPlayer;
-    public static GameObject OffPlayer;
-    public float playerMovementSpeed;
-
-    public static bool snapJumpingStatic = false;
-    public static float PlayerJumpHeight = 8f;
-    public static float flightDampener = 0.3f;
-    public bool snapJumping = false;
 
     // Interactable Objects
     public static GameObject Door;
@@ -122,57 +111,43 @@ public class LevelController : MonoBehaviour {
         }
     }
 
-    void Awake() {
-        OnPlayer = GameObject.Find("PlayerOn");
-        OffPlayer = GameObject.Find("PlayerOff");
-        OnPlayer.GetComponent<PlayerOn>().movementSpeed = playerMovementSpeed;
-        OffPlayer.GetComponent<PlayerOff>().movementSpeed = playerMovementSpeed;
-        //if (!isTestLevel) for (int i = 0; i < doors.Length; i++) doors[i].index = i;
-        cc = GameObject.Find("CameraController").GetComponent<CameraController>();
-        snapJumpingStatic = snapJumping;
-
-        gameStateLog = new GameStateLog(SceneManager.GetActiveScene().name);
-        tutorialStateMachine = FindObjectOfType<TutorialStateMachine>();
-        hudController = FindObjectOfType<HUDController>();
-        Application.targetFrameRate = 300;
-
-        if (startInStatic.HasValue) startIn = startInStatic.Value;
-    }
-
     private void Start() {
         if (startInStatic.HasValue) startIn = startInStatic.Value;
-        Physics.gravity = new Vector3(0, -LevelController.gravity, 0);
-        if (!isTestLevel) {
+
+        if (!isTestLevel)
+        {
             SetUpRoomActions();
             currentRoom = startIn;
-            if (rooms.Length > 0) {
+            if (rooms.Length > 0)
+            {
                 for (int i = 0; i < rooms.Length; i++)
                     for (int j = 0; j < rooms[i].Length; j++) rooms[i][j].SetActive(false);
 
-                for (int j = 0; j < rooms[currentRoom].Length; j++) {
+                for (int j = 0; j < rooms[currentRoom].Length; j++)
+                {
                     rooms[currentRoom][j].SetActive(true);
                 }
                 cc.changeCameraPos(rooms[currentRoom][0]);
-                OnPlayer.transform.position = rooms[currentRoom][0].onBotSpawnPoint.transform.position;
-                OffPlayer.transform.position = rooms[currentRoom][0].offBotSpawnPoint.transform.position;
+                Parameters.OnPlayer.transform.position = rooms[currentRoom][0].onBotSpawnPoint.transform.position;
+                Parameters.OffPlayer.transform.position = rooms[currentRoom][0].offBotSpawnPoint.transform.position;
                 PlayersMovedToRoom(currentRoom);
                 for (int i = 0; i < doors.Length; i++) doors[i].index = i;
             }
         }
 
-		PauseSceneRoot = GameObject.FindWithTag("PauseSceenRoot");
-		if (!PauseSceneRoot)
-		{
-			Debug.Log("Not Found");
-			SceneManager.LoadScene("InGameMenue", LoadSceneMode.Additive);
-		}
+        PauseSceneRoot = GameObject.FindWithTag("PauseSceneRoot");
+        if (!PauseSceneRoot)
+        {
+            Debug.Log("Not Found");
+            SceneManager.LoadScene("InGameMenue", LoadSceneMode.Additive);
+        }
 
-		if (currentRoom != 0)
-		{
-			backtrackBlockers[currentRoom - 1].SetActive(true);
-		}
+        if (currentRoom != 0)
+        {
+            backtrackBlockers[currentRoom - 1].SetActive(true);
+        }
 
-		InMenue = false;
+        InMenue = false;
 
         AudioSource musicSource = GameObject.Find("/Basic Level Boilerplate/MusicSource").GetComponent<AudioSource>();
         if (currentRoom < 6) {
@@ -187,6 +162,17 @@ public class LevelController : MonoBehaviour {
 
     public static void ToggleMenue() {
         InMenue = !InMenue;
+    }
+
+    private void Awake()
+    {
+        cc = GameObject.Find("CameraController").GetComponent<CameraController>();
+
+        gameStateLog = new GameStateLog(SceneManager.GetActiveScene().name);
+        tutorialStateMachine = FindObjectOfType<TutorialStateMachine>();
+        hudController = FindObjectOfType<HUDController>();
+
+        if (startInStatic.HasValue) startIn = startInStatic.Value;
     }
 
     // Update is called once per frame
@@ -247,14 +233,14 @@ public class LevelController : MonoBehaviour {
         if (!isTestLevel && index != -1 && index < rooms.Length - 1)
             for (int j = 0; j < rooms[index + 1].Length; j++)
                 // fadeout rooms only when both bots are in the same room
-                if (OnPlayer.GetComponent<PlayerOn>().playerCurrentRoom == OffPlayer.GetComponent<PlayerOff>().playerCurrentRoom)
+                if (Parameters.OnPlayer.GetComponent<PlayerOn>().playerCurrentRoom == Parameters.OffPlayer.GetComponent<PlayerOff>().playerCurrentRoom)
                     rooms[index + 1][j].FadeOut();
     }
 
     public void PlayersMovedToRoom(int index) {
         Debug.Log("playermoved to room is called" + index);
         if (index != -1 && index != startIn) {
-            if (OnPlayer.GetComponent<PlayerOn>().playerCurrentRoom == OffPlayer.GetComponent<PlayerOff>().playerCurrentRoom) {
+            if (Parameters.OnPlayer.GetComponent<PlayerOn>().playerCurrentRoom == Parameters.OffPlayer.GetComponent<PlayerOff>().playerCurrentRoom) {
                 print("both player has moved to current room index = " + index);
                 currentRoom = index;
                 StartCoroutine("RoomFadeDelay", index);
@@ -283,7 +269,7 @@ public class LevelController : MonoBehaviour {
 
         if (!isTestLevel && index > 0 && index <= rooms.Length - 1) {
             for (int j = 0; j < rooms[index - 1].Length; j++) {
-                if (OnPlayer.GetComponent<PlayerOn>().playerCurrentRoom == OffPlayer.GetComponent<PlayerOff>().playerCurrentRoom)
+                if (Parameters.OnPlayer.GetComponent<PlayerOn>().playerCurrentRoom == Parameters.OffPlayer.GetComponent<PlayerOff>().playerCurrentRoom)
                     rooms[index - 1][j].FadeOut();
             }
             if (index - 1 < backtrackBlockers.Length && index - 1 >= 0) backtrackBlockers[index - 1].SetActive(true);

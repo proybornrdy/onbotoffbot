@@ -4,10 +4,11 @@ using UnityEngine;
 using System.Linq;
 using System;
 
-[RequireComponent(typeof(Rigidbody))]
+//[RequireComponent(typeof(Rigidbody))]
 public class PlayerBase : MonoBehaviour
 {
-    internal Rigidbody rb;
+    //internal Rigidbody rb;
+    internal CharacterController controller;
     public float selectionThreshold = 120;
 
     public bool animations;
@@ -79,7 +80,7 @@ public class PlayerBase : MonoBehaviour
 
     void OnCollisionStay()
     {
-        if (!isGrounded && Mathf.Approximately(rb.velocity.y, 0)) {
+        if (!isGrounded && Mathf.Approximately(controller.velocity.y, 0)) {
             isGrounded = true;
         }
     }
@@ -100,7 +101,7 @@ public class PlayerBase : MonoBehaviour
         float moveHorizontal = moveVec.y;
         float moveVertical = moveVec.x;
 
-        Vector3 moveDirection = new Vector3(-moveHorizontal, 0, moveVertical);
+        Vector3 moveDirection = (new Vector3(-moveHorizontal, 0, moveVertical)).normalized;
 
         if (moveVec != Vector2.zero)
         {
@@ -116,19 +117,19 @@ public class PlayerBase : MonoBehaviour
             if (animations) animator.SetBool("Walking", false);
         }
 
-		if (!LevelController.snapJumpingStatic)
+		if (!Parameters.snapJumpingStatic)
         {
             float dampening_factor = 1;
-            if (Mathf.Abs(rb.velocity.y) >= 0.05) // in the air
+            if (Mathf.Abs(controller.velocity.y) >= 0.05) // in the air
             {
-                dampening_factor = LevelController.flightDampener;
+                dampening_factor = Parameters.flightDampener;
             }
             transform.Translate(Vector3.forward * moveVertical * movementSpeed * dampening_factor * Time.deltaTime, relativeTo: Space.World);
             transform.Translate(Vector3.left * moveHorizontal * movementSpeed * dampening_factor * Time.deltaTime, relativeTo: Space.World);
 
             if (Input.GetButton(jump) && isGrounded) //)
             {
-                rb.velocity = new Vector3(moveHorizontal, LevelController.PlayerJumpHeight, moveVertical);
+                //controller.velocity = new Vector3(moveHorizontal, Parameters.PlayerJumpHeight, moveVertical);
             }
         }
         //else if (isGrounded)
@@ -144,17 +145,18 @@ public class PlayerBase : MonoBehaviour
                 }
             }
             float dampening_factor = 1;
-            if (Mathf.Abs(rb.velocity.y) >= 0.05) // in the air
-            {
-                dampening_factor = LevelController.flightDampener;
-            }
+            //if (controller.velocity.y < 0.5f) // in the air
+            //{
+            //    dampening_factor = Parameters.flightDampener;
+            //}
 			Vector3 translation = (moveDirection * movementSpeed * dampening_factor * Time.deltaTime);
+            print(translation);
             var hits = Physics.BoxCastAll(transform.position + (Vector3.up * 0.7f), new Vector3(0.2f, 0.4f, 0.2f), translation, Quaternion.Euler(transform.forward), 0.25f);
             
             bool inWay = false;
             foreach (var h in hits)
             {
-                if (h.transform != this.transform)
+                if (h.transform != this.transform && !h.collider.isTrigger)
                 {
                     inWay = true;
                     break;
@@ -165,7 +167,7 @@ public class PlayerBase : MonoBehaviour
                 hits = Physics.BoxCastAll(transform.position + (Vector3.up * 1.05f), new Vector3(0.4f, 0.4f, 0.4f), translation, Quaternion.Euler(transform.forward), 0.25f);
                 foreach (var h in hits)
                 {
-                    if (h.transform != this.transform && h.transform != heldItem.transform)
+                    if (h.transform != this.transform && !h.collider.isTrigger && h.transform != heldItem.transform)
                     {
                         inWay = true;
                         break;
@@ -173,7 +175,8 @@ public class PlayerBase : MonoBehaviour
                 }
             }
             if (!inWay) {
-                transform.Translate(translation, relativeTo: Space.World);
+                controller.Move(translation);
+                //transform.Translate(translation, relativeTo: Space.World);
             }
         }
     }
@@ -185,10 +188,14 @@ public class PlayerBase : MonoBehaviour
             ((jumpFrom.Value.y + jumpTo.Value.y) / 2) + 1,
             (jumpFrom.Value.z + jumpTo.Value.z) / 2);
 
+        Vector3 last = jumpFrom.Value;
+
         for (int i = 0; i < jumpFrames; i++)
         {
             float t = ((float)i) / jumpFrames;
-            transform.position = ((1 - t) * (1 - t) * jumpFrom.Value) + (2 * (1 - t) * t * midPoint) + (t * t * jumpTo.Value);
+            var translation = ((1 - t) * (1 - t) * jumpFrom.Value) + (2 * (1 - t) * t * midPoint) + (t * t * jumpTo.Value);
+            controller.Move(translation - last);
+            last = translation;
             yield return null;
         }
         jumping = false;
