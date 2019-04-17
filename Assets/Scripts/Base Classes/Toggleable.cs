@@ -13,7 +13,16 @@ public abstract class Toggleable : MonoBehaviour {
 
     public void Toggle()
     {
-        if (IsOn()) TurnOff();
-        else TurnOn();
+        if (IsOn())
+        {
+            Debug.Log("turned off");
+            TurnOff();
+        }
+        else
+        {
+            Debug.Log("turned on");
+            TurnOn();
+        }
+
     }
 }

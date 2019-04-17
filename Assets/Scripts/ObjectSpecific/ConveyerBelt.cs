@@ -55,8 +55,9 @@ public class ConveyerBelt : Toggleable {
         {
             Vector3 direction = reverse?  Vector3.back : Vector3.forward;
             //other.gameObject.GetComponent<Rigidbody>().AddForce(scrollSpeed * direction * Time.deltaTime, ForceMode.VelocityChange);
+            //other.gameObject.GetComponent<Rigidbody>().velocity = scrollSpeed * direction * Time.deltaTime * 20;
             other.gameObject.GetComponent<Rigidbody>().velocity = scrollSpeed * direction * Time.deltaTime * 20;
-
+            other.transform.Translate(scrollSpeed * direction * Time.deltaTime *0.05f);
         }
     }
 }

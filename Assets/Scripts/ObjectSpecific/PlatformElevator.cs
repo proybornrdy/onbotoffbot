@@ -7,7 +7,7 @@ public class PlatformElevator : Toggleable {
 	public int height = 2;
     public Transform platform;
 	public bool startOn = false;
-    bool on = false;
+    public bool on = false;
 	bool raising = false;
 	bool lowering = false;
 	float minY;
@@ -26,13 +26,14 @@ public class PlatformElevator : Toggleable {
 	// Update is called once per frame
 	void Update () {
 		if (raising) {
+            Debug.Log("RAISEEEE  " + platform.position.y + "   " + maxY);
 			if (platform.position.y < maxY) {
 				Raise();
 			} else {
 				raising = false;
 			}
 		}
-		else if (lowering) {
+		if (lowering) {
 			if (platform.position.y > minY) {
                 //if(!PlayerUnderneath())
                 //{
@@ -51,8 +52,9 @@ public class PlatformElevator : Toggleable {
         {
             if (h.transform != platform.transform) inWay = true;
         }
-        if (!inWay) platform.position += Vector3.up * Time.deltaTime * 2;
-	}
+        //if (!inWay) platform.position += Vector3.up * Time.deltaTime * 2;
+        platform.position += Vector3.up * Time.deltaTime * 2;
+    }
 	
 	void Lower() {
         bool inWay = false;
