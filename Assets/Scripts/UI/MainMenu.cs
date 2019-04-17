@@ -48,6 +48,11 @@ public class MainMenu : MonoBehaviour
     public GameObject pnlCredits;
     public Button btnCreditsBack;
 
+    //loadingscreen
+    public GameObject loadingScreen;
+    public Slider loadingBar;
+    public GameObject[] loadingDesigns;
+
     public EventSystem eventSystem;
     public Button buttonPrefab;
     public Image gear0;
@@ -160,6 +165,7 @@ public class MainMenu : MonoBehaviour
         pnlLevelSelect.SetActive(true);
         pnlLeaderboard.SetActive(true);
         pnlCredits.SetActive(true);
+        loadingScreen.SetActive(true);
     }
 
     void DeactivateAllPanels()
@@ -169,6 +175,7 @@ public class MainMenu : MonoBehaviour
         pnlLevelSelect.SetActive(false);
         pnlLeaderboard.SetActive(false);
         pnlCredits.SetActive(false);
+        loadingScreen.SetActive(false);
 
     }
 
@@ -197,7 +204,7 @@ public class MainMenu : MonoBehaviour
         section1.SetActive(true);
         section2.SetActive(false);
         section3.SetActive(false);
-
+        LevelController.startInStatic = 0;
         //right.Select();
     }
 
@@ -262,7 +269,9 @@ public class MainMenu : MonoBehaviour
 
         go.onClick.AddListener(delegate ()
         {
-            SceneManager.LoadScene("Scenes/Progression chunks/Section 1");
+            DeactivateAllPanels();
+            StartCoroutine(loadAsync(1));
+            //SceneManager.LoadScene("Scenes/Progression chunks/Section 1");
         });
     }
 
@@ -356,6 +365,30 @@ public class MainMenu : MonoBehaviour
         ShowMain();
     }
 
+
+    IEnumerator loadAsync(int sceneIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+
+        loadingScreen.SetActive(true);
+        foreach (GameObject obj in loadingDesigns)
+        {
+            obj.SetActive(false);
+        }
+        int index = UnityEngine.Random.Range(0, loadingDesigns.Length);
+        loadingDesigns[index].SetActive(true);
+
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / .9f);
+            loadingBar.value = progress;
+            yield return null;
+        }
+        foreach (GameObject obj in loadingDesigns)
+        {
+            obj.SetActive(false);
+        }
+    }
 
     IEnumerator Rotate(MyPair<Transform, float> input)
     {
