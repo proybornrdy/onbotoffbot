@@ -68,6 +68,10 @@ public class LevelController : MonoBehaviour {
     public Slider loadingBar;
     public GameObject[] loadingDesigns;
 
+    public GameObject endingScreen;
+    public Button endingquit;
+    public GameObject endUI;
+
 
     public static bool gameGoing() {
         return gamePlaying;
@@ -178,7 +182,14 @@ public class LevelController : MonoBehaviour {
             StartCoroutine(loadAsync(0));
             //SceneManager.LoadScene("MainMenu");
         });
-
+        endingquit.onClick.AddListener(delegate ()
+        {
+            pauseUI.SetActive(false);
+            Time.timeScale = 1f;
+            pauseGame = false;
+            StartCoroutine(loadAsync(0));
+            //SceneManager.LoadScene("MainMenu");
+        });
 
 
         if (currentRoom != 0)
@@ -280,6 +291,12 @@ public class LevelController : MonoBehaviour {
             startInStatic = 12;
             StartCoroutine(forceLoad(12));
         }
+        if (section == 3)
+        {
+            endingScreen.SetActive(true);
+            endUI.SetActive(true);
+            endingquit.Select();
+        }
     }
     public void DoorOpened(int index) {
         Debug.Log("door is opened room being opened = " + (index + 1) + "  rooms.length = " + rooms.Length);
@@ -344,6 +361,18 @@ public class LevelController : MonoBehaviour {
         //    SceneManager.LoadScene("GameEndScene", LoadSceneMode.Additive);
         //}
         //if (index == startIn && index < roomActions.Count) roomActions[index]();
+    }
+
+    IEnumerator waiting(GameObject e)
+    {
+        float i = 0;
+        
+        while (0 < 1.0f)
+        {
+            i += 0.01f;
+            yield return new WaitForSeconds(0.01f);
+        }
+        
     }
 
     IEnumerator forceLoad(int roomindex)
