@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour {
 
@@ -32,6 +33,8 @@ public class LevelController : MonoBehaviour {
     public static bool InMenue = false;
     private GameObject PauseSceneRoot;
 
+
+
     private string[] LevelProgresion = {
         "Assets/Scenes/Progression chunks/Section 1.unity",
         "Assets/Scenes/Progression chunks/Section 2.unity",
@@ -53,6 +56,17 @@ public class LevelController : MonoBehaviour {
     public static int? startInStatic { get; set; }
 
     public int startIn = 0;
+
+    public GameObject pauseUI;
+    public static bool pauseGame = false;
+    public Button resumeBtn;
+    public Button resetBtn;
+    public Button quitBtn;
+
+    //loadingscreen
+    public GameObject loadingScreen;
+    public Slider loadingBar;
+    public GameObject[] loadingDesigns;
 
     public static bool gameGoing() {
         return gamePlaying;
@@ -134,13 +148,37 @@ public class LevelController : MonoBehaviour {
                 for (int i = 0; i < doors.Length; i++) doors[i].index = i;
             }
         }
-        
-        PauseSceneRoot = GameObject.FindWithTag("PauseSceneRoot");
-        if (!PauseSceneRoot)
+
+        //PauseSceneRoot = GameObject.FindWithTag("PauseSceneRoot");
+        //if (!PauseSceneRoot)
+        //{
+        //    Debug.Log("Not Found");
+        //    SceneManager.LoadScene("InGameMenue", LoadSceneMode.Additive);
+        //}
+
+        resetBtn.onClick.AddListener(delegate () {
+            startInStatic = LevelController.currentRoom;
+            ResetScene();
+            pauseUI.SetActive(false);
+            Time.timeScale = 1f;
+            pauseGame = false;
+        });
+        resumeBtn.onClick.AddListener(delegate ()
         {
-            Debug.Log("Not Found");
-            SceneManager.LoadScene("InGameMenue", LoadSceneMode.Additive);
-        }
+            pauseUI.SetActive(false);
+            Time.timeScale = 1f;
+            pauseGame = false;
+        });
+        quitBtn.onClick.AddListener(delegate () 
+        {
+            pauseUI.SetActive(false);
+            Time.timeScale = 1f;
+            pauseGame = false;
+            StartCoroutine(loadAsync(0));
+            //SceneManager.LoadScene("MainMenu");
+        });
+
+
 
         if (currentRoom != 0)
         {
@@ -161,6 +199,8 @@ public class LevelController : MonoBehaviour {
 	}
 
     public static void ToggleMenue() {
+
+       // pauseGame = !pauseGame;
         InMenue = !InMenue;
     }
 
@@ -173,6 +213,8 @@ public class LevelController : MonoBehaviour {
         hudController = FindObjectOfType<HUDController>();
 
         if (startInStatic.HasValue) startIn = startInStatic.Value;
+
+        loadingScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -199,11 +241,29 @@ public class LevelController : MonoBehaviour {
         }
         if (!isTestLevel) cc.changeCameraPos(rooms[currentRoom][0]);
 
-        Time.timeScale = (InMenue) ? 0.00f : 1.00f;
-        if (PauseSceneRoot)
+        //Time.timeScale = (InMenue) ? 0.00f : 1.00f;
+        //if (PauseSceneRoot)
+        //{
+        //    PauseSceneRoot.SetActive((!LevelController.gameGoing()) ? false : InMenue);
+        //}
+
+        if (Input.GetButtonDown(PlayerInputTranslator.GetMenu(Player.ON)) || Input.GetButtonDown(PlayerInputTranslator.GetMenu(Player.OFF)))
         {
-            PauseSceneRoot.SetActive((!LevelController.gameGoing()) ? false : InMenue);
+            if (pauseGame)
+            {
+                pauseUI.SetActive(false);
+                Time.timeScale = 1f;
+                pauseGame = false;
+            }
+            else
+            {
+                pauseUI.SetActive(true);
+                Time.timeScale = 0f;
+                pauseGame = true;
+                resumeBtn.Select();
+            }
         }
+        
     }
 
     public void DoorOpened(int index) {
@@ -264,6 +324,32 @@ public class LevelController : MonoBehaviour {
         //    SceneManager.LoadScene("GameEndScene", LoadSceneMode.Additive);
         //}
         //if (index == startIn && index < roomActions.Count) roomActions[index]();
+    }
+
+    IEnumerator loadAsync(int sceneIndex)
+    {
+        
+
+        loadingScreen.SetActive(true);
+        foreach (GameObject obj in loadingDesigns)
+        {
+            obj.SetActive(false);
+        }
+        int index = UnityEngine.Random.Range(0, loadingDesigns.Length);
+        loadingDesigns[index].SetActive(true);
+
+        loadingBar.value = 0;
+        while (loadingBar.value <1)
+        {
+            //float progress = Mathf.Clamp01(operation.progress / .9f);
+            loadingBar.value += 0.1f;
+            yield return new WaitForSeconds(0.05f);
+        }
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        foreach (GameObject obj in loadingDesigns)
+        {
+            obj.SetActive(false);
+        }
     }
 
     IEnumerator RoomFadeDelay(int index) {
